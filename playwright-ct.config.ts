@@ -3,9 +3,38 @@ import { lingui } from "@lingui/vite-plugin";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { fileURLToPath } from "url";
+import type { Plugin } from "vite";
 import svgr from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/**
+ * Vite plugin that mocks modules whose top-level code has circular
+ * dependency issues in the production bundle (TDZ errors).
+ */
+function ctModuleMocks(): Plugin {
+  const mockPath = path.resolve(__dirname, "playwright/mocks/rpcDebug.ts");
+
+  return {
+    name: "ct-module-mocks",
+    enforce: "pre",
+    resolveId(source, importer) {
+      // Match bare import: import ... from "lib/rpc/_debug"
+      if (source === "lib/rpc/_debug") {
+        return mockPath;
+      }
+      // Match relative import: import ... from "./_debug" inside lib/rpc/
+      if (source === "./_debug" && importer && importer.includes(path.join("lib", "rpc"))) {
+        return mockPath;
+      }
+      // Match any resolved path containing lib/rpc/_debug
+      if (source.includes("lib/rpc/_debug")) {
+        return mockPath;
+      }
+    },
+  };
+}
 
 export default defineConfig({
   testDir: "./src",
@@ -19,10 +48,15 @@ export default defineConfig({
   use: {
     trace: "on-first-retry",
     ctViteConfig: {
+      worker: {
+        format: "es",
+      },
       plugins: [
+        ctModuleMocks(),
         svgr({
           include: "**/*.svg?react",
         }),
+        tsconfigPaths(),
         react({
           babel: {
             plugins: ["macros"],
@@ -30,6 +64,9 @@ export default defineConfig({
         }),
         lingui(),
       ],
+      optimizeDeps: {
+        include: ["@vanilla-extract/sprinkles", "@rainbow-me/rainbowkit"],
+      },
       resolve: {
         alias: {
           App: path.resolve(__dirname, "src/App"),
