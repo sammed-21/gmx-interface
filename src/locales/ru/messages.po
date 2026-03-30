@@ -1694,6 +1694,10 @@ msgstr "Без комиссии"
 msgid "Actions"
 msgstr ""
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Total Rebates"
+msgstr ""
+
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Swap liquidity may be insufficient when order triggers"
 msgstr "Ликвидности для обмена может быть недостаточно при срабатывании ордера"
@@ -2890,6 +2894,10 @@ msgstr "Вывод средств с GMX Account..."
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "Vesting status"
 msgstr "Статус вестинга"
+
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Code"
+msgstr ""
 
 #: src/domain/synthetics/sidecarOrders/utils.ts
 msgid "TP price below mark price"
@@ -6172,6 +6180,7 @@ msgstr "Торговать"
 #: src/components/PositionShare/PositionShare.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
 #: src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "Share"
@@ -7249,6 +7258,10 @@ msgstr "Показать больше"
 msgid "Net rate = funding + borrowing fees.<0/><1/>Funding: Balances longs vs shorts, paid between traders. <2>Read more</2>.<3/><4/>Borrowing: Ensures available liquidity. <5>Read more</5>."
 msgstr "Чистая ставка = комиссии за финансирование + заимствование.<0/><1/>Финансирование: балансирует лонги и шорты, выплачивается между трейдерами. <2>Подробнее</2>.<3/><4/>Заимствование: обеспечивает доступную ликвидность. <5>Подробнее</5>."
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Traders Referred"
+msgstr ""
+
 #: src/components/OneClickAdvancedSettings/OneClickAdvancedSettings.tsx
 msgid "Maximum actions before reauthorization required"
 msgstr "Максимальное количество действий до необходимости повторной авторизации"
@@ -7624,6 +7637,7 @@ msgstr "Больше информации"
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Create"
@@ -7660,6 +7674,7 @@ msgstr "Недействительные адреса перевода. Пров
 msgid "Swap {fromAmount} for {toAmount}"
 msgstr "Обмен {fromAmount} на {toAmount}"
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "Copy"
 msgstr ""
@@ -9003,6 +9018,7 @@ msgid "Pool amount capacity"
 msgstr "Ёмкость пула по количеству токенов"
 
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "Referral link copied to your clipboard"
 msgstr ""
 
@@ -9460,6 +9476,10 @@ msgstr "ЦЕНА АКТИВАЦИИ"
 #: src/pages/PoolsDetails/PoolsDetailsAbout.tsx
 msgid "Accrues fees from leverage trading and swaps for the {marketName} market. Exposed to {exposedToLabel} as shown."
 msgstr "Накапливает комиссии от торговли с кредитным плечом и свопов на рынке {marketName}. Подвержен влиянию {exposedToLabel}, как показано."
+
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Total Volume"
+msgstr ""
 
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy {nativeTokenSymbol} directly on <0>{chainName}</0>"

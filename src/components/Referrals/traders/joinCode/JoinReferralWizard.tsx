@@ -36,10 +36,10 @@ enum JoinReferralWizardStep {
 function DiscountPromos() {
   return (
     <>
-      <h2 className="text-[40px] font-medium">
+      <h2 className="text-[40px] font-medium max-md:text-[32px]">
         <Trans>
           Trade smarter with up
-          <br /> to 10% fee savings
+          <br className="max-md:hidden" /> to 10% fee savings
         </Trans>
       </h2>
       <p className="text-body-medium text-typography-secondary">
@@ -80,13 +80,13 @@ export function JoinReferralWizard({ onGoToTraderDashboard }: { onGoToTraderDash
   );
 
   return (
-    <div className="relative h-[570px] overflow-hidden rounded-8">
+    <div className="relative min-h-[570px] overflow-hidden rounded-8">
       <img
         src={referralWizardBg}
         className="absolute -left-8 -top-8 min-h-[calc(100%+16px)] min-w-[calc(100%+16px)] select-none object-fill blur-[12px]"
       />
 
-      <div className="relative z-10 mx-auto flex h-full w-[420px] flex-col py-adaptive text-center">
+      <div className="relative z-10 mx-auto flex h-full max-w-[452px] flex-col px-16 py-adaptive text-center">
         <StepProgress steps={3} currentStep={joinReferralWizardStep} />
         <div className="h-[123px]" />
         <div className="flex grow flex-col justify-between gap-12">

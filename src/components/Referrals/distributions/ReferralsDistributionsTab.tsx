@@ -53,7 +53,7 @@ export function ReferralsDistributionsTab({ isLoading, account, referralsData }:
   }
 
   return (
-    <div className="flex grow gap-8 max-md:flex-col">
+    <div className="flex grow gap-8 max-md:flex-col max-md:pb-[100px]">
       <div className="flex grow flex-col gap-8">
         {currentRebateData.length > 0 ? (
           <RebatesDistributionTable
@@ -72,7 +72,7 @@ export function ReferralsDistributionsTab({ isLoading, account, referralsData }:
           />
         )}
       </div>
-      <div className="flex w-[400px] shrink-0 flex-col gap-8 max-md:w-full">
+      <div className="flex w-[400px] shrink-0 flex-col gap-8 max-md:contents max-md:w-full">
         <ClaimableRebatesCard />
         <ReferralsDocsCard />
       </div>

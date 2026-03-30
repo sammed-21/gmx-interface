@@ -1694,6 +1694,10 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Total Rebates"
+msgstr ""
+
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Swap liquidity may be insufficient when order triggers"
 msgstr ""
@@ -2889,6 +2893,10 @@ msgstr ""
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "Vesting status"
+msgstr ""
+
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Code"
 msgstr ""
 
 #: src/domain/synthetics/sidecarOrders/utils.ts
@@ -6172,6 +6180,7 @@ msgstr ""
 #: src/components/PositionShare/PositionShare.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
 #: src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "Share"
@@ -7249,6 +7258,10 @@ msgstr ""
 msgid "Net rate = funding + borrowing fees.<0/><1/>Funding: Balances longs vs shorts, paid between traders. <2>Read more</2>.<3/><4/>Borrowing: Ensures available liquidity. <5>Read more</5>."
 msgstr ""
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Traders Referred"
+msgstr ""
+
 #: src/components/OneClickAdvancedSettings/OneClickAdvancedSettings.tsx
 msgid "Maximum actions before reauthorization required"
 msgstr ""
@@ -7624,6 +7637,7 @@ msgstr ""
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Create"
@@ -7660,6 +7674,7 @@ msgstr ""
 msgid "Swap {fromAmount} for {toAmount}"
 msgstr ""
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "Copy"
 msgstr ""
@@ -9003,6 +9018,7 @@ msgid "Pool amount capacity"
 msgstr ""
 
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "Referral link copied to your clipboard"
 msgstr ""
 
@@ -9459,6 +9475,10 @@ msgstr ""
 
 #: src/pages/PoolsDetails/PoolsDetailsAbout.tsx
 msgid "Accrues fees from leverage trading and swaps for the {marketName} market. Exposed to {exposedToLabel} as shown."
+msgstr ""
+
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Total Volume"
 msgstr ""
 
 #: src/pages/BuyGMX/BuyGMX.tsx

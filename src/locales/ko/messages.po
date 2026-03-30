@@ -1694,6 +1694,10 @@ msgstr "수수료 없음"
 msgid "Actions"
 msgstr ""
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Total Rebates"
+msgstr ""
+
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Swap liquidity may be insufficient when order triggers"
 msgstr "주문 트리거 시 스왑 유동성이 부족할 수 있습니다"
@@ -2890,6 +2894,10 @@ msgstr "GMX Account에서 출금 중..."
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "Vesting status"
 msgstr "베스팅 상태"
+
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Code"
+msgstr ""
 
 #: src/domain/synthetics/sidecarOrders/utils.ts
 msgid "TP price below mark price"
@@ -6172,6 +6180,7 @@ msgstr "지금 거래하기"
 #: src/components/PositionShare/PositionShare.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
 #: src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "Share"
@@ -7249,6 +7258,10 @@ msgstr "더 보기"
 msgid "Net rate = funding + borrowing fees.<0/><1/>Funding: Balances longs vs shorts, paid between traders. <2>Read more</2>.<3/><4/>Borrowing: Ensures available liquidity. <5>Read more</5>."
 msgstr "순 비율 = 펀딩 + 차입 수수료.<0/><1/>펀딩: 롱과 숏 간의 균형을 조정하며, 트레이더 간에 지급됩니다. <2>자세히 보기</2>.<3/><4/>차입: 유동성 확보를 보장합니다. <5>자세히 보기</5>."
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Traders Referred"
+msgstr ""
+
 #: src/components/OneClickAdvancedSettings/OneClickAdvancedSettings.tsx
 msgid "Maximum actions before reauthorization required"
 msgstr "재승인이 필요하기 전 최대 실행 횟수"
@@ -7624,6 +7637,7 @@ msgstr "더 많은 정보"
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Create"
@@ -7660,6 +7674,7 @@ msgstr "전송 주소가 유효하지 않습니다. URL을 확인하십시오."
 msgid "Swap {fromAmount} for {toAmount}"
 msgstr "{fromAmount}을 {toAmount}으로 스왑"
 
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "Copy"
 msgstr ""
@@ -9003,6 +9018,7 @@ msgid "Pool amount capacity"
 msgstr "풀 수량 용량"
 
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "Referral link copied to your clipboard"
 msgstr ""
 
@@ -9460,6 +9476,10 @@ msgstr "조건가"
 #: src/pages/PoolsDetails/PoolsDetailsAbout.tsx
 msgid "Accrues fees from leverage trading and swaps for the {marketName} market. Exposed to {exposedToLabel} as shown."
 msgstr "{marketName} 시장의 레버리지 거래 및 스왑에서 수수료가 발생합니다. 표시된 바와 같이 {exposedToLabel}에 노출됩니다."
+
+#: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
+msgid "Total Volume"
+msgstr ""
 
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy {nativeTokenSymbol} directly on <0>{chainName}</0>"

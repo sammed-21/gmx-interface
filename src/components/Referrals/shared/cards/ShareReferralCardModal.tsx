@@ -1,6 +1,6 @@
 import { t, Trans } from "@lingui/macro";
 import { QRCodeSVG } from "qrcode.react";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useCopyToClipboard } from "react-use";
 
 import { copyElementAsImage, shareElementAsImage } from "lib/copyElementAsImage";
@@ -10,7 +10,7 @@ import { formatUsd } from "lib/numbers";
 import { useBreakpoints } from "lib/useBreakpoints";
 
 import Button from "components/Button/Button";
-import ModalWithPortal from "components/Modal/ModalWithPortal";
+import { SlideModal } from "components/Modal/SlideModal";
 
 import logoIcon from "img/gmx_logo.svg";
 import CopyStrokeIcon from "img/ic_copy_stroke.svg?react";
@@ -65,11 +65,13 @@ export function ShareReferralCardModal({
   const handleCopyImage = useCallback(async () => {
     if (!cardRef.current) return;
 
+    const captureOptions = { style: { transform: "none", borderRadius: "0" } };
+
     try {
       if (isMobile) {
-        await shareElementAsImage(cardRef.current, "GMX Referral.png");
+        await shareElementAsImage(cardRef.current, "GMX Referral.png", captureOptions);
       } else {
-        await copyElementAsImage(cardRef.current);
+        await copyElementAsImage(cardRef.current, captureOptions);
         helperToast.success(t`Image copied to clipboard`);
       }
     } catch {
@@ -80,47 +82,22 @@ export function ShareReferralCardModal({
   }, [isMobile]);
 
   return (
-    <ModalWithPortal
+    <SlideModal
       isVisible={isVisible}
       setIsVisible={setIsVisible}
       label={<Trans>Share your referral card</Trans>}
-      contentClassName="w-[500px]"
+      desktopContentClassName="w-[500px]"
+      fitContent
     >
       <div className="flex flex-col gap-12">
-        <div ref={cardRef} className="relative aspect-[460/240] w-full overflow-hidden rounded-8">
-          <img src={shareReferralCodeBg} className="absolute inset-0 size-full object-cover" aria-hidden />
-          <div className="absolute right-16 top-16 rounded-4 bg-white p-4">
-            <QRCodeSVG value={referralLink} size={44} level="M" bgColor="white" fgColor="black" />
-          </div>
-          <div className="relative z-10 flex h-full flex-col justify-between p-adaptive">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center text-typography-primary">
-                <img src={logoIcon} alt="GMX Logo" className="w-22" />
-                <LogoText className="h-14" />
-              </div>
-            </div>
-
-            <div className="">
-              <div className="mb-8 inline-block rounded-full bg-blue-300/20 px-6 py-2 text-16 font-medium text-blue-300">
-                <div className="support-chat-new-badge">{referralCode}</div>
-              </div>
-              <h3 className="text-32 font-medium leading-1 text-white">
-                <Trans>
-                  <span className="support-chat-new-badge">Save up to {traderDiscountPercentageLabel}</span> on every
-                  <br /> trade on GMX.
-                </Trans>
-              </h3>
-              {hasReferredUsers && (
-                <p className="text-body-medium mt-12 font-medium text-typography-secondary">
-                  <Trans>
-                    So far, my referrals have saved {totalDiscountsFormatted} total in discounts with my code:{" "}
-                    {referralCode}
-                  </Trans>
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
+        <ScaledReferralCard
+          cardRef={cardRef}
+          referralLink={referralLink}
+          referralCode={referralCode}
+          traderDiscountPercentageLabel={traderDiscountPercentageLabel}
+          totalDiscountsFormatted={totalDiscountsFormatted}
+          hasReferredUsers={hasReferredUsers}
+        />
 
         <div className="flex gap-12">
           <Button
@@ -153,6 +130,87 @@ export function ShareReferralCardModal({
           </Button>
         </div>
       </div>
-    </ModalWithPortal>
+    </SlideModal>
+  );
+}
+
+const CARD_WIDTH = 460;
+const CARD_HEIGHT = 240;
+
+function ScaledReferralCard({
+  cardRef,
+  referralLink,
+  referralCode,
+  traderDiscountPercentageLabel,
+  totalDiscountsFormatted,
+  hasReferredUsers,
+}: {
+  cardRef: React.Ref<HTMLDivElement>;
+  referralLink: string;
+  referralCode: string;
+  traderDiscountPercentageLabel: string;
+  totalDiscountsFormatted: string | undefined;
+  hasReferredUsers: boolean;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      const containerWidth = entry.contentRect.width;
+      setScale(Math.min(containerWidth / CARD_WIDTH, 1));
+    });
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const styles = useMemo(
+    () => ({
+      containerStyle: { height: CARD_HEIGHT * scale },
+      cardStyle: { width: CARD_WIDTH, height: CARD_HEIGHT, transform: `scale(${scale})`, transformOrigin: "top left" },
+    }),
+    [scale]
+  );
+
+  return (
+    <div ref={containerRef} style={styles.containerStyle}>
+      <div ref={cardRef} className="relative overflow-hidden rounded-8" style={styles.cardStyle}>
+        <img src={shareReferralCodeBg} className="absolute inset-0 size-full object-cover" aria-hidden />
+        <div className="absolute right-16 top-16 rounded-4 bg-white p-4">
+          <QRCodeSVG value={referralLink} size={44} level="M" bgColor="white" fgColor="black" />
+        </div>
+        <div className="relative z-10 flex h-full flex-col justify-between p-20">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center text-typography-primary">
+              <img src={logoIcon} alt="GMX Logo" className="w-22" />
+              <LogoText className="h-14" />
+            </div>
+          </div>
+
+          <div>
+            <div className="mb-8 inline-block rounded-full bg-blue-300/20 px-6 py-2 text-16 font-medium leading-[20px] text-blue-300">
+              <div className="support-chat-new-badge">{referralCode}</div>
+            </div>
+            <h3 className="text-32 font-medium leading-1 text-white">
+              <Trans>
+                <span className="support-chat-new-badge">Save up to {traderDiscountPercentageLabel}</span> on every
+                <br /> trade on GMX.
+              </Trans>
+            </h3>
+            {hasReferredUsers && (
+              <p className="text-body-medium mt-12 font-medium text-typography-secondary">
+                <Trans>
+                  So far, my referrals have saved {totalDiscountsFormatted} total in discounts with my code:{" "}
+                  {referralCode}
+                </Trans>
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

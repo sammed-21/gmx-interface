@@ -31,7 +31,7 @@ export function ClaimableRebatesCard() {
 
   return (
     <>
-      <div className="rounded-8 bg-slate-900 p-adaptive">
+      <div className="rounded-8 bg-slate-900 p-adaptive max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:z-50 max-md:rounded-0 max-md:border-t-1/2 max-md:border-stroke-primary">
         <div className="text-body-medium mb-8 font-medium text-typography-secondary">
           <Trans>Claimable rebates</Trans>
         </div>
