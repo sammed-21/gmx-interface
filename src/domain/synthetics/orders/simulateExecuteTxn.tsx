@@ -190,7 +190,7 @@ export async function simulateExecuteTxn(chainId: ContractsChainId, p: SimulateE
         },
       }
     );
-  } catch (txnError: any) {
+  } catch (txnError) {
     let msg: React.ReactNode = undefined;
 
     try {
@@ -211,6 +211,7 @@ export async function simulateExecuteTxn(chainId: ContractsChainId, p: SimulateE
       }
 
       if (p.metricId) {
+        // @ts-expect-error
         sendTxnErrorMetric(p.metricId, txnError, "simulation");
       }
 
@@ -244,6 +245,7 @@ export async function simulateExecuteTxn(chainId: ContractsChainId, p: SimulateE
           {p.additionalErrorParams?.content}
           <br />
           <br />
+          {/* @ts-expect-error */}
           <ToastifyDebug error={`${parsedError.name ?? txnError?.message} ${JSON.stringify(parsedArgs, null, 2)}`} />
         </div>
       );
@@ -251,6 +253,7 @@ export async function simulateExecuteTxn(chainId: ContractsChainId, p: SimulateE
       // eslint-disable-next-line no-console
       console.error(parsingError);
 
+      // @ts-expect-error
       const commonError = getErrorMessage(chainId, txnError, errorTitle, p.additionalErrorParams?.content);
       msg = commonError.failMsg;
     }

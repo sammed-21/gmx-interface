@@ -123,8 +123,10 @@ export async function getOpenOceanTxnData({
       amountIn,
       outputAmount: BigInt(parsed.data.minOutAmount),
     };
-  } catch (e: any) {
+  } catch (e) {
+    // @ts-expect-error
     e.message += ` URL: ${url.replace(receiverAddress, "...")}`;
+    // @ts-expect-error
     metrics.pushError(e, "externalSwap.getOpenOceanTxnData");
     return undefined;
   }

@@ -253,9 +253,10 @@ async function processSimulation({
         autoClose: false,
       }
     );
-  } catch (e: any) {
+  } catch (e) {
     helperToast.error(
       <>
+        {/* @ts-expect-error */}
         {e.message}
         <br />
         <br />

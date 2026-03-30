@@ -156,7 +156,8 @@ export function useMulticall<
             : response;
 
         return result as TResult;
-      } catch (e: any) {
+      } catch (_e) {
+        const e = _e as Error;
         // eslint-disable-next-line no-console
         console.error(`Multicall request failed: ${name}`, e);
         e.message = `Multicall request failed: ${name} ${e.message}`;
@@ -168,7 +169,7 @@ export function useMulticall<
             errorName: e.name,
             errorMessage: e.message,
             errorStack: e.stack,
-            errorStackHash: cryptoJs.SHA256(e.stack).toString(cryptoJs.enc.Hex),
+            errorStackHash: cryptoJs.SHA256(e.stack!).toString(cryptoJs.enc.Hex),
             isUserError: false,
             isUserRejectedError: false,
           },

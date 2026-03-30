@@ -69,7 +69,8 @@ export function TestPermits() {
             ...prev,
             [token.address]: { name: params.name, version: params.version, nonce: params.nonce, error: false },
           }));
-        } catch (error: any) {
+        } catch (error) {
+          // @ts-expect-error
           if (!error.message.includes("Cannot decode zero data ")) {
             // eslint-disable-next-line no-console
             console.error("Error fetching onchain params for token", token.symbol, token.address, error);

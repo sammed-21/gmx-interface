@@ -83,19 +83,24 @@ export async function approveTokens({
       );
       setIsApproving(false);
       return;
-    } catch (e: any) {
+    } catch (e) {
+      // @ts-expect-error
       const isUserRejection = e.message?.includes("user rejected");
 
       if (isUserRejection) {
+        // @ts-expect-error
         onApproveFail?.(e, { isPermit: true });
         helperToast.error(t`Permit signing cancelled`);
         setIsApproving(false);
         return;
       }
 
+      // @ts-expect-error
       if (e.message?.includes(INVALID_PERMIT_SIGNATURE_ERROR)) {
+        // @ts-expect-error
         onApproveFail?.(e, { isPermit: true });
         permitParams.setIsPermitsDisabled(true);
+        // @ts-expect-error
         metrics.pushError(e, "approveTokens.permitError");
         helperToast.error(getInvalidPermitSignatureToastContent());
         setIsApproving(false);
@@ -105,6 +110,7 @@ export async function approveTokens({
       // For Smart wallets (Safe, etc.) and other wallets that don't support
       // eth_signTypedData_v4, fall back to standard ERC20 approve() transaction
       permitParams.setIsPermitsDisabled(true);
+      // @ts-expect-error
       metrics.pushError(e, "approveTokens.permitError");
     }
   }
@@ -148,13 +154,15 @@ export async function approveTokens({
       };
       setPendingTxns([...pendingTxns, pendingTxn]);
     }
-  } catch (e: any) {
+  } catch (e) {
+    // @ts-expect-error
     onApproveFail?.(e, { isPermit: false });
     // eslint-disable-next-line no-console
     console.error(e);
     let failMsg;
     if (
       ["not enough funds for gas", "failed to execute call with revert code InsufficientGasFunds"].includes(
+        // @ts-expect-error
         e.data?.message
       )
     ) {
@@ -170,6 +178,7 @@ export async function approveTokens({
           </Trans>
         </div>
       );
+      // @ts-expect-error
     } else if (e.message?.includes("User denied transaction signature")) {
       failMsg = t`Approval cancelled`;
     } else {

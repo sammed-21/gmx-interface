@@ -68,7 +68,8 @@ export async function signTypedData({
   if (shouldUseSignerMethod && signer.signTypedData) {
     try {
       return await signer.signTypedData(domain, typesToSign, messageToSign);
-    } catch (e: any) {
+    } catch (e) {
+      // @ts-expect-error
       if (e.message.includes("requires a provider")) {
         // ignore and try to send request directly to provider
       } else {

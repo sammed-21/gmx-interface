@@ -34,9 +34,11 @@ export async function callRelayTransaction({
         ]
       ),
     });
-  } catch (ex: any) {
+  } catch (ex) {
+    // @ts-expect-error
     if (ex.error) {
       // this gives much more readable error in the console with a stacktrace
+      // @ts-expect-error
       throw ex.error;
     }
     throw ex;

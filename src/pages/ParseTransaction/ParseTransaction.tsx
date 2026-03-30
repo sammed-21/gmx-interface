@@ -568,7 +568,8 @@ function LogEntryComponent(props: LogEntryComponentProps) {
     if (field) {
       try {
         value = field(props.value, props);
-      } catch (e: any) {
+      } catch (e) {
+        // @ts-expect-error
         value = e.message;
         withError = true;
       }
@@ -586,7 +587,8 @@ function LogEntryComponent(props: LogEntryComponentProps) {
   if (props.type === "address" && field) {
     try {
       value = field(props.value, props);
-    } catch (e: any) {
+    } catch (e) {
+      // @ts-expect-error
       value = e.message;
       withError = true;
     }
@@ -602,7 +604,8 @@ function LogEntryComponent(props: LogEntryComponentProps) {
     if (field) {
       try {
         value = field(props.value, props);
-      } catch (e: any) {
+      } catch (e) {
+        // @ts-expect-error
         value = e.message;
         withError = true;
       }
