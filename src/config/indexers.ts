@@ -10,7 +10,7 @@ const INDEXER_URLS = {
       "https://api.goldsky.com/api/public/project_cmgptuc4qhclc01rh9s4q554a/subgraphs/gmx-arbitrum-referrals/master-240506225935-51167d5/gn",
     syntheticsStats:
       "https://api.goldsky.com/api/public/project_cmgptuc4qhclc01rh9s4q554a/subgraphs/synthetics-arbitrum-stats/master-250410222518-4486206/gn",
-    subsquid: "https://gmx-test.squids.live/gmx-synthetics-arbitrum@b78644/api/graphql",
+    subsquid: "https://gmx-test.squids.live/gmx-synthetics-arbitrum@ye4nvy/api/graphql",
   },
 
   [AVALANCHE]: {
@@ -20,7 +20,7 @@ const INDEXER_URLS = {
       "https://api.goldsky.com/api/public/project_cmgptuc4qhclc01rh9s4q554a/subgraphs/gmx-avalanche-referrals/master-240415215829-f6877d6/gn",
     syntheticsStats:
       "https://api.goldsky.com/api/public/project_cmgptuc4qhclc01rh9s4q554a/subgraphs/synthetics-avalanche-stats/master-250410222549-4486206/gn",
-    subsquid: "https://gmx-test.squids.live/gmx-synthetics-avalanche@b78644/api/graphql",
+    subsquid: "https://gmx-test.squids.live/gmx-synthetics-avalanche@ye4nvy/api/graphql",
   },
 
   [AVALANCHE_FUJI]: {
