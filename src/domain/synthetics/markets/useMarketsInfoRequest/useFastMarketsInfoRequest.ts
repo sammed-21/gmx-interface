@@ -7,7 +7,7 @@ import { type ErrorLike } from "lib/errors";
 import { getSubsquidGraphClient } from "lib/indexers";
 import { metrics } from "lib/metrics";
 import { MarketInfo as SquidMarketInfo } from "sdk/codegen/subsquid";
-import { convertTokenAddress, getToken } from "sdk/configs/tokens";
+import { convertTokenAddress, getToken, isValidTokenSafe } from "sdk/configs/tokens";
 import { queryPaginated } from "sdk/utils/indexers";
 
 import { getMarketFullName, RawMarketsInfoData } from "..";
@@ -141,7 +141,18 @@ export function useFastMarketsInfoRequest(chainId: number) {
         }
 
         return rawMarketsInfos.reduce((acc: RawMarketsInfoData, mInfo) => {
-          const indexToken = getToken(chainId, convertTokenAddress(chainId, mInfo.indexTokenAddress, "native"));
+          const nativeIndexAddress = convertTokenAddress(chainId, mInfo.indexTokenAddress, "native");
+
+          // Skip markets with tokens not in the config to avoid throwing
+          if (
+            !isValidTokenSafe(chainId, nativeIndexAddress) ||
+            !isValidTokenSafe(chainId, mInfo.longTokenAddress) ||
+            !isValidTokenSafe(chainId, mInfo.shortTokenAddress)
+          ) {
+            return acc;
+          }
+
+          const indexToken = getToken(chainId, nativeIndexAddress);
           const longToken = getToken(chainId, mInfo.longTokenAddress);
           const shortToken = getToken(chainId, mInfo.shortTokenAddress);
           const isSpotOnly = mInfo.indexTokenAddress === zeroAddress;

@@ -271,6 +271,11 @@ export function BridgeOutModal({
       });
       helperToast.error(toastParams.errorContent, {
         autoClose: toastParams.autoCloseToast,
+        tradingErrorInfo: {
+          actionName: "Bridge Withdrawal",
+          errorData: error,
+          collateral: marketToken?.address,
+        },
       });
     } finally {
       setIsCreatingTxn(false);

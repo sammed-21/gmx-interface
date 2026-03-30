@@ -442,7 +442,10 @@ function useWithdrawViewTransactions({
         }
       });
     } catch (error) {
-      const prettyError = toastCustomOrStargateError(chainId, error as Error);
+      const prettyError = toastCustomOrStargateError(chainId, error as Error, {
+        actionName: "Multichain Withdrawal",
+        metricId: metricData.metricId,
+      });
       sendTxnErrorMetric(metricData.metricId, prettyError, "unknown");
     } finally {
       setIsSubmitting(false);
