@@ -35,18 +35,10 @@ msgstr "Aucune récompense sélectionnée"
 msgid "Pear Protocol"
 msgstr "Protocole Pear"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-#~ msgid "What would make your rating a 9 or 10?"
-#~ msgstr "Qu'est-ce qui ferait passer votre note à 9 ou 10 ?"
-
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
 msgid "Price impact rebates claimed"
 msgstr "Remises d'impact sur le prix récupérées"
-
-#: src/components/RatingToast/RatingToast.tsx
-#~ msgid "Not likely"
-#~ msgstr "Peu probable"
 
 #: src/components/Errors/errorToasts.tsx
 msgid "Or update your wallet's RPC via <0>chainlist.org</0>"
@@ -447,11 +439,6 @@ msgstr "Solde du GMX Account"
 msgid "Best swap path"
 msgstr "Meilleur chemin de swap"
 
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "@username"
-#~ msgstr "@nomdutilisateur"
-
 #: src/domain/synthetics/referrals/claimAffiliateRewardsTxn.ts
 msgid "Failed to claim affiliate rewards"
 msgstr "Échec de la récupération des récompenses d'affiliation"
@@ -804,10 +791,6 @@ msgstr "Lorem ipsum dolor"
 msgid "Buy GMX on centralized exchanges"
 msgstr "Acheter des GMX sur des plateformes centralisées"
 
-#: src/components/NpsModal/NpsModal.tsx
-#~ msgid "Share for follow-up questions"
-#~ msgstr "Partager pour les questions de suivi"
-
 #: src/components/SwapCard/SwapCard.tsx
 #: src/components/TradeBox/TradeBoxRows/AvailableLiquidityRow.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -867,11 +850,6 @@ msgstr "Tokens stakés insuffisants"
 #: src/components/PositionShare/CreateReferralCode.tsx
 msgid "Creating code..."
 msgstr "Création du code..."
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "Telegram contact (optional)"
-#~ msgstr "Contact Telegram (optionnel)"
 
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
 msgid "Conversion creation failed"
@@ -1822,10 +1800,6 @@ msgstr "Prix stop"
 msgid "Leaving GMX.io for a third-party website"
 msgstr "Vous quittez GMX.io pour un site tiers"
 
-#: src/components/Earn/BuybackTracker/BuybackMetricsHeader.tsx
-#~ msgid "Weekly Rate"
-#~ msgstr ""
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Price data too old. Oracle price is stale"
 msgstr "Données de prix trop anciennes. Le prix Oracle est obsolète"
@@ -1924,10 +1898,6 @@ msgstr "Gas insuffisant pour l'exécution"
 #: src/components/TradeBox/SwapSlippageField.tsx
 msgid "Custom"
 msgstr "Personnalisé"
-
-#: src/components/NpsModal/NpsModal.tsx
-#~ msgid "Enter your answer"
-#~ msgstr "Saisissez votre réponse"
 
 #: src/pages/RpcDebug/parts.tsx
 msgid "Markets info"
@@ -2137,10 +2107,6 @@ msgstr "GMX (Chinois)"
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 msgid "Search"
 msgstr "Rechercher"
-
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-#~ msgid "Annualized rate of GMX buybacks based on weekly buyback volume relative to total staked GMX. 27% of protocol fees accumulate in the Treasury for buybacks."
-#~ msgstr ""
 
 #: src/pages/UiPage/BannerTest.tsx
 msgid "Existing position in WETH-USDC pool but lacks liquidity for this order"
@@ -2407,17 +2373,9 @@ msgstr ""
 msgid "You have a <0>pending transfer</0> to {pendingReceiver}"
 msgstr "Vous avez un <0>transfert en attente</0> vers {pendingReceiver}"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-#~ msgid "How can we address your concerns?"
-#~ msgstr "Comment pouvons-nous répondre à vos préoccupations ?"
-
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "Aucune liquidité disponible pour augmenter les longs à<0/>cette taille. Taille long maximale : {0}<1/><2/>Prix d'exécution pour la réduction des shorts."
-
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-#~ msgid "Accumulated Rewards"
-#~ msgstr ""
 
 #: src/pages/AccountTransfer/CompleteAccountTransfer/CompleteAccountTransfer.tsx
 msgid "Transfer completed"
@@ -2926,10 +2884,6 @@ msgstr "Solde {symbol} insuffisant : {availableFormatted} disponible, {requiredF
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "POSITION"
 msgstr "POSITION"
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "We value your feedback"
-#~ msgstr "Nous apprécions vos retours"
 
 #: src/components/GmxAccountModal/InsufficientWntBanner.tsx
 msgid "<0>Deposit</0> or <1>buy</1> {wrappedNativeTokenSymbol}."
@@ -3660,10 +3614,6 @@ msgstr "Trader"
 msgid "No deposits required"
 msgstr "Aucun dépôt requis"
 
-#: src/components/Earn/BuybackTracker/BuybackMetricsHeader.tsx
-#~ msgid "Weekly Bought GMX"
-#~ msgstr ""
-
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "Trading airdrop"
 msgstr "Airdrop de trading"
@@ -3716,10 +3666,6 @@ msgstr "Staker"
 #: src/components/TradeHistory/keys.ts
 msgid "Update TWAP part"
 msgstr "Mise à jour de la partie TWAP"
-
-#: src/components/NpsModal/NpsModal.tsx
-#~ msgid "Help us improve"
-#~ msgstr "Aidez-nous à nous améliorer"
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 #: src/components/Earn/Portfolio/ClaimRewardsButton.tsx
@@ -4166,10 +4112,6 @@ msgstr "Pas de prix de liquidation. La garantie couvre toutes les pertes."
 msgid "Name:"
 msgstr "Nom :"
 
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
-#~ msgid "{0}<0>You will earn {1}% less rewards.</0>"
-#~ msgstr "{0}<0>Vous gagnerez {1}% de récompenses en moins.</0>"
-
 #: src/components/TradeHistory/keys.ts
 #: src/context/SyntheticsEvents/SyntheticsEventsProvider.tsx
 msgid "Liquidated"
@@ -4182,10 +4124,6 @@ msgstr "Blueberry Pulse"
 #: src/domain/tokens/approveTokens.tsx
 msgid "Approval cancelled"
 msgstr "Approbation annulée"
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "Your feedback helps us understand what we're doing well and where we can improve"
-#~ msgstr "Vos commentaires nous aident à comprendre ce que nous faisons bien et les points à améliorer"
 
 #: src/pages/UiPage/UiPage.tsx
 msgid "Red 500"
@@ -5782,10 +5720,6 @@ msgstr "Actions autorisées"
 msgid "Pools that provide liquidity to specific GMX markets. Supports single-asset and native asset options."
 msgstr "Pools fournissant de la liquidité à des marchés GMX spécifiques. Prend en charge les options à actif unique et actif natif."
 
-#: src/components/Earn/BuybackTracker/BuybackMetricsHeader.tsx
-#~ msgid "This week's buyback as a percentage of total staked GMX."
-#~ msgstr ""
-
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Max funding factor"
 msgstr "Facteur de financement maximum"
@@ -5889,10 +5823,6 @@ msgstr "REMISE"
 #: src/domain/synthetics/express/useSwitchGasPaymentTokenIfRequired.ts
 msgid "Insufficient {fromSymbol} balance. Gas token switched to {toSymbol}"
 msgstr "Solde {fromSymbol} insuffisant. Jeton Gas remplacé par {toSymbol}"
-
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-#~ msgid "Buyback Rate"
-#~ msgstr ""
 
 #: src/pages/Earn/EarnPageLayout.tsx
 msgid "Buyback Tracker"
@@ -6313,10 +6243,6 @@ msgstr ""
 msgid "Yield-optimized vaults supplying liquidity across multiple GMX markets"
 msgstr "Coffres optimisés pour le rendement fournissant de la liquidité sur plusieurs marchés GMX"
 
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
-#~ msgid "Safe unstake limit: {0} {tokenSymbol} / esGMX"
-#~ msgstr ""
-
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Analytics"
 msgstr "Analytics"
@@ -6560,10 +6486,6 @@ msgstr "Aucun historique de distribution de remises pour le moment"
 #: src/pages/RpcDebug/parts.tsx
 msgid "THREAD"
 msgstr "THREAD"
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "Optional: share for follow-up questions"
-#~ msgstr "Facultatif : partagez pour les questions de suivi"
 
 #: src/pages/TestPermits/TestPermits.tsx
 msgid "Permit signed for {0}"
@@ -6858,10 +6780,6 @@ msgstr "Solv Finance"
 msgid "Claim submitted"
 msgstr "Récupération soumise"
 
-#: src/components/RatingToast/RatingToast.tsx
-#~ msgid "How likely are you to recommend our service to a friend or colleague?"
-#~ msgstr "Quelle est la probabilité que vous recommandiez notre service à un ami ou un collègue ?"
-
 #: src/pages/ParseTransaction/ParseTransaction.tsx
 msgid "Created"
 msgstr "Créé"
@@ -7077,10 +6995,6 @@ msgstr "Réinitialiser les paramètres de débogage"
 #: src/components/TradeHistory/keys.ts
 msgid "Cancel Stop-Loss"
 msgstr "Annuler le Stop-Loss"
-
-#: src/components/Earn/Portfolio/RewardsBar.tsx
-#~ msgid "27% of protocol fees are accumulating in the Treasury for GMX buybacks. Rewards will be distributed to stakers when GMX reaches $90, proportional to staking power (duration × amount staked)."
-#~ msgstr ""
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 msgid "Stake {tokenSymbol} rewards"
@@ -7559,10 +7473,6 @@ msgstr "Les ordres TP/SL sont automatiquement annulés à la fermeture de la pos
 msgid "fees"
 msgstr "frais"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-#~ msgid "What could we improve?"
-#~ msgstr "Que pourrions-nous améliorer ?"
-
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Referral code update failed"
 msgstr "La mise à jour du code de parrainage a échoué"
@@ -8034,10 +7944,6 @@ msgstr "Aucune transaction pendant la période sélectionnée"
 msgid "Max pool capacity reached"
 msgstr "Capacité maximale du pool atteinte"
 
-#: src/components/NpsModal/NpsModal.tsx
-#~ msgid "Error occurred. Try again"
-#~ msgstr "Une erreur s'est produite. Réessayez"
-
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
@@ -8081,10 +7987,6 @@ msgstr "[{0}]"
 msgid "Two GLV variants mirror GLP's multi-asset exposure: one optimized for ETH markets (50% ETH / 50% USDC), the other for BTC markets (50% BTC / 50% USDC). This reflects the recovered funds composition and enables dynamic liquidity allocation across top GMX markets for enhanced yield."
 msgstr "Deux variantes GLV reproduisent l'exposition multi-actifs de GLP : l'une optimisée pour les marchés ETH (50 % ETH / 50 % USDC), l'autre pour les marchés BTC (50 % BTC / 50 % USDC). Cela reflète la composition des fonds récupérés et permet une allocation dynamique de la liquidité sur les principaux marchés GMX pour un rendement amélioré."
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "Enter your feedback"
-#~ msgstr "Saisissez vos commentaires"
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "Net rate / 1h"
@@ -8114,10 +8016,6 @@ msgstr "GMX en vesting non retiré"
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Short positions"
 msgstr "Positions short"
-
-#: src/components/Errors/errorToasts.tsx
-#~ msgid "Report issue"
-#~ msgstr "Signaler un problème"
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
 msgid "Claim {0}"
@@ -8166,10 +8064,6 @@ msgstr "{typeString} Long Stop Market : {0} une position long lorsque le prix es
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No price impact. Single execution price for<0/>increasing longs or decreasing shorts at<1/>this size."
 msgstr "Aucun impact sur le prix. Prix d'exécution unique pour<0/>l'augmentation des longs ou la réduction des shorts à<1/>cette taille."
-
-#: src/components/Earn/BuybackTracker/BuybackMetricsHeader.tsx
-#~ msgid "Weekly rate extrapolated to a full year (weekly rate × 52)."
-#~ msgstr ""
 
 #: src/components/Earn/BuybackTracker/BuybackMetricsHeader.tsx
 msgid "Total amount of GMX bought back since tracking began."
@@ -8760,10 +8654,6 @@ msgstr "Compte Telegram"
 msgid "Total investment value"
 msgstr "Valeur totale de l'investissement"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-#~ msgid "What did you like most?"
-#~ msgstr "Qu'avez-vous le plus apprécié ?"
-
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Performance and chart data are based on UTC times"
 msgstr "Les données de performance et de graphiques sont basées sur les horaires UTC"
@@ -8855,10 +8745,6 @@ msgstr "Marge min. : {0}"
 #: src/domain/synthetics/positions/utils.ts
 msgid "Stop Market"
 msgstr "Stop Marché"
-
-#: src/domain/synthetics/userFeedback/utils.ts
-#~ msgid "How can we keep meeting your expectations?"
-#~ msgstr "Comment pouvons-nous continuer à répondre à vos attentes ?"
 
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "Execution prices for increasing longs<0/>and decreasing shorts"
@@ -9256,10 +9142,6 @@ msgstr "({0} de la taille de la position)"
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"
 msgstr "Staké"
-
-#: src/components/Footer/Footer.tsx
-#~ msgid "Leave feedback"
-#~ msgstr "Laisser un avis"
 
 #: landing/src/pages/Home/HeroSection/HeroSection.tsx
 #: src/pages/Referrals/Referrals.tsx
@@ -9860,10 +9742,6 @@ msgstr "Liquidité insuffisante dans le pool WETH-USDC. Sélectionnez un autre p
 msgid "Cancel order"
 msgstr "Annuler l'ordre"
 
-#: src/components/Earn/Portfolio/RewardsBar.tsx
-#~ msgid "27% of protocol fees are accumulating in the Treasury for GMX buybacks. Rewards will be distributed to stakers when GMX reaches $90, proportional to staking power (duration × amount staked). All projected rewards and estimated distributions are best-effort estimations only. Actual distribution is subject to DAO governance."
-#~ msgstr ""
-
 #: src/components/AcceptablePriceImpactInputRow/AcceptablePriceImpactInputRow.tsx
 msgid "Current impact: {0}. Use -0.30% or more for better order execution."
 msgstr "Impact actuel : {0}. Utilisez -0,30 % ou plus pour une meilleure exécution de l'ordre."
@@ -9887,10 +9765,6 @@ msgstr "Acheter des GMX directement"
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Invalid liquidation price"
 msgstr "Prix de liquidation invalide"
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-#~ msgid "Error, try again"
-#~ msgstr "Erreur, réessayez"
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
@@ -10266,10 +10140,6 @@ msgstr "Demander un retrait"
 msgid "Last 30d"
 msgstr "Les 30 derniers j"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-#~ msgid "What issues did you encounter?"
-#~ msgstr "Quels problèmes avez-vous rencontrés ?"
-
 #: src/pages/Ecosystem/Ecosystem.tsx
 msgid "Dashboards"
 msgstr "Tableaux de bord"
@@ -10383,10 +10253,6 @@ msgstr "Limite de dépôt maximale atteinte : {maxPoolUsdText}"
 msgid "Yield optimizations"
 msgstr "Optimisations de rendement"
 
-#: src/components/Earn/BuybackTracker/BuybackMetricsHeader.tsx
-#~ msgid "Amount of GMX bought back this week from protocol fees."
-#~ msgstr ""
-
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Limit Swap"
@@ -10464,10 +10330,6 @@ msgstr "Cette année"
 #: src/components/BridgeModal/BridgeOutModal.tsx
 msgid "Withdraw {glvOrGm}: {0}"
 msgstr "Retirer {glvOrGm} : {0}"
-
-#: src/components/RatingToast/RatingToast.tsx
-#~ msgid "Very likely"
-#~ msgstr "Très probable"
 
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Save tier"
