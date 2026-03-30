@@ -101,8 +101,8 @@ export function StatsCard() {
       "V2 Avalanche": v2AvalancheOverview?.totalVolume,
       "V2 Botanix": v2BotanixOverview?.totalVolume,
       "V2 MegaETH": v2MegaethOverview?.totalVolume,
-      "V1 Arbitrum": (v1TotalVolume as any)?.[ARBITRUM],
-      "V1 Avalanche": (v1TotalVolume as any)?.[AVALANCHE],
+      "V1 Arbitrum": v1TotalVolume?.[ARBITRUM],
+      "V1 Avalanche": v1TotalVolume?.[AVALANCHE],
     }),
     [
       v1TotalVolume,
@@ -119,8 +119,8 @@ export function StatsCard() {
       "V2 Avalanche": v2AvalancheOverview?.totalUsers,
       "V2 Botanix": v2BotanixOverview?.totalUsers,
       "V2 MegaETH": v2MegaethOverview?.totalUsers,
-      "V1 Arbitrum": (uniqueUsers as any)?.[ARBITRUM],
-      "V1 Avalanche": (uniqueUsers as any)?.[AVALANCHE],
+      "V1 Arbitrum": uniqueUsers?.[ARBITRUM],
+      "V1 Avalanche": uniqueUsers?.[AVALANCHE],
     }),
     [
       uniqueUsers,
@@ -161,10 +161,10 @@ export function StatsCard() {
               className="whitespace-nowrap"
               handle={formatAmountHuman(
                 sumBigInts(
-                  (v1TotalVolume as any)?.[ARBITRUM],
-                  (v1TotalVolume as any)?.[AVALANCHE],
-                  (v1TotalVolume as any)?.[BOTANIX],
-                  (v1TotalVolume as any)?.[MEGAETH],
+                  v1TotalVolume?.[ARBITRUM],
+                  v1TotalVolume?.[AVALANCHE],
+                  v1TotalVolume?.[BOTANIX],
+                  v1TotalVolume?.[MEGAETH],
                   v2ArbitrumOverview?.totalVolume,
                   v2AvalancheOverview?.totalVolume,
                   v2BotanixOverview?.totalVolume,
@@ -189,10 +189,10 @@ export function StatsCard() {
               className="whitespace-nowrap"
               handle={formatAmountHuman(
                 sumBigInts(
-                  (uniqueUsers as any)?.[ARBITRUM],
-                  (uniqueUsers as any)?.[AVALANCHE],
-                  (uniqueUsers as any)?.[BOTANIX],
-                  (uniqueUsers as any)?.[MEGAETH],
+                  uniqueUsers?.[ARBITRUM],
+                  uniqueUsers?.[AVALANCHE],
+                  uniqueUsers?.[BOTANIX],
+                  uniqueUsers?.[MEGAETH],
                   v2ArbitrumOverview?.totalUsers,
                   v2AvalancheOverview?.totalUsers,
                   v2BotanixOverview?.totalUsers,
@@ -204,6 +204,7 @@ export function StatsCard() {
               )}
               handleClassName="numbers"
               content={
+                // @ts-expect-error uniqueUsers values are number, ChainsStatsTooltipRow expects bigint
                 <ChainsStatsTooltipRow showDollar={false} entries={uniqueUsersEntries} decimalsForConversion={0} />
               }
             />

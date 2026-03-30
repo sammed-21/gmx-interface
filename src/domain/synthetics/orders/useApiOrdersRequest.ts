@@ -18,7 +18,7 @@ export function useApiOrdersRequest(
 
   const { data: ordersData, ...rest } = useApiDataRequest<ApiOrdersData>(
     chainId,
-    enabled && account && sdk ? (["apiOrdersRequest", chainId, account] as any) : null,
+    enabled && account && sdk ? ["apiOrdersRequest", chainId, account] : null,
     async () => {
       const orders: ApiOrderInfo[] = await sdk!.fetchOrders({ address: account! });
       return keyBy(orders, "key");

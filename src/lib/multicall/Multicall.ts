@@ -264,8 +264,10 @@ export class Multicall {
           client.multicall({
             contracts: encodedPayload as any,
             batchSize:
-              typeof (BATCH_CONFIGS as any)[this.chainId]?.client?.multicall === "object"
-                ? ((BATCH_CONFIGS as any)[this.chainId].client!.multicall as { batchSize?: number }).batchSize
+              // @ts-expect-error
+              typeof BATCH_CONFIGS[this.chainId]?.client?.multicall === "object"
+                ? // @ts-expect-error
+                  (BATCH_CONFIGS[this.chainId].client!.multicall as { batchSize?: number }).batchSize
                 : undefined,
           }),
         ])

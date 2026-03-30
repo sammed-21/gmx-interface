@@ -219,7 +219,8 @@ function convertApiOrderToOrder({
 }
 
 function buildUseOrdersMulticall(chainId: ContractsChainId, key: CacheKey) {
-  const account = (key as any)![0] as string;
+  // @ts-expect-error
+  const account = key![0] as string;
 
   return {
     dataStore: {

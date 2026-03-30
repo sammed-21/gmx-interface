@@ -26,17 +26,20 @@ function useSourceNativeTokenPriceInfo({
   let sourceNativeTokenAddress = zeroAddress;
   let hasSourceNativeTokenPrice = false;
   if (sourceChainId !== undefined && targetChainId !== undefined && sourceChainId !== chainId) {
-    if ((NATIVE_TOKEN_PRICE_MAP as any)[sourceChainId]?.[targetChainId]?.[targetChainId]) {
+    // @ts-expect-error
+    if (NATIVE_TOKEN_PRICE_MAP[sourceChainId]?.[targetChainId]?.[targetChainId]) {
       sourceNativeTokenPriceChain = chainId;
-      sourceNativeTokenAddress = (NATIVE_TOKEN_PRICE_MAP as any)[sourceChainId]?.[targetChainId]?.[targetChainId];
+      // @ts-expect-error
+      sourceNativeTokenAddress = NATIVE_TOKEN_PRICE_MAP[sourceChainId]?.[targetChainId]?.[targetChainId];
       hasSourceNativeTokenPrice = true;
     } else {
-      const someChain = Object.keys((NATIVE_TOKEN_PRICE_MAP as any)[sourceChainId]?.[targetChainId] ?? {})[0];
+      // @ts-expect-error
+      const someChain = Object.keys(NATIVE_TOKEN_PRICE_MAP[sourceChainId]?.[targetChainId] ?? {})[0];
       if (someChain) {
         sourceNativeTokenPriceChain = parseInt(someChain) as SettlementChainId;
-        sourceNativeTokenAddress = (NATIVE_TOKEN_PRICE_MAP as any)[sourceChainId]?.[targetChainId]?.[
-          sourceNativeTokenPriceChain
-        ];
+        sourceNativeTokenAddress =
+          // @ts-expect-error
+          NATIVE_TOKEN_PRICE_MAP[sourceChainId]?.[targetChainId]?.[sourceNativeTokenPriceChain];
         hasSourceNativeTokenPrice = true;
       }
     }

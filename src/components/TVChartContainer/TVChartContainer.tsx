@@ -595,9 +595,11 @@ export default function TVChartContainer({
           : chartOverridesDark["mainSeriesProperties.priceLineColor"]!;
       const priceLineColor =
         direction === "up"
-          ? (colors.green as any)[500][theme]
+          ? // @ts-expect-error
+            colors.green[500][theme]
           : direction === "down"
-            ? (colors.red as any)[500][theme]
+            ? // @ts-expect-error
+              colors.red[500][theme]
             : neutralColor;
 
       tvWidgetRef.current.applyOverrides({

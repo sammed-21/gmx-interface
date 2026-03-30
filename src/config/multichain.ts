@@ -298,7 +298,8 @@ function addMultichainPlatformTokenConfig(
 
   for (const chainIdString in chainAddresses) {
     const chainIdKey = chainIdString as unknown as AnyChainId;
-    (tokenGroups[symbol] as any)[chainIdString] = {
+    // @ts-expect-error
+    tokenGroups[symbol][chainIdString] = {
       address: chainAddresses[chainIdKey]!.address,
       decimals: 18,
       chainId: parseInt(chainIdString) as SettlementChainId | SourceChainId,
@@ -373,10 +374,13 @@ for (const tokenSymbol in TOKEN_GROUPS) {
       );
 
       MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] = MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] || {};
-      (MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] as any)[sourceChainIdString] =
-        (MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] as any)[sourceChainIdString] || {};
+      // @ts-expect-error
+      MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainIdString] =
+        // @ts-expect-error
+        MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainIdString] || {};
 
-      (MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] as any)[sourceChainIdString][sourceChainToken.address] = {
+      // @ts-expect-error
+      MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainIdString][sourceChainToken.address] = {
         settlementChainTokenAddress: tokenId.address,
         sourceChainTokenAddress: sourceChainToken.address,
         sourceChainTokenDecimals: sourceChainToken.decimals,

@@ -210,7 +210,8 @@ async function fetchContractData({
     return;
   }
 
-  return (provider as any)[method](arg1, ...params);
+  // @ts-expect-error
+  return provider[method](arg1, ...params);
 }
 
 function isProvider(signerOrProvider: Provider | Signer | undefined): signerOrProvider is Provider {

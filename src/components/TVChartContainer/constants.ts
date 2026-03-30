@@ -34,9 +34,11 @@ export const chartOverridesDark: Partial<WidgetOverrides> = {
   "mainSeriesProperties.priceLineColor": "#8B94B6AA",
   "mainSeriesProperties.highLowAvgPrice.highLowPriceLinesVisible": false,
   "mainSeriesProperties.highLowAvgPrice.highLowPriceLabelsVisible": true,
-  "scalesProperties.textColor": (colors.typography as any)["secondary"].dark,
+  // @ts-expect-error
+  "scalesProperties.textColor": colors.typography["secondary"].dark,
   "mainSeriesProperties.statusViewStyle.showExchange": false,
-  ...createChartStyleOverrides((colors.green as any)[500].dark, (colors.red as any)[500].dark),
+  // @ts-expect-error
+  ...createChartStyleOverrides(colors.green[500].dark, colors.red[500].dark),
 };
 
 export const chartOverridesLight: Partial<WidgetOverrides> = {
@@ -51,9 +53,11 @@ export const chartOverridesLight: Partial<WidgetOverrides> = {
   "mainSeriesProperties.priceLineColor": "#6B7280AA",
   "mainSeriesProperties.highLowAvgPrice.highLowPriceLinesVisible": false,
   "mainSeriesProperties.highLowAvgPrice.highLowPriceLabelsVisible": true,
-  "scalesProperties.textColor": (colors.typography as any)["secondary"].light,
+  // @ts-expect-error
+  "scalesProperties.textColor": colors.typography["secondary"].light,
   "mainSeriesProperties.statusViewStyle.showExchange": false,
-  ...createChartStyleOverrides((colors.green as any)[500].light, (colors.red as any)[500].light),
+  // @ts-expect-error
+  ...createChartStyleOverrides(colors.green[500].light, colors.red[500].light),
 };
 
 export const disabledFeaturesOnMobile: ChartingLibraryFeatureset[] = ["header_saveload", "header_fullscreen_button"];

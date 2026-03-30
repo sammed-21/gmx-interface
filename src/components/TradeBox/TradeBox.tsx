@@ -1020,7 +1020,7 @@ export function TradeBox({ isMobile }: { isMobile: boolean }) {
               options={tabsOptions}
               type="pills"
               selectedValue={tradeMode}
-              onChange={onSelectTradeMode as any}
+              onChange={onSelectTradeMode}
               qa="trade-mode"
               className="bg-slate-900 text-13"
               regularOptionClassname="grow"
