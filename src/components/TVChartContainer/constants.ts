@@ -10,6 +10,7 @@ import { formatTVDate, formatTVTime } from "lib/dates";
 import { calculateDisplayDecimals, numberToBigint } from "lib/numbers";
 
 const createChartStyleOverrides = (upColor: string, downColor: string): Partial<WidgetOverrides> =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ["candleStyle", "hollowCandleStyle", "haStyle"].reduce<Record<string, any>>((acc, cv) => {
     acc[`mainSeriesProperties.${cv}.drawWick`] = true;
     acc[`mainSeriesProperties.${cv}.drawBorder`] = false;

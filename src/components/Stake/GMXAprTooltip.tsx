@@ -11,6 +11,7 @@ type Props = {
   isUserConnected?: boolean;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function renderEscrowedGMXApr(processedData: any) {
   if (!processedData?.gmxAprForEsGmx || processedData.gmxAprForEsGmx <= 0) return;
   return (

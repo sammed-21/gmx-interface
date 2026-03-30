@@ -2,6 +2,7 @@ import { CHART_PERIODS } from "lib/legacy";
 
 import type { Bar } from "./types";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getObjectKeyFromValue(value: any, object: any) {
   return Object.keys(object).find((key) => object[key] === value);
 }

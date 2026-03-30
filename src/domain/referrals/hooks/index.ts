@@ -89,6 +89,7 @@ export function useUserReferralInfoRequest(
   ]);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useAffiliateTier(signer: any, chainId: any, account: any) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const {
@@ -133,7 +134,9 @@ export async function setAffiliateTier(
   chainId: ContractsChainId,
   affiliate: string,
   tierId: number,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   signer: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   opts: any
 ) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
@@ -143,6 +146,7 @@ export async function setAffiliateTier(
   return callContract(chainId, contract, "setReferrerTier", [referralStorageAddress, affiliate, tierId], opts);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function registerReferralCode(chainId: any, referralCode: any, signer: any, opts: any) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const referralCodeHex = encodeReferralCode(referralCode);
@@ -151,6 +155,7 @@ export async function registerReferralCode(chainId: any, referralCode: any, sign
   return callContract(chainId, contract, "registerCode", [referralCodeHex], opts);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function setTraderReferralCodeByUser(chainId: any, referralCode: any, signer: any, opts: any) {
   const referralCodeHex = encodeReferralCode(referralCode);
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
@@ -179,6 +184,7 @@ export async function getReferralCodeOwner(chainId: ContractsChainId, referralCo
   return codeOwner;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useUserReferralCode(signer: any, chainId: any, account: any, skipLocalReferralCode = false) {
   const localStorageCode = window.localStorage.getItem(REFERRAL_CODE_KEY);
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
@@ -258,6 +264,7 @@ export function useLocalReferralCode() {
   }, [userReferralCode]);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useReferrerTier(signer: any, chainId: any, account: any) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const validAccount = useMemo(() => (isAddress(account) ? account : null), [account]);
@@ -273,6 +280,7 @@ export function useReferrerTier(signer: any, chainId: any, account: any) {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useCodeOwner(signer: any, chainId: any, account: any, code: any) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const {
@@ -293,6 +301,7 @@ export function useCodeOwner(signer: any, chainId: any, account: any, code: any)
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useReferrerDiscountShare(library: any, chainId: any, owner: any) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const {
@@ -325,6 +334,7 @@ export async function validateReferralCodeExists(referralCode: string, chainId: 
   return !isAddressZero(referralCodeOwner);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useAffiliateCodes(chainId: any, account: any) {
   const [affiliateCodes, setAffiliateCodes] = useState({ code: null, success: false });
   const query = gql`
@@ -343,7 +353,9 @@ export function useAffiliateCodes(chainId: any, account: any) {
     if (!chainId) return;
     getReferralsGraphClient(chainId)
       ?.query({ query, variables: { account: account?.toLowerCase() } })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((res: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const parsedAffiliateCodes = res?.data?.affiliateStats.map((c: any) => decodeReferralCode(c?.referralCode));
         setAffiliateCodes({ code: parsedAffiliateCodes[0], success: true });
       });

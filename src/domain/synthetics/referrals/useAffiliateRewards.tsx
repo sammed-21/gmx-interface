@@ -18,6 +18,7 @@ export function useAffiliateRewards(chainId: ContractsChainId) {
         dataStore: {
           contractAddress: getContract(chainId, "DataStore"),
           abiId: "DataStore",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           calls: marketsAddresses!.reduce((acc: Record<string, any>, marketAddress) => {
             const market = marketsData![marketAddress];
 

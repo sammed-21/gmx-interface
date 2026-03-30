@@ -465,6 +465,7 @@ class Metrics {
   };
 
   serializeCustomFields = (fields: object) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return Object.entries(fields).reduce((acc: Record<string, any>, [key, value]) => {
       if (BANNED_CUSTOM_FIELDS.includes(key)) {
         return acc;

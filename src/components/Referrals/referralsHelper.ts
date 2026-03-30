@@ -27,6 +27,7 @@ export function getReferralsPageUrlForCreateCode(referralCode: string) {
   return `${baseUrl}?${CREATE_REFERRAL_CODE_QUERY_PARAM}=${encodedCode}`;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isRecentReferralCodeNotExpired(referralCodeInfo: any) {
   const REFERRAL_DATA_MAX_TIME = 60000 * 5; // 5 minutes
   if (referralCodeInfo.time) {
@@ -160,6 +161,7 @@ export function getSharePercentage(
   return removeTrailingZeros(formatAmount(discountPercentage, decimals, 3, true));
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function areObjectsWithSameKeys(obj1: any, obj2: any) {
   return Object.keys(obj1).every((key) => key in obj2);
 }

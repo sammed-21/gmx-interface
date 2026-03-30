@@ -333,6 +333,7 @@ export function useTreasuryUniswapV3({
       return undefined;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const request: Record<string, any> = {};
 
     for (const [key, address] of poolAddressMap.entries()) {

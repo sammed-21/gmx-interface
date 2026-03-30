@@ -19,6 +19,7 @@ import useWallet from "lib/wallets/useWallet";
 
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function APRLabel({ chainId, label }: { chainId: any; label: any }) {
   const { active, account } = useWallet();
   const vestingData = useVestingData(account, chainId);

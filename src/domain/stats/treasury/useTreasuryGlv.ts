@@ -193,6 +193,7 @@ function buildTreasuryGlvRequest({
   const dataStoreAddress = getContract(chainId, "DataStore");
   const glvReaderAddress = getContract(chainId, "GlvReader");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const request: Record<string, any> = {};
   const assets: GlvAsset[] = [];
 

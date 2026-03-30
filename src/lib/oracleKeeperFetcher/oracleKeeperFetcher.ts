@@ -195,6 +195,7 @@ export class OracleKeeperFetcher implements OracleFetcher {
     return this.post("/report/ui/batch_report", body);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fetchPostFeedback(body: UserFeedbackBody, debug: any): Promise<Response> {
     if (debug) {
       // eslint-disable-next-line no-console

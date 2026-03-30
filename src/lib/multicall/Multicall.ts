@@ -172,6 +172,7 @@ export class Multicall {
         data: {},
       };
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       response.forEach(({ result, status, error }: any, i: number) => {
         const { contractKey, callKey } = originalKeys[i];
 

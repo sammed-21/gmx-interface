@@ -51,6 +51,7 @@ export class SaveLoadAdapter implements IExternalSaveLoadAdapter {
     return Promise.resolve();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   saveChart(chartData: any) {
     if (!chartData.id) {
       chartData.id = V2_CHART_ID;

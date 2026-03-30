@@ -27,6 +27,7 @@ export default function InteractivePieChart({ data, label }: Props) {
     [activeIndex, sortedData]
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChartEnter = (_: any, index: number) => {
     setActiveIndex(index);
   };
@@ -81,6 +82,7 @@ export default function InteractivePieChart({ data, label }: Props) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function CustomTooltip({ active, payload }: { active: any; payload: any }) {
   const customTooltipStyle = useMemo(
     () => (payload && payload.length ? { backgroundColor: payload[0].color } : undefined),

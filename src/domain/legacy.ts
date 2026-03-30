@@ -13,6 +13,7 @@ import { bigMath } from "sdk/utils/bigmath";
 
 export * from "./prices";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useGmxPrice(chainId: any, libraries: any, active: any) {
   const arbitrumLibrary = libraries && libraries.arbitrum ? libraries.arbitrum : undefined;
   const { data: gmxPriceFromArbitrum, mutate: mutateFromArbitrum } = useGmxPriceFromArbitrum(arbitrumLibrary, active);
@@ -159,6 +160,7 @@ function useGmxPriceFromAvalanche() {
   return { data: gmxPrice, mutate };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useGmxPriceFromArbitrum(signer: any, active: any) {
   const poolAddress = getContract(ARBITRUM, "UniswapGmxEthPool");
   const { data: uniPoolSlot0, mutate: updateUniPoolSlot0 } = useSWR<any>(

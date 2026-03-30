@@ -122,6 +122,7 @@ function buildTreasuryMarketsRequest({
   const dataStoreAddress = getContract(chainId, "DataStore");
   const syntheticsReaderAddress = getContract(chainId, "SyntheticsReader");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return marketsAddresses.reduce((acc: Record<string, any>, marketAddress) => {
     const market = marketsData[marketAddress];
 

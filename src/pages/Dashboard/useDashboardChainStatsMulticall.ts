@@ -69,6 +69,7 @@ function buildDashboardRequest(chainId: ContractsChainId) {
   } satisfies MulticallRequestConfig<any>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseDashboardResponse(result: any) {
   const minAum = result.data.glp.getAums.returnValues[0];
   const maxAum = result.data.glp.getAums.returnValues[1];

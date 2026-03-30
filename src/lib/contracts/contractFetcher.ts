@@ -58,6 +58,7 @@ export const contractFetcher =
 
     let shouldCallFallback = true;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFallback = async (resolve: any, reject: any, error: any) => {
       if (!shouldCallFallback) {
         return;

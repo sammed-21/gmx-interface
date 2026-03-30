@@ -645,7 +645,8 @@ async function getSubaccountOnchainData({
       return acc;
     }
 
-    (acc as Record<string, any>)[key] = decodeFunctionResult({
+    // @ts-expect-error
+    acc[key] = decodeFunctionResult({
       abi: call.abi,
       functionName: call.functionName,
       data: decodedMulticallResults[index] as Hex,

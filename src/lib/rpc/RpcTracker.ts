@@ -158,7 +158,8 @@ export class RpcTracker {
     const probeMarketAddress = probeMarket?.marketTokenAddress;
     const probeFieldKey =
       probeMarketAddress &&
-      (HASHED_MARKET_CONFIG_KEYS as Record<string, any>)[chainId]?.[probeMarketAddress]?.["minCollateralFactor"];
+      // @ts-expect-error
+      HASHED_MARKET_CONFIG_KEYS[chainId]?.[probeMarketAddress]?.["minCollateralFactor"];
 
     if (!probeMarketAddress || !probeFieldKey) {
       throw new Error("Failed to get params for RPC check");

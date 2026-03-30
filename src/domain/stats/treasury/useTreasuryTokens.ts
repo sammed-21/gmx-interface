@@ -111,6 +111,7 @@ function buildTreasuryTokensRequest({
 }) {
   const multicallAddress = getContract(chainId, "Multicall");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return tokenAddresses.reduce((acc: Record<string, any>, tokenAddress) => {
     const token = getToken(chainId, tokenAddress);
     const isNativeToken = token.address === NATIVE_TOKEN_ADDRESS;

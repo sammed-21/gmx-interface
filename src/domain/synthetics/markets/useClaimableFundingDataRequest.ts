@@ -67,6 +67,7 @@ export function useClaimableFundingDataRequest(chainId: ContractsChainId) {
 
           return request;
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {} as Record<string, any>
       );
     },

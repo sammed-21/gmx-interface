@@ -9,6 +9,7 @@ export function useLocalStorageByChainId<T>(
   key: string,
   defaultValue: T
 ): [T | undefined, React.Dispatch<React.SetStateAction<T>>] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [internalValue, setInternalValue] = useLocalStorage<Record<number, any>>(key, {});
   const internalValueRef = useRef(internalValue);
 

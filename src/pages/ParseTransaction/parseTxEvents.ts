@@ -30,6 +30,7 @@ function getErrorString(error: { name: string; args: any[] }) {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseError(reasonBytes: any, shouldThrow = true) {
   if (reasonBytes.startsWith(PANIC_SIGNATURE4)) {
     const [panicCode] = defaultAbiCoder.decode(["uint256"], "0x" + reasonBytes.slice(10));

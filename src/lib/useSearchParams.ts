@@ -10,7 +10,8 @@ export default function useSearchParams<T>() {
     const parsedQueryParams: T = {} as T;
 
     queryParams.forEach((value, key) => {
-      (parsedQueryParams as Record<string, any>)[key] = value;
+      // @ts-expect-error
+      parsedQueryParams[key] = value;
     });
 
     return parsedQueryParams;

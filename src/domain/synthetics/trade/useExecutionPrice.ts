@@ -6,6 +6,7 @@ import { MarketInfo } from "../markets";
 import { convertToContractPrice, parseContractPrice } from "../tokens";
 
 export function useDebugExecutionPrice(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   chainId: any,
   p: {
     marketInfo?: MarketInfo;

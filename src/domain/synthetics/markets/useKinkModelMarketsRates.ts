@@ -32,10 +32,10 @@ export function useKinkModelMarketsRates(chainId: ContractsChainId): KinkModelMa
     refreshInterval: CONFIG_UPDATE_INTERVAL,
 
     request: () =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       marketsAddresses.reduce((acc: Record<string, any>, marketAddress) => {
-        const prebuiltHashedKeys = (HASHED_KINK_MODEL_MARKET_RATES_KEYS[chainId] as Record<string, any> | undefined)?.[
-          marketAddress
-        ];
+        // @ts-expect-error
+        const prebuiltHashedKeys = HASHED_KINK_MODEL_MARKET_RATES_KEYS[chainId]?.[marketAddress];
 
         if (!prebuiltHashedKeys) {
           throw new Error(

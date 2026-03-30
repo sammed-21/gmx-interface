@@ -16,6 +16,7 @@ export function useOnchainTokenConfigs(chainId: ContractsChainId, params?: { ena
     refreshInterval: null,
 
     request: () =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       tokens.reduce((acc: Record<string, any>, token) => {
         acc[`${token.address}-priceFeed`] = {
           contractAddress: getContract(chainId, "DataStore"),

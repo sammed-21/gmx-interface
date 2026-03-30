@@ -2,6 +2,7 @@ import { t } from "@lingui/macro";
 // @ts-expect-error no declaration file for react-helmet
 import { Helmet } from "react-helmet";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SEO(props: any) {
   const { children, ...customMeta } = props;
   const meta = {

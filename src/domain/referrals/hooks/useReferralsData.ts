@@ -117,13 +117,18 @@ export function useReferralsData(account?: string | null) {
           const affiliateDistributions: RebateDistribution[] = [];
           const traderDistributions: RebateDistribution[] = [];
 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           res.data.distributions.forEach((d: any) => {
             const item = {
               typeId: d.typeId,
               receiver: getAddress(d.receiver),
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               markets: d.markets.map((market: any) => getAddress(market)),
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               tokens: d.tokens.map((token: any) => getAddress(token)),
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               amounts: d.amounts.map((a: any) => BigInt(a)),
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               amountsInUsd: d.amountsInUsd.map((a: any) => BigInt(a)),
               timestamp: parseInt(d.timestamp),
               transactionHash: d.transactionHash,
@@ -143,6 +148,7 @@ export function useReferralsData(account?: string | null) {
           //#region Code Ownership Info
           // Getting all owners of the referral codes on other chains
 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const referralCodes = res.data.referralCodes.map((e: any) => e.code);
           const allCodesOwnersOnOtherChains = await Promise.allSettled(
             CONTRACTS_CHAIN_IDS.filter((otherChainId) => otherChainId !== chainId).map(async (otherChainId) => ({
@@ -179,10 +185,13 @@ export function useReferralsData(account?: string | null) {
           //#endregion
 
           const affiliateReferralCodesStats: ReferralCodeStats[] = res.data.affiliateStats
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .filter((e: any) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               return res.data.referralCodes.some((c: any) => c.code === e.referralCode);
             })
             .map(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               (e: any): ReferralCodeStats => ({
                 referralCode: decodeReferralCode(e.referralCode),
                 trades: parseInt(e.trades),
@@ -209,6 +218,7 @@ export function useReferralsData(account?: string | null) {
             );
 
           const affiliateTotalStats: AffiliateTotalStats = res.data.affiliateStats.reduce(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (acc: AffiliateTotalStats, cv: any) => {
               acc.trades = acc.trades + parseInt(cv.trades);
               acc.tradedReferralsCount = acc.tradedReferralsCount + parseInt(cv.tradedReferralsCount);
@@ -287,6 +297,7 @@ export function useReferralsData(account?: string | null) {
             affiliateTierInfo: res.data.affiliateTierInfo,
             affiliateTotalStats,
             traderReferralTotalStats,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             codes: res.data.referralCodes.map((e: any) => decodeReferralCode(e.code)),
           } as ReferralsStats;
         });

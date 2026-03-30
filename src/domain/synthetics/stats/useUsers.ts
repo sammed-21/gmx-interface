@@ -33,6 +33,7 @@ export default function useUsers(chainId: number) {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function fetcher([, chainId]: [any, number]) {
     try {
       const { totalUsers } = await fetchUsersInfo(chainId);

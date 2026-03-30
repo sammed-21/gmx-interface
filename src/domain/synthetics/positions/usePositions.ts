@@ -92,6 +92,7 @@ export function usePositions(
 
       freshnessMetrics.reportThrottled(chainId, FreshnessMetricId.Positions);
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return positions.reduce((positionsMap: PositionsData, positionInfo: any) => {
         const { position, fees, basePnlUsd } = positionInfo;
         const { addresses, numbers, flags } = position;

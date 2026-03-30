@@ -35,6 +35,7 @@ export function isHomeSite() {
   return import.meta.env.VITE_APP_IS_HOME_SITE === "true";
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getExchangeRate(tokenAInfo: any, tokenBInfo: any, inverted: any) {
   if (!tokenAInfo || !tokenAInfo.minPrice || !tokenBInfo || !tokenBInfo.maxPrice) {
     return;
@@ -45,6 +46,7 @@ export function getExchangeRate(tokenAInfo: any, tokenBInfo: any, inverted: any)
   return (tokenBInfo.maxPrice * PRECISION) / tokenAInfo.minPrice;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function shouldInvertTriggerRatio(tokenA: any, tokenB: any) {
   if (tokenA.isStable && tokenB.isStable) return false;
   if ((tokenB.isStable || tokenB.isUsdg) && !tokenA.isStable) return true;
@@ -52,6 +54,7 @@ function shouldInvertTriggerRatio(tokenA: any, tokenB: any) {
   return false;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getExchangeRateDisplay(rate: any, tokenA: any, tokenB: any, opts: { omitSymbols?: boolean } = {}) {
   if (!rate || rate == 0 || !tokenA || !tokenB) return "...";
   if (shouldInvertTriggerRatio(tokenA, tokenB)) {
@@ -78,6 +81,7 @@ export function getPositionKey(
   return account + ":" + tokenAddress0 + ":" + tokenAddress1 + ":" + isLong;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function shortenAddress(address: any, length: any, padStart = 1) {
   if (!length) {
     return "";
@@ -95,6 +99,7 @@ export function shortenAddress(address: any, length: any, padStart = 1) {
   return address.substring(0, left) + "..." + address.substring(address.length - (length - (left + 3)), address.length);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useENS(address: any) {
   const { data } = useEnsName({
     address,
@@ -131,6 +136,7 @@ export const CHART_PERIODS = {
   "1y": 60 * 60 * 24 * 365,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getTotalVolumeSum(volumes: any) {
   if (!volumes || volumes.length === 0) {
     return;
@@ -253,11 +259,13 @@ type RawVestingData = {
   affiliateVesterAverageStakedAmount: bigint;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getVestingData(vestingInfo: any): RawVestingData | undefined {
   if (!vestingInfo || vestingInfo.length === 0) {
     return undefined;
   }
   const propsLength = 7;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: Record<string, any> = {};
 
   const keys = ["gmxVester", "glpVester", "affiliateVester"] as const;
@@ -315,6 +323,7 @@ export function getStakingData(stakingInfo: bigint[] | undefined):
     "feeGlpTracker",
     "extendedGmxTracker",
   ];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: Record<string, any> = {};
   const propsLength = 5;
 
@@ -607,14 +616,17 @@ export function getStakingProcessedData(
   return data;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getPageTitle(data: any) {
   const title = t`Decentralized perpetual exchange | GMX`;
   return `${data} | ${title}`;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isHashZero(value: any) {
   return value === zeroHash;
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isAddressZero(value: any) {
   return value === zeroAddress;
 }
@@ -681,6 +693,7 @@ export function importImage(name: string) {
   throw new Error(`Image ${name} not found`);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getTwitterIntentURL(text: any, url = "", hashtag = "") {
   let finalURL = "https://twitter.com/intent/tweet?text=";
   if (text.length > 0) {

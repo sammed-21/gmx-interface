@@ -15,6 +15,7 @@ export function getPositionStats(
   }
 
   return positionStats.reduce(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (acc: Record<string, any>, cv, i) => {
       cv.openInterest = BigInt(cv.totalLongPositionSizes) + BigInt(cv.totalShortPositionSizes);
       acc.totalLongPositionSizes += BigInt(cv.totalLongPositionSizes);

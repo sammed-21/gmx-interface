@@ -76,6 +76,7 @@ export function useMarketTokensDataRequest(
     keepPreviousData: true,
 
     request: () =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       marketsAddresses!.reduce((requests: Record<string, any>, marketAddress) => {
         const market = getByKey(marketsData, marketAddress)!;
         const marketPrices = getContractMarketPrices(tokensData!, market);

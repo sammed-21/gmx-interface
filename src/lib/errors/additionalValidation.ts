@@ -162,6 +162,7 @@ export function makeTransactionErrorHandler(
   txnOpts: Overrides,
   from: string
 ) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return async (error: any) => {
     const data = contract.interface.encodeFunctionData(method, params);
     const to = await contract.getAddress();

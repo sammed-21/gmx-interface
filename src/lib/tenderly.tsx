@@ -311,6 +311,7 @@ function buildSimulationRequest(
     save_if_fails: import.meta.env.TENDERLY_TEST === "true" ? false : true,
     simulation_type: "quick",
     block_number: blockNumber,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     state_objects: params.stateOverride?.reduce((acc: Record<string, any>, curr) => {
       acc[curr.address] = {
         code: curr.code,

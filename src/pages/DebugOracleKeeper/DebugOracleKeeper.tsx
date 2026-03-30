@@ -93,7 +93,9 @@ export default function DebugOracleKeeper() {
       const fallbacks = fallbackTracker.state.fallbacks;
 
       const allStats = fallbackTracker.getEndpointsStats();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const statsWithDetails = endpoints.map((endpoint: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const endpointStats = allStats.find((s: any) => s.endpoint === endpoint);
         // Get latest checkResult (first in checkResults array, which is sorted from newest to oldest)
         const latestCheckResult = endpointStats?.checkResults?.[0];

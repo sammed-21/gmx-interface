@@ -10,6 +10,7 @@ export function useSequentialTimedSWR<Data = any, Error = any>(
 ) {
   let refreshInterval = config.refreshInterval;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const wrappedFetcher = async (...args: any[]) => {
     const fetcher = config.fetcher!;
 

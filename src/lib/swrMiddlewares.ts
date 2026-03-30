@@ -8,6 +8,7 @@ export type SWRGCMiddlewareConfig = {
 };
 
 export const swrGCMiddleware =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (useSWRNext: any) => (key: Key, fetcher: Fetcher | null, config: { clearUnusedKeys?: boolean; cache: Cache }) => {
     const { clearUnusedKeys, cache } = config;
     const keyToWatch = clearUnusedKeys ? unstable_serialize(key) : undefined;

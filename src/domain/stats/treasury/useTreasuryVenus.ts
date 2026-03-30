@@ -123,6 +123,7 @@ export function useTreasuryVenus({
       return undefined;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const map: Record<string, any> = {};
 
     Object.entries(gmPriceResponse).forEach(([address, result]) => {
@@ -216,6 +217,7 @@ export function useTreasuryVenus({
 }
 
 function buildVenusRequest({ addresses, deployment }: { addresses: string[]; deployment: VenusDeployment }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const request: Record<string, any> = {};
 
   deployment.vTokens.forEach((vToken) => {
