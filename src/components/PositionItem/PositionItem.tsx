@@ -20,7 +20,7 @@ import {
 import { TradeMode } from "domain/synthetics/trade";
 import { OrderOption } from "domain/synthetics/trade/usePositionSellerState";
 import { CHART_PERIODS } from "lib/legacy";
-import { formatBalanceAmount, formatDeltaUsd, formatUsd } from "lib/numbers";
+import { formatBalanceAmount, formatDeltaUsd, formatUsd, getBasisPoints } from "lib/numbers";
 import { getPositiveOrNegativeClass } from "lib/utils";
 import { getMarketIndexName } from "sdk/utils/markets";
 
@@ -89,7 +89,7 @@ export function PositionItem(p: Props) {
   function renderNetValue() {
     const openPnlAfterFees = p.position.pnl - p.position.pendingBorrowingFeesUsd - p.position.pendingFundingFeesUsd;
     const openPnlAfterFeesPercentage =
-      p.position.collateralUsd !== 0n ? (openPnlAfterFees * 10000n) / p.position.collateralUsd : 0n;
+      p.position.collateralUsd !== 0n ? getBasisPoints(openPnlAfterFees, p.position.collateralUsd) : 0n;
 
     return (
       <TooltipWithPortal
