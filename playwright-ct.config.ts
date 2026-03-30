@@ -51,6 +51,11 @@ export default defineConfig({
       worker: {
         format: "es",
       },
+      build: {
+        // Reduce memory usage during CT builds
+        sourcemap: false,
+        minify: false,
+      },
       plugins: [
         ctModuleMocks(),
         svgr({
