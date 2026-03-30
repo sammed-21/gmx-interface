@@ -12232,7 +12232,7 @@ __metadata:
     ethers: "npm:6.12.1"
     framer-motion: "npm:11.1.9"
     graphql: "npm:15.8.0"
-    happy-dom: "npm:^20.8.9"
+    happy-dom: "npm:^20.8.8"
     hex-to-rgba: "npm:2.0.1"
     html-to-image: "npm:^1.10.8"
     husky: "npm:7.0.4"
@@ -12347,7 +12347,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^20.8.9":
+"happy-dom@npm:^20.8.8":
   version: 20.8.9
   resolution: "happy-dom@npm:20.8.9"
   dependencies:
