@@ -107,19 +107,36 @@ describe("getPositionPendingFeesUsd", () => {
 });
 
 describe("getPositionNetValue", () => {
-  it("calculates net position value", () => {
+  it("calculates net position value from collateral, pnl, and accrued fees only", () => {
     const result = getPositionNetValue({
       collateralUsd: 1000n,
       pendingFundingFeesUsd: 10n,
       pendingBorrowingFeesUsd: 15n,
-      closingFeeUsd: 5n,
-      uiFeeUsd: 20n,
       pnl: 200n,
-      totalPendingImpactDeltaUsd: -100n,
-      priceImpactDiffUsd: 50n,
     });
-    // netValue = 1000n - (10n+15n) -5n -20n + 200n -100n + 50n = 1100n
-    expect(result).toBe(1100n);
+    // netValue = 1000n - (10n+15n) + 200n = 1175n
+    expect(result).toBe(1175n);
+  });
+
+  it("returns collateral when pnl and fees are zero", () => {
+    const result = getPositionNetValue({
+      collateralUsd: 500n,
+      pendingFundingFeesUsd: 0n,
+      pendingBorrowingFeesUsd: 0n,
+      pnl: 0n,
+    });
+    expect(result).toBe(500n);
+  });
+
+  it("handles negative pnl", () => {
+    const result = getPositionNetValue({
+      collateralUsd: 1000n,
+      pendingFundingFeesUsd: 5n,
+      pendingBorrowingFeesUsd: 5n,
+      pnl: -300n,
+    });
+    // netValue = 1000n - 10n + (-300n) = 690n
+    expect(result).toBe(690n);
   });
 });
 

@@ -2036,7 +2036,6 @@ msgid "Total value of tokens in GM pools"
 msgstr "GM 池中代币的总价值"
 
 #: src/components/Claims/ClaimableCardUI.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Price impact rebates"
 msgstr "价格影响返还"
@@ -3320,7 +3319,6 @@ msgid "Warning: May not execute due to low liquidity at your min. receive price"
 msgstr "警告：由于在您的最低接收价格处流动性不足，订单可能无法执行"
 
 #: src/components/GmSwap/GmFees/GmFees.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "UI fee"
@@ -3901,6 +3899,10 @@ msgstr "提取失败"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "esGMX"
 msgstr "esGMX"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Position value after PnL and accrued fees"
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "POOL VALUE"
@@ -4522,7 +4524,6 @@ msgstr "无止盈/止损订单"
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
 msgstr "仓位规模过小。最小值：{minPositionSizeUsdText}，当前：{positionSizeInUsdText}"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/NextStoredImpactRows.tsx
@@ -7331,8 +7332,8 @@ msgid "Approve {0}"
 msgstr "授权 {0}"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Position value after PnL, fees, and net price impact"
-msgstr "仓位价值（扣除盈亏、费用和净价格影响后）"
+#~ msgid "Position value after PnL, fees, and net price impact"
+#~ msgstr "仓位价值（扣除盈亏、费用和净价格影响后）"
 
 #: src/pages/DebugOracleKeeper/DebugOracleKeeper.tsx
 #: src/pages/RpcDebug/RpcDebug.tsx
@@ -7586,8 +7587,6 @@ msgstr "路径："
 msgid "Only use this for full account transfers.<0/>This will transfer all your GMX, esGMX, GLP, Multiplier Points and voting power to your new account.<1/>Transfers are only supported if the receiving account has not staked GMX or GLP tokens before.<2/>Transfers are one-way, you will not be able to transfer staked tokens back to the sending account."
 msgstr "仅在完整账户转移时使用此功能。<0/>这将把您所有的 GMX、esGMX、GLP、乘数积分和投票权转移到您的新账户。<1/>仅当接收账户之前未质押过 GMX 或 GLP 代币时才支持转移。<2/>转移是单向的，您将无法将已质押的代币转回发送账户。"
 
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/rows/PositionSellerPriceImpactFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -7876,7 +7875,6 @@ msgstr "正在转移 {symbol}..."
 msgid "Max reserved + JIT {directionLabel}"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Close price impact"
 msgstr "平仓价格影响"
@@ -7921,7 +7919,6 @@ msgstr "已结束"
 msgid "GMX announcements"
 msgstr "GMX announcements"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Close fee"

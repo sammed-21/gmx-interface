@@ -2036,7 +2036,6 @@ msgid "Total value of tokens in GM pools"
 msgstr "GM 풀 내 토큰 총 가치"
 
 #: src/components/Claims/ClaimableCardUI.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Price impact rebates"
 msgstr "가격 영향 리베이트"
@@ -3320,7 +3319,6 @@ msgid "Warning: May not execute due to low liquidity at your min. receive price"
 msgstr "경고: 최소 수령 가격에서 유동성이 부족하여 체결되지 않을 수 있습니다"
 
 #: src/components/GmSwap/GmFees/GmFees.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "UI fee"
@@ -3901,6 +3899,10 @@ msgstr "출금 실패"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "esGMX"
 msgstr "esGMX"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Position value after PnL and accrued fees"
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "POOL VALUE"
@@ -4522,7 +4524,6 @@ msgstr "TP/SL 주문 없음"
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
 msgstr "포지션 크기가 너무 작습니다. 최소: {minPositionSizeUsdText}, 현재: {positionSizeInUsdText}"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/NextStoredImpactRows.tsx
@@ -7331,8 +7332,8 @@ msgid "Approve {0}"
 msgstr "{0} 승인"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Position value after PnL, fees, and net price impact"
-msgstr "PnL, 수수료 및 순 가격 영향 반영 후 포지션 가치"
+#~ msgid "Position value after PnL, fees, and net price impact"
+#~ msgstr "PnL, 수수료 및 순 가격 영향 반영 후 포지션 가치"
 
 #: src/pages/DebugOracleKeeper/DebugOracleKeeper.tsx
 #: src/pages/RpcDebug/RpcDebug.tsx
@@ -7586,8 +7587,6 @@ msgstr "경로:"
 msgid "Only use this for full account transfers.<0/>This will transfer all your GMX, esGMX, GLP, Multiplier Points and voting power to your new account.<1/>Transfers are only supported if the receiving account has not staked GMX or GLP tokens before.<2/>Transfers are one-way, you will not be able to transfer staked tokens back to the sending account."
 msgstr "전체 계정 전송에만 사용하십시오.<0/>이 작업은 모든 GMX, esGMX, GLP, Multiplier Points 및 투표권을 새 계정으로 전송합니다.<1/>수신 계정이 이전에 GMX 또는 GLP 토큰을 스테이킹한 적이 없는 경우에만 전송이 지원됩니다.<2/>전송은 단방향이며, 스테이킹된 토큰을 보낸 계정으로 다시 전송할 수 없습니다."
 
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/rows/PositionSellerPriceImpactFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -7876,7 +7875,6 @@ msgstr "{symbol} 이전 중..."
 msgid "Max reserved + JIT {directionLabel}"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Close price impact"
 msgstr "청산 가격 영향"
@@ -7921,7 +7919,6 @@ msgstr "종료됨"
 msgid "GMX announcements"
 msgstr "GMX 공지사항"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Close fee"

@@ -95,22 +95,16 @@ export function getPositionPendingFeesUsd(p: { pendingFundingFeesUsd: bigint; pe
 }
 
 export function getPositionNetValue(p: {
-  totalPendingImpactDeltaUsd: bigint;
-  priceImpactDiffUsd: bigint;
   collateralUsd: bigint;
   pendingFundingFeesUsd: bigint;
   pendingBorrowingFeesUsd: bigint;
   pnl: bigint;
-  closingFeeUsd: bigint;
-  uiFeeUsd: bigint;
 }) {
-  const { pnl, closingFeeUsd, collateralUsd, uiFeeUsd, totalPendingImpactDeltaUsd, priceImpactDiffUsd } = p;
+  const { pnl, collateralUsd } = p;
 
   const pendingFeesUsd = getPositionPendingFeesUsd(p);
 
-  return (
-    collateralUsd - pendingFeesUsd - closingFeeUsd - uiFeeUsd + pnl + totalPendingImpactDeltaUsd + priceImpactDiffUsd
-  );
+  return collateralUsd - pendingFeesUsd + pnl;
 }
 
 export function getPositionPnlAfterFees({
@@ -581,10 +575,6 @@ export function getPositionInfo(p: {
     pnl,
     pendingBorrowingFeesUsd: position.pendingBorrowingFeesUsd,
     pendingFundingFeesUsd,
-    closingFeeUsd,
-    uiFeeUsd,
-    totalPendingImpactDeltaUsd: netPriceImpactValues.totalImpactDeltaUsd,
-    priceImpactDiffUsd: netPriceImpactValues.priceImpactDiffUsd,
   });
 
   const pnlAfterFees = getPositionPnlAfterFees({

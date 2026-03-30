@@ -2036,7 +2036,6 @@ msgid "Total value of tokens in GM pools"
 msgstr "Valeur totale des jetons dans les pools GM"
 
 #: src/components/Claims/ClaimableCardUI.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Price impact rebates"
 msgstr "Remises sur l'impact sur le prix"
@@ -3320,7 +3319,6 @@ msgid "Warning: May not execute due to low liquidity at your min. receive price"
 msgstr "Attention : l'exécution pourrait échouer en raison d'une faible liquidité à votre prix de réception minimum"
 
 #: src/components/GmSwap/GmFees/GmFees.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "UI fee"
@@ -3901,6 +3899,10 @@ msgstr "Retrait échoué"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "esGMX"
 msgstr "esGMX"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Position value after PnL and accrued fees"
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "POOL VALUE"
@@ -4522,7 +4524,6 @@ msgstr "Aucun ordre Take-Profit/Stop-Loss"
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
 msgstr "Taille de position trop faible. Min. : {minPositionSizeUsdText}, actuelle : {positionSizeInUsdText}"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/NextStoredImpactRows.tsx
@@ -7331,8 +7332,8 @@ msgid "Approve {0}"
 msgstr "Approuver {0}"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Position value after PnL, fees, and net price impact"
-msgstr "Valeur de la position après PnL, frais et impact net sur le prix"
+#~ msgid "Position value after PnL, fees, and net price impact"
+#~ msgstr "Valeur de la position après PnL, frais et impact net sur le prix"
 
 #: src/pages/DebugOracleKeeper/DebugOracleKeeper.tsx
 #: src/pages/RpcDebug/RpcDebug.tsx
@@ -7586,8 +7587,6 @@ msgstr "Chemin :"
 msgid "Only use this for full account transfers.<0/>This will transfer all your GMX, esGMX, GLP, Multiplier Points and voting power to your new account.<1/>Transfers are only supported if the receiving account has not staked GMX or GLP tokens before.<2/>Transfers are one-way, you will not be able to transfer staked tokens back to the sending account."
 msgstr "Utilisez cette fonction uniquement pour les transferts de compte complets.<0/>Cela transférera tous vos GMX, esGMX, GLP, Multiplier Points et droits de vote vers votre nouveau compte.<1/>Les transferts ne sont possibles que si le compte destinataire n'a jamais staké de tokens GMX ou GLP auparavant.<2/>Les transferts sont irréversibles, vous ne pourrez pas retransférer les tokens stakés vers le compte émetteur."
 
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/rows/PositionSellerPriceImpactFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -7876,7 +7875,6 @@ msgstr "Déplacement de {symbol}..."
 msgid "Max reserved + JIT {directionLabel}"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Close price impact"
 msgstr "Impact sur le prix de clôture"
@@ -7921,7 +7919,6 @@ msgstr "Conclu"
 msgid "GMX announcements"
 msgstr "GMX announcements"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Close fee"

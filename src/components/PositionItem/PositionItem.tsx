@@ -57,7 +57,7 @@ export type Props = {
 };
 
 export function PositionItem(p: Props) {
-  const { showDebugValues, breakdownNetPriceImpactEnabled } = useSettings();
+  const { showDebugValues } = useSettings();
   const savedShowPnlAfterFees = useSelector(selectShowPnlAfterFees);
   const displayedPnl = savedShowPnlAfterFees ? p.position.pnlAfterFees : p.position.pnl;
   const displayedPnlPercentage = savedShowPnlAfterFees ? p.position.pnlAfterFeesPercentage : p.position.pnlPercentage;
@@ -87,6 +87,10 @@ export function PositionItem(p: Props) {
   }, []);
 
   function renderNetValue() {
+    const openPnlAfterFees = p.position.pnl - p.position.pendingBorrowingFeesUsd - p.position.pendingFundingFeesUsd;
+    const openPnlAfterFeesPercentage =
+      p.position.collateralUsd !== 0n ? (openPnlAfterFees * 10000n) / p.position.collateralUsd : 0n;
+
     return (
       <TooltipWithPortal
         handle={formatUsd(p.position.netValue)}
@@ -94,7 +98,7 @@ export function PositionItem(p: Props) {
         position={p.isLarge ? "bottom-start" : "bottom-end"}
         renderContent={() => (
           <div>
-            <Trans>Position value after PnL, fees, and net price impact</Trans>
+            <Trans>Position value after PnL and accrued fees</Trans>
             <br />
             <br />
             <StatsTooltipRow
@@ -128,70 +132,13 @@ export function PositionItem(p: Props) {
                 "text-red-500": p.position.pendingFundingFeesUsd !== 0n,
               })}
             />
-            {breakdownNetPriceImpactEnabled ? (
-              <>
-                <StatsTooltipRow
-                  label={t`Stored price impact`}
-                  value={formatDeltaUsd(p.position.pendingImpactUsd) || "..."}
-                  showDollar={false}
-                  textClassName={getPositiveOrNegativeClass(p.position.pendingImpactUsd)}
-                />
-                <StatsTooltipRow
-                  label={t`Close price impact`}
-                  value={formatDeltaUsd(p.position.closePriceImpactDeltaUsd) || "..."}
-                  showDollar={false}
-                  textClassName={getPositiveOrNegativeClass(p.position.closePriceImpactDeltaUsd)}
-                />
-                <StatsTooltipRow
-                  label={t`Net price impact`}
-                  value={formatDeltaUsd(p.position.netPriceImapctDeltaUsd) || "..."}
-                  showDollar={false}
-                  textClassName={getPositiveOrNegativeClass(p.position.netPriceImapctDeltaUsd)}
-                />
-              </>
-            ) : (
-              <StatsTooltipRow
-                label={t`Net price impact`}
-                value={formatDeltaUsd(p.position.netPriceImapctDeltaUsd) || "..."}
-                showDollar={false}
-                textClassName={getPositiveOrNegativeClass(p.position.netPriceImapctDeltaUsd)}
-              />
-            )}
-
-            {p.position.priceImpactDiffUsd !== 0n && (
-              <StatsTooltipRow
-                label={t`Price impact rebates`}
-                value={formatDeltaUsd(p.position.priceImpactDiffUsd) || "..."}
-                showDollar={false}
-                textClassName={cx({
-                  "text-green-500": p.position.priceImpactDiffUsd !== 0n,
-                })}
-              />
-            )}
-
-            <StatsTooltipRow
-              label={t`Close fee`}
-              showDollar={false}
-              value={formatUsd(-p.position.closingFeeUsd) || "..."}
-              valueClassName="numbers"
-              textClassName="text-red-500"
-            />
-            {p.position.uiFeeUsd > 0 && (
-              <StatsTooltipRow
-                label={t`UI fee`}
-                showDollar={false}
-                value={formatUsd(-p.position.uiFeeUsd)}
-                valueClassName="numbers"
-                textClassName="text-red-500"
-              />
-            )}
             <br />
             <StatsTooltipRow
               label={t`PnL after fees`}
-              value={formatDeltaUsd(p.position.pnlAfterFees, p.position.pnlAfterFeesPercentage)}
+              value={formatDeltaUsd(openPnlAfterFees, openPnlAfterFeesPercentage)}
               valueClassName="numbers"
               showDollar={false}
-              textClassName={getPositiveOrNegativeClass(p.position.pnlAfterFees)}
+              textClassName={getPositiveOrNegativeClass(openPnlAfterFees)}
             />
           </div>
         )}
