@@ -78,7 +78,8 @@ export function useExternalSwapHandler() {
         return;
       }
 
-      // Keep last quote while refreshing — clearing causes UI flap to internal pricing
+      // Keep the last successful quote while a refreshed quote is loading.
+      // Clearing it mid-refresh causes the UI to flap back to internal swap pricing.
       if (!quote) {
         return;
       }

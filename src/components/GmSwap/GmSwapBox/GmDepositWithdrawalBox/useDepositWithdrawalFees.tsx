@@ -30,7 +30,7 @@ function calculateLogicalNetworkFeeUsd({
 
     const wrappedTokenPrice = getMidPrice(wrappedTokenData.prices);
     const keeperUsd = convertToUsd(technicalFees.fees.feeTokenAmount, wrappedTokenData.decimals, wrappedTokenPrice)!;
-    // Include estimated wallet tx gas to match submit validation
+    // Keep displayed network fee aligned with submit validation by adding an estimated wallet tx gas component.
     const walletTxGasAmount = technicalFees.fees.gasLimit * gasPrice;
     const walletTxGasUsd = convertToUsd(walletTxGasAmount, wrappedTokenData.decimals, wrappedTokenPrice) ?? 0n;
 

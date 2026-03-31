@@ -102,7 +102,8 @@ export async function approveTokens({
         return;
       }
 
-      // Wallets without eth_signTypedData_v4 (Safe, etc.) — fall back to ERC20 approve()
+      // For Smart wallets (Safe, etc.) and other wallets that don't support
+      // eth_signTypedData_v4, fall back to standard ERC20 approve() transaction
       permitParams.setIsPermitsDisabled(true);
       metrics.pushError(e, "approveTokens.permitError");
     }
