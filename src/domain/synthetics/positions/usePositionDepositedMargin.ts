@@ -37,7 +37,7 @@ const POSITION_ACTIONS_QUERY = gql`
     tradeActions(
       limit: 1000
       orderBy: timestamp_DESC
-      where: { account_eq: $account, eventName_eq: "OrderExecuted", orderType_in: [2, 3, 4, 5, 6, 8] }
+      where: { account_eq: $account, eventName_eq: "OrderExecuted", orderType_in: [2, 3, 4, 5, 6, 7, 8] }
     ) {
       orderType
       eventName
@@ -145,8 +145,9 @@ export function usePositionDepositedMargin(
       const orderType = Number(action.orderType);
       const isIncrease = isIncreaseOrderType(orderType);
       const isDecrease = isDecreaseOrderType(orderType);
+      const isLiquidation = orderType === 7; // OrderType.Liquidation
 
-      if (!isIncrease && !isDecrease) continue;
+      if (!isIncrease && !isDecrease && !isLiquidation) continue;
 
       const collateralAddress = action.initialCollateralTokenAddress.toLowerCase();
       const matchKey = `${action.marketAddress.toLowerCase()}:${action.isLong}:${collateralAddress}`;
@@ -169,6 +170,17 @@ export function usePositionDepositedMargin(
 
       const acc = accumulators.get(posKey)!;
       const sizeDelta = BigInt(action.sizeDeltaUsd);
+
+      if (isLiquidation) {
+        // Liquidation always fully closes the position — reset accumulator
+        acc.totalDepositedMarginUsd = 0n;
+        acc.totalOpenFeesUsd = 0n;
+        acc.hasPartialDecrease = false;
+        acc.runningSize = 0n;
+        acc.hadFullReset = true;
+        acc.hasSeenIncrease = false;
+        continue;
+      }
 
       if (isDecrease) {
         acc.runningSize -= sizeDelta;
