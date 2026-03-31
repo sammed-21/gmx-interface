@@ -86,7 +86,8 @@ function AssetsList({
   isPerformanceLoading: boolean;
   multichainMarketTokensBalances: MultichainMarketTokensBalances | undefined;
 }) {
-  const cardsCount = (hasGmx || hasEsGmx ? 1 : 0) + gmGlvAssets.length;
+  const hasGmxCard = hasGmx || hasEsGmx;
+  const cardsCount = (hasGmxCard ? 2 : 0) + gmGlvAssets.length;
   const { isMobile } = useBreakpoints();
 
   const isEnoughSpaceFor3Columns = useMedia(`(min-width: 1340px)`);
@@ -118,13 +119,20 @@ function AssetsList({
           className={cx(
             "grid grid-cols-1 items-start gap-12 p-12",
             shouldUseFlex
-              ? "md:flex md:flex-wrap md:items-start md:[&>div]:w-[359px]"
-              : "md:grid-cols-2 min-[1300px]:grid-cols-3 min-[1460px]:grid-cols-4"
+              ? [
+                  "md:flex md:flex-wrap md:items-start md:[&>div]:w-[359px]",
+                  hasGmxCard && "md:[&>div:first-child]:w-[calc(359px*2+12px)]",
+                ]
+              : "md:grid-flow-dense md:grid-cols-2 min-[1300px]:grid-cols-3 min-[1460px]:grid-cols-4"
           )}
         >
           {sortedAssets.map((asset) => {
             if (asset.type === "gmx" && processedData) {
-              return <GmxAssetCard key="gmx" processedData={processedData} hasEsGmx={asset.hasEsGmx} />;
+              return (
+                <div key="gmx" className="md:col-span-2 md:row-span-2 md:self-stretch">
+                  <GmxAssetCard processedData={processedData} hasEsGmx={asset.hasEsGmx} />
+                </div>
+              );
             }
             if (asset.type === "gmGlv") {
               const info = asset.info;
