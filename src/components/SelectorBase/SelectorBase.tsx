@@ -180,7 +180,16 @@ function SelectorBaseDesktop(props: Props & { qa?: string }) {
   const setButtonRef = useCallback(
     (node: HTMLElement | null) => {
       buttonRef.current = node;
-      refs.setReference(props.popoverReferenceRef?.current ?? node);
+      const refEl = props.popoverReferenceRef?.current ?? node;
+      refs.setReference(refEl);
+      // eslint-disable-next-line no-console
+      console.log("[SelectorBase] setButtonRef called", {
+        hasNode: !!node,
+        hasPopoverRef: !!props.popoverReferenceRef?.current,
+        refElTag: refEl?.tagName,
+        refElRect: refEl?.getBoundingClientRect(),
+        nodeRect: node?.getBoundingClientRect(),
+      });
     },
     [props.popoverReferenceRef, refs]
   );
@@ -188,6 +197,14 @@ function SelectorBaseDesktop(props: Props & { qa?: string }) {
   useEffect(() => {
     if (props.popoverReferenceRef?.current) {
       refs.setReference(props.popoverReferenceRef.current);
+      // eslint-disable-next-line no-console
+      console.log("[SelectorBase] useEffect set reference", {
+        refRect: props.popoverReferenceRef.current.getBoundingClientRect(),
+        refTag: props.popoverReferenceRef.current.tagName,
+      });
+    } else {
+      // eslint-disable-next-line no-console
+      console.log("[SelectorBase] useEffect: popoverReferenceRef is null/undefined");
     }
   }, [props.popoverReferenceRef, refs]);
 
@@ -232,6 +249,14 @@ function SelectorBaseDesktop(props: Props & { qa?: string }) {
               )}
             />
           </Popover.Button>
+          {popoverProps.open &&
+            // eslint-disable-next-line no-console
+            console.log("[SelectorBase] rendering panel", {
+              floatingStyles,
+              referenceRect: refs.reference.current
+                ? (refs.reference.current as HTMLElement).getBoundingClientRect?.()
+                : "no reference",
+            })}
           {popoverProps.open && (
             <FloatingPortal>
               <Popover.Panel

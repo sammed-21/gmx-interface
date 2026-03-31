@@ -538,10 +538,16 @@ function DisplayModeSelector({
   const setButtonRef = useCallback(
     (node: HTMLElement | null) => {
       buttonRef.current = node;
-
-      if (!popoverReferenceRef?.current) {
-        refs.setReference(node);
-      }
+      const refEl = popoverReferenceRef?.current ?? node;
+      refs.setReference(refEl);
+      // eslint-disable-next-line no-console
+      console.log("[TPSLInputRow] setButtonRef called", {
+        hasNode: !!node,
+        hasPopoverRef: !!popoverReferenceRef?.current,
+        refElTag: refEl?.tagName,
+        refElRect: refEl?.getBoundingClientRect(),
+        nodeRect: node?.getBoundingClientRect(),
+      });
     },
     [popoverReferenceRef, refs]
   );
@@ -549,6 +555,14 @@ function DisplayModeSelector({
   useEffect(() => {
     if (popoverReferenceRef?.current) {
       refs.setReference(popoverReferenceRef.current);
+      // eslint-disable-next-line no-console
+      console.log("[TPSLInputRow] useEffect set reference", {
+        refRect: popoverReferenceRef.current.getBoundingClientRect(),
+        refTag: popoverReferenceRef.current.tagName,
+      });
+    } else {
+      // eslint-disable-next-line no-console
+      console.log("[TPSLInputRow] useEffect: popoverReferenceRef is null/undefined");
     }
   }, [popoverReferenceRef, refs]);
 
@@ -578,6 +592,15 @@ function DisplayModeSelector({
             {mode === "percentage" ? "%" : "$"}
             <ChevronDownIcon className="w-12" />
           </Popover.Button>
+          {open &&
+            // eslint-disable-next-line no-console
+            console.log("[TPSLInputRow] rendering panel", {
+              floatingStyles,
+              popoverPanelStyle,
+              referenceRect: refs.reference.current
+                ? (refs.reference.current as HTMLElement).getBoundingClientRect?.()
+                : "no reference",
+            })}
           {open && (
             <FloatingPortal>
               <Popover.Panel
