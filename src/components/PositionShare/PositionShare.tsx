@@ -247,7 +247,7 @@ function PositionShare({
     userAnalytics.pushEvent<SharePositionActionEvent>({
       event: "SharePositionAction",
       data: {
-        action: "Download",
+        action: isMobile ? "ShareImage" : "CopyImage",
         source: shareSource,
         hasReferralCode: hasReferralCode,
       },
