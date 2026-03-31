@@ -1,7 +1,8 @@
 import { t, Trans } from "@lingui/macro";
 import cx from "classnames";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { useIntersection } from "react-use";
 
 import { useSettings } from "context/SettingsContext/SettingsContextProvider";
 import { usePositionsConstants } from "context/SyntheticsStateContext/hooks/globalsHooks";
@@ -68,6 +69,39 @@ export function PositionItem(p: Props) {
   const [tpslInitialView, setTpslInitialView] = useState<"list" | "add">("list");
   const isActionsDisabled = p.position.isOpening;
   const isCloseDisabled = isActionsDisabled || p.position.sizeInUsd == 0n;
+
+  const topSentinelRef = useRef<HTMLDivElement>(null);
+  const closeSentinelRef = useRef<HTMLDivElement>(null);
+
+  const topEntry = useIntersection(topSentinelRef, { threshold: 0, rootMargin: "0px 0px -104px 0px" });
+  const closeEntry = useIntersection(closeSentinelRef, { threshold: 0 });
+
+  const isCardTopVisible = topEntry ? topEntry.isIntersecting || topEntry.boundingClientRect.top < 0 : false;
+  const isCloseStuck = closeEntry ? !closeEntry.isIntersecting : false;
+
+  if (!p.isLarge) {
+    // eslint-disable-next-line no-console
+    console.log("[sticky-debug]", p.position.market.name, {
+      topEntry: topEntry
+        ? {
+            isIntersecting: topEntry.isIntersecting,
+            top: Math.round(topEntry.boundingClientRect.top),
+            bottom: Math.round(topEntry.boundingClientRect.bottom),
+            rootTop: topEntry.rootBounds ? Math.round(topEntry.rootBounds.top) : null,
+            rootBottom: topEntry.rootBounds ? Math.round(topEntry.rootBounds.bottom) : null,
+          }
+        : null,
+      closeEntry: closeEntry
+        ? {
+            isIntersecting: closeEntry.isIntersecting,
+            top: Math.round(closeEntry.boundingClientRect.top),
+            bottom: Math.round(closeEntry.boundingClientRect.bottom),
+          }
+        : null,
+      isCardTopVisible,
+      isCloseStuck,
+    });
+  }
 
   const marketDecimals = useSelector(makeSelectMarketPriceDecimals(p.position.market.indexTokenAddress));
 
@@ -645,6 +679,7 @@ export function PositionItem(p: Props) {
             {p.position.pendingUpdate && <SpinnerIcon className="spin position-loading-icon" />}
           </div>
         </AppCardSection>
+        <div ref={topSentinelRef} />
         <AppCardSection>
           {showDebugValues && (
             <div className="App-card-row">
@@ -759,7 +794,7 @@ export function PositionItem(p: Props) {
             </div>
           )}
         </AppCardSection>
-        <AppCardSection>
+        <AppCardSection className="border-b-0">
           <div className="font-medium text-typography-secondary">
             <Trans>Orders</Trans>
           </div>
@@ -767,32 +802,41 @@ export function PositionItem(p: Props) {
           <PositionItemOrdersSmall positionKey={p.position.key} onOrdersClick={p.onOrdersClick} />
         </AppCardSection>
 
+        <div ref={closeSentinelRef} />
         {!p.hideActions && (
-          <AppCardSection>
-            <div className="flex items-center justify-between">
-              <Button
-                variant="secondary"
-                disabled={isCloseDisabled}
-                onClick={handleCloseButtonClick}
-                data-qa="position-close-button"
-              >
-                <Trans>Close</Trans>
-              </Button>
-              <div>
-                <PositionDropdown
-                  handleEditCollateral={p.onEditCollateralClick}
-                  handleMarketSelect={() => p.onSelectPositionClick?.()}
-                  handleMarketIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.Market, true)}
-                  handleShare={p.onShareClick}
-                  handleLimitIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.Limit, true)}
-                  handleStopMarketIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.StopMarket, true)}
-                  handleTwapIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.Twap, true)}
-                  handleTriggerClose={handleOpenAddTPSLModal}
-                  disabled={isActionsDisabled}
-                />
+          <div className={cx("z-10", isCardTopVisible && "sticky bottom-14 bg-slate-950")}>
+            <AppCardSection
+              className={cx(
+                "rounded-b-8 border-t-1/2 border-slate-600 bg-slate-900",
+                isCardTopVisible && "after:absolute after:inset-x-0 after:top-full after:h-8 after:bg-slate-950",
+                isCloseStuck && isCardTopVisible && "shadow-[0_-6px_24px_rgba(0,0,0,0.4)]"
+              )}
+            >
+              <div className="flex items-center justify-between">
+                <Button
+                  variant="secondary"
+                  disabled={isCloseDisabled}
+                  onClick={handleCloseButtonClick}
+                  data-qa="position-close-button"
+                >
+                  <Trans>Close</Trans>
+                </Button>
+                <div>
+                  <PositionDropdown
+                    handleEditCollateral={p.onEditCollateralClick}
+                    handleMarketSelect={() => p.onSelectPositionClick?.()}
+                    handleMarketIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.Market, true)}
+                    handleShare={p.onShareClick}
+                    handleLimitIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.Limit, true)}
+                    handleStopMarketIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.StopMarket, true)}
+                    handleTwapIncreaseSize={() => p.onSelectPositionClick?.(TradeMode.Twap, true)}
+                    handleTriggerClose={handleOpenAddTPSLModal}
+                    disabled={isActionsDisabled}
+                  />
+                </div>
               </div>
-            </div>
-          </AppCardSection>
+            </AppCardSection>
+          </div>
         )}
       </AppCard>
     );
