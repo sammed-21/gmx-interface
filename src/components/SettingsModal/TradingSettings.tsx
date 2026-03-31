@@ -22,11 +22,11 @@ import { useIsNonEoaAccountOnAnyChain } from "lib/wallets/useAccountType";
 import { useIsGeminiWallet } from "lib/wallets/useIsGeminiWallet";
 import { getNativeToken } from "sdk/configs/tokens";
 
-import { CollateralDestinationSelector } from "components/CollateralDestinationSelector/CollateralDestinationSelector";
 import { DropdownSelector } from "components/DropdownSelector/DropdownSelector";
 import { ExpressTradingOutOfGasBanner } from "components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { GasPaymentTokenSelector } from "components/GasPaymentTokenSelector/GasPaymentTokenSelector";
+import { MarginDestinationSelector } from "components/MarginDestinationSelector/MarginDestinationSelector";
 import { OldSubaccountWithdraw } from "components/OldSubaccountWithdraw/OldSubaccountWithdraw";
 import { OneClickAdvancedSettings } from "components/OneClickAdvancedSettings/OneClickAdvancedSettings";
 import ToggleSwitch from "components/ToggleSwitch/ToggleSwitch";
@@ -307,7 +307,7 @@ export function TradingSettings({
                 </div>
               }
             />
-            <CollateralDestinationSelector
+            <MarginDestinationSelector
               isReceiveToGmxAccount={settings.receiveToGmxAccount ?? false}
               onChangeDestination={settings.setReceiveToGmxAccount}
               desktopPanelClassName="!z-[10000] w-[200px] !top-[10px]"

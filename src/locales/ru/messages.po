@@ -901,7 +901,7 @@ msgstr "обеспечение ликвидности"
 msgid "Plutus"
 msgstr "Plutus"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Don't ask again"
 msgstr ""
 
@@ -2214,7 +2214,7 @@ msgstr "Мин. частей: {MIN_TWAP_NUMBER_OF_PARTS}"
 msgid "Update Stop-Loss"
 msgstr "Обновление стоп-лосс"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "How do I choose?"
 msgstr ""
 
@@ -3224,8 +3224,8 @@ msgstr "Торговля из вашего кошелька"
 msgid "Deposit USD capacity"
 msgstr "Ёмкость депозита в USD"
 
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
 msgid "Arbitrum wallet"
 msgstr ""
 
@@ -4771,7 +4771,7 @@ msgstr "Условия использования"
 msgid "TVL (SUPPLY)"
 msgstr "TVL (ПОСТАВКА)"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Update Default Destination"
 msgstr ""
 
@@ -5025,6 +5025,10 @@ msgstr "Предоставление изолированной ликвидно
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
 msgstr "Использовать открытый интерес в токенах для баланса"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Fee breakdown unavailable for this position"
+msgstr ""
 
 #: landing/src/pages/Home/HeroSection/Features.tsx
 msgid "Seamless trading"
@@ -6809,7 +6813,7 @@ msgstr "Версия:"
 msgid "Available"
 msgstr "Доступно"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "You chose to send the remaining margin to your <0>{chosenLabel}</0>. Do you want to make this the default destination when closing positions?"
 msgstr ""
 
@@ -7067,7 +7071,7 @@ msgstr "h1"
 msgid "RPC endpoints"
 msgstr "Конечные точки RPC"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "No, keep {currentLabel} as default"
 msgstr ""
 
@@ -9280,12 +9284,12 @@ msgstr "Недостаточная ликвидность в пуле"
 msgid "Vested claimable GMX:"
 msgstr "GMX, доступные из вестинга:"
 
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
 #: src/components/GmxAccountModal/GmxAccountModalDesktop.tsx
 #: src/components/GmxAccountModal/GmxAccountModalMobile.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
 #: src/components/TokenSelector/MultichainMarketTokenSelector.tsx
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 #: src/pages/AccountDashboard/AccountDashboard.tsx
@@ -9588,7 +9592,7 @@ msgstr "C:"
 msgid "Existing position uses {0} collateral. This action won't affect it. <0>Switch to {1} collateral</0>"
 msgstr "Существующая позиция использует обеспечение {0}. Данное действие не повлияет на неё. <0>Переключить на обеспечение {1}</0>"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 #: src/components/SettingsModal/TradingSettings.tsx
 msgid "Because positions on Arbitrum can be funded from both your wallet and your GMX Account, we can't always determine where to return the margin automatically.<0/><1/>Choose:<2/>• <3>Wallet</3> if you mostly trade from your personal wallet on Arbitrum<4/>• <5>GMX Account</5> if you plan to keep trading or reusing margin on GMX.<6/><7/>You can change this preference anytime in Settings or when closing a position."
 msgstr ""
@@ -9688,7 +9692,7 @@ msgstr "Лимитное уменьшение"
 msgid "Gas payment token"
 msgstr "Токен оплаты Gas"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Yes, set {chosenLabel} as default"
 msgstr ""
 

@@ -6,17 +6,17 @@ import { SelectorBase, useSelectorClose } from "components/SelectorBase/Selector
 import GmxRoundedIcon from "img/ic_gmx_rounded.svg?react";
 import ArbitrumIcon from "img/tokens/ic_arbitrum.svg?react";
 
-interface CollateralDestinationSelectorProps {
+interface MarginDestinationSelectorProps {
   isReceiveToGmxAccount: boolean;
   onChangeDestination: (isGmxAccount: boolean) => void;
   desktopPanelClassName?: string;
 }
 
-export function CollateralDestinationSelector({
+export function MarginDestinationSelector({
   isReceiveToGmxAccount,
   onChangeDestination,
   desktopPanelClassName = "w-[200px]",
-}: CollateralDestinationSelectorProps) {
+}: MarginDestinationSelectorProps) {
   return (
     <SelectorBase
       modalLabel="Send remaining collateral to"

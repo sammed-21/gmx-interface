@@ -120,12 +120,17 @@ export function PositionItem(p: Props) {
                 />
               </>
             ) : (
-              <StatsTooltipRow
-                label={t`Initial margin`}
-                value={formatUsd(p.position.collateralUsd) || "..."}
-                valueClassName="numbers"
-                showDollar={false}
-              />
+              <>
+                <StatsTooltipRow
+                  label={t`Initial margin`}
+                  value={formatUsd(p.position.collateralUsd) || "..."}
+                  valueClassName="numbers"
+                  showDollar={false}
+                />
+                <span className="text-typography-tertiary text-12">
+                  <Trans>Fee breakdown unavailable for this position</Trans>
+                </span>
+              </>
             )}
             <StatsTooltipRow
               label={t`PnL`}

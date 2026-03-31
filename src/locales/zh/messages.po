@@ -901,7 +901,7 @@ msgstr "提供流动性"
 msgid "Plutus"
 msgstr "Plutus"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Don't ask again"
 msgstr ""
 
@@ -2214,7 +2214,7 @@ msgstr "最小份数：{MIN_TWAP_NUMBER_OF_PARTS}"
 msgid "Update Stop-Loss"
 msgstr "更新止损"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "How do I choose?"
 msgstr ""
 
@@ -3224,8 +3224,8 @@ msgstr "从您的钱包交易"
 msgid "Deposit USD capacity"
 msgstr "存入 USD 容量"
 
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
 msgid "Arbitrum wallet"
 msgstr ""
 
@@ -4771,7 +4771,7 @@ msgstr "条款与条件"
 msgid "TVL (SUPPLY)"
 msgstr "TVL (供应)"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Update Default Destination"
 msgstr ""
 
@@ -5025,6 +5025,10 @@ msgstr "为每个市场提供独立流动性"
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
 msgstr "使用代币未平仓量计算余额"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Fee breakdown unavailable for this position"
+msgstr ""
 
 #: landing/src/pages/Home/HeroSection/Features.tsx
 msgid "Seamless trading"
@@ -6809,7 +6813,7 @@ msgstr "版本："
 msgid "Available"
 msgstr "可用"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "You chose to send the remaining margin to your <0>{chosenLabel}</0>. Do you want to make this the default destination when closing positions?"
 msgstr ""
 
@@ -7067,7 +7071,7 @@ msgstr "h1"
 msgid "RPC endpoints"
 msgstr "RPC 端点"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "No, keep {currentLabel} as default"
 msgstr ""
 
@@ -9280,12 +9284,12 @@ msgstr "池中可用流动性不足"
 msgid "Vested claimable GMX:"
 msgstr "已归属可领取的 GMX："
 
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
 #: src/components/GmxAccountModal/GmxAccountModalDesktop.tsx
 #: src/components/GmxAccountModal/GmxAccountModalMobile.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
 #: src/components/TokenSelector/MultichainMarketTokenSelector.tsx
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 #: src/pages/AccountDashboard/AccountDashboard.tsx
@@ -9588,7 +9592,7 @@ msgstr "C："
 msgid "Existing position uses {0} collateral. This action won't affect it. <0>Switch to {1} collateral</0>"
 msgstr "现有仓位使用 {0} 抵押品。此操作不会影响该仓位。<0>切换至 {1} 抵押品</0>"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 #: src/components/SettingsModal/TradingSettings.tsx
 msgid "Because positions on Arbitrum can be funded from both your wallet and your GMX Account, we can't always determine where to return the margin automatically.<0/><1/>Choose:<2/>• <3>Wallet</3> if you mostly trade from your personal wallet on Arbitrum<4/>• <5>GMX Account</5> if you plan to keep trading or reusing margin on GMX.<6/><7/>You can change this preference anytime in Settings or when closing a position."
 msgstr ""
@@ -9688,7 +9692,7 @@ msgstr "限价减少"
 msgid "Gas payment token"
 msgstr "Gas 支付代币"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Yes, set {chosenLabel} as default"
 msgstr ""
 

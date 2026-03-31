@@ -8,19 +8,19 @@ import Checkbox from "components/Checkbox/Checkbox";
 import ModalWithPortal from "components/Modal/ModalWithPortal";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 
-interface CollateralDestinationDialogProps {
+interface MarginDestinationDialogProps {
   isVisible: boolean;
   setIsVisible: (visible: boolean) => void;
   chosenReceiveToGmxAccount: boolean;
   setDialogHidden: (val: boolean) => void;
 }
 
-export function CollateralDestinationDialog({
+export function MarginDestinationDialog({
   isVisible,
   setIsVisible,
   chosenReceiveToGmxAccount,
   setDialogHidden,
-}: CollateralDestinationDialogProps) {
+}: MarginDestinationDialogProps) {
   const settings = useSettings();
   const [dontAskAgain, setDontAskAgain] = useState(false);
 
