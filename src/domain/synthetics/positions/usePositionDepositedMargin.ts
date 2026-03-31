@@ -54,21 +54,10 @@ const POSITION_ACTIONS_QUERY = gql`
 `;
 
 /**
- * Computes the total deposited margin and open fees for each open position
- * by aggregating executed increase trade actions from the indexer.
- *
- * Processes actions in chronological order and tracks running position size
- * to handle reopened positions: when a full close is detected (size → 0),
- * the accumulator resets so only the current "life" of the position counts.
- *
- * Only shows the breakdown for positions that have not had partial closes
- * in their current life. For positions with partial decreases, the deposited
- * margin / open fee split would be inaccurate.
- *
- * Validates the computed breakdown against on-chain collateralUsd (5% tolerance)
- * as a final safety net. If the query was truncated (1000-action cap) and we
- * did not see a full close that resets the accumulator, the position is marked
- * unreliable since we may be missing earlier increases.
+ * Aggregates deposited margin and open fees per position from indexed trade actions.
+ * Tracks running size to detect full closes and resets accumulators on reopen.
+ * Skips positions with partial decreases (inaccurate split) and validates
+ * against on-chain collateralUsd with 5% tolerance.
  */
 export function usePositionDepositedMargin(
   chainId: number,
@@ -113,9 +102,6 @@ export function usePositionDepositedMargin(
       return undefined;
     }
 
-    // Build a lookup from position identifiers to position info.
-    // Position key format: account:marketAddress:collateralAddress:isLong
-    // Trade actions match via: marketAddress + isLong + initialCollateralTokenAddress
     const positionMap = new Map<string, PositionInfo>();
     for (const pos of positions) {
       const matchKey = `${pos.marketAddress.toLowerCase()}:${pos.isLong}:${pos.collateralTokenAddress.toLowerCase()}`;
@@ -134,7 +120,7 @@ export function usePositionDepositedMargin(
     const accumulators = new Map<string, Accumulator>();
     const queryTruncated = rawActions.length >= 1000;
 
-    // Process chronologically (query returns newest-first)
+    // Query returns newest-first, process chronologically
     const chronologicalActions = [...rawActions].reverse();
 
     for (const action of chronologicalActions) {
@@ -172,7 +158,6 @@ export function usePositionDepositedMargin(
       const sizeDelta = BigInt(action.sizeDeltaUsd);
 
       if (isLiquidation) {
-        // Liquidation always fully closes the position — reset accumulator
         acc.totalDepositedMarginUsd = 0n;
         acc.totalOpenFeesUsd = 0n;
         acc.hasPartialDecrease = false;
@@ -186,10 +171,7 @@ export function usePositionDepositedMargin(
         acc.runningSize -= sizeDelta;
 
         if (acc.runningSize <= 0n && acc.hasSeenIncrease) {
-          // Full close detected — reset accumulator for potential reopen.
-          // Only the current "life" of the position matters.
-          // Guard: only treat as a full close if we've seen at least one increase,
-          // otherwise this may be a truncated window starting mid-life with a decrease.
+          // Full close — reset for potential reopen (skip if no prior increase seen, may be truncated)
           acc.totalDepositedMarginUsd = 0n;
           acc.totalOpenFeesUsd = 0n;
           acc.hasPartialDecrease = false;
@@ -202,7 +184,6 @@ export function usePositionDepositedMargin(
         continue;
       }
 
-      // Process increase actions
       acc.runningSize += sizeDelta;
       acc.hasSeenIncrease = true;
 
@@ -231,26 +212,21 @@ export function usePositionDepositedMargin(
       }
     }
 
-    // Build the result map with reliability validation
     const result: PositionDepositedMarginMap = {};
 
     for (const pos of positions) {
       const acc = accumulators.get(pos.key);
       if (!acc) continue;
 
-      // Skip positions with partial decreases in their current life
       if (acc.hasPartialDecrease) continue;
 
-      // If query was truncated and we didn't see a full close that reset the accumulator,
-      // we may be missing earlier increases — mark unreliable
+      // Truncated query without a full reset — may be missing earlier increases
       if (queryTruncated && !acc.hadFullReset) continue;
 
-      // Sanity check: deposited margin must be positive and greater than fees
       const computedInitialCollateral = acc.totalDepositedMarginUsd - acc.totalOpenFeesUsd;
       if (acc.totalDepositedMarginUsd <= 0n || computedInitialCollateral <= 0n) continue;
 
-      // Validate against on-chain collateralUsd.
-      // Allow 5% tolerance for price differences between execution time and current prices.
+      // Validate against on-chain collateralUsd (5% tolerance for price drift)
       const onChainCollateral = pos.collateralUsd;
       let isReliable = false;
 
