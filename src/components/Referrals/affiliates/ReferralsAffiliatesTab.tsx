@@ -14,6 +14,7 @@ import { useRecentReferralCodes } from "components/Referrals/shared/hooks/useRec
 
 import { CreateAffiliateWizard } from "./createCode/CreateAffiliateWizard";
 import { AFFILIATE_WIZARD_FAQS } from "./faq";
+import { HowToStartEarning } from "./HowToStartEarning";
 
 type ReferralsAffiliatesTabProps = {
   isLoading: boolean;
@@ -77,6 +78,7 @@ export function ReferralsAffiliatesTab({
           initialReferralCode={initialReferralCode}
           traderDiscountPercentage={currentTraderDiscountPercentage}
         />
+        <HowToStartEarning />
       </div>
       <div className="flex w-[400px] shrink-0 flex-col gap-8 max-md:w-full">
         <Faq items={AFFILIATE_WIZARD_FAQS} title={<Trans>FAQ</Trans>} />

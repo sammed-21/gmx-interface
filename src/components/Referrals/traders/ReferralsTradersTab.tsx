@@ -9,6 +9,7 @@ import { Faq } from "components/Faq/Faq";
 import Loader from "components/Loader/Loader";
 import { ReferralsTradersContent } from "components/Referrals/traders/dashboard/ReferralsTradersContent";
 import { WIZARD_FAQS } from "components/Referrals/traders/faq";
+import { HowToStartSaving } from "components/Referrals/traders/HowToStartSaving";
 import { JoinReferralWizard } from "components/Referrals/traders/joinCode/JoinReferralWizard";
 
 type ReferralsTradersTabProps = {
@@ -36,6 +37,7 @@ export function ReferralsTradersTab({ isLoading, account, hasAddressInUrl = fals
         <>
           <div className="flex grow flex-col gap-8">
             <JoinReferralWizard onGoToTraderDashboard={handleGoToTraderDashboard} />
+            <HowToStartSaving />
           </div>
           <div className="flex w-[400px] shrink-0 flex-col gap-8 max-md:w-full">
             <Faq items={WIZARD_FAQS} title={<Trans>FAQ</Trans>} />

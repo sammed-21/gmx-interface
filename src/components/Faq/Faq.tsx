@@ -24,7 +24,7 @@ export function Faq({ items, title }: Props) {
   );
 
   return (
-    <div className="flex flex-col gap-12 rounded-8 bg-slate-900 p-20">
+    <div className="flex flex-col gap-12 rounded-8 bg-slate-900 p-adaptive">
       <div className="text-body-large font-medium text-typography-primary">{title}</div>
       <div className="flex flex-col">
         {items.map((item: FaqItem, index: number) => (
