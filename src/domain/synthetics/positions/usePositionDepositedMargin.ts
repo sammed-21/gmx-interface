@@ -76,9 +76,10 @@ export function usePositionDepositedMargin(
   depositedMarginMap: PositionDepositedMarginMap | undefined;
   isLoading: boolean;
 } {
-  const { positionKeysString, earliestTimestamp } = useMemo(() => {
-    if (!positions || positions.length === 0) return { positionKeysString: undefined, earliestTimestamp: undefined };
+  let earliestTimestamp: bigint | undefined;
+  let sortedPositionKeys: string | undefined;
 
+  if (positions && positions.length > 0) {
     let earliest = BigInt(Number.MAX_SAFE_INTEGER);
     const keys: string[] = [];
 
@@ -90,18 +91,13 @@ export function usePositionDepositedMargin(
     }
 
     keys.sort();
-    return { positionKeysString: keys.join(","), earliestTimestamp: earliest };
-  }, [positions]);
-
-  // Stable key derived from token addresses — decimals are immutable per token
-  const tokenAddressesKey = useMemo(() => {
-    if (!tokensData) return undefined;
-    return Object.keys(tokensData).sort().join(",");
-  }, [tokensData]);
+    sortedPositionKeys = keys.join(",");
+    earliestTimestamp = earliest;
+  }
 
   const key =
-    account && positionKeysString && earliestTimestamp !== undefined
-      ? ["usePositionDepositedMargin", chainId, account, positionKeysString, earliestTimestamp.toString()]
+    account && sortedPositionKeys && earliestTimestamp !== undefined
+      ? ["usePositionDepositedMargin", chainId, account, sortedPositionKeys, earliestTimestamp.toString()]
       : null;
 
   const { data: rawActions, isLoading } = useSWR(key, {
@@ -329,9 +325,7 @@ export function usePositionDepositedMargin(
     }
 
     return Object.keys(result).length > 0 ? result : undefined;
-    // positionKeysString and tokenAddressesKey provide stable change detection for positions and tokensData
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rawActions, positionKeysString, tokenAddressesKey]);
+  }, [rawActions, positions, tokensData]);
 
   return {
     depositedMarginMap,
