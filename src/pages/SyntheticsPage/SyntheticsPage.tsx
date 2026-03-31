@@ -538,7 +538,7 @@ export function SyntheticsPage(p: Props) {
 
         {isTablet && (
           <div
-            className="flex w-full flex-col overflow-clip rounded-8"
+            className="flex w-full flex-col overflow-hidden rounded-8"
             data-qa="trade-table-small"
             ref={tabsContentTabletRef}
           >
