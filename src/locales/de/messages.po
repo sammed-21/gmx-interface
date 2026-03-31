@@ -1304,7 +1304,6 @@ msgid "Threshold for stable funding"
 msgstr "Schwelle für stabile Finanzierung"
 
 #: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Initial margin"
 msgstr ""
@@ -3864,6 +3863,10 @@ msgstr "Akzeptabler Preis"
 msgid "Withdrawing from subaccount..."
 msgstr "Wird vom Unterkonto abgehoben…"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Current margin"
+msgstr ""
+
 #: src/components/BridgeModal/BridgeOutModal.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
@@ -4843,8 +4846,8 @@ msgid "Page outdated. Refresh"
 msgstr "Seite veraltet. Aktualisieren"
 
 #: src/components/SettingsModal/DisplaySettings.tsx
-msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
-msgstr "Detaillierte Preiseinflussaufschlüsselung anzeigen: gespeicherter Einfluss (Erhöhungsaufträge) und Schließungseinfluss (Verringerungsaufträge) in Tooltips und Ausführungsdetails. <0>Mehr erfahren</0>."
+#~ msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
+#~ msgstr "Detaillierte Preiseinflussaufschlüsselung anzeigen: gespeicherter Einfluss (Erhöhungsaufträge) und Schließungseinfluss (Verringerungsaufträge) in Tooltips und Ausführungsdetails. <0>Mehr erfahren</0>."
 
 #: src/components/Earn/Discovery/EarnProductCard.tsx
 #: src/components/GmSwap/GmSwapBox/GmSwapBoxHeader.tsx
@@ -5022,13 +5025,17 @@ msgstr "Maximal {MAX_REFERRAL_CODE_LENGTH} Zeichen"
 msgid "Provide isolated liquidity per market"
 msgstr "Isolierte Liquidität pro Markt bereitstellen"
 
+#: src/components/SettingsModal/DisplaySettings.tsx
+msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in execution details. <0>Read more</0>."
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
 msgstr "Open Interest in Token für Guthaben verwenden"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Fee breakdown unavailable for this position"
-msgstr ""
+#~ msgid "Fee breakdown unavailable for this position"
+#~ msgstr ""
 
 #: landing/src/pages/Home/HeroSection/Features.tsx
 msgid "Seamless trading"
@@ -7021,6 +7028,10 @@ msgstr "Transaktion anzeigen"
 msgid "Project"
 msgstr "Projekt"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Deposited margin"
+msgstr ""
+
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "24h low"
@@ -7723,6 +7734,10 @@ msgstr "Gesamt-Performance APY"
 msgid "No tokens on {0} for deposit"
 msgstr "Keine Token auf {0} zum Einzahlen"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Margin breakdown"
+msgstr ""
+
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
 msgstr "Gesamtbetrag zum Beanspruchen"
@@ -8098,8 +8113,8 @@ msgid "Claim {0}"
 msgstr "{0} beanspruchen"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Open Fee"
-msgstr ""
+#~ msgid "Open Fee"
+#~ msgstr ""
 
 #. to network
 #: src/components/BridgeModal/BridgeOutModal.tsx
@@ -8192,6 +8207,7 @@ msgstr "Dezentrale Optionsstrategien"
 msgid "Select rewards to claim"
 msgstr "Zu beanspruchende Belohnungen auswählen"
 
+#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Open fee"
 msgstr "Eröffnungsgebühr"
@@ -10433,8 +10449,8 @@ msgid "Avalanche trading incentives"
 msgstr "Avalanche Handelsanreize"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Deposited Margin"
-msgstr ""
+#~ msgid "Deposited Margin"
+#~ msgstr ""
 
 #: src/components/Errors/errorToasts.tsx
 #: src/components/Errors/errorToasts.tsx

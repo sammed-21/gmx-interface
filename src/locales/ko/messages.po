@@ -1304,7 +1304,6 @@ msgid "Threshold for stable funding"
 msgstr "안정적 펀딩 임계값"
 
 #: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Initial margin"
 msgstr ""
@@ -3864,6 +3863,10 @@ msgstr "허용 가격"
 msgid "Withdrawing from subaccount..."
 msgstr "서브계정에서 출금하는 중…"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Current margin"
+msgstr ""
+
 #: src/components/BridgeModal/BridgeOutModal.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
@@ -4843,8 +4846,8 @@ msgid "Page outdated. Refresh"
 msgstr "페이지가 만료되었습니다. 새로고침"
 
 #: src/components/SettingsModal/DisplaySettings.tsx
-msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
-msgstr "상세 가격 영향 내역을 표시합니다: 툴팁 및 체결 세부 정보에서 저장된 영향(증가 주문)과 청산 영향(감소 주문)을 확인할 수 있습니다. <0>자세히 보기</0>."
+#~ msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
+#~ msgstr "상세 가격 영향 내역을 표시합니다: 툴팁 및 체결 세부 정보에서 저장된 영향(증가 주문)과 청산 영향(감소 주문)을 확인할 수 있습니다. <0>자세히 보기</0>."
 
 #: src/components/Earn/Discovery/EarnProductCard.tsx
 #: src/components/GmSwap/GmSwapBox/GmSwapBoxHeader.tsx
@@ -5022,13 +5025,17 @@ msgstr "최대 {MAX_REFERRAL_CODE_LENGTH}자"
 msgid "Provide isolated liquidity per market"
 msgstr "마켓별 격리 유동성 제공"
 
+#: src/components/SettingsModal/DisplaySettings.tsx
+msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in execution details. <0>Read more</0>."
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
 msgstr "잔액에 토큰 단위 미결제약정 사용"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Fee breakdown unavailable for this position"
-msgstr ""
+#~ msgid "Fee breakdown unavailable for this position"
+#~ msgstr ""
 
 #: landing/src/pages/Home/HeroSection/Features.tsx
 msgid "Seamless trading"
@@ -7021,6 +7028,10 @@ msgstr "거래 보기"
 msgid "Project"
 msgstr "프로젝트"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Deposited margin"
+msgstr ""
+
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "24h low"
@@ -7723,6 +7734,10 @@ msgstr "총 성과 APY"
 msgid "No tokens on {0} for deposit"
 msgstr "{0}에 입금 가능한 토큰이 없습니다"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Margin breakdown"
+msgstr ""
+
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
 msgstr "총 수령 금액"
@@ -8098,8 +8113,8 @@ msgid "Claim {0}"
 msgstr "{0} 수령"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Open Fee"
-msgstr ""
+#~ msgid "Open Fee"
+#~ msgstr ""
 
 #. to network
 #: src/components/BridgeModal/BridgeOutModal.tsx
@@ -8192,6 +8207,7 @@ msgstr "탈중앙화 옵션 전략"
 msgid "Select rewards to claim"
 msgstr "청구할 보상 선택"
 
+#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Open fee"
 msgstr "개시 수수료"
@@ -10433,8 +10449,8 @@ msgid "Avalanche trading incentives"
 msgstr "Avalanche 트레이딩 인센티브"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Deposited Margin"
-msgstr ""
+#~ msgid "Deposited Margin"
+#~ msgstr ""
 
 #: src/components/Errors/errorToasts.tsx
 #: src/components/Errors/errorToasts.tsx

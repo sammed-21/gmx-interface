@@ -89,7 +89,8 @@ export function PositionItem(p: Props) {
   }, []);
 
   function renderNetValue() {
-    const showMarginBreakdown = p.depositedMarginData?.isReliable && p.depositedMarginData.totalDepositedMarginUsd > 0n;
+    const marginData = p.depositedMarginData;
+    const showMarginBreakdown = marginData?.isReliable && marginData.totalDepositedMarginUsd > 0n;
 
     return (
       <TooltipWithPortal
@@ -101,37 +102,12 @@ export function PositionItem(p: Props) {
             <Trans>Position value after PnL and accrued fees</Trans>
             <br />
             <br />
-            {showMarginBreakdown ? (
-              <>
-                <StatsTooltipRow
-                  label={t`Deposited Margin`}
-                  value={formatUsd(p.depositedMarginData!.totalDepositedMarginUsd) || "..."}
-                  valueClassName="numbers"
-                  showDollar={false}
-                />
-                <StatsTooltipRow
-                  label={t`Open Fee`}
-                  value={formatUsd(-p.depositedMarginData!.totalOpenFeesUsd) || "..."}
-                  valueClassName="numbers"
-                  showDollar={false}
-                  textClassName={cx({
-                    "text-red-500": p.depositedMarginData!.totalOpenFeesUsd !== 0n,
-                  })}
-                />
-              </>
-            ) : (
-              <>
-                <StatsTooltipRow
-                  label={t`Initial margin`}
-                  value={formatUsd(p.position.collateralUsd) || "..."}
-                  valueClassName="numbers"
-                  showDollar={false}
-                />
-                <span className="text-typography-tertiary text-12">
-                  <Trans>Fee breakdown unavailable for this position</Trans>
-                </span>
-              </>
-            )}
+            <StatsTooltipRow
+              label={t`Current margin`}
+              value={formatUsd(p.position.collateralUsd) || "..."}
+              valueClassName="numbers"
+              showDollar={false}
+            />
             <StatsTooltipRow
               label={t`PnL`}
               value={formatDeltaUsd(p.position?.pnl) || "..."}
@@ -165,6 +141,29 @@ export function PositionItem(p: Props) {
               showDollar={false}
               textClassName={getPositiveOrNegativeClass(p.position.pnlAfterFees)}
             />
+            {showMarginBreakdown && (
+              <>
+                <br />
+                <span className="text-typography-tertiary text-12">
+                  <Trans>Margin breakdown</Trans>
+                </span>
+                <StatsTooltipRow
+                  label={t`Deposited margin`}
+                  value={formatUsd(marginData.totalDepositedMarginUsd) || "..."}
+                  valueClassName="numbers"
+                  showDollar={false}
+                />
+                <StatsTooltipRow
+                  label={t`Open fee`}
+                  value={formatUsd(-marginData.totalOpenFeesUsd) || "..."}
+                  valueClassName="numbers"
+                  showDollar={false}
+                  textClassName={cx({
+                    "text-red-500": marginData.totalOpenFeesUsd !== 0n,
+                  })}
+                />
+              </>
+            )}
           </div>
         )}
       />

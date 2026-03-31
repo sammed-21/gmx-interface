@@ -33,11 +33,18 @@ type RawTradeActionRow = {
 };
 
 const POSITION_ACTIONS_QUERY = gql`
-  query PositionIncreaseDecreaseActions($account: String!) {
+  query PositionIncreaseDecreaseActions($account: String!, $fromTimestamp: Int!) {
     tradeActions(
       limit: 1000
       orderBy: timestamp_DESC
-      where: { account_eq: $account, eventName_eq: "OrderExecuted", orderType_in: [2, 3, 4, 5, 6, 7, 8] }
+      where: {
+        account_eq: $account
+        eventName_eq: "OrderExecuted"
+        # 2=MarketIncrease, 3=LimitIncrease, 4=MarketDecrease, 5=LimitDecrease,
+        # 6=StopLossDecrease, 7=Liquidation, 8=StopIncrease
+        orderType_in: [2, 3, 4, 5, 6, 7, 8]
+        timestamp_gte: $fromTimestamp
+      }
     ) {
       orderType
       eventName
@@ -69,14 +76,32 @@ export function usePositionDepositedMargin(
   depositedMarginMap: PositionDepositedMarginMap | undefined;
   isLoading: boolean;
 } {
-  const positionKeys = useMemo(() => {
-    if (!positions || positions.length === 0) return undefined;
-    return positions.map((p) => p.key).sort();
+  const { positionKeysString, earliestTimestamp } = useMemo(() => {
+    if (!positions || positions.length === 0) return { positionKeysString: undefined, earliestTimestamp: undefined };
+
+    let earliest = BigInt(Number.MAX_SAFE_INTEGER);
+    const keys: string[] = [];
+
+    for (const p of positions) {
+      keys.push(p.key);
+      if (p.increasedAtTime < earliest) {
+        earliest = p.increasedAtTime;
+      }
+    }
+
+    keys.sort();
+    return { positionKeysString: keys.join(","), earliestTimestamp: earliest };
   }, [positions]);
 
+  // Stable key derived from token addresses — decimals are immutable per token
+  const tokenAddressesKey = useMemo(() => {
+    if (!tokensData) return undefined;
+    return Object.keys(tokensData).sort().join(",");
+  }, [tokensData]);
+
   const key =
-    account && positionKeys && positionKeys.length > 0
-      ? ["usePositionDepositedMargin", chainId, account, positionKeys.join(",")]
+    account && positionKeysString && earliestTimestamp !== undefined
+      ? ["usePositionDepositedMargin", chainId, account, positionKeysString, earliestTimestamp.toString()]
       : null;
 
   const { data: rawActions, isLoading } = useSWR(key, {
@@ -88,7 +113,7 @@ export function usePositionDepositedMargin(
         tradeActions: RawTradeActionRow[];
       }>({
         query: POSITION_ACTIONS_QUERY,
-        variables: { account },
+        variables: { account, fromTimestamp: Number(earliestTimestamp) },
         fetchPolicy: "no-cache",
       });
 
@@ -304,7 +329,9 @@ export function usePositionDepositedMargin(
     }
 
     return Object.keys(result).length > 0 ? result : undefined;
-  }, [rawActions, positions, tokensData]);
+    // positionKeysString and tokenAddressesKey provide stable change detection for positions and tokensData
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rawActions, positionKeysString, tokenAddressesKey]);
 
   return {
     depositedMarginMap,

@@ -12,7 +12,7 @@ import { selectAccount, selectChainId } from "context/SyntheticsStateContext/sel
 import { selectPositionsInfoDataSortedByMarket } from "context/SyntheticsStateContext/selectors/positionsSelectors";
 import { selectShowPnlAfterFees } from "context/SyntheticsStateContext/selectors/settingsSelectors";
 import { useSelector } from "context/SyntheticsStateContext/utils";
-import { PositionInfo, usePositionDepositedMargin, PositionDepositedMarginMap } from "domain/synthetics/positions";
+import { PositionInfo, PositionDepositedMarginData, usePositionDepositedMargin } from "domain/synthetics/positions";
 import { TradeMode } from "domain/synthetics/trade";
 import { OrderOption } from "domain/synthetics/trade/usePositionSellerState";
 import { getByKey } from "lib/objects";
@@ -85,7 +85,7 @@ export function PositionList(p: Props) {
                   onShareClick={handleSharePositionClick}
                   hideActions={hideActions}
                   onCancelOrder={onCancelOrder}
-                  depositedMarginMap={depositedMarginMap}
+                  depositedMarginData={depositedMarginMap?.[position.key]}
                 />
               ))}
           </div>
@@ -147,7 +147,7 @@ export function PositionList(p: Props) {
                     onShareClick={handleSharePositionClick}
                     hideActions={hideActions}
                     onCancelOrder={onCancelOrder}
-                    depositedMarginMap={depositedMarginMap}
+                    depositedMarginData={depositedMarginMap?.[position.key]}
                   />
                 ))}
             </tbody>
@@ -194,7 +194,7 @@ const PositionItemWrapper = memo(
     onSelectPositionClick,
     onShareClick,
     onCancelOrder,
-    depositedMarginMap,
+    depositedMarginData,
   }: {
     position: PositionInfo;
     onEditCollateralClick: (positionKey: string) => void;
@@ -205,7 +205,7 @@ const PositionItemWrapper = memo(
     onShareClick: (positionKey: string) => void;
     hideActions: boolean | undefined;
     onCancelOrder: (orderKey: string) => void;
-    depositedMarginMap: PositionDepositedMarginMap | undefined;
+    depositedMarginData: PositionDepositedMarginData | undefined;
   }) => {
     const { account } = useWallet();
     const showPnlAfterFees = useSelector(selectShowPnlAfterFees);
@@ -245,7 +245,7 @@ const PositionItemWrapper = memo(
         hideActions={hideActions}
         onCancelOrder={handleCancelOrder}
         onShareClick={isShareAvailable ? handleShareClick : undefined}
-        depositedMarginData={depositedMarginMap?.[position.key]}
+        depositedMarginData={depositedMarginData}
       />
     );
   }
