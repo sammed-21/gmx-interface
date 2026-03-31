@@ -287,19 +287,19 @@ export function TradingSettings({
             <TooltipWithPortal
               className="font-medium"
               variant="icon"
-              handle={<Trans>Send remaining collateral to</Trans>}
+              handle={<Trans>Send remaining margin to</Trans>}
               content={
                 <div>
                   <Trans>
                     Because positions on Arbitrum can be funded from both your wallet and your GMX Account, we can't
-                    always determine where to return the collateral automatically.
+                    always determine where to return the margin automatically.
                     <br />
                     <br />
                     Choose:
                     <br />• <span className="font-bold">Wallet</span> if you mostly trade from your personal wallet on
                     Arbitrum
-                    <br />• <span className="font-bold">GMX Account</span> if you plan to keep trading or reusing
-                    collateral on GMX.
+                    <br />• <span className="font-bold">GMX Account</span> if you plan to keep trading or reusing margin
+                    on GMX.
                     <br />
                     <br />
                     You can change this preference anytime in Settings or when closing a position.

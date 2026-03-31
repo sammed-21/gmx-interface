@@ -12,6 +12,7 @@ import { useSelector } from "context/SyntheticsStateContext/utils";
 import { getBorrowingFeeRateUsd, getFundingFeeRateUsd } from "domain/synthetics/fees";
 import {
   PositionInfo,
+  PositionDepositedMarginData,
   formatEstimatedLiquidationTime,
   formatLeverage,
   formatLiquidationPrice,
@@ -20,7 +21,7 @@ import {
 import { TradeMode } from "domain/synthetics/trade";
 import { OrderOption } from "domain/synthetics/trade/usePositionSellerState";
 import { CHART_PERIODS } from "lib/legacy";
-import { formatBalanceAmount, formatDeltaUsd, formatUsd, getBasisPoints } from "lib/numbers";
+import { formatBalanceAmount, formatDeltaUsd, formatUsd } from "lib/numbers";
 import { getPositiveOrNegativeClass } from "lib/utils";
 import { getMarketIndexName } from "sdk/utils/markets";
 
@@ -54,6 +55,7 @@ export type Props = {
   isLarge: boolean;
   onOrdersClick?: (key?: string) => void;
   onCancelOrder?: (orderKey: string) => void;
+  depositedMarginData?: PositionDepositedMarginData;
 };
 
 export function PositionItem(p: Props) {
@@ -87,9 +89,7 @@ export function PositionItem(p: Props) {
   }, []);
 
   function renderNetValue() {
-    const openPnlAfterFees = p.position.pnl - p.position.pendingBorrowingFeesUsd - p.position.pendingFundingFeesUsd;
-    const openPnlAfterFeesPercentage =
-      p.position.collateralUsd !== 0n ? getBasisPoints(openPnlAfterFees, p.position.collateralUsd) : 0n;
+    const showMarginBreakdown = p.depositedMarginData?.isReliable && p.depositedMarginData.totalDepositedMarginUsd > 0n;
 
     return (
       <TooltipWithPortal
@@ -101,12 +101,32 @@ export function PositionItem(p: Props) {
             <Trans>Position value after PnL and accrued fees</Trans>
             <br />
             <br />
-            <StatsTooltipRow
-              label={t`Initial collateral`}
-              value={formatUsd(p.position.collateralUsd) || "..."}
-              valueClassName="numbers"
-              showDollar={false}
-            />
+            {showMarginBreakdown ? (
+              <>
+                <StatsTooltipRow
+                  label={t`Deposited Margin`}
+                  value={formatUsd(p.depositedMarginData!.totalDepositedMarginUsd) || "..."}
+                  valueClassName="numbers"
+                  showDollar={false}
+                />
+                <StatsTooltipRow
+                  label={t`Open Fee`}
+                  value={formatUsd(-p.depositedMarginData!.totalOpenFeesUsd) || "..."}
+                  valueClassName="numbers"
+                  showDollar={false}
+                  textClassName={cx({
+                    "text-red-500": p.depositedMarginData!.totalOpenFeesUsd !== 0n,
+                  })}
+                />
+              </>
+            ) : (
+              <StatsTooltipRow
+                label={t`Initial margin`}
+                value={formatUsd(p.position.collateralUsd) || "..."}
+                valueClassName="numbers"
+                showDollar={false}
+              />
+            )}
             <StatsTooltipRow
               label={t`PnL`}
               value={formatDeltaUsd(p.position?.pnl) || "..."}
@@ -135,10 +155,10 @@ export function PositionItem(p: Props) {
             <br />
             <StatsTooltipRow
               label={t`PnL after fees`}
-              value={formatDeltaUsd(openPnlAfterFees, openPnlAfterFeesPercentage)}
+              value={formatDeltaUsd(p.position.pnlAfterFees, p.position.pnlAfterFeesPercentage)}
               valueClassName="numbers"
               showDollar={false}
-              textClassName={getPositiveOrNegativeClass(openPnlAfterFees)}
+              textClassName={getPositiveOrNegativeClass(p.position.pnlAfterFees)}
             />
           </div>
         )}
@@ -183,13 +203,13 @@ export function PositionItem(p: Props) {
               <>
                 {p.position.hasLowCollateral && (
                   <div>
-                    <Trans>Low collateral after fees. Deposit more to reduce liquidation risk.</Trans>
+                    <Trans>Low margin after fees. Deposit more to reduce liquidation risk.</Trans>
                     <br />
                     <br />
                   </div>
                 )}
                 <StatsTooltipRow
-                  label={t`Initial collateral`}
+                  label={t`Initial margin`}
                   value={
                     <AmountWithUsdBalance
                       amount={p.position.collateralAmount}
@@ -247,12 +267,12 @@ export function PositionItem(p: Props) {
                   textClassName={getPositiveOrNegativeClass(fundingFeeRateUsd)}
                 />
                 <br />
-                <Trans>Click the edit icon to adjust collateral.</Trans>
+                <Trans>Click the edit icon to adjust margin.</Trans>
                 <br />
                 <br />
                 <Trans>
-                  Negative funding fees reduce collateral and affect liquidation price. Positive funding fees are
-                  claimable in the Claims tab.
+                  Negative funding fees reduce margin and affect liquidation price. Positive funding fees are claimable
+                  in the Claims tab.
                 </Trans>
               </>
             }
@@ -291,7 +311,7 @@ export function PositionItem(p: Props) {
       if (!p.position.isLong && p.position.collateralAmount >= p.position.sizeInTokens) {
         const symbol = p.position.collateralToken.symbol;
         const indexName = p.position.indexName;
-        liqPriceWarning = t`Your ${symbol} collateral exceeds the ${indexName} short position size. Collateral value rises with the index, covering any losses—no liquidation price.`;
+        liqPriceWarning = t`Your ${symbol} margin exceeds the ${indexName} short position size. Margin value rises with the index, covering any losses—no liquidation price.`;
       } else if (
         p.position.isLong &&
         p.position.collateralToken.isStable &&
@@ -299,7 +319,7 @@ export function PositionItem(p: Props) {
       ) {
         const symbol = p.position.collateralToken.symbol;
         const indexName = p.position.indexName;
-        liqPriceWarning = t`Your ${symbol} collateral exceeds the ${indexName} long position size. Stable collateral covers any losses—no liquidation price.`;
+        liqPriceWarning = t`Your ${symbol} margin exceeds the ${indexName} long position size. Stable margin covers any losses—no liquidation price.`;
       }
     }
 
@@ -310,19 +330,17 @@ export function PositionItem(p: Props) {
           <div>
             {!liqPriceWarning && (
               <>
-                <Trans>Liquidation price changes with fees and collateral value.</Trans>
+                <Trans>Liquidation price changes with fees and margin value.</Trans>
                 <br />
               </>
             )}
             <br />
             {liqPriceWarning ? (
               <Trans>
-                Position may still liquidate from fees alone (funding + borrowing), reducing collateral over time.
+                Position may still liquidate from fees alone (funding + borrowing), reducing margin over time.
               </Trans>
             ) : (
-              <Trans>
-                Position may liquidate from fees alone (funding + borrowing), reducing collateral over time.
-              </Trans>
+              <Trans>Position may liquidate from fees alone (funding + borrowing), reducing margin over time.</Trans>
             )}
             <br />
             <br />
@@ -660,7 +678,7 @@ export function PositionItem(p: Props) {
           </div>
           <div className="App-card-row">
             <div className="font-medium text-typography-secondary">
-              <Trans>Collateral</Trans>
+              <Trans>Margin</Trans>
             </div>
             <div>{renderCollateral()}</div>
           </div>

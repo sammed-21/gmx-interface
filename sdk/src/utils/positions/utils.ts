@@ -111,27 +111,12 @@ export function getPositionPnlAfterFees({
   pnl,
   pendingBorrowingFeesUsd,
   pendingFundingFeesUsd,
-  closingFeeUsd,
-  uiFeeUsd,
-  totalPendingImpactDeltaUsd,
-  priceImpactDiffUsd,
 }: {
   pnl: bigint;
   pendingBorrowingFeesUsd: bigint;
   pendingFundingFeesUsd: bigint;
-  closingFeeUsd: bigint;
-  uiFeeUsd: bigint;
-  totalPendingImpactDeltaUsd: bigint;
-  priceImpactDiffUsd: bigint;
 }) {
-  const pnlAfterFees =
-    pnl -
-    pendingBorrowingFeesUsd -
-    pendingFundingFeesUsd -
-    closingFeeUsd -
-    uiFeeUsd +
-    totalPendingImpactDeltaUsd +
-    priceImpactDiffUsd;
+  const pnlAfterFees = pnl - pendingBorrowingFeesUsd - pendingFundingFeesUsd;
 
   return pnlAfterFees;
 }
@@ -581,14 +566,9 @@ export function getPositionInfo(p: {
     pnl,
     pendingBorrowingFeesUsd: position.pendingBorrowingFeesUsd,
     pendingFundingFeesUsd,
-    closingFeeUsd,
-    uiFeeUsd,
-    totalPendingImpactDeltaUsd: netPriceImpactValues.totalImpactDeltaUsd,
-    priceImpactDiffUsd: netPriceImpactValues.priceImpactDiffUsd,
   });
 
-  const pnlAfterFeesPercentage =
-    collateralUsd !== 0n ? getBasisPoints(pnlAfterFees, collateralUsd + closingFeeUsd) : 0n;
+  const pnlAfterFeesPercentage = collateralUsd !== 0n ? getBasisPoints(pnlAfterFees, collateralUsd) : 0n;
 
   const leverage = getLeverage({
     sizeInUsd: position.sizeInUsd,

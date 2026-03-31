@@ -360,7 +360,7 @@ export function PositionEditor() {
         setIsVisible={onClose}
         label={
           <Trans>
-            Edit collateral: {position?.isLong ? t`Long` : t`Short`}{" "}
+            Edit margin: {position?.isLong ? t`Long` : t`Short`}{" "}
             {position?.indexToken && getTokenVisualMultiplier(position.indexToken)}
             {position?.indexToken?.symbol}/USD
           </Trans>

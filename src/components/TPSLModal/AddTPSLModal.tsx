@@ -1058,8 +1058,8 @@ export function AddTPSLModal({
           <SyntheticsInfoRow
             label={
               <TooltipWithPortal
-                handle={<Trans>Collateral ({collateralToken.symbol})</Trans>}
-                content={<Trans>Initial collateral, excluding borrow and funding fees</Trans>}
+                handle={<Trans>Margin ({collateralToken.symbol})</Trans>}
+                content={<Trans>Initial margin, excluding borrow and funding fees</Trans>}
                 variant="icon"
               />
             }

@@ -742,7 +742,7 @@ export function PositionSeller() {
                 <div className="mb-16">
                   <div className="flex items-center justify-between gap-8">
                     <span className="text-14 text-typography-secondary">
-                      <Trans>Send remaining collateral to</Trans>
+                      <Trans>Send remaining margin to</Trans>
                     </span>
                     <CollateralDestinationSelector
                       isReceiveToGmxAccount={isReceiveToGmxAccount}
