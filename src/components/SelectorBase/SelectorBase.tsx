@@ -34,8 +34,6 @@ type Props = PropsWithChildren<{
   label: ReactNode | string | undefined;
   modalLabel: string;
   disabled?: boolean;
-  popoverXOffset?: number;
-  popoverYOffset?: number;
   mobileModalContentPadding?: boolean;
   popoverPlacement?: Placement;
   footerContent?: ReactNode;
@@ -170,14 +168,7 @@ function SelectorBaseDesktop(props: Props & { qa?: string }) {
   const buttonRef = useRef<HTMLElement | null>(null);
 
   const { refs, floatingStyles } = useFloating({
-    middleware: [
-      offset({
-        mainAxis: props.popoverYOffset ?? 8,
-        crossAxis: props.popoverXOffset ?? 0,
-      }),
-      flip(),
-      shift(),
-    ],
+    middleware: [offset(4), flip(), shift()],
     placement: props.popoverPlacement ?? "bottom-end",
     whileElementsMounted: autoUpdate,
   });

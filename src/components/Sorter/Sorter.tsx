@@ -13,7 +13,7 @@ export const directionIconMap: Record<SortDirection, React.ComponentType<{ class
   desc: IcSortedDesc,
   unspecified: IcSortable,
 };
-const directionSequence: SortDirection[] = ["desc", "asc", "unspecified"];
+const directionSequence: SortDirection[] = ["asc", "desc", "unspecified"];
 
 export function Sorter(
   props: PropsWithChildren<{
