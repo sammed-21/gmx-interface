@@ -53,6 +53,7 @@ import {
 import { useCloseSizeInput } from "domain/synthetics/trade/useCloseSizeInput";
 import { useMaxAutoCancelOrdersState } from "domain/synthetics/trade/useMaxAutoCancelOrdersState";
 import { buildTpSlCreatePayloads, buildTpSlInputPositionData, getTpSlDecreaseAmounts } from "domain/tpsl/sidecar";
+import { DUST_USD } from "lib/legacy";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
 import {
   calculateDisplayDecimals,
@@ -788,7 +789,7 @@ export function AddTPSLModal({
     }
   }, [tpDecreaseAmounts, slDecreaseAmounts]);
 
-  const isFullClose = closeSizeUsd >= position.sizeInUsd;
+  const isFullClose = closeSizeUsd >= position.sizeInUsd || position.sizeInUsd - closeSizeUsd < DUST_USD;
   const actionLabel = isFullClose ? t`Close` : t`Decrease`;
   const directionLabel = position.isLong ? t`Long` : t`Short`;
   const hasTP = Boolean(tpPriceInput);

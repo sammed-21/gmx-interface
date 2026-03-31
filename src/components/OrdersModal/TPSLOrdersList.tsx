@@ -21,6 +21,7 @@ import {
 } from "domain/synthetics/orders";
 import { PositionInfo, getIsPositionInfoLoaded } from "domain/synthetics/positions";
 import { getDecreasePositionAmounts } from "domain/synthetics/trade";
+import { DUST_USD } from "lib/legacy";
 import { formatDeltaUsd, formatUsd, formatBalanceAmount, formatPercentage } from "lib/numbers";
 import { getPositiveOrNegativeClass } from "lib/utils";
 import { bigMath } from "sdk/utils/bigmath";
@@ -178,7 +179,7 @@ function useTPSLOrderViewModel({
       return <span>-{formatUsd(order.sizeDeltaUsd)}</span>;
     }
 
-    const isFullClose = order.sizeDeltaUsd === position.sizeInUsd;
+    const isFullClose = order.sizeDeltaUsd >= position.sizeInUsd || position.sizeInUsd - order.sizeDeltaUsd < DUST_USD;
 
     if (isFullClose) {
       return <Trans>Full position close</Trans>;
