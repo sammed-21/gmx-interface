@@ -8,7 +8,7 @@ import React, {
   ReactNode,
   useCallback,
   useContext,
-  useLayoutEffect,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -185,7 +185,7 @@ function SelectorBaseDesktop(props: Props & { qa?: string }) {
     [props.popoverReferenceRef, refs]
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (props.popoverReferenceRef?.current) {
       refs.setReference(props.popoverReferenceRef.current);
     }
