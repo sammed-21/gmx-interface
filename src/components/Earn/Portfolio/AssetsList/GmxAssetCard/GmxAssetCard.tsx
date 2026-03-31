@@ -412,13 +412,7 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
               }
             />
           }
-          value={
-            <span className="numbers">
-              {stakingPowerData.userSharePercent > 0 && stakingPowerData.userSharePercent < 0.01
-                ? "< 0.01%"
-                : `${stakingPowerData.userSharePercent.toFixed(2)}%`}
-            </span>
-          }
+          value={<span className="numbers">{formatAmount(stakingPowerData.cumulativePower, 18, 0, true)}</span>}
         />
       )}
       {hasBeenReset && (
