@@ -300,9 +300,7 @@ export const selectTradeboxCollateralTokenAddress = (s: SyntheticsState) =>
 export const selectTradeboxCollateralToken = (s: SyntheticsState) => s.tradebox.collateralToken;
 export const selectTradeboxAvailableTokensOptions = (s: SyntheticsState) => s.tradebox.availableTokensOptions;
 
-// MEGAETH_TEMP
-// Temporary filter out native and wrapped tokens for MegaETH because they can
-// not be used for open positions
+// MegaETH: native/wrapped tokens can't be used for positions yet
 export const selectTradeboxSwapTokens = createSelector((q) => {
   const { swapTokens } = q(selectTradeboxAvailableTokensOptions);
   const { isSwap } = q(selectTradeboxTradeFlags);

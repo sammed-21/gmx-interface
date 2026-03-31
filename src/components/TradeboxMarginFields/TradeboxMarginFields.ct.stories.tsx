@@ -20,8 +20,6 @@ import { TradeboxMarginFields } from "./TradeboxMarginFields";
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
 
-// ─── Mock Tokens ──────────────────────────────
-
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
 
@@ -54,8 +52,6 @@ const TOKENS_DATA = {
   [USDC_ADDRESS]: USDC_TOKEN,
   [ETH_ADDRESS]: ETH_TOKEN,
 };
-
-// ─── Mock State Factory ───────────────────────
 
 type MockStateOverrides = {
   tradeMode?: TradeMode;
@@ -137,8 +133,6 @@ function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
   return state as SyntheticsState;
 }
 
-// ─── Providers ────────────────────────────────
-
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false, gcTime: 0 } },
 });
@@ -163,8 +157,6 @@ function TestProviders({ state, children }: { state: SyntheticsState; children: 
     </MemoryRouter>
   );
 }
-
-// ─── Story Component ──────────────────────────
 
 export type StoryProps = {
   tradeMode?: TradeMode;

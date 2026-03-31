@@ -17,8 +17,6 @@ import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
 import { useSizeConversion } from "./useSizeConversion";
 
-// ─── Mock Tokens ──────────────────────────────
-
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
 
@@ -46,8 +44,6 @@ const ETH_TOKEN = {
   },
   balance: expandDecimals(10, 18),
 } as TokenData;
-
-// ─── Providers ────────────────────────────────
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false, gcTime: 0 } },
@@ -132,8 +128,6 @@ function createMockState(): SyntheticsState {
 
   return state as SyntheticsState;
 }
-
-// ─── Story Components ──────────────────────────
 
 export type SizeConversionStoryProps = {
   tokenDecimals?: number;

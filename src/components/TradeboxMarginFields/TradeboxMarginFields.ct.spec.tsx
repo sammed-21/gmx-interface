@@ -5,8 +5,6 @@ import { TradeMode } from "sdk/utils/trade/types";
 import { TradeboxMarginFieldsStory } from "./TradeboxMarginFields.ct.stories";
 
 test.describe("TradeboxMarginFields", () => {
-  // ─── Rendering ────────────────────────────────
-
   test.describe("Rendering", () => {
     test("renders margin field, size field, and percentage slider", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory />);
@@ -41,8 +39,6 @@ test.describe("TradeboxMarginFields", () => {
     });
   });
 
-  // ─── Conditional Price Field ──────────────────
-
   test.describe("Price Field visibility", () => {
     test("does NOT render price field for market orders", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory tradeMode={TradeMode.Market} />);
@@ -63,8 +59,6 @@ test.describe("TradeboxMarginFields", () => {
       await expect(page.locator('[data-qa="trigger-price"]')).toHaveCount(0);
     });
   });
-
-  // ─── Margin Input ─────────────────────────────
 
   test.describe("Margin Input", () => {
     test("typing updates the margin value", async ({ mount, page }) => {
@@ -91,8 +85,6 @@ test.describe("TradeboxMarginFields", () => {
       await expect(marginInput).toHaveValue("");
     });
   });
-
-  // ─── Size Input ───────────────────────────────
 
   test.describe("Size Input", () => {
     test("typing in size field updates the value", async ({ mount, page }) => {
@@ -147,8 +139,6 @@ test.describe("TradeboxMarginFields", () => {
     });
   });
 
-  // ─── Price Field (Limit Orders) ───────────────
-
   test.describe("Price Field", () => {
     test("shows 'Limit price' label for Limit trade mode", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory tradeMode={TradeMode.Limit} initialTriggerPrice="" />);
@@ -188,8 +178,6 @@ test.describe("TradeboxMarginFields", () => {
     });
   });
 
-  // ─── Percentage Slider ────────────────────────
-
   test.describe("Percentage Slider", () => {
     test("renders all percentage marks", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory />);
@@ -206,8 +194,6 @@ test.describe("TradeboxMarginFields", () => {
       await expect(page.locator(".rc-slider-handle")).toBeVisible();
     });
   });
-
-  // ─── Integration ──────────────────────────────
 
   test.describe("Integration", () => {
     test("margin and size fields coexist without interference", async ({ mount, page }) => {

@@ -9,8 +9,6 @@ import {
 } from "./TradeboxMarginFieldsEdgeCases.ct.stories";
 
 test.describe("TradeboxMarginFields Edge Cases", () => {
-  // ─── 8.1 Zero and empty values ─────────────────
-
   test.describe("Zero and empty values", () => {
     test("empty fromTokenInputValue renders without crashing", async ({ mount, page }) => {
       await mount(<EdgeCaseStory initialFromValue="" />);
@@ -46,8 +44,6 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     });
   });
 
-  // ─── 8.2 Undefined token data ──────────────────
-
   test.describe("Undefined token data", () => {
     test("undefined toToken does not crash component", async ({ mount, page }) => {
       await mount(<UndefinedToTokenStory />);
@@ -65,8 +61,6 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
       await expect(marginInput).toHaveValue("500");
     });
   });
-
-  // ─── 8.3 Rapid input changes ───────────────────
 
   test.describe("Rapid input changes", () => {
     test("multiple fast size input changes produce correct final value", async ({ mount, page }) => {
@@ -119,8 +113,6 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     });
   });
 
-  // ─── 8.4 Price changes during editing ──────────
-
   test.describe("Price changes during editing", () => {
     test("focused size field is not overwritten by sync", async ({ mount, page }) => {
       await mount(<EdgeCaseStory initialFromValue="1000" initialToValue="0.5" />);
@@ -133,8 +125,6 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
       await expect(sizeInput).toHaveValue("9999");
     });
   });
-
-  // ─── 8.5 Very large / very small values ────────
 
   test.describe("Large and small values", () => {
     test("very large margin amount renders without overflow", async ({ mount, page }) => {

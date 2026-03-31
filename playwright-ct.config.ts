@@ -20,15 +20,13 @@ function ctModuleMocks(): Plugin {
     name: "ct-module-mocks",
     enforce: "pre",
     resolveId(source, importer) {
-      // Match bare import: import ... from "lib/rpc/_debug"
       if (source === "lib/rpc/_debug") {
         return mockPath;
       }
-      // Match relative import: import ... from "./_debug" inside lib/rpc/
+      // Relative import from within lib/rpc/
       if (source === "./_debug" && importer && importer.includes(path.join("lib", "rpc"))) {
         return mockPath;
       }
-      // Match any resolved path containing lib/rpc/_debug
       if (source.includes("lib/rpc/_debug")) {
         return mockPath;
       }

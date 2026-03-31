@@ -5,8 +5,6 @@ import { TradeMode } from "sdk/utils/trade/types";
 import { SliderStory, SliderClampStory, PriceFieldStory } from "./SubComponents.ct.stories";
 
 test.describe("MarginPercentageSlider", () => {
-  // ─── 3.1 Rendering (additional) ────────────────
-
   test.describe("Rendering", () => {
     test("renders slider with correct marks", async ({ mount, page }) => {
       await mount(<SliderStory initialValue={50} />);
@@ -25,8 +23,6 @@ test.describe("MarginPercentageSlider", () => {
       await expect(wrapper).toBeVisible();
     });
   });
-
-  // ─── 3.2 Value clamping ────────────────────────
 
   test.describe("Value clamping", () => {
     test("shows 0 when value is NaN", async ({ mount, page }) => {
@@ -60,8 +56,6 @@ test.describe("MarginPercentageSlider", () => {
     });
   });
 
-  // ─── 3.3 onChange ──────────────────────────────
-
   test.describe("onChange", () => {
     test("slider handle is draggable", async ({ mount, page }) => {
       await mount(<SliderStory initialValue={0} />);
@@ -77,8 +71,6 @@ test.describe("MarginPercentageSlider", () => {
 });
 
 test.describe("PriceField", () => {
-  // ─── 6.1 Rendering ────────────────────────────
-
   test.describe("Rendering", () => {
     test('renders "Limit price" label for Limit trade mode', async ({ mount, page }) => {
       await mount(<PriceFieldStory tradeMode={TradeMode.Limit} />);
@@ -106,8 +98,6 @@ test.describe("PriceField", () => {
       await expect(page.locator('[data-qa="trigger-price-display-mode-button"]')).toHaveCount(0);
     });
   });
-
-  // ─── 6.2 Alternate value (mark price) ──────────
 
   test.describe("Mark price", () => {
     test("shows mark price as alternate value", async ({ mount, page }) => {
@@ -138,8 +128,6 @@ test.describe("PriceField", () => {
       await expect(priceInput).toHaveValue("");
     });
   });
-
-  // ─── 6.3 Interactions ─────────────────────────
 
   test.describe("Interactions", () => {
     test("typing updates price value", async ({ mount, page }) => {

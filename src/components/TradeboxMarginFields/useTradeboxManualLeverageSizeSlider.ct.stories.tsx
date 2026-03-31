@@ -19,8 +19,6 @@ import { TradeMode, TradeType } from "sdk/utils/trade/types";
 import { useSizeConversion } from "./useSizeConversion";
 import { useTradeboxManualLeverageSizeSlider } from "./useTradeboxManualLeverageSizeSlider";
 
-// ─── Mock Tokens ──────────────────────────────
-
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
 const MARKET_ADDRESS = "0x70d95587d40A2caf56bd97485aB3Eec10Bee6336";
@@ -54,8 +52,6 @@ const TOKENS_DATA = {
   [USDC_ADDRESS]: USDC_TOKEN,
   [ETH_ADDRESS]: ETH_TOKEN,
 };
-
-// ─── Minimal MarketInfo Mock ──────────────────
 
 function createMockMarketInfo(): MarketInfo {
   return {
@@ -166,8 +162,6 @@ function createMockMarketInfo(): MarketInfo {
   } as MarketInfo;
 }
 
-// ─── Mock State Factory ───────────────────────
-
 type MockStateOverrides = {
   tradeMode?: TradeMode;
   tradeType?: TradeType;
@@ -246,8 +240,6 @@ function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
   return state as SyntheticsState;
 }
 
-// ─── Providers ────────────────────────────────
-
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false, gcTime: 0 } },
 });
@@ -272,8 +264,6 @@ function TestProviders({ state, children }: { state: SyntheticsState; children: 
     </MemoryRouter>
   );
 }
-
-// ─── Story Components ─────────────────────────
 
 export type SliderHookStoryProps = {
   isLeverageSliderEnabled?: boolean;

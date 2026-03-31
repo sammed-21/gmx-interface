@@ -5,8 +5,6 @@ import { TradeType } from "sdk/utils/trade/types";
 import { SliderHookStory } from "./useTradeboxManualLeverageSizeSlider.ct.stories";
 
 test.describe("useTradeboxManualLeverageSizeSlider", () => {
-  // ─── 2.1 isLeverageSliderEnabled ────────────────
-
   test.describe("isLeverageSliderEnabled", () => {
     test("returns true when settings have leverage slider enabled", async ({ mount, page }) => {
       await mount(<SliderHookStory isLeverageSliderEnabled={true} />);
@@ -18,8 +16,6 @@ test.describe("useTradeboxManualLeverageSizeSlider", () => {
       await expect(page.getByTestId("is-leverage-slider-enabled")).toHaveText("false");
     });
   });
-
-  // ─── 2.2 sizePercentage ────────────────────────
 
   test.describe("sizePercentage", () => {
     test("returns 0 when leverage slider is enabled (maxSizeByMarginInTokens undefined)", async ({ mount, page }) => {
@@ -37,8 +33,6 @@ test.describe("useTradeboxManualLeverageSizeSlider", () => {
       await expect(page.getByTestId("size-percentage")).toHaveText("0");
     });
   });
-
-  // ─── 2.3 handleSizePercentageChange ─────────────
 
   test.describe("handleSizePercentageChange", () => {
     test("no-ops when maxSizeByMarginInTokens is undefined (leverage slider enabled)", async ({ mount, page }) => {
@@ -125,8 +119,6 @@ test.describe("useTradeboxManualLeverageSizeSlider", () => {
     });
   });
 
-  // ─── 2.4 markFieldInteraction ──────────────────
-
   test.describe("markFieldInteraction", () => {
     test("prevents slider sync from firing after field interaction", async ({ mount, page }) => {
       await mount(
@@ -152,8 +144,6 @@ test.describe("useTradeboxManualLeverageSizeSlider", () => {
       expect(afterField).toBe(afterSlider);
     });
   });
-
-  // ─── 2.5 Slider sync effect ────────────────────
 
   test.describe("Slider sync effect", () => {
     test("does NOT re-apply when isLeverageSliderEnabled is true", async ({ mount, page }) => {

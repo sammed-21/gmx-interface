@@ -79,7 +79,7 @@ export function useTechnicalFees(): TechnicalFeesResult {
   let shortTokenAmount = amounts?.shortTokenAmount ?? 0n;
   let firstTokenAmountValue = firstTokenAmount;
 
-  // Setting dummy amounts to be able to show fees when user has not entered amounts yet (deposit only)
+  // Dummy amounts to estimate fees before user input (deposit only)
   if (isDeposit && rawParams && globalExpressParams) {
     const depositParams = rawParams as RawCreateGlvDepositParams | RawCreateDepositParams;
     const { initialLongToken, initialShortToken } = depositParams.addresses;
@@ -88,7 +88,7 @@ export function useTechnicalFees(): TechnicalFeesResult {
       firstTokenAddress !== undefined &&
       isMarketTokenAddress(chainId, firstTokenAddress)
     ) {
-      // Markets are around $0.3 to $2 so we can safely assume that x10 is a good amount to estimate fees
+      // Market token price ~$0.3–$2, x10 is safe for fee estimation
       firstTokenAmountValue = expandDecimals(10, PLATFORM_TOKEN_DECIMALS);
     }
 

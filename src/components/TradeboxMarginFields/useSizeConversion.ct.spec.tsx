@@ -3,8 +3,6 @@ import { test, expect } from "@playwright/experimental-ct-react";
 import { SizeConversionStory, SizeConversionMemoStory } from "./useSizeConversion.ct.stories";
 
 test.describe("useSizeConversion", () => {
-  // ─── 1.1 canConvert flag ────────────────────────
-
   test.describe("canConvert flag", () => {
     test("returns false when toToken is undefined", async ({ mount, page }) => {
       await mount(<SizeConversionStory hasToken={false} />);
@@ -26,8 +24,6 @@ test.describe("useSizeConversion", () => {
       await expect(page.getByTestId("can-convert")).toHaveText("true");
     });
   });
-
-  // ─── 1.2 tokensToUsd ───────────────────────────
 
   test.describe("tokensToUsd", () => {
     test("converts token amount string to USD string", async ({ mount, page }) => {
@@ -78,8 +74,6 @@ test.describe("useSizeConversion", () => {
     });
   });
 
-  // ─── 1.3 usdToTokens ──────────────────────────
-
   test.describe("usdToTokens", () => {
     test("converts USD string to token amount string", async ({ mount, page }) => {
       // $3000 at $2000/ETH = 1.5 ETH
@@ -114,8 +108,6 @@ test.describe("useSizeConversion", () => {
       expect(result).not.toBe("");
     });
   });
-
-  // ─── 1.4 Memoization ──────────────────────────
 
   test.describe("Memoization", () => {
     test("returns stable references when inputs don't change", async ({ mount, page }) => {

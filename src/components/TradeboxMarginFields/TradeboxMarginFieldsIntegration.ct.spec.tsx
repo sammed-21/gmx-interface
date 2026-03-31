@@ -5,8 +5,6 @@ import { TradeMode } from "sdk/utils/trade/types";
 import { IntegrationStory, IntegrationNoTriggerCallbackStory } from "./TradeboxMarginFieldsIntegration.ct.stories";
 
 test.describe("TradeboxMarginFields Integration", () => {
-  // ─── 7.1 Rendering structure (additional) ───────
-
   test.describe("Rendering structure", () => {
     test("does NOT render PriceField when onTriggerPriceInputChange is undefined", async ({ mount, page }) => {
       await mount(<IntegrationNoTriggerCallbackStory />);
@@ -15,8 +13,6 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(page.getByText("Limit price")).not.toBeVisible();
     });
   });
-
-  // ─── 7.2 Margin input handling ──────────────────
 
   test.describe("Margin input handling", () => {
     test("typing in margin sets focused input to 'from'", async ({ mount, page }) => {
@@ -59,8 +55,6 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
   });
 
-  // ─── 7.3 Size input — token display mode ────────
-
   test.describe("Size input - token display mode", () => {
     test("typing in token mode directly updates toTokenInputValue", async ({ mount, page }) => {
       await mount(<IntegrationStory />);
@@ -93,8 +87,6 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
   });
 
-  // ─── 7.4 Size input — USD display mode ──────────
-
   test.describe("Size input - USD display mode", () => {
     test("typing in USD mode updates the displayed value", async ({ mount, page }) => {
       await mount(<IntegrationStory />);
@@ -124,8 +116,6 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(sizeInput).toHaveValue("7777");
     });
   });
-
-  // ─── 7.5 Display mode toggle ───────────────────
 
   test.describe("Display mode toggle", () => {
     test("switching to token mode converts USD to tokens", async ({ mount, page }) => {
@@ -180,8 +170,6 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
   });
 
-  // ─── 7.6 Percentage slider behavior ─────────────
-
   test.describe("Percentage slider", () => {
     test("slider is visible with leverage slider enabled (margin mode)", async ({ mount, page }) => {
       await mount(<IntegrationStory isLeverageSliderEnabled={true} initialFromValue="5000" />);
@@ -200,8 +188,6 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
   });
 
-  // ─── 7.7 Margin percentage calculation ──────────
-
   test.describe("Margin percentage", () => {
     test("margin percentage reflects fromTokenInputValue / maxAvailableAmount", async ({ mount, page }) => {
       // 5000 USDC of 10000 USDC max = 50%
@@ -212,8 +198,6 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(page.locator(".rc-slider-handle")).toBeVisible();
     });
   });
-
-  // ─── 7.8 Size conversion price selection ────────
 
   test.describe("Size conversion price", () => {
     test("uses mark price for market orders", async ({ mount, page }) => {
@@ -234,8 +218,6 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
   });
 
-  // ─── 7.10 Passive USD sync ─────────────────────
-
   test.describe("Passive USD sync", () => {
     test("does not overwrite size when user is focused on size field", async ({ mount, page }) => {
       await mount(<IntegrationStory />);
@@ -249,8 +231,6 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(page.getByTestId("focused-input")).toHaveText("to");
     });
   });
-
-  // ─── 7.11 Focus management ────────────────────
 
   test.describe("Focus management", () => {
     test("margin input focus sets focusedInput to 'from'", async ({ mount, page }) => {

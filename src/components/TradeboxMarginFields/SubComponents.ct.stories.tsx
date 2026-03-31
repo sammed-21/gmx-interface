@@ -18,8 +18,6 @@ import { TradeMode, TradeType } from "sdk/utils/trade/types";
 import { MarginPercentageSlider } from "./MarginPercentageSlider";
 import { PriceField } from "./PriceField";
 
-// ─── Mock Tokens ──────────────────────────────
-
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
 
@@ -52,8 +50,6 @@ const TOKENS_DATA = {
   [USDC_ADDRESS]: USDC_TOKEN,
   [ETH_ADDRESS]: ETH_TOKEN,
 };
-
-// ─── Providers ────────────────────────────────
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: false, gcTime: 0 } },
@@ -135,8 +131,6 @@ function TestProviders({ children }: { children: ReactNode }) {
   );
 }
 
-// ─── MarginPercentageSlider Stories ───────────
-
 export type SliderStoryProps = {
   initialValue?: number;
   className?: string;
@@ -174,8 +168,6 @@ export function SliderClampStory({ value }: { value: number }) {
     </TestProviders>
   );
 }
-
-// ─── PriceField Stories ───────────────────────
 
 export type PriceFieldStoryProps = {
   tradeMode?: TradeMode;
