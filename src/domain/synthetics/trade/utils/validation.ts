@@ -371,7 +371,7 @@ export function getIncreaseError(p: {
   ) {
     const actualMarginPerPart = collateralUsd! / BigInt(numberOfParts);
     return {
-      buttonErrorMessage: t`Min margin per part: ${formatUsd(minTwapPartSize)}, actual: ${formatUsd(actualMarginPerPart, { roundMode: "floor" })}`,
+      buttonErrorMessage: t`Margin per part: ${formatUsd(actualMarginPerPart, { roundMode: "floor" })} (min ${formatUsd(minTwapPartSize)})`,
     };
   }
 
