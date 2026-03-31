@@ -589,18 +589,13 @@ export default function TVChartContainer({
       if (markPriceDirectionRef.current === direction) return;
       markPriceDirectionRef.current = direction;
 
-      const neutralColor =
+      const neutralColor = (
         theme === "light"
-          ? chartOverridesLight["mainSeriesProperties.priceLineColor"]!
-          : chartOverridesDark["mainSeriesProperties.priceLineColor"]!;
+          ? chartOverridesLight["mainSeriesProperties.priceLineColor"]
+          : chartOverridesDark["mainSeriesProperties.priceLineColor"]
+      ) as string;
       const priceLineColor =
-        direction === "up"
-          ? // @ts-expect-error
-            colors.green[500][theme]
-          : direction === "down"
-            ? // @ts-expect-error
-              colors.red[500][theme]
-            : neutralColor;
+        direction === "up" ? colors.green[500][theme] : direction === "down" ? colors.red[500][theme] : neutralColor;
 
       tvWidgetRef.current.applyOverrides({
         "mainSeriesProperties.priceLineColor": priceLineColor,
