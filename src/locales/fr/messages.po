@@ -4453,8 +4453,7 @@ msgstr "Agrégateur de perpétuels"
 msgid "Request Market Swap"
 msgstr "Demander un échange de marché"
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Failed to copy image"
 msgstr ""
 
@@ -4564,8 +4563,7 @@ msgstr "Explorateur LayerZero"
 msgid "Borrow fee"
 msgstr "Frais d'emprunt"
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Image copied to clipboard"
 msgstr ""
 

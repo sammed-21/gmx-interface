@@ -4453,8 +4453,7 @@ msgstr ""
 msgid "Request Market Swap"
 msgstr ""
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Failed to copy image"
 msgstr ""
 
@@ -4564,8 +4563,7 @@ msgstr ""
 msgid "Borrow fee"
 msgstr ""
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Image copied to clipboard"
 msgstr ""
 

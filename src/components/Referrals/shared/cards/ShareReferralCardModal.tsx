@@ -3,7 +3,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useCopyToClipboard } from "react-use";
 
-import { copyElementAsImage, shareElementAsImage } from "lib/copyElementAsImage";
+import { shareOrCopyElementAsImage } from "lib/copyElementAsImage";
 import { helperToast } from "lib/helperToast";
 import { getHomeUrl, getTwitterIntentURL } from "lib/legacy";
 import { formatUsd } from "lib/numbers";
@@ -67,18 +67,12 @@ export function ShareReferralCardModal({
 
     const captureOptions = { style: { transform: "none", borderRadius: "0" } };
 
-    try {
-      if (isMobile) {
-        await shareElementAsImage(cardRef.current, "GMX Referral.png", captureOptions);
-      } else {
-        await copyElementAsImage(cardRef.current, captureOptions);
-        helperToast.success(t`Image copied to clipboard`);
-      }
-    } catch {
-      if (!isMobile) {
-        helperToast.error(t`Failed to copy image`);
-      }
-    }
+    await shareOrCopyElementAsImage({
+      element: cardRef.current,
+      isMobile,
+      fileName: "GMX Referral.png",
+      extraOptions: captureOptions,
+    });
   }, [isMobile]);
 
   return (

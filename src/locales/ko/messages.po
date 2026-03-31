@@ -4453,8 +4453,7 @@ msgstr "무기한 선물 애그리게이터"
 msgid "Request Market Swap"
 msgstr "마켓 스왑 요청"
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Failed to copy image"
 msgstr ""
 
@@ -4564,8 +4563,7 @@ msgstr "LayerZero scan"
 msgid "Borrow fee"
 msgstr "차입 수수료"
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Image copied to clipboard"
 msgstr ""
 

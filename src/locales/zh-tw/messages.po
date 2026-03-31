@@ -4453,8 +4453,7 @@ msgstr "永續合約聚合器"
 msgid "Request Market Swap"
 msgstr "Request Market Swap"
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Failed to copy image"
 msgstr ""
 
@@ -4564,8 +4563,7 @@ msgstr "LayerZero scan"
 msgid "Borrow fee"
 msgstr "借貸費用"
 
-#: src/components/PositionShare/PositionShare.tsx
-#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+#: src/lib/copyElementAsImage.ts
 msgid "Image copied to clipboard"
 msgstr ""
 

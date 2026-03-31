@@ -5,7 +5,7 @@ import { useCopyToClipboard, usePrevious } from "react-use";
 
 import { useAffiliateCodes, useUserReferralCode } from "domain/referrals";
 import { Token } from "domain/tokens";
-import { copyElementAsImage, shareElementAsImage } from "lib/copyElementAsImage";
+import { shareOrCopyElementAsImage } from "lib/copyElementAsImage";
 import { helperToast } from "lib/helperToast";
 import { getRootShareApiUrl, getTwitterIntentURL } from "lib/legacy";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
@@ -253,18 +253,7 @@ function PositionShare({
       },
     });
 
-    try {
-      if (isMobile) {
-        await shareElementAsImage(element, "GMX Position.png");
-      } else {
-        await copyElementAsImage(element);
-        helperToast.success(t`Image copied to clipboard`);
-      }
-    } catch {
-      if (!isMobile) {
-        helperToast.error(t`Failed to copy image`);
-      }
-    }
+    await shareOrCopyElementAsImage({ element, isMobile, fileName: "GMX Position.png" });
   }
 
   function handleCopy() {
