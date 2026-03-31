@@ -54,7 +54,12 @@ import { TradeType } from "domain/synthetics/trade/types";
 import { useDebugExecutionPrice } from "domain/synthetics/trade/useExecutionPrice";
 import { ORDER_OPTION_TO_TRADE_MODE, OrderOption } from "domain/synthetics/trade/usePositionSellerState";
 import { usePriceImpactWarningState } from "domain/synthetics/trade/usePriceImpactWarningState";
-import { getCommonError, getDecreaseError, getExpressError } from "domain/synthetics/trade/utils/validation";
+import {
+  getCommonError,
+  getDecreaseError,
+  getExpressError,
+  takeValidationResult,
+} from "domain/synthetics/trade/utils/validation";
 import { Token } from "domain/tokens";
 import { useTokenApproval } from "domain/tokens/useTokenApproval";
 import { useChainId } from "lib/chains";
@@ -464,10 +469,12 @@ export function PositionSeller() {
       numberOfParts,
     });
 
-    if (commonError.buttonErrorMessage || decreaseError.buttonErrorMessage || expressError.buttonErrorMessage) {
+    const validationResult = takeValidationResult(commonError, decreaseError, expressError);
+
+    if (validationResult.buttonErrorMessage) {
       return {
-        error: commonError.buttonErrorMessage || decreaseError.buttonErrorMessage || expressError.buttonErrorMessage,
-        bannerErrorName: expressError.bannerErrorName,
+        error: validationResult.buttonErrorMessage,
+        bannerErrorName: validationResult.bannerErrorName,
       };
     }
 
