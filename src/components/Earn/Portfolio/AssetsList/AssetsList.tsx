@@ -126,7 +126,7 @@ function AssetsList({
           {sortedAssets.map((asset) => {
             if (asset.type === "gmx" && processedData) {
               return (
-                <div key="gmx" className="md:row-span-2 md:self-stretch">
+                <div key="gmx" className="md:row-span-2 md:min-h-[420px] md:self-stretch">
                   <GmxAssetCard processedData={processedData} hasEsGmx={asset.hasEsGmx} />
                 </div>
               );

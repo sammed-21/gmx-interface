@@ -125,6 +125,13 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
     return bigMath.mulDiv(displayProjectedRewardGmx, gmxPrice, expandDecimals(1, 18));
   }, [displayProjectedRewardGmx, gmxPrice]);
 
+  const hasStakingAlerts = Boolean(
+    stakingPowerData &&
+      ((isLoyaltyTrackingActive(stakingPowerData.loyaltyTrackingStart) && stakingPowerData.loyaltyRatio !== null) ||
+        stakingPowerData.powerResetCount > 0 ||
+        stakingPowerData.cumulativePower > 0n)
+  );
+
   const handleOpenGmxStakeModal = () => {
     sendEarnPortfolioItemClickEvent({ item: "GMX", type: "stake" });
     setIsGmxStakeModalVisible(true);
@@ -238,10 +245,9 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
 
         <StakingPowerAlerts stakingPowerData={stakingPowerData} />
 
-        <div className="mt-12 grow" />
-        <div className="border-t-1/2 border-slate-600" />
+        {hasStakingAlerts && <div className="mt-12 border-t-1/2 border-slate-600" />}
 
-        <div className="mt-12 flex flex-col gap-8">
+        <div className="mt-12 flex grow flex-col gap-8">
           <SyntheticsInfoRow
             label={<Trans>Staked GMX</Trans>}
             value={
@@ -264,7 +270,8 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
               />
             }
           />
-          <div className="mt-4 grid grid-cols-2 gap-8">
+          <div className="grow" />
+          <div className="grid grid-cols-2 gap-8">
             <Button variant="secondary" onClick={handleOpenGmxStakeModal} className="whitespace-nowrap">
               <DownloadIcon className="size-16 shrink-0" />
               <Trans>Stake GMX</Trans>
@@ -374,12 +381,13 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
   const loyaltyActive = isLoyaltyTrackingActive(stakingPowerData.loyaltyTrackingStart);
   const hasBeenReset = stakingPowerData.powerResetCount > 0;
   const hasPower = stakingPowerData.cumulativePower > 0n;
+  const showLoyalty = loyaltyActive && stakingPowerData.loyaltyRatio !== null;
 
-  if (!loyaltyActive && !hasBeenReset && !hasPower) return null;
+  if (!showLoyalty && !hasBeenReset && !hasPower) return null;
 
   return (
     <div className="mt-12 flex flex-col gap-8">
-      {loyaltyActive && stakingPowerData.loyaltyRatio !== null && (
+      {showLoyalty && (
         <SyntheticsInfoRow
           label={
             <Tooltip
@@ -393,8 +401,8 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
             />
           }
           value={
-            <span className={cx("numbers", { "text-red-500": stakingPowerData.loyaltyRatio < 0.85 })}>
-              {(Math.min(stakingPowerData.loyaltyRatio, 1) * 100).toFixed(1)}%
+            <span className={cx("numbers", { "text-red-500": stakingPowerData.loyaltyRatio! < 0.85 })}>
+              {(Math.min(stakingPowerData.loyaltyRatio!, 1) * 100).toFixed(1)}%
             </span>
           }
         />
