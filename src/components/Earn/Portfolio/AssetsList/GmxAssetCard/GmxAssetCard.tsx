@@ -125,13 +125,6 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
     return bigMath.mulDiv(displayProjectedRewardGmx, gmxPrice, expandDecimals(1, 18));
   }, [displayProjectedRewardGmx, gmxPrice]);
 
-  const hasStakingAlerts = Boolean(
-    stakingPowerData &&
-      ((isLoyaltyTrackingActive(stakingPowerData.loyaltyTrackingStart) && stakingPowerData.loyaltyRatio !== null) ||
-        stakingPowerData.powerResetCount > 0 ||
-        stakingPowerData.cumulativePower > 0n)
-  );
-
   const handleOpenGmxStakeModal = () => {
     sendEarnPortfolioItemClickEvent({ item: "GMX", type: "stake" });
     setIsGmxStakeModalVisible(true);
@@ -244,8 +237,6 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
         </div>
 
         <StakingPowerAlerts stakingPowerData={stakingPowerData} />
-
-        {hasStakingAlerts && <div className="mt-12 border-t-1/2 border-slate-600" />}
 
         <div className="mt-12 flex grow flex-col gap-8">
           <SyntheticsInfoRow
