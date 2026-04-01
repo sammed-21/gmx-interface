@@ -81,14 +81,19 @@ export interface AccountPnlSummaryBucketObject {
 
 export interface AccountStat {
   __typename?: "AccountStat";
+  account: Scalars["String"]["output"];
   closedCount: Scalars["Int"]["output"];
   cumsumCollateral: Scalars["BigInt"]["output"];
   cumsumSize: Scalars["BigInt"]["output"];
+  dayTimestamp?: Maybe<Scalars["Int"]["output"]>;
   deposits: Scalars["BigInt"]["output"];
   id: Scalars["String"]["output"];
   losses: Scalars["Int"]["output"];
   maxCapital: Scalars["BigInt"]["output"];
+  maxNetCapitalRunningDelta?: Maybe<Scalars["BigInt"]["output"]>;
   netCapital: Scalars["BigInt"]["output"];
+  netCapitalDelta?: Maybe<Scalars["BigInt"]["output"]>;
+  period: Scalars["String"]["output"];
   positions: Array<Position>;
   realizedFees: Scalars["BigInt"]["output"];
   realizedPnl: Scalars["BigInt"]["output"];
@@ -113,6 +118,12 @@ export interface AccountStatEdge {
 }
 
 export enum AccountStatOrderByInput {
+  account_ASC = "account_ASC",
+  account_ASC_NULLS_FIRST = "account_ASC_NULLS_FIRST",
+  account_ASC_NULLS_LAST = "account_ASC_NULLS_LAST",
+  account_DESC = "account_DESC",
+  account_DESC_NULLS_FIRST = "account_DESC_NULLS_FIRST",
+  account_DESC_NULLS_LAST = "account_DESC_NULLS_LAST",
   closedCount_ASC = "closedCount_ASC",
   closedCount_ASC_NULLS_FIRST = "closedCount_ASC_NULLS_FIRST",
   closedCount_ASC_NULLS_LAST = "closedCount_ASC_NULLS_LAST",
@@ -131,6 +142,12 @@ export enum AccountStatOrderByInput {
   cumsumSize_DESC = "cumsumSize_DESC",
   cumsumSize_DESC_NULLS_FIRST = "cumsumSize_DESC_NULLS_FIRST",
   cumsumSize_DESC_NULLS_LAST = "cumsumSize_DESC_NULLS_LAST",
+  dayTimestamp_ASC = "dayTimestamp_ASC",
+  dayTimestamp_ASC_NULLS_FIRST = "dayTimestamp_ASC_NULLS_FIRST",
+  dayTimestamp_ASC_NULLS_LAST = "dayTimestamp_ASC_NULLS_LAST",
+  dayTimestamp_DESC = "dayTimestamp_DESC",
+  dayTimestamp_DESC_NULLS_FIRST = "dayTimestamp_DESC_NULLS_FIRST",
+  dayTimestamp_DESC_NULLS_LAST = "dayTimestamp_DESC_NULLS_LAST",
   deposits_ASC = "deposits_ASC",
   deposits_ASC_NULLS_FIRST = "deposits_ASC_NULLS_FIRST",
   deposits_ASC_NULLS_LAST = "deposits_ASC_NULLS_LAST",
@@ -155,12 +172,30 @@ export enum AccountStatOrderByInput {
   maxCapital_DESC = "maxCapital_DESC",
   maxCapital_DESC_NULLS_FIRST = "maxCapital_DESC_NULLS_FIRST",
   maxCapital_DESC_NULLS_LAST = "maxCapital_DESC_NULLS_LAST",
+  maxNetCapitalRunningDelta_ASC = "maxNetCapitalRunningDelta_ASC",
+  maxNetCapitalRunningDelta_ASC_NULLS_FIRST = "maxNetCapitalRunningDelta_ASC_NULLS_FIRST",
+  maxNetCapitalRunningDelta_ASC_NULLS_LAST = "maxNetCapitalRunningDelta_ASC_NULLS_LAST",
+  maxNetCapitalRunningDelta_DESC = "maxNetCapitalRunningDelta_DESC",
+  maxNetCapitalRunningDelta_DESC_NULLS_FIRST = "maxNetCapitalRunningDelta_DESC_NULLS_FIRST",
+  maxNetCapitalRunningDelta_DESC_NULLS_LAST = "maxNetCapitalRunningDelta_DESC_NULLS_LAST",
+  netCapitalDelta_ASC = "netCapitalDelta_ASC",
+  netCapitalDelta_ASC_NULLS_FIRST = "netCapitalDelta_ASC_NULLS_FIRST",
+  netCapitalDelta_ASC_NULLS_LAST = "netCapitalDelta_ASC_NULLS_LAST",
+  netCapitalDelta_DESC = "netCapitalDelta_DESC",
+  netCapitalDelta_DESC_NULLS_FIRST = "netCapitalDelta_DESC_NULLS_FIRST",
+  netCapitalDelta_DESC_NULLS_LAST = "netCapitalDelta_DESC_NULLS_LAST",
   netCapital_ASC = "netCapital_ASC",
   netCapital_ASC_NULLS_FIRST = "netCapital_ASC_NULLS_FIRST",
   netCapital_ASC_NULLS_LAST = "netCapital_ASC_NULLS_LAST",
   netCapital_DESC = "netCapital_DESC",
   netCapital_DESC_NULLS_FIRST = "netCapital_DESC_NULLS_FIRST",
   netCapital_DESC_NULLS_LAST = "netCapital_DESC_NULLS_LAST",
+  period_ASC = "period_ASC",
+  period_ASC_NULLS_FIRST = "period_ASC_NULLS_FIRST",
+  period_ASC_NULLS_LAST = "period_ASC_NULLS_LAST",
+  period_DESC = "period_DESC",
+  period_DESC_NULLS_FIRST = "period_DESC_NULLS_FIRST",
+  period_DESC_NULLS_LAST = "period_DESC_NULLS_LAST",
   realizedFees_ASC = "realizedFees_ASC",
   realizedFees_ASC_NULLS_FIRST = "realizedFees_ASC_NULLS_FIRST",
   realizedFees_ASC_NULLS_LAST = "realizedFees_ASC_NULLS_LAST",
@@ -208,6 +243,23 @@ export enum AccountStatOrderByInput {
 export interface AccountStatWhereInput {
   AND?: InputMaybe<Array<AccountStatWhereInput>>;
   OR?: InputMaybe<Array<AccountStatWhereInput>>;
+  account_contains?: InputMaybe<Scalars["String"]["input"]>;
+  account_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  account_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  account_eq?: InputMaybe<Scalars["String"]["input"]>;
+  account_gt?: InputMaybe<Scalars["String"]["input"]>;
+  account_gte?: InputMaybe<Scalars["String"]["input"]>;
+  account_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  account_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  account_lt?: InputMaybe<Scalars["String"]["input"]>;
+  account_lte?: InputMaybe<Scalars["String"]["input"]>;
+  account_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  account_not_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  account_not_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  account_not_eq?: InputMaybe<Scalars["String"]["input"]>;
+  account_not_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  account_not_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  account_startsWith?: InputMaybe<Scalars["String"]["input"]>;
   closedCount_eq?: InputMaybe<Scalars["Int"]["input"]>;
   closedCount_gt?: InputMaybe<Scalars["Int"]["input"]>;
   closedCount_gte?: InputMaybe<Scalars["Int"]["input"]>;
@@ -235,6 +287,15 @@ export interface AccountStatWhereInput {
   cumsumSize_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
   cumsumSize_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
   cumsumSize_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  dayTimestamp_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  dayTimestamp_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  dayTimestamp_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  dayTimestamp_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  dayTimestamp_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  dayTimestamp_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  dayTimestamp_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  dayTimestamp_not_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  dayTimestamp_not_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
   deposits_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
   deposits_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
   deposits_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
@@ -279,6 +340,24 @@ export interface AccountStatWhereInput {
   maxCapital_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
   maxCapital_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
   maxCapital_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  maxNetCapitalRunningDelta_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxNetCapitalRunningDelta_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxNetCapitalRunningDelta_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxNetCapitalRunningDelta_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  maxNetCapitalRunningDelta_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  maxNetCapitalRunningDelta_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxNetCapitalRunningDelta_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxNetCapitalRunningDelta_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxNetCapitalRunningDelta_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  netCapitalDelta_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  netCapitalDelta_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  netCapitalDelta_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  netCapitalDelta_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  netCapitalDelta_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  netCapitalDelta_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  netCapitalDelta_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  netCapitalDelta_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  netCapitalDelta_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
   netCapital_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
   netCapital_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
   netCapital_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
@@ -288,6 +367,23 @@ export interface AccountStatWhereInput {
   netCapital_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
   netCapital_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
   netCapital_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  period_contains?: InputMaybe<Scalars["String"]["input"]>;
+  period_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  period_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  period_eq?: InputMaybe<Scalars["String"]["input"]>;
+  period_gt?: InputMaybe<Scalars["String"]["input"]>;
+  period_gte?: InputMaybe<Scalars["String"]["input"]>;
+  period_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  period_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  period_lt?: InputMaybe<Scalars["String"]["input"]>;
+  period_lte?: InputMaybe<Scalars["String"]["input"]>;
+  period_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  period_not_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  period_not_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  period_not_eq?: InputMaybe<Scalars["String"]["input"]>;
+  period_not_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  period_not_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  period_startsWith?: InputMaybe<Scalars["String"]["input"]>;
   positions_every?: InputMaybe<PositionWhereInput>;
   positions_none?: InputMaybe<PositionWhereInput>;
   positions_some?: InputMaybe<PositionWhereInput>;
@@ -5229,6 +5325,103 @@ export interface MultichainSamechainFundingEventsConnection {
   totalCount: Scalars["Int"]["output"];
 }
 
+export interface NetworkStakingPower {
+  __typename?: "NetworkStakingPower";
+  id: Scalars["String"]["output"];
+  lastUpdateTimestamp: Scalars["Int"]["output"];
+  totalAccumulatedPower: Scalars["BigInt"]["output"];
+  totalCurrentStaked: Scalars["BigInt"]["output"];
+}
+
+export interface NetworkStakingPowerEdge {
+  __typename?: "NetworkStakingPowerEdge";
+  cursor: Scalars["String"]["output"];
+  node: NetworkStakingPower;
+}
+
+export enum NetworkStakingPowerOrderByInput {
+  id_ASC = "id_ASC",
+  id_ASC_NULLS_FIRST = "id_ASC_NULLS_FIRST",
+  id_ASC_NULLS_LAST = "id_ASC_NULLS_LAST",
+  id_DESC = "id_DESC",
+  id_DESC_NULLS_FIRST = "id_DESC_NULLS_FIRST",
+  id_DESC_NULLS_LAST = "id_DESC_NULLS_LAST",
+  lastUpdateTimestamp_ASC = "lastUpdateTimestamp_ASC",
+  lastUpdateTimestamp_ASC_NULLS_FIRST = "lastUpdateTimestamp_ASC_NULLS_FIRST",
+  lastUpdateTimestamp_ASC_NULLS_LAST = "lastUpdateTimestamp_ASC_NULLS_LAST",
+  lastUpdateTimestamp_DESC = "lastUpdateTimestamp_DESC",
+  lastUpdateTimestamp_DESC_NULLS_FIRST = "lastUpdateTimestamp_DESC_NULLS_FIRST",
+  lastUpdateTimestamp_DESC_NULLS_LAST = "lastUpdateTimestamp_DESC_NULLS_LAST",
+  totalAccumulatedPower_ASC = "totalAccumulatedPower_ASC",
+  totalAccumulatedPower_ASC_NULLS_FIRST = "totalAccumulatedPower_ASC_NULLS_FIRST",
+  totalAccumulatedPower_ASC_NULLS_LAST = "totalAccumulatedPower_ASC_NULLS_LAST",
+  totalAccumulatedPower_DESC = "totalAccumulatedPower_DESC",
+  totalAccumulatedPower_DESC_NULLS_FIRST = "totalAccumulatedPower_DESC_NULLS_FIRST",
+  totalAccumulatedPower_DESC_NULLS_LAST = "totalAccumulatedPower_DESC_NULLS_LAST",
+  totalCurrentStaked_ASC = "totalCurrentStaked_ASC",
+  totalCurrentStaked_ASC_NULLS_FIRST = "totalCurrentStaked_ASC_NULLS_FIRST",
+  totalCurrentStaked_ASC_NULLS_LAST = "totalCurrentStaked_ASC_NULLS_LAST",
+  totalCurrentStaked_DESC = "totalCurrentStaked_DESC",
+  totalCurrentStaked_DESC_NULLS_FIRST = "totalCurrentStaked_DESC_NULLS_FIRST",
+  totalCurrentStaked_DESC_NULLS_LAST = "totalCurrentStaked_DESC_NULLS_LAST",
+}
+
+export interface NetworkStakingPowerWhereInput {
+  AND?: InputMaybe<Array<NetworkStakingPowerWhereInput>>;
+  OR?: InputMaybe<Array<NetworkStakingPowerWhereInput>>;
+  id_contains?: InputMaybe<Scalars["String"]["input"]>;
+  id_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  id_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  id_eq?: InputMaybe<Scalars["String"]["input"]>;
+  id_gt?: InputMaybe<Scalars["String"]["input"]>;
+  id_gte?: InputMaybe<Scalars["String"]["input"]>;
+  id_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  id_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  id_lt?: InputMaybe<Scalars["String"]["input"]>;
+  id_lte?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_eq?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  id_not_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  id_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  lastUpdateTimestamp_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  lastUpdateTimestamp_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  lastUpdateTimestamp_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_not_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_not_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  totalAccumulatedPower_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalAccumulatedPower_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalAccumulatedPower_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalAccumulatedPower_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  totalAccumulatedPower_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  totalAccumulatedPower_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalAccumulatedPower_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalAccumulatedPower_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalAccumulatedPower_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  totalCurrentStaked_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalCurrentStaked_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalCurrentStaked_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalCurrentStaked_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  totalCurrentStaked_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  totalCurrentStaked_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalCurrentStaked_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalCurrentStaked_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  totalCurrentStaked_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+}
+
+export interface NetworkStakingPowersConnection {
+  __typename?: "NetworkStakingPowersConnection";
+  edges: Array<NetworkStakingPowerEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars["Int"]["output"];
+}
+
 export interface OnChainSetting {
   __typename?: "OnChainSetting";
   id: Scalars["String"]["output"];
@@ -6239,6 +6432,7 @@ export interface Position {
   isSnapshot: Scalars["Boolean"]["output"];
   leverage: Scalars["BigInt"]["output"];
   market: Scalars["String"]["output"];
+  maxCapital: Scalars["BigInt"]["output"];
   maxSize: Scalars["BigInt"]["output"];
   openedAt: Scalars["Int"]["output"];
   positionKey: Scalars["String"]["output"];
@@ -7388,6 +7582,12 @@ export interface PositionMarketVolumeInfo {
 }
 
 export enum PositionOrderByInput {
+  accountStat_account_ASC = "accountStat_account_ASC",
+  accountStat_account_ASC_NULLS_FIRST = "accountStat_account_ASC_NULLS_FIRST",
+  accountStat_account_ASC_NULLS_LAST = "accountStat_account_ASC_NULLS_LAST",
+  accountStat_account_DESC = "accountStat_account_DESC",
+  accountStat_account_DESC_NULLS_FIRST = "accountStat_account_DESC_NULLS_FIRST",
+  accountStat_account_DESC_NULLS_LAST = "accountStat_account_DESC_NULLS_LAST",
   accountStat_closedCount_ASC = "accountStat_closedCount_ASC",
   accountStat_closedCount_ASC_NULLS_FIRST = "accountStat_closedCount_ASC_NULLS_FIRST",
   accountStat_closedCount_ASC_NULLS_LAST = "accountStat_closedCount_ASC_NULLS_LAST",
@@ -7406,6 +7606,12 @@ export enum PositionOrderByInput {
   accountStat_cumsumSize_DESC = "accountStat_cumsumSize_DESC",
   accountStat_cumsumSize_DESC_NULLS_FIRST = "accountStat_cumsumSize_DESC_NULLS_FIRST",
   accountStat_cumsumSize_DESC_NULLS_LAST = "accountStat_cumsumSize_DESC_NULLS_LAST",
+  accountStat_dayTimestamp_ASC = "accountStat_dayTimestamp_ASC",
+  accountStat_dayTimestamp_ASC_NULLS_FIRST = "accountStat_dayTimestamp_ASC_NULLS_FIRST",
+  accountStat_dayTimestamp_ASC_NULLS_LAST = "accountStat_dayTimestamp_ASC_NULLS_LAST",
+  accountStat_dayTimestamp_DESC = "accountStat_dayTimestamp_DESC",
+  accountStat_dayTimestamp_DESC_NULLS_FIRST = "accountStat_dayTimestamp_DESC_NULLS_FIRST",
+  accountStat_dayTimestamp_DESC_NULLS_LAST = "accountStat_dayTimestamp_DESC_NULLS_LAST",
   accountStat_deposits_ASC = "accountStat_deposits_ASC",
   accountStat_deposits_ASC_NULLS_FIRST = "accountStat_deposits_ASC_NULLS_FIRST",
   accountStat_deposits_ASC_NULLS_LAST = "accountStat_deposits_ASC_NULLS_LAST",
@@ -7430,12 +7636,30 @@ export enum PositionOrderByInput {
   accountStat_maxCapital_DESC = "accountStat_maxCapital_DESC",
   accountStat_maxCapital_DESC_NULLS_FIRST = "accountStat_maxCapital_DESC_NULLS_FIRST",
   accountStat_maxCapital_DESC_NULLS_LAST = "accountStat_maxCapital_DESC_NULLS_LAST",
+  accountStat_maxNetCapitalRunningDelta_ASC = "accountStat_maxNetCapitalRunningDelta_ASC",
+  accountStat_maxNetCapitalRunningDelta_ASC_NULLS_FIRST = "accountStat_maxNetCapitalRunningDelta_ASC_NULLS_FIRST",
+  accountStat_maxNetCapitalRunningDelta_ASC_NULLS_LAST = "accountStat_maxNetCapitalRunningDelta_ASC_NULLS_LAST",
+  accountStat_maxNetCapitalRunningDelta_DESC = "accountStat_maxNetCapitalRunningDelta_DESC",
+  accountStat_maxNetCapitalRunningDelta_DESC_NULLS_FIRST = "accountStat_maxNetCapitalRunningDelta_DESC_NULLS_FIRST",
+  accountStat_maxNetCapitalRunningDelta_DESC_NULLS_LAST = "accountStat_maxNetCapitalRunningDelta_DESC_NULLS_LAST",
+  accountStat_netCapitalDelta_ASC = "accountStat_netCapitalDelta_ASC",
+  accountStat_netCapitalDelta_ASC_NULLS_FIRST = "accountStat_netCapitalDelta_ASC_NULLS_FIRST",
+  accountStat_netCapitalDelta_ASC_NULLS_LAST = "accountStat_netCapitalDelta_ASC_NULLS_LAST",
+  accountStat_netCapitalDelta_DESC = "accountStat_netCapitalDelta_DESC",
+  accountStat_netCapitalDelta_DESC_NULLS_FIRST = "accountStat_netCapitalDelta_DESC_NULLS_FIRST",
+  accountStat_netCapitalDelta_DESC_NULLS_LAST = "accountStat_netCapitalDelta_DESC_NULLS_LAST",
   accountStat_netCapital_ASC = "accountStat_netCapital_ASC",
   accountStat_netCapital_ASC_NULLS_FIRST = "accountStat_netCapital_ASC_NULLS_FIRST",
   accountStat_netCapital_ASC_NULLS_LAST = "accountStat_netCapital_ASC_NULLS_LAST",
   accountStat_netCapital_DESC = "accountStat_netCapital_DESC",
   accountStat_netCapital_DESC_NULLS_FIRST = "accountStat_netCapital_DESC_NULLS_FIRST",
   accountStat_netCapital_DESC_NULLS_LAST = "accountStat_netCapital_DESC_NULLS_LAST",
+  accountStat_period_ASC = "accountStat_period_ASC",
+  accountStat_period_ASC_NULLS_FIRST = "accountStat_period_ASC_NULLS_FIRST",
+  accountStat_period_ASC_NULLS_LAST = "accountStat_period_ASC_NULLS_LAST",
+  accountStat_period_DESC = "accountStat_period_DESC",
+  accountStat_period_DESC_NULLS_FIRST = "accountStat_period_DESC_NULLS_FIRST",
+  accountStat_period_DESC_NULLS_LAST = "accountStat_period_DESC_NULLS_LAST",
   accountStat_realizedFees_ASC = "accountStat_realizedFees_ASC",
   accountStat_realizedFees_ASC_NULLS_FIRST = "accountStat_realizedFees_ASC_NULLS_FIRST",
   accountStat_realizedFees_ASC_NULLS_LAST = "accountStat_realizedFees_ASC_NULLS_LAST",
@@ -7532,6 +7756,12 @@ export enum PositionOrderByInput {
   market_DESC = "market_DESC",
   market_DESC_NULLS_FIRST = "market_DESC_NULLS_FIRST",
   market_DESC_NULLS_LAST = "market_DESC_NULLS_LAST",
+  maxCapital_ASC = "maxCapital_ASC",
+  maxCapital_ASC_NULLS_FIRST = "maxCapital_ASC_NULLS_FIRST",
+  maxCapital_ASC_NULLS_LAST = "maxCapital_ASC_NULLS_LAST",
+  maxCapital_DESC = "maxCapital_DESC",
+  maxCapital_DESC_NULLS_FIRST = "maxCapital_DESC_NULLS_FIRST",
+  maxCapital_DESC_NULLS_LAST = "maxCapital_DESC_NULLS_LAST",
   maxSize_ASC = "maxSize_ASC",
   maxSize_ASC_NULLS_FIRST = "maxSize_ASC_NULLS_FIRST",
   maxSize_ASC_NULLS_LAST = "maxSize_ASC_NULLS_LAST",
@@ -7886,6 +8116,15 @@ export interface PositionWhereInput {
   market_not_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
   market_not_startsWith?: InputMaybe<Scalars["String"]["input"]>;
   market_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  maxCapital_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxCapital_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxCapital_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxCapital_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  maxCapital_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  maxCapital_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxCapital_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxCapital_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  maxCapital_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
   maxSize_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
   maxSize_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
   maxSize_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
@@ -8361,6 +8600,9 @@ export interface Query {
   multichainSamechainFundingEventById?: Maybe<MultichainSamechainFundingEvent>;
   multichainSamechainFundingEvents: Array<MultichainSamechainFundingEvent>;
   multichainSamechainFundingEventsConnection: MultichainSamechainFundingEventsConnection;
+  networkStakingPowerById?: Maybe<NetworkStakingPower>;
+  networkStakingPowers: Array<NetworkStakingPower>;
+  networkStakingPowersConnection: NetworkStakingPowersConnection;
   onChainSettingById?: Maybe<OnChainSetting>;
   onChainSettings: Array<OnChainSetting>;
   onChainSettingsConnection: OnChainSettingsConnection;
@@ -8403,6 +8645,9 @@ export interface Query {
   referralCodeOwners: Array<ReferralCodeOwner>;
   referralCodeOwnersConnection: ReferralCodeOwnersConnection;
   squidStatus: SquidStatus;
+  stakingPowerById?: Maybe<StakingPower>;
+  stakingPowers: Array<StakingPower>;
+  stakingPowersConnection: StakingPowersConnection;
   swapFeesInfoById?: Maybe<SwapFeesInfo>;
   swapFeesInfoWithPeriodById?: Maybe<SwapFeesInfoWithPeriod>;
   swapFeesInfoWithPeriods: Array<SwapFeesInfoWithPeriod>;
@@ -8868,6 +9113,24 @@ export interface QuerymultichainSamechainFundingEventsConnectionArgs {
   where?: InputMaybe<MultichainSamechainFundingEventWhereInput>;
 }
 
+export interface QuerynetworkStakingPowerByIdArgs {
+  id: Scalars["String"]["input"];
+}
+
+export interface QuerynetworkStakingPowersArgs {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<NetworkStakingPowerOrderByInput>>;
+  where?: InputMaybe<NetworkStakingPowerWhereInput>;
+}
+
+export interface QuerynetworkStakingPowersConnectionArgs {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy: Array<NetworkStakingPowerOrderByInput>;
+  where?: InputMaybe<NetworkStakingPowerWhereInput>;
+}
+
 export interface QueryonChainSettingByIdArgs {
   id: Scalars["String"]["input"];
 }
@@ -9104,6 +9367,24 @@ export interface QueryreferralCodeOwnersConnectionArgs {
   first?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy: Array<ReferralCodeOwnerOrderByInput>;
   where?: InputMaybe<ReferralCodeOwnerWhereInput>;
+}
+
+export interface QuerystakingPowerByIdArgs {
+  id: Scalars["String"]["input"];
+}
+
+export interface QuerystakingPowersArgs {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<StakingPowerOrderByInput>>;
+  where?: InputMaybe<StakingPowerWhereInput>;
+}
+
+export interface QuerystakingPowersConnectionArgs {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy: Array<StakingPowerOrderByInput>;
+  where?: InputMaybe<StakingPowerWhereInput>;
 }
 
 export interface QueryswapFeesInfoByIdArgs {
@@ -9385,8 +9666,153 @@ export interface ReferralCodeOwnersConnection {
 
 export interface SquidStatus {
   __typename?: "SquidStatus";
-  finalizedHeight: Scalars["Float"]["output"];
-  height: Scalars["Float"]["output"];
+  finalizedHeight: Scalars["Int"]["output"];
+  height: Scalars["Int"]["output"];
+}
+
+export interface StakingPower {
+  __typename?: "StakingPower";
+  accumulatedPower: Scalars["BigInt"]["output"];
+  currentStakedBalance: Scalars["BigInt"]["output"];
+  historicalMaxStaked?: Maybe<Scalars["BigInt"]["output"]>;
+  id: Scalars["String"]["output"];
+  lastPowerResetAt?: Maybe<Scalars["Int"]["output"]>;
+  lastUpdateTimestamp: Scalars["Int"]["output"];
+  powerResetCount: Scalars["Int"]["output"];
+}
+
+export interface StakingPowerEdge {
+  __typename?: "StakingPowerEdge";
+  cursor: Scalars["String"]["output"];
+  node: StakingPower;
+}
+
+export enum StakingPowerOrderByInput {
+  accumulatedPower_ASC = "accumulatedPower_ASC",
+  accumulatedPower_ASC_NULLS_FIRST = "accumulatedPower_ASC_NULLS_FIRST",
+  accumulatedPower_ASC_NULLS_LAST = "accumulatedPower_ASC_NULLS_LAST",
+  accumulatedPower_DESC = "accumulatedPower_DESC",
+  accumulatedPower_DESC_NULLS_FIRST = "accumulatedPower_DESC_NULLS_FIRST",
+  accumulatedPower_DESC_NULLS_LAST = "accumulatedPower_DESC_NULLS_LAST",
+  currentStakedBalance_ASC = "currentStakedBalance_ASC",
+  currentStakedBalance_ASC_NULLS_FIRST = "currentStakedBalance_ASC_NULLS_FIRST",
+  currentStakedBalance_ASC_NULLS_LAST = "currentStakedBalance_ASC_NULLS_LAST",
+  currentStakedBalance_DESC = "currentStakedBalance_DESC",
+  currentStakedBalance_DESC_NULLS_FIRST = "currentStakedBalance_DESC_NULLS_FIRST",
+  currentStakedBalance_DESC_NULLS_LAST = "currentStakedBalance_DESC_NULLS_LAST",
+  historicalMaxStaked_ASC = "historicalMaxStaked_ASC",
+  historicalMaxStaked_ASC_NULLS_FIRST = "historicalMaxStaked_ASC_NULLS_FIRST",
+  historicalMaxStaked_ASC_NULLS_LAST = "historicalMaxStaked_ASC_NULLS_LAST",
+  historicalMaxStaked_DESC = "historicalMaxStaked_DESC",
+  historicalMaxStaked_DESC_NULLS_FIRST = "historicalMaxStaked_DESC_NULLS_FIRST",
+  historicalMaxStaked_DESC_NULLS_LAST = "historicalMaxStaked_DESC_NULLS_LAST",
+  id_ASC = "id_ASC",
+  id_ASC_NULLS_FIRST = "id_ASC_NULLS_FIRST",
+  id_ASC_NULLS_LAST = "id_ASC_NULLS_LAST",
+  id_DESC = "id_DESC",
+  id_DESC_NULLS_FIRST = "id_DESC_NULLS_FIRST",
+  id_DESC_NULLS_LAST = "id_DESC_NULLS_LAST",
+  lastPowerResetAt_ASC = "lastPowerResetAt_ASC",
+  lastPowerResetAt_ASC_NULLS_FIRST = "lastPowerResetAt_ASC_NULLS_FIRST",
+  lastPowerResetAt_ASC_NULLS_LAST = "lastPowerResetAt_ASC_NULLS_LAST",
+  lastPowerResetAt_DESC = "lastPowerResetAt_DESC",
+  lastPowerResetAt_DESC_NULLS_FIRST = "lastPowerResetAt_DESC_NULLS_FIRST",
+  lastPowerResetAt_DESC_NULLS_LAST = "lastPowerResetAt_DESC_NULLS_LAST",
+  lastUpdateTimestamp_ASC = "lastUpdateTimestamp_ASC",
+  lastUpdateTimestamp_ASC_NULLS_FIRST = "lastUpdateTimestamp_ASC_NULLS_FIRST",
+  lastUpdateTimestamp_ASC_NULLS_LAST = "lastUpdateTimestamp_ASC_NULLS_LAST",
+  lastUpdateTimestamp_DESC = "lastUpdateTimestamp_DESC",
+  lastUpdateTimestamp_DESC_NULLS_FIRST = "lastUpdateTimestamp_DESC_NULLS_FIRST",
+  lastUpdateTimestamp_DESC_NULLS_LAST = "lastUpdateTimestamp_DESC_NULLS_LAST",
+  powerResetCount_ASC = "powerResetCount_ASC",
+  powerResetCount_ASC_NULLS_FIRST = "powerResetCount_ASC_NULLS_FIRST",
+  powerResetCount_ASC_NULLS_LAST = "powerResetCount_ASC_NULLS_LAST",
+  powerResetCount_DESC = "powerResetCount_DESC",
+  powerResetCount_DESC_NULLS_FIRST = "powerResetCount_DESC_NULLS_FIRST",
+  powerResetCount_DESC_NULLS_LAST = "powerResetCount_DESC_NULLS_LAST",
+}
+
+export interface StakingPowerWhereInput {
+  AND?: InputMaybe<Array<StakingPowerWhereInput>>;
+  OR?: InputMaybe<Array<StakingPowerWhereInput>>;
+  accumulatedPower_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  accumulatedPower_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  accumulatedPower_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  accumulatedPower_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  accumulatedPower_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  accumulatedPower_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  accumulatedPower_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  accumulatedPower_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  accumulatedPower_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  currentStakedBalance_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  currentStakedBalance_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  currentStakedBalance_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  currentStakedBalance_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  currentStakedBalance_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  currentStakedBalance_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  currentStakedBalance_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  currentStakedBalance_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  currentStakedBalance_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  historicalMaxStaked_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  historicalMaxStaked_gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  historicalMaxStaked_gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  historicalMaxStaked_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  historicalMaxStaked_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  historicalMaxStaked_lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+  historicalMaxStaked_lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+  historicalMaxStaked_not_eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+  historicalMaxStaked_not_in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+  id_contains?: InputMaybe<Scalars["String"]["input"]>;
+  id_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  id_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  id_eq?: InputMaybe<Scalars["String"]["input"]>;
+  id_gt?: InputMaybe<Scalars["String"]["input"]>;
+  id_gte?: InputMaybe<Scalars["String"]["input"]>;
+  id_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  id_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  id_lt?: InputMaybe<Scalars["String"]["input"]>;
+  id_lte?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_containsInsensitive?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_endsWith?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_eq?: InputMaybe<Scalars["String"]["input"]>;
+  id_not_in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  id_not_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  id_startsWith?: InputMaybe<Scalars["String"]["input"]>;
+  lastPowerResetAt_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  lastPowerResetAt_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  lastPowerResetAt_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  lastPowerResetAt_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  lastPowerResetAt_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  lastPowerResetAt_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  lastPowerResetAt_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  lastPowerResetAt_not_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  lastPowerResetAt_not_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  lastUpdateTimestamp_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  lastUpdateTimestamp_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  lastUpdateTimestamp_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_not_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  lastUpdateTimestamp_not_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  powerResetCount_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  powerResetCount_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  powerResetCount_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  powerResetCount_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  powerResetCount_isNull?: InputMaybe<Scalars["Boolean"]["input"]>;
+  powerResetCount_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  powerResetCount_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  powerResetCount_not_eq?: InputMaybe<Scalars["Int"]["input"]>;
+  powerResetCount_not_in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+}
+
+export interface StakingPowersConnection {
+  __typename?: "StakingPowersConnection";
+  edges: Array<StakingPowerEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars["Int"]["output"];
 }
 
 export interface SwapFeesInfo {
