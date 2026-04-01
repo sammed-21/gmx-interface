@@ -19,7 +19,7 @@ export function MarginDestinationSelector({
 }: MarginDestinationSelectorProps) {
   return (
     <SelectorBase
-      modalLabel="Send remaining collateral to"
+      modalLabel="Send remaining margin to"
       desktopPanelClassName={desktopPanelClassName}
       wrapperClassName="text-typography-primary"
       label={
@@ -32,12 +32,12 @@ export function MarginDestinationSelector({
       }
     >
       <div className="flex flex-col py-6">
-        <CollateralDestinationOption
+        <MarginDestinationOption
           isGmxBalance={false}
           isSelected={!isReceiveToGmxAccount}
           onClick={() => onChangeDestination(false)}
         />
-        <CollateralDestinationOption
+        <MarginDestinationOption
           isGmxBalance
           isSelected={isReceiveToGmxAccount}
           onClick={() => onChangeDestination(true)}
@@ -47,7 +47,7 @@ export function MarginDestinationSelector({
   );
 }
 
-function CollateralDestinationOption({
+function MarginDestinationOption({
   isGmxBalance,
   isSelected,
   onClick,
