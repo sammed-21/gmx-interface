@@ -4359,6 +4359,10 @@ msgstr "TWAP"
 msgid "Min impact pool amount"
 msgstr "最小影響池數量"
 
+#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+msgid "Generating..."
+msgstr ""
+
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Price impact too high"
 msgstr "價格影響過高"

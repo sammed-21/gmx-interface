@@ -62,17 +62,26 @@ export function ShareReferralCardModal({
     helperToast.success(t`Referral link copied to clipboard`);
   }, [copyToClipboard, referralLink]);
 
+  const [isCapturing, setIsCapturing] = useState(false);
+
   const handleCopyImage = useCallback(async () => {
     if (!cardRef.current) return;
 
+    setIsCapturing(true);
+    cardRef.current.classList.add("image-capture-in-progress");
     const captureOptions = { style: { transform: "none", borderRadius: "0" } };
 
-    await shareOrCopyElementAsImage({
-      element: cardRef.current,
-      isMobile,
-      fileName: "GMX Referral.png",
-      extraOptions: captureOptions,
-    });
+    try {
+      await shareOrCopyElementAsImage({
+        element: cardRef.current,
+        isMobile,
+        fileName: "GMX Referral.png",
+        extraOptions: captureOptions,
+      });
+    } finally {
+      cardRef.current?.classList.remove("image-capture-in-progress");
+      setIsCapturing(false);
+    }
   }, [isMobile]);
 
   return (
@@ -105,8 +114,16 @@ export function ShareReferralCardModal({
             <Trans>Share on</Trans>
             <XIcon className="size-20" />
           </Button>
-          <Button variant="secondary" onClick={handleCopyImage} size="medium" className="grow !text-14">
-            {isMobile ? (
+          <Button
+            variant="secondary"
+            onClick={handleCopyImage}
+            size="medium"
+            className="grow !text-14"
+            disabled={isCapturing}
+          >
+            {isCapturing ? (
+              <Trans>Generating...</Trans>
+            ) : isMobile ? (
               <>
                 <Trans>Share</Trans>
                 <ShareArrowOutlineIcon className="size-20" />

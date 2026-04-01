@@ -1,5 +1,4 @@
 import { Trans, t } from "@lingui/macro";
-import { toJpeg } from "html-to-image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useCopyToClipboard, usePrevious } from "react-use";
 
@@ -210,6 +209,7 @@ function PositionShare({
       if (element && shareAffiliateCode.success && sharePositionBgImg && cachedPositionData) {
         // We have to call the toJpeg function multiple times to make sure the canvas renders all the elements like background image
         // @refer https://github.com/tsayen/dom-to-image/issues/343#issuecomment-652831863
+        const { toJpeg } = await import("html-to-image");
         const image = await toJpeg(element, config)
           .then(() => toJpeg(element, config))
           .then(() => toJpeg(element, config));

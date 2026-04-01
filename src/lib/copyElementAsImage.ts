@@ -7,7 +7,20 @@ type Options = NonNullable<Parameters<typeof toBlob>[1]>;
 
 async function renderElementToBlob(element: HTMLElement, extraOptions?: Options): Promise<Blob> {
   const { toBlob } = await import("html-to-image");
-  const blob = await toBlob(element, { quality: 1, pixelRatio: 2, ...extraOptions });
+  const options = { quality: 1, pixelRatio: 2, ...extraOptions };
+
+  // Render repeatedly until the output stabilizes (same blob size across calls).
+  // Safari may not load all resources (images, fonts) on the first render pass.
+  let previousSize = 0;
+  for (let i = 0; i < 5; i++) {
+    const blob = await toBlob(element, options);
+    if (blob && blob.size === previousSize) {
+      return blob;
+    }
+    previousSize = blob?.size ?? 0;
+  }
+
+  const blob = await toBlob(element, options);
 
   if (!blob) {
     throw new Error("Failed to render image");
@@ -17,8 +30,10 @@ async function renderElementToBlob(element: HTMLElement, extraOptions?: Options)
 }
 
 export async function copyElementAsImage(element: HTMLElement, extraOptions?: Options): Promise<void> {
-  const blob = await renderElementToBlob(element, extraOptions);
-  await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+  // Pass the blob as a Promise so clipboard.write() is called synchronously
+  // within the user gesture — Safari revokes clipboard permission if an async
+  // operation separates the gesture from the write call.
+  await navigator.clipboard.write([new ClipboardItem({ "image/png": renderElementToBlob(element, extraOptions) })]);
 }
 
 export async function shareElementAsImage(

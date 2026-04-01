@@ -79,7 +79,7 @@
     "framer-motion": "12.35.2",
     "graphql": "15.8.0",
     "hex-to-rgba": "2.0.1",
-    "html-to-image": "^1.10.8",
+    "html-to-image": "^1.11.13",
     "immer": "10.1.1",
     "lodash": "4.17.23",
     "qrcode.react": "^3.1.0",
