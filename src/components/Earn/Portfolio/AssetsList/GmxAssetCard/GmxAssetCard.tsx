@@ -224,7 +224,7 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
               </span>
             ) : displayProjectedRewardGmx !== undefined ? (
               <span className="text-h3 block font-bold numbers">
-                {formatAmount(displayProjectedRewardGmx, 18, 0, true)} GMX{" "}
+                {formatAmount(displayProjectedRewardGmx, 18, 2, true)} GMX{" "}
                 {accumulatedGmxUsd !== undefined && (
                   <span className="text-body-medium relative -top-2 font-normal text-typography-secondary">
                     ({formatUsd(accumulatedGmxUsd)})
@@ -386,7 +386,7 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
   if (!showLoyalty && !hasBeenReset && !hasPower) return null;
 
   return (
-    <div className="mt-12 flex flex-col gap-8">
+    <div className="mt-8 flex flex-col gap-8">
       {showLoyalty && (
         <SyntheticsInfoRow
           label={
@@ -414,8 +414,8 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
               handle={<Trans>Staking power</Trans>}
               content={
                 <Trans>
-                  Your share of the total network staking power. Staking power accrues over time based on your staked
-                  GMX balance and determines your share of buyback rewards.
+                  Staking power accrues over time based on your staked GMX balance and determines your share of
+                  buyback rewards.
                 </Trans>
               }
             />
