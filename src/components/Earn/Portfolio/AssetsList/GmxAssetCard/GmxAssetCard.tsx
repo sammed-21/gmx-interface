@@ -125,13 +125,6 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
     return bigMath.mulDiv(displayProjectedRewardGmx, gmxPrice, expandDecimals(1, 18));
   }, [displayProjectedRewardGmx, gmxPrice]);
 
-  const hasStakingAlerts = Boolean(
-    stakingPowerData &&
-      ((isLoyaltyTrackingActive(stakingPowerData.loyaltyTrackingStart) && stakingPowerData.loyaltyRatio !== null) ||
-        stakingPowerData.powerResetCount > 0 ||
-        stakingPowerData.cumulativePower > 0n)
-  );
-
   const handleOpenGmxStakeModal = () => {
     sendEarnPortfolioItemClickEvent({ item: "GMX", type: "stake" });
     setIsGmxStakeModalVisible(true);
@@ -244,8 +237,6 @@ export function GmxAssetCard({ processedData, hasEsGmx }: { processedData: Staki
         </div>
 
         <StakingPowerAlerts stakingPowerData={stakingPowerData} />
-
-        {hasStakingAlerts && <div className="mt-12 border-t-1/2 border-slate-600" />}
 
         <div className="mt-12 flex grow flex-col gap-8">
           <SyntheticsInfoRow
@@ -386,53 +377,56 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
   if (!showLoyalty && !hasBeenReset && !hasPower) return null;
 
   return (
-    <div className="mt-12 flex flex-col gap-8">
-      {showLoyalty && (
-        <SyntheticsInfoRow
-          label={
-            <Tooltip
-              handle={<Trans>Loyalty</Trans>}
-              content={
-                <Trans>
-                  Your current staked balance relative to your historical max. Dropping below 80% resets your
-                  accumulated staking power to zero.
-                </Trans>
-              }
-            />
-          }
-          value={
-            <span className={cx("numbers", { "text-red-500": stakingPowerData.loyaltyRatio! < 0.85 })}>
-              {(Math.min(stakingPowerData.loyaltyRatio!, 1) * 100).toFixed(1)}%
-            </span>
-          }
-        />
-      )}
-      {hasPower && (
-        <SyntheticsInfoRow
-          label={
-            <Tooltip
-              handle={<Trans>Staking power</Trans>}
-              content={
-                <Trans>
-                  Your share of the total network staking power. Staking power accrues over time based on your staked
-                  GMX balance and determines your share of buyback rewards.
-                </Trans>
-              }
-            />
-          }
-          value={<span className="numbers">{formatAmount(stakingPowerData.cumulativePower, 18, 0, true)}</span>}
-        />
-      )}
-      {hasBeenReset && (
-        <AlertInfoCard type="warning" hideClose>
-          <Trans>
-            Your staking power was reset{" "}
-            {stakingPowerData.powerResetCount === 1 ? "once" : `${stakingPowerData.powerResetCount} times`} due to
-            dropping below the 80% loyalty threshold. Power is now accruing again from your current balance.
-          </Trans>
-        </AlertInfoCard>
-      )}
-    </div>
+    <>
+      <div className="mt-12 flex flex-col gap-8">
+        {showLoyalty && (
+          <SyntheticsInfoRow
+            label={
+              <Tooltip
+                handle={<Trans>Loyalty</Trans>}
+                content={
+                  <Trans>
+                    Your current staked balance relative to your historical max. Dropping below 80% resets your
+                    accumulated staking power to zero.
+                  </Trans>
+                }
+              />
+            }
+            value={
+              <span className={cx("numbers", { "text-red-500": stakingPowerData.loyaltyRatio! < 0.85 })}>
+                {(Math.min(stakingPowerData.loyaltyRatio!, 1) * 100).toFixed(1)}%
+              </span>
+            }
+          />
+        )}
+        {hasPower && (
+          <SyntheticsInfoRow
+            label={
+              <Tooltip
+                handle={<Trans>Staking power</Trans>}
+                content={
+                  <Trans>
+                    Your share of the total network staking power. Staking power accrues over time based on your staked
+                    GMX balance and determines your share of buyback rewards.
+                  </Trans>
+                }
+              />
+            }
+            value={<span className="numbers">{formatAmount(stakingPowerData.cumulativePower, 18, 0, true)}</span>}
+          />
+        )}
+        {hasBeenReset && (
+          <AlertInfoCard type="warning" hideClose>
+            <Trans>
+              Your staking power was reset{" "}
+              {stakingPowerData.powerResetCount === 1 ? "once" : `${stakingPowerData.powerResetCount} times`} due to
+              dropping below the 80% loyalty threshold. Power is now accruing again from your current balance.
+            </Trans>
+          </AlertInfoCard>
+        )}
+      </div>
+      <div className="mt-12 border-t-1/2 border-slate-600" />
+    </>
   );
 }
 
