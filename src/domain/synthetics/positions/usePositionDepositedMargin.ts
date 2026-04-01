@@ -123,11 +123,22 @@ export function usePositionDepositedMargin(
       return undefined;
     }
 
-    const positionMap = new Map<string, PositionInfo>();
+    // Primary lookup: market:isLong:collateral (exact match)
+    const positionByCollateralKey = new Map<string, PositionInfo>();
+    // Fallback lookup: market:isLong (for swapped-collateral actions)
+    const positionsByMarketDirection = new Map<string, PositionInfo[]>();
 
     for (const pos of positions) {
       const collateralKey = `${pos.marketAddress.toLowerCase()}:${pos.isLong}:${pos.collateralTokenAddress.toLowerCase()}`;
-      positionMap.set(collateralKey, pos);
+      positionByCollateralKey.set(collateralKey, pos);
+
+      const mdKey = `${pos.marketAddress.toLowerCase()}:${pos.isLong}`;
+      const list = positionsByMarketDirection.get(mdKey);
+      if (list) {
+        list.push(pos);
+      } else {
+        positionsByMarketDirection.set(mdKey, [pos]);
+      }
     }
 
     type Accumulator = {
@@ -139,6 +150,8 @@ export function usePositionDepositedMargin(
       runningSize: bigint;
       hadFullReset: boolean;
       hasSeenIncrease: boolean;
+      /** True when any increase used a different initial collateral than the position's collateral (swap happened) */
+      hasCollateralSwap: boolean;
     };
 
     const createEmptyAccumulator = (): Accumulator => ({
@@ -150,6 +163,7 @@ export function usePositionDepositedMargin(
       runningSize: 0n,
       hadFullReset: false,
       hasSeenIncrease: false,
+      hasCollateralSwap: false,
     });
 
     const accumulators = new Map<string, Accumulator>();
@@ -174,7 +188,20 @@ export function usePositionDepositedMargin(
       const collateralLower = action.initialCollateralTokenAddress.toLowerCase();
       const primaryKey = `${marketLower}:${action.isLong}:${collateralLower}`;
 
-      const matchedPosition = positionMap.get(primaryKey);
+      let matchedPosition = positionByCollateralKey.get(primaryKey);
+      let isSwapped = false;
+
+      if (!matchedPosition) {
+        // initialCollateralToken differs from position collateral — likely a swap happened.
+        // Fall back to market:isLong match if there's exactly one position.
+        const mdKey = `${marketLower}:${action.isLong}`;
+        const candidates = positionsByMarketDirection.get(mdKey);
+        if (candidates?.length === 1) {
+          matchedPosition = candidates[0];
+          isSwapped = true;
+        }
+      }
+
       if (!matchedPosition) continue;
 
       const posKey = matchedPosition.key;
@@ -207,6 +234,10 @@ export function usePositionDepositedMargin(
 
       acc.runningSize += sizeDelta;
       acc.hasSeenIncrease = true;
+
+      if (isSwapped) {
+        acc.hasCollateralSwap = true;
+      }
 
       const normalizedAddress = getAddress(action.initialCollateralTokenAddress);
       const collateralDecimals = getByKey(tokensData, normalizedAddress)?.decimals;
@@ -264,37 +295,41 @@ export function usePositionDepositedMargin(
         continue;
       }
 
-      const computedCollateralAmount = acc.totalDepositedAmount - acc.totalFeeAmount;
+      // When collateral was swapped, token amounts are in different denominations,
+      // so the token-amount tolerance check is not applicable — rely on USD values only.
+      if (!acc.hasCollateralSwap) {
+        const computedCollateralAmount = acc.totalDepositedAmount - acc.totalFeeAmount;
 
-      if (computedCollateralAmount <= 0n) {
-        // eslint-disable-next-line no-console
-        console.debug(`[DepositedMargin] ${pos.key}: computedCollateralAmount <= 0`);
-        continue;
-      }
+        if (computedCollateralAmount <= 0n) {
+          // eslint-disable-next-line no-console
+          console.debug(`[DepositedMargin] ${pos.key}: computedCollateralAmount <= 0`);
+          continue;
+        }
 
-      let isReliable = false;
-      const onChainAmount = pos.collateralAmount;
-      if (onChainAmount > 0n) {
-        const diff =
-          computedCollateralAmount > onChainAmount
-            ? computedCollateralAmount - onChainAmount
-            : onChainAmount - computedCollateralAmount;
-        const tolerance = onChainAmount / 20n; // 5%
-        isReliable = diff <= tolerance;
-      }
+        const onChainAmount = pos.collateralAmount;
+        let isWithinTolerance = false;
+        if (onChainAmount > 0n) {
+          const diff =
+            computedCollateralAmount > onChainAmount
+              ? computedCollateralAmount - onChainAmount
+              : onChainAmount - computedCollateralAmount;
+          const tolerance = onChainAmount / 20n; // 5%
+          isWithinTolerance = diff <= tolerance;
+        }
 
-      if (!isReliable) {
-        // eslint-disable-next-line no-console
-        console.debug(
-          `[DepositedMargin] ${pos.key}: failed 5% tolerance check (computed=${computedCollateralAmount}, onChain=${onChainAmount})`
-        );
-        continue;
+        if (!isWithinTolerance) {
+          // eslint-disable-next-line no-console
+          console.debug(
+            `[DepositedMargin] ${pos.key}: failed 5% tolerance check (computed=${computedCollateralAmount}, onChain=${onChainAmount})`
+          );
+          continue;
+        }
       }
 
       result[pos.key] = {
         totalDepositedMarginUsd: acc.totalDepositedMarginUsd,
         totalOpenFeesUsd: acc.totalOpenFeesUsd,
-        isReliable,
+        isReliable: true,
       };
     }
 
