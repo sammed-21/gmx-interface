@@ -15,7 +15,7 @@ import type { DeepPartial } from "lib/types";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
-import { TradeboxMarginFields } from "./TradeboxMarginFields";
+import { TradeboxMarginFields } from "../TradeboxMarginFields";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};

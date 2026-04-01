@@ -15,8 +15,8 @@ import type { DeepPartial } from "lib/types";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
-import { MarginPercentageSlider } from "./MarginPercentageSlider";
-import { PriceField } from "./PriceField";
+import { MarginPercentageSlider } from "../MarginPercentageSlider";
+import { PriceField } from "../PriceField";
 
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";

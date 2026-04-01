@@ -16,8 +16,8 @@ import type { MarketInfo } from "sdk/utils/markets/types";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
-import { useSizeConversion } from "./useSizeConversion";
-import { useTradeboxManualLeverageSizeSlider } from "./useTradeboxManualLeverageSizeSlider";
+import { useSizeConversion } from "../useSizeConversion";
+import { useTradeboxManualLeverageSizeSlider } from "../useTradeboxManualLeverageSizeSlider";
 
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";

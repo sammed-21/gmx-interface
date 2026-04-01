@@ -15,14 +15,13 @@ import type { DeepPartial } from "lib/types";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
-import { TradeboxMarginFields } from "./TradeboxMarginFields";
+import { TradeboxMarginFields } from "../TradeboxMarginFields";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
 
 const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
 const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
-const BTC_ADDRESS = "0x47904963fc8b2340414262125aF798B9655E58Cd";
 
 const USDC_TOKEN = {
   name: "USD Coin",
@@ -49,22 +48,9 @@ const ETH_TOKEN = {
   balance: expandDecimals(10, 18),
 } as TokenData;
 
-const BTC_TOKEN = {
-  name: "Bitcoin",
-  symbol: "BTC",
-  decimals: 8,
-  address: BTC_ADDRESS,
-  prices: {
-    minPrice: expandDecimals(60000, 30),
-    maxPrice: expandDecimals(60000, 30),
-  },
-  balance: expandDecimals(1, 8),
-} as TokenData;
-
 const TOKENS_DATA = {
   [USDC_ADDRESS]: USDC_TOKEN,
   [ETH_ADDRESS]: ETH_TOKEN,
-  [BTC_ADDRESS]: BTC_TOKEN,
 };
 
 type MockStateOverrides = {
@@ -75,8 +61,6 @@ type MockStateOverrides = {
   focusedInput?: "from" | "to";
   triggerPriceInputValue?: string;
   isLeverageSliderEnabled?: boolean;
-  toTokenAddress?: string;
-  marketAddress?: string;
 };
 
 function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
@@ -88,8 +72,6 @@ function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
     focusedInput = "from",
     triggerPriceInputValue = "",
     isLeverageSliderEnabled = true,
-    toTokenAddress = ETH_ADDRESS,
-    marketAddress,
   } = overrides;
 
   const state: DeepPartial<SyntheticsState> = {
@@ -103,6 +85,12 @@ function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
       ordersInfo: { ordersInfoData: {} },
       uiFeeFactor: 0n,
       jitLiquidityData: {},
+      gasLimits: undefined,
+      gasPrice: undefined,
+      userReferralInfo: undefined,
+      depositMarketTokensData: undefined,
+      blockTimestampData: undefined,
+      oracleSettings: undefined,
       isFirstOrder: false,
       account: undefined,
     },
@@ -120,8 +108,8 @@ function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
       tradeType,
       tradeMode,
       fromTokenAddress: USDC_ADDRESS,
-      toTokenAddress,
-      marketAddress,
+      toTokenAddress: ETH_ADDRESS,
+      marketAddress: undefined,
       marketInfo: undefined,
       collateralAddress: USDC_ADDRESS,
       collateralToken: USDC_TOKEN,
@@ -170,7 +158,7 @@ function TestProviders({ state, children }: { state: SyntheticsState; children: 
   );
 }
 
-export type IntegrationStoryProps = {
+export type StoryProps = {
   tradeMode?: TradeMode;
   tradeType?: TradeType;
   isLeverageSliderEnabled?: boolean;
@@ -180,11 +168,7 @@ export type IntegrationStoryProps = {
   maxAvailableAmount?: bigint;
 };
 
-/**
- * Integration story that exposes internal state for testing.
- * Renders data attributes for focusedInput, toTokenInputValue, etc.
- */
-export function IntegrationStory({
+export function TradeboxMarginFieldsStory({
   tradeMode = TradeMode.Market,
   tradeType = TradeType.Long,
   isLeverageSliderEnabled = true,
@@ -192,7 +176,7 @@ export function IntegrationStory({
   initialToValue = "0.5",
   initialTriggerPrice,
   maxAvailableAmount = expandDecimals(10000, 6),
-}: IntegrationStoryProps) {
+}: StoryProps) {
   const [fromValue, setFromValue] = useState(initialFromValue);
   const [toValue, setToValue] = useState(initialToValue);
   const [focused, setFocused] = useState<"from" | "to">("from");
@@ -224,14 +208,6 @@ export function IntegrationStory({
 
   return (
     <TestProviders state={state}>
-      {/* Debug output for test assertions */}
-      <div data-testid="debug-state" className="hidden">
-        <span data-testid="focused-input">{focused}</span>
-        <span data-testid="from-value">{fromValue}</span>
-        <span data-testid="to-value">{toValue}</span>
-        <span data-testid="trigger-price">{triggerPrice}</span>
-      </div>
-
       <TradeboxMarginFields
         maxAvailableAmount={maxAvailableAmount}
         onSelectFromTokenAddress={noop}
@@ -244,48 +220,6 @@ export function IntegrationStory({
         triggerPriceInputValue={isLimit ? triggerPrice : undefined}
         onTriggerPriceInputChange={isLimit ? handleTriggerPriceChange : undefined}
         onMarkPriceClick={isLimit ? () => setTriggerPrice("2000") : undefined}
-      />
-    </TestProviders>
-  );
-}
-
-/**
- * Story with no onTriggerPriceInputChange to test that PriceField is not rendered.
- */
-export function IntegrationNoTriggerCallbackStory() {
-  const [fromValue, setFromValue] = useState("1000");
-  const [toValue, setToValue] = useState("0.5");
-  const [focused, setFocused] = useState<"from" | "to">("from");
-
-  const setToValueWithReset = useCallback((value: string, _resetPriceImpact: boolean) => {
-    setToValue(value);
-  }, []);
-
-  const state = useMemo(
-    () =>
-      createMockState({
-        tradeMode: TradeMode.Limit,
-        fromTokenInputValue: fromValue,
-        toTokenInputValue: toValue,
-        focusedInput: focused,
-        triggerPriceInputValue: "2000",
-      }),
-    [fromValue, toValue, focused]
-  );
-
-  return (
-    <TestProviders state={state}>
-      <TradeboxMarginFields
-        maxAvailableAmount={expandDecimals(10000, 6)}
-        onSelectFromTokenAddress={noop}
-        onDepositTokenAddress={noop}
-        fromTokenInputValue={fromValue}
-        setFromTokenInputValue={(value) => setFromValue(value)}
-        setFocusedInput={setFocused}
-        toTokenInputValue={toValue}
-        setToTokenInputValue={setToValueWithReset}
-        triggerPriceInputValue={undefined}
-        onTriggerPriceInputChange={undefined}
       />
     </TestProviders>
   );
