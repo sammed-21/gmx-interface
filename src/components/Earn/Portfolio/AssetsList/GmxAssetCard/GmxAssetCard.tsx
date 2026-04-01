@@ -420,7 +420,7 @@ function StakingPowerAlerts({ stakingPowerData }: { stakingPowerData: StakingPow
               }
             />
           }
-          value={<span className="numbers">{stakingPowerData.userSharePercent.toFixed(4)}%</span>}
+          value={<span className="numbers">{formatAmount(stakingPowerData.cumulativePower, 18, 0, true)}</span>}
         />
       )}
       {hasBeenReset && (
