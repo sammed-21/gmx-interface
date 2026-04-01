@@ -706,13 +706,38 @@ export function OrderEditor(p: Props) {
     p.onClose();
   };
 
+  const editorTitle = useMemo(() => {
+    if (isSwapOrderType(p.order.orderType)) {
+      return t`Edit Limit Swap`;
+    }
+
+    const longShortText = p.order.isLong ? t`Long` : t`Short`;
+    const tokenSymbol = indexToken?.symbol ?? "";
+    const suffix = `${tokenSymbol} ${longShortText}`;
+
+    if (isLimitDecreaseOrderType(p.order.orderType)) {
+      return t`Edit TP: ${suffix}`;
+    }
+    if (isStopLossOrderType(p.order.orderType)) {
+      return t`Edit SL: ${suffix}`;
+    }
+    if (isStopIncreaseOrderType(p.order.orderType)) {
+      return t`Edit Stop Market: ${suffix}`;
+    }
+    if (isLimitIncreaseOrderType(p.order.orderType)) {
+      return t`Edit Limit: ${suffix}`;
+    }
+
+    return t`Edit ${p.order.title}`;
+  }, [p.order.orderType, p.order.isLong, p.order.title, indexToken?.symbol]);
+
   return (
     <div className="PositionEditor">
       <Modal
         className="PositionSeller-modal"
         isVisible={true}
         setIsVisible={p.onClose}
-        label={<Trans>Edit {p.order.title}</Trans>}
+        label={editorTitle}
         contentPadding={false}
         onBack={p.onBack ? handleBack : undefined}
       >

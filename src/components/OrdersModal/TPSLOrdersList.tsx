@@ -66,7 +66,7 @@ export function TPSLOrdersList({ orders, position, marketDecimals, isMobile, act
     if (activeTab === "stopLoss") {
       return <Trans>No SL orders</Trans>;
     }
-    return <Trans>No TP/SL orders</Trans>;
+    return <Trans>No resting orders</Trans>;
   }, [activeTab]);
 
   if (orders.length === 0) {

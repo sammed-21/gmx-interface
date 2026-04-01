@@ -65,6 +65,7 @@ import {
 } from "lib/numbers";
 import { useJsonRpcProvider } from "lib/rpc";
 import useWallet from "lib/wallets/useWallet";
+import { getTokenVisualMultiplier } from "sdk/configs/tokens";
 import { bigMath } from "sdk/utils/bigmath";
 import { getCappedPriceImpactPercentageFromFees } from "sdk/utils/fees";
 import { getExecutionFee } from "sdk/utils/fees/executionFee";
@@ -792,6 +793,7 @@ export function AddTPSLModal({
   const isFullClose = closeSizeUsd >= position.sizeInUsd || position.sizeInUsd - closeSizeUsd < DUST_USD;
   const actionLabel = isFullClose ? t`Close` : t`Decrease`;
   const directionLabel = position.isLong ? t`Long` : t`Short`;
+  const marketPairLabel = `${getTokenVisualMultiplier(indexToken)}${indexToken.symbol}/USD`;
   const hasTP = Boolean(tpPriceInput);
   const hasSL = Boolean(slPriceInput);
   const modePrefix = hasTP && hasSL ? "TP/SL" : hasTP ? "TP" : hasSL ? "SL" : "TP/SL";
@@ -865,7 +867,7 @@ export function AddTPSLModal({
     <Modal
       isVisible={isVisible}
       setIsVisible={setIsVisible}
-      label={`${modePrefix}: ${actionLabel} ${directionLabel}`}
+      label={`${modePrefix}: ${actionLabel} ${marketPairLabel} ${directionLabel}`}
       onBack={onBack ? handleBack : undefined}
       withMobileBottomPosition
       contentPadding={false}
@@ -929,7 +931,8 @@ export function AddTPSLModal({
           onClick={handleSubmit}
           disabled={!!submitError || isSubmitting}
         >
-          {submitError || (isSubmitting ? t`Creating...` : `${modePrefix}: ${actionLabel} ${directionLabel}`)}
+          {submitError ||
+            (isSubmitting ? t`Creating...` : `${modePrefix}: ${actionLabel} ${marketPairLabel} ${directionLabel}`)}
         </Button>
 
         {hasPreviewData && (

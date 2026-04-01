@@ -2,9 +2,52 @@ import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "
 
 import { USD_DECIMALS } from "config/factors";
 import { CLOSE_SIZE_DENOMINATION_KEY } from "config/localStorage";
-import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { calculateDisplayDecimals, formatAmount, formatAmountFree, parseValue } from "lib/numbers";
 import { bigMath } from "sdk/utils/bigmath";
+
+const DENOMINATION_CHANGE_EVENT = "close-size-denomination-change";
+const SERIALIZED_KEY = JSON.stringify(CLOSE_SIZE_DENOMINATION_KEY);
+
+function readDenominationFromStorage(): boolean {
+  try {
+    const raw = localStorage.getItem(SERIALIZED_KEY);
+    if (raw !== null) {
+      return JSON.parse(raw) === true;
+    }
+  } catch {
+    // ignore
+  }
+  return false;
+}
+
+/**
+ * A localStorage-backed boolean state that stays in sync across all hook instances
+ * within the same page. When any instance writes a new value, it dispatches a custom
+ * DOM event so every other instance updates immediately.
+ */
+function useSyncedDenomination(): [boolean, (next: boolean) => void] {
+  const [value, setValue] = useState(readDenominationFromStorage);
+
+  useEffect(() => {
+    const handler = () => {
+      setValue(readDenominationFromStorage());
+    };
+    window.addEventListener(DENOMINATION_CHANGE_EVENT, handler);
+    return () => window.removeEventListener(DENOMINATION_CHANGE_EVENT, handler);
+  }, []);
+
+  const set = useCallback((next: boolean) => {
+    try {
+      localStorage.setItem(SERIALIZED_KEY, JSON.stringify(next));
+    } catch {
+      // ignore
+    }
+    setValue(next);
+    window.dispatchEvent(new Event(DENOMINATION_CHANGE_EVENT));
+  }, []);
+
+  return [value, set];
+}
 
 interface UseCloseSizeInputParams {
   positionSizeInUsd: bigint | undefined;
@@ -40,11 +83,7 @@ export function useCloseSizeInput({
   initialPercentage,
   onCloseSizeUsdChange,
 }: UseCloseSizeInputParams): UseCloseSizeInputReturn {
-  const [showSizeInTokensRaw, setShowSizeInTokens] = useLocalStorageSerializeKey<boolean>(
-    CLOSE_SIZE_DENOMINATION_KEY,
-    false
-  );
-  const showSizeInTokens = showSizeInTokensRaw ?? false;
+  const [showSizeInTokens, setShowSizeInTokens] = useSyncedDenomination();
 
   const [trackedPercentage, setTrackedPercentage] = useState<number | null>(initialPercentage ?? null);
   const [manualInput, setManualInput] = useState("");
@@ -93,13 +132,53 @@ export function useCloseSizeInput({
       return bigMath.mulDiv(safeSizeUsd, BigInt(trackedPercentage), 100n);
     }
     if (!manualInput) return 0n;
+
+    let result: bigint;
+
     if (showSizeInTokens) {
       const parsedTokens = parseValue(manualInput, indexTokenDecimals);
       if (parsedTokens === undefined || parsedTokens === 0n || safeSizeInTokens === 0n) return 0n;
-      return bigMath.mulDiv(parsedTokens, safeSizeUsd, safeSizeInTokens);
+      result = bigMath.mulDiv(parsedTokens, safeSizeUsd, safeSizeInTokens);
+    } else {
+      result = parseValue(manualInput, USD_DECIMALS) ?? 0n;
     }
-    return parseValue(manualInput, USD_DECIMALS) ?? 0n;
-  }, [trackedPercentage, manualInput, showSizeInTokens, safeSizeUsd, safeSizeInTokens, indexTokenDecimals]);
+
+    // Clamp to max position size to handle display-rounding edge cases.
+    // e.g. position size is $2.399... but displays as "$2.40" — entering "2.40"
+    // would parse to a value slightly above the actual size and trigger
+    // "Max close amount exceeded". We only clamp when the input rounds to the
+    // same displayed value as the max in the user's current denomination.
+    if (result > safeSizeUsd && safeSizeUsd > 0n) {
+      let shouldClamp = false;
+
+      if (showSizeInTokens) {
+        const parsedTokens = parseValue(manualInput, indexTokenDecimals);
+        if (parsedTokens !== undefined) {
+          const formattedMaxTokens = formatAmount(safeSizeInTokens, indexTokenDecimals, tokenDisplayDecimals);
+          const formattedInputTokens = formatAmount(parsedTokens, indexTokenDecimals, tokenDisplayDecimals);
+          shouldClamp = formattedInputTokens === formattedMaxTokens;
+        }
+      } else {
+        const formattedMax = formatAmount(safeSizeUsd, USD_DECIMALS, USD_DISPLAY_DECIMALS);
+        const formattedResult = formatAmount(result, USD_DECIMALS, USD_DISPLAY_DECIMALS);
+        shouldClamp = formattedResult === formattedMax;
+      }
+
+      if (shouldClamp) {
+        result = safeSizeUsd;
+      }
+    }
+
+    return result;
+  }, [
+    trackedPercentage,
+    manualInput,
+    showSizeInTokens,
+    safeSizeUsd,
+    safeSizeInTokens,
+    indexTokenDecimals,
+    tokenDisplayDecimals,
+  ]);
 
   const closePercentage = useMemo(() => {
     if (trackedPercentage !== null) return trackedPercentage;
@@ -123,7 +202,7 @@ export function useCloseSizeInput({
   const onCloseSizeUsdChangeRef = useRef(onCloseSizeUsdChange);
   onCloseSizeUsdChangeRef.current = onCloseSizeUsdChange;
   useEffect(() => {
-    onCloseSizeUsdChangeRef.current?.(formatAmountFree(closeSizeUsd, USD_DECIMALS, USD_DISPLAY_DECIMALS));
+    onCloseSizeUsdChangeRef.current?.(formatAmountFree(closeSizeUsd, USD_DECIMALS));
   }, [closeSizeUsd]);
 
   const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {

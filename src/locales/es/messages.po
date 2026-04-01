@@ -636,6 +636,10 @@ msgstr "Expandir"
 msgid "<0>Tried <1>@GMX_IO</1> for the first time. </0><2> Pretty impressive experience - no slippage, fast execution </2><3> Low size caps, but fun to do some degen gambling with </3>"
 msgstr "<0>Probé <1>@GMX_IO</1> por primera vez. </0><2> Experiencia bastante impresionante - sin slippage, ejecución rápida </2><3> Límites de tamaño bajos, pero divertido para hacer apuestas degen </3>"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Stop Market: {suffix}"
+msgstr ""
+
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 msgid "V1 airdrop"
@@ -1001,6 +1005,10 @@ msgstr "Operativa fluida con la fiabilidad de Express"
 #: src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr "{0} <0/><1> a </1>{1} <2/>"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap"
+msgstr ""
 
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
@@ -2791,6 +2799,10 @@ msgstr "Depósito desde {sourceChainName} fallido"
 msgid "Copy address"
 msgstr "Copiar dirección"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit SL: {suffix}"
+msgstr ""
+
 #: src/components/GmList/PerformanceLabel.tsx
 msgid "Projected yearly return vs. a Uniswap V2-style benchmark.<0/><1/>Note: Short timeframes may not reflect long-term performance.<2/><3/><4>View detailed stats on Dune</4>."
 msgstr "Rendimiento anual proyectado frente a un índice de referencia de estilo Uniswap V2.<0/><1/>Nota: Los plazos cortos pueden no reflejar el rendimiento a largo plazo.<2/><3/><4>Ver estadísticas detalladas en Dune</4>."
@@ -3035,6 +3047,10 @@ msgstr "TVL"
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Your GMX Account balance, usable for trading from any supported chain. <0>Read more</0>."
 msgstr "Su saldo de GMX Account, utilizable para operar desde cualquier cadena compatible. <0>Más información</0>."
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit: {suffix}"
+msgstr ""
 
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
@@ -4496,8 +4512,8 @@ msgid "PnL"
 msgstr "GyP"
 
 #: src/components/OrdersModal/TPSLOrdersList.tsx
-msgid "No TP/SL orders"
-msgstr "No hay órdenes TP/SL"
+#~ msgid "No TP/SL orders"
+#~ msgstr "No hay órdenes TP/SL"
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
@@ -4918,6 +4934,10 @@ msgstr "Compre bonos GMX en Bond Protocol con descuento y un periodo de consolid
 msgid "Buyback accrued"
 msgstr ""
 
+#: src/components/OrdersModal/TPSLOrdersList.tsx
+msgid "No resting orders"
+msgstr ""
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Transfer account"
@@ -5054,6 +5074,7 @@ msgstr "Configuración actualizada"
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
@@ -6983,6 +7004,10 @@ msgstr "Cambie a <0><1/><2>Arbitrum</2></0> o <3><4/><5>Avalanche</5></3> para a
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "Help us improve GMX for Liquidity Providers. For security, we won't contact you first. Send \"I'm a Liquidity Provider\" to our official Telegram account:"
 msgstr "Ayúdenos a mejorar GMX para los proveedores de liquidez. Por seguridad, no nos pondremos en contacto con usted primero. Envíe \"I'm a Liquidity Provider\" a nuestra cuenta oficial de Telegram:"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit TP: {suffix}"
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Min collateral factor"
@@ -8945,6 +8970,7 @@ msgstr "{gmOrGlvLabel} vendido correctamente, pero el puente a Base falló. Sus 
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx

@@ -636,6 +636,10 @@ msgstr ""
 msgid "<0>Tried <1>@GMX_IO</1> for the first time. </0><2> Pretty impressive experience - no slippage, fast execution </2><3> Low size caps, but fun to do some degen gambling with </3>"
 msgstr ""
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Stop Market: {suffix}"
+msgstr ""
+
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 msgid "V1 airdrop"
@@ -1000,6 +1004,10 @@ msgstr ""
 
 #: src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "{0} <0/><1> to </1>{1} <2/>"
+msgstr ""
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap"
 msgstr ""
 
 #: src/components/PositionShare/CreateReferralCode.tsx
@@ -2791,6 +2799,10 @@ msgstr ""
 msgid "Copy address"
 msgstr ""
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit SL: {suffix}"
+msgstr ""
+
 #: src/components/GmList/PerformanceLabel.tsx
 msgid "Projected yearly return vs. a Uniswap V2-style benchmark.<0/><1/>Note: Short timeframes may not reflect long-term performance.<2/><3/><4>View detailed stats on Dune</4>."
 msgstr ""
@@ -3034,6 +3046,10 @@ msgstr ""
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Your GMX Account balance, usable for trading from any supported chain. <0>Read more</0>."
+msgstr ""
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit: {suffix}"
 msgstr ""
 
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
@@ -4496,8 +4512,8 @@ msgid "PnL"
 msgstr ""
 
 #: src/components/OrdersModal/TPSLOrdersList.tsx
-msgid "No TP/SL orders"
-msgstr ""
+#~ msgid "No TP/SL orders"
+#~ msgstr ""
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
@@ -4918,6 +4934,10 @@ msgstr ""
 msgid "Buyback accrued"
 msgstr ""
 
+#: src/components/OrdersModal/TPSLOrdersList.tsx
+msgid "No resting orders"
+msgstr ""
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Transfer account"
@@ -5054,6 +5074,7 @@ msgstr ""
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
@@ -6982,6 +7003,10 @@ msgstr ""
 
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "Help us improve GMX for Liquidity Providers. For security, we won't contact you first. Send \"I'm a Liquidity Provider\" to our official Telegram account:"
+msgstr ""
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit TP: {suffix}"
 msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
@@ -8945,6 +8970,7 @@ msgstr ""
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx

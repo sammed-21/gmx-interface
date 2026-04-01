@@ -636,6 +636,10 @@ msgstr "Развернуть"
 msgid "<0>Tried <1>@GMX_IO</1> for the first time. </0><2> Pretty impressive experience - no slippage, fast execution </2><3> Low size caps, but fun to do some degen gambling with </3>"
 msgstr "<0>Попробовал <1>@GMX_IO</1> впервые. </0><2> Довольно впечатляющий опыт - без slippage, быстрое исполнение </2><3> Низкие лимиты размера, но весело для деген-гэмблинга </3>"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Stop Market: {suffix}"
+msgstr ""
+
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 msgid "V1 airdrop"
@@ -1001,6 +1005,10 @@ msgstr "Удобная торговля с надёжностью Express"
 #: src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr "{0} <0/><1> до </1>{1} <2/>"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap"
+msgstr ""
 
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
@@ -2791,6 +2799,10 @@ msgstr "Депозит из {sourceChainName} не удался"
 msgid "Copy address"
 msgstr "Копировать адрес"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit SL: {suffix}"
+msgstr ""
+
 #: src/components/GmList/PerformanceLabel.tsx
 msgid "Projected yearly return vs. a Uniswap V2-style benchmark.<0/><1/>Note: Short timeframes may not reflect long-term performance.<2/><3/><4>View detailed stats on Dune</4>."
 msgstr "Прогнозируемая годовая доходность по сравнению с бенчмарком в стиле Uniswap V2.<0/><1/>Примечание: короткие временные периоды могут не отражать долгосрочную доходность.<2/><3/><4>Подробная статистика на Dune</4>."
@@ -3035,6 +3047,10 @@ msgstr "TVL"
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Your GMX Account balance, usable for trading from any supported chain. <0>Read more</0>."
 msgstr "Ваш баланс GMX Account, доступный для торговли из любой поддерживаемой сети. <0>Подробнее</0>."
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit: {suffix}"
+msgstr ""
 
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
@@ -4496,8 +4512,8 @@ msgid "PnL"
 msgstr "PnL"
 
 #: src/components/OrdersModal/TPSLOrdersList.tsx
-msgid "No TP/SL orders"
-msgstr "Нет ордеров TP/SL"
+#~ msgid "No TP/SL orders"
+#~ msgstr "Нет ордеров TP/SL"
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
@@ -4918,6 +4934,10 @@ msgstr "Покупайте облигации GMX на Bond Protocol со ски
 msgid "Buyback accrued"
 msgstr ""
 
+#: src/components/OrdersModal/TPSLOrdersList.tsx
+msgid "No resting orders"
+msgstr ""
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Transfer account"
@@ -5054,6 +5074,7 @@ msgstr "Настройки обновлены"
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
@@ -6983,6 +7004,10 @@ msgstr "Переключитесь на <0><1/><2>Arbitrum</2></0> или <3><4/
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "Help us improve GMX for Liquidity Providers. For security, we won't contact you first. Send \"I'm a Liquidity Provider\" to our official Telegram account:"
 msgstr "Помогите нам улучшить GMX для поставщиков ликвидности. В целях безопасности мы не будем связываться с вами первыми. Отправьте «I'm a Liquidity Provider» на наш официальный аккаунт в Telegram:"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit TP: {suffix}"
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Min collateral factor"
@@ -8945,6 +8970,7 @@ msgstr "{gmOrGlvLabel} успешно продан, но мост на Base не
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
