@@ -239,17 +239,38 @@ export function usePositionDepositedMargin(
 
     for (const pos of positions) {
       const acc = accumulators.get(pos.key);
-      if (!acc) continue;
 
-      if (acc.hasPartialDecrease) continue;
+      if (!acc) {
+        // eslint-disable-next-line no-console
+        console.debug(`[DepositedMargin] ${pos.key}: no matching actions found`);
+        continue;
+      }
 
-      // Truncated query without a full reset — may be missing earlier increases
-      if (queryTruncated && !acc.hadFullReset) continue;
+      if (acc.hasPartialDecrease) {
+        // eslint-disable-next-line no-console
+        console.debug(`[DepositedMargin] ${pos.key}: has partial decrease`);
+        continue;
+      }
 
-      if (acc.totalDepositedMarginUsd <= 0n) continue;
+      if (queryTruncated && !acc.hadFullReset) {
+        // eslint-disable-next-line no-console
+        console.debug(`[DepositedMargin] ${pos.key}: query truncated without full reset`);
+        continue;
+      }
+
+      if (acc.totalDepositedMarginUsd <= 0n) {
+        // eslint-disable-next-line no-console
+        console.debug(`[DepositedMargin] ${pos.key}: totalDepositedMarginUsd <= 0`);
+        continue;
+      }
 
       const computedCollateralAmount = acc.totalDepositedAmount - acc.totalFeeAmount;
-      if (computedCollateralAmount <= 0n) continue;
+
+      if (computedCollateralAmount <= 0n) {
+        // eslint-disable-next-line no-console
+        console.debug(`[DepositedMargin] ${pos.key}: computedCollateralAmount <= 0`);
+        continue;
+      }
 
       let isReliable = false;
       const onChainAmount = pos.collateralAmount;
@@ -262,13 +283,19 @@ export function usePositionDepositedMargin(
         isReliable = diff <= tolerance;
       }
 
-      if (isReliable) {
-        result[pos.key] = {
-          totalDepositedMarginUsd: acc.totalDepositedMarginUsd,
-          totalOpenFeesUsd: acc.totalOpenFeesUsd,
-          isReliable,
-        };
+      if (!isReliable) {
+        // eslint-disable-next-line no-console
+        console.debug(
+          `[DepositedMargin] ${pos.key}: failed 5% tolerance check (computed=${computedCollateralAmount}, onChain=${onChainAmount})`
+        );
+        continue;
       }
+
+      result[pos.key] = {
+        totalDepositedMarginUsd: acc.totalDepositedMarginUsd,
+        totalOpenFeesUsd: acc.totalOpenFeesUsd,
+        isReliable,
+      };
     }
 
     return Object.keys(result).length > 0 ? result : undefined;
