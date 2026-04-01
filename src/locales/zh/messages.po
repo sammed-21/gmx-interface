@@ -7029,8 +7029,8 @@ msgid "Project"
 msgstr "项目"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Deposited margin"
-msgstr ""
+#~ msgid "Deposited margin"
+#~ msgstr ""
 
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -7735,8 +7735,8 @@ msgid "No tokens on {0} for deposit"
 msgstr "{0} 上没有可用于存入的代币"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Margin breakdown"
-msgstr ""
+#~ msgid "Margin breakdown"
+#~ msgstr ""
 
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
@@ -8207,7 +8207,6 @@ msgstr "去中心化期权策略"
 msgid "Select rewards to claim"
 msgstr "选择要领取的奖励"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Open fee"
 msgstr "开仓费用"

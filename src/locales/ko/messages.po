@@ -7029,8 +7029,8 @@ msgid "Project"
 msgstr "프로젝트"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Deposited margin"
-msgstr ""
+#~ msgid "Deposited margin"
+#~ msgstr ""
 
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -7735,8 +7735,8 @@ msgid "No tokens on {0} for deposit"
 msgstr "{0}에 입금 가능한 토큰이 없습니다"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Margin breakdown"
-msgstr ""
+#~ msgid "Margin breakdown"
+#~ msgstr ""
 
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
@@ -8207,7 +8207,6 @@ msgstr "탈중앙화 옵션 전략"
 msgid "Select rewards to claim"
 msgstr "청구할 보상 선택"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Open fee"
 msgstr "개시 수수료"

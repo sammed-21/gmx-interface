@@ -2,17 +2,13 @@ import { Trans } from "@lingui/macro";
 import { memo, useCallback, useState } from "react";
 import { useMedia } from "react-use";
 
-import {
-  useIsPositionsLoading,
-  usePositionsInfoData,
-  useTokensData,
-} from "context/SyntheticsStateContext/hooks/globalsHooks";
+import { useIsPositionsLoading, usePositionsInfoData } from "context/SyntheticsStateContext/hooks/globalsHooks";
 import { usePositionEditorPositionState } from "context/SyntheticsStateContext/hooks/positionEditorHooks";
-import { selectAccount, selectChainId } from "context/SyntheticsStateContext/selectors/globalSelectors";
+import { selectChainId } from "context/SyntheticsStateContext/selectors/globalSelectors";
 import { selectPositionsInfoDataSortedByMarket } from "context/SyntheticsStateContext/selectors/positionsSelectors";
 import { selectShowPnlAfterFees } from "context/SyntheticsStateContext/selectors/settingsSelectors";
 import { useSelector } from "context/SyntheticsStateContext/utils";
-import { PositionInfo, PositionDepositedMarginData, usePositionDepositedMargin } from "domain/synthetics/positions";
+import { PositionInfo } from "domain/synthetics/positions";
 import { TradeMode } from "domain/synthetics/trade";
 import { OrderOption } from "domain/synthetics/trade/usePositionSellerState";
 import { getByKey } from "lib/objects";
@@ -40,13 +36,10 @@ export function PositionList(p: Props) {
   const { onClosePositionClick, onOrdersClick, onSelectPositionClick, onCancelOrder, hideActions } = p;
   const positionsInfoData = usePositionsInfoData();
   const chainId = useSelector(selectChainId);
-  const account = useSelector(selectAccount);
-  const tokensData = useTokensData();
   const [isPositionShareModalOpen, setIsPositionShareModalOpen] = useState(false);
   const [positionToShareKey, setPositionToShareKey] = useState<string>();
   const positionToShare = getByKey(positionsInfoData, positionToShareKey);
   const positions = useSelector(selectPositionsInfoDataSortedByMarket);
-  const { depositedMarginMap } = usePositionDepositedMargin(chainId, account, positions, tokensData);
 
   const handleSharePositionClick = useCallback((positionKey: string) => {
     userAnalytics.pushEvent<SharePositionClickEvent>({
@@ -85,7 +78,6 @@ export function PositionList(p: Props) {
                   onShareClick={handleSharePositionClick}
                   hideActions={hideActions}
                   onCancelOrder={onCancelOrder}
-                  depositedMarginData={depositedMarginMap?.[position.key]}
                 />
               ))}
           </div>
@@ -147,7 +139,6 @@ export function PositionList(p: Props) {
                     onShareClick={handleSharePositionClick}
                     hideActions={hideActions}
                     onCancelOrder={onCancelOrder}
-                    depositedMarginData={depositedMarginMap?.[position.key]}
                   />
                 ))}
             </tbody>
@@ -194,7 +185,6 @@ const PositionItemWrapper = memo(
     onSelectPositionClick,
     onShareClick,
     onCancelOrder,
-    depositedMarginData,
   }: {
     position: PositionInfo;
     onEditCollateralClick: (positionKey: string) => void;
@@ -205,7 +195,6 @@ const PositionItemWrapper = memo(
     onShareClick: (positionKey: string) => void;
     hideActions: boolean | undefined;
     onCancelOrder: (orderKey: string) => void;
-    depositedMarginData: PositionDepositedMarginData | undefined;
   }) => {
     const { account } = useWallet();
     const showPnlAfterFees = useSelector(selectShowPnlAfterFees);
@@ -245,7 +234,6 @@ const PositionItemWrapper = memo(
         hideActions={hideActions}
         onCancelOrder={handleCancelOrder}
         onShareClick={isShareAvailable ? handleShareClick : undefined}
-        depositedMarginData={depositedMarginData}
       />
     );
   }

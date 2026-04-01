@@ -12,7 +12,6 @@ import { useSelector } from "context/SyntheticsStateContext/utils";
 import { getBorrowingFeeRateUsd, getFundingFeeRateUsd } from "domain/synthetics/fees";
 import {
   PositionInfo,
-  PositionDepositedMarginData,
   formatEstimatedLiquidationTime,
   formatLeverage,
   formatLiquidationPrice,
@@ -55,7 +54,6 @@ export type Props = {
   isLarge: boolean;
   onOrdersClick?: (key?: string) => void;
   onCancelOrder?: (orderKey: string) => void;
-  depositedMarginData?: PositionDepositedMarginData;
 };
 
 export function PositionItem(p: Props) {
@@ -89,9 +87,6 @@ export function PositionItem(p: Props) {
   }, []);
 
   function renderNetValue() {
-    const marginData = p.depositedMarginData;
-    const showMarginBreakdown = marginData?.isReliable && marginData.totalDepositedMarginUsd > 0n;
-
     return (
       <TooltipWithPortal
         handle={formatUsd(p.position.netValue)}
@@ -141,29 +136,6 @@ export function PositionItem(p: Props) {
               showDollar={false}
               textClassName={getPositiveOrNegativeClass(p.position.pnlAfterFees)}
             />
-            {showMarginBreakdown && (
-              <>
-                <br />
-                <span className="text-typography-tertiary text-12">
-                  <Trans>Margin breakdown</Trans>
-                </span>
-                <StatsTooltipRow
-                  label={t`Deposited margin`}
-                  value={formatUsd(marginData.totalDepositedMarginUsd) || "..."}
-                  valueClassName="numbers"
-                  showDollar={false}
-                />
-                <StatsTooltipRow
-                  label={t`Open fee`}
-                  value={formatUsd(-marginData.totalOpenFeesUsd) || "..."}
-                  valueClassName="numbers"
-                  showDollar={false}
-                  textClassName={cx({
-                    "text-red-500": marginData.totalOpenFeesUsd !== 0n,
-                  })}
-                />
-              </>
-            )}
           </div>
         )}
       />

@@ -7029,8 +7029,8 @@ msgid "Project"
 msgstr "プロジェクト"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Deposited margin"
-msgstr ""
+#~ msgid "Deposited margin"
+#~ msgstr ""
 
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -7735,8 +7735,8 @@ msgid "No tokens on {0} for deposit"
 msgstr "{0}に入金可能なトークンがありません"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Margin breakdown"
-msgstr ""
+#~ msgid "Margin breakdown"
+#~ msgstr ""
 
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
@@ -8207,7 +8207,6 @@ msgstr "分散型オプション戦略"
 msgid "Select rewards to claim"
 msgstr "請求する報酬を選択"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Open fee"
 msgstr "オープン手数料"

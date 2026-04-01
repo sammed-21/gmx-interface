@@ -7029,8 +7029,8 @@ msgid "Project"
 msgstr "Project"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Deposited margin"
-msgstr "Deposited margin"
+#~ msgid "Deposited margin"
+#~ msgstr "Deposited margin"
 
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -7735,8 +7735,8 @@ msgid "No tokens on {0} for deposit"
 msgstr "No tokens on {0} for deposit"
 
 #: src/components/PositionItem/PositionItem.tsx
-msgid "Margin breakdown"
-msgstr "Margin breakdown"
+#~ msgid "Margin breakdown"
+#~ msgstr "Margin breakdown"
 
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
@@ -8207,7 +8207,6 @@ msgstr "Decentralized options strategies"
 msgid "Select rewards to claim"
 msgstr "Select rewards to claim"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Open fee"
 msgstr "Open fee"
