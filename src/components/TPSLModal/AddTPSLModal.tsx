@@ -1059,7 +1059,7 @@ export function AddTPSLModal({
             label={
               <TooltipWithPortal
                 handle={<Trans>Margin ({collateralToken.symbol})</Trans>}
-                content={<Trans>Initial margin, excluding borrow and funding fees</Trans>}
+                content={<Trans>Margin before pending borrow and funding fees</Trans>}
                 variant="icon"
               />
             }

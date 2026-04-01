@@ -63,7 +63,7 @@ export function PositionEditorAdvancedRows({ operation, gasPaymentParams }: Opti
               </span>
             }
             position="left-start"
-            content={<Trans>Initial margin, excluding borrow and funding fees</Trans>}
+            content={<Trans>Margin before pending borrow and funding fees</Trans>}
           />
         }
         value={

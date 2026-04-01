@@ -1303,7 +1303,6 @@ msgstr ""
 msgid "Threshold for stable funding"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Initial margin"
 msgstr ""
@@ -4269,6 +4268,10 @@ msgstr ""
 msgid "AMOUNT"
 msgstr ""
 
+#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
+msgid "Current margin excludes pending borrow and funding fees. Post-close margin reflects realized PnL and settled fees."
+msgstr ""
+
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/components/ClaimModal/ClaimModal.tsx
@@ -4747,6 +4750,12 @@ msgstr ""
 msgid "In other tokens"
 msgstr ""
 
+#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
+#: src/components/PositionItem/PositionItem.tsx
+#: src/components/TPSLModal/AddTPSLModal.tsx
+msgid "Margin before pending borrow and funding fees"
+msgstr ""
+
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 msgid "Cancel new orders"
 msgstr ""
@@ -4844,10 +4853,6 @@ msgstr ""
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Page outdated. Refresh"
 msgstr ""
-
-#: src/components/SettingsModal/DisplaySettings.tsx
-#~ msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
-#~ msgstr ""
 
 #: src/components/Earn/Discovery/EarnProductCard.tsx
 #: src/components/GmSwap/GmSwapBox/GmSwapBoxHeader.tsx
@@ -5032,10 +5037,6 @@ msgstr ""
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
 msgstr ""
-
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Fee breakdown unavailable for this position"
-#~ msgstr ""
 
 #: landing/src/pages/Home/HeroSection/Features.tsx
 msgid "Seamless trading"
@@ -7028,10 +7029,6 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Deposited margin"
-#~ msgstr ""
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "24h low"
@@ -7734,10 +7731,6 @@ msgstr ""
 msgid "No tokens on {0} for deposit"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Margin breakdown"
-#~ msgstr ""
-
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
 msgstr ""
@@ -8111,10 +8104,6 @@ msgstr ""
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
 msgid "Claim {0}"
 msgstr ""
-
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Open Fee"
-#~ msgstr ""
 
 #. to network
 #: src/components/BridgeModal/BridgeOutModal.tsx
@@ -10447,10 +10436,6 @@ msgstr ""
 msgid "Avalanche trading incentives"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Deposited Margin"
-#~ msgstr ""
-
 #: src/components/Errors/errorToasts.tsx
 #: src/components/Errors/errorToasts.tsx
 msgid "Transaction canceled"
@@ -10783,12 +10768,6 @@ msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "POOL CAP LONG"
-msgstr ""
-
-#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
-#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-msgid "Initial margin, excluding borrow and funding fees"
 msgstr ""
 
 #: src/domain/multichain/toastEnableExpress.tsx

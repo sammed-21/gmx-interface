@@ -185,7 +185,7 @@ export function PositionItem(p: Props) {
                   </div>
                 )}
                 <StatsTooltipRow
-                  label={t`Initial margin`}
+                  label={t`Margin before pending borrow and funding fees`}
                   value={
                     <AmountWithUsdBalance
                       amount={p.position.collateralAmount}

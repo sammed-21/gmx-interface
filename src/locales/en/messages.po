@@ -1303,7 +1303,6 @@ msgstr "Disable share modal PnL check"
 msgid "Threshold for stable funding"
 msgstr "Threshold for stable funding"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Initial margin"
 msgstr "Initial margin"
@@ -4269,6 +4268,10 @@ msgstr "Pending GMX approval..."
 msgid "AMOUNT"
 msgstr "AMOUNT"
 
+#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
+msgid "Current margin excludes pending borrow and funding fees. Post-close margin reflects realized PnL and settled fees."
+msgstr "Current margin excludes pending borrow and funding fees. Post-close margin reflects realized PnL and settled fees."
+
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/components/ClaimModal/ClaimModal.tsx
@@ -4747,6 +4750,12 @@ msgstr "Slippage is the difference between your expected and actual execution pr
 msgid "In other tokens"
 msgstr "In other tokens"
 
+#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
+#: src/components/PositionItem/PositionItem.tsx
+#: src/components/TPSLModal/AddTPSLModal.tsx
+msgid "Margin before pending borrow and funding fees"
+msgstr "Margin before pending borrow and funding fees"
+
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 msgid "Cancel new orders"
 msgstr "Cancel new orders"
@@ -4844,10 +4853,6 @@ msgstr "Text with no size set"
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Page outdated. Refresh"
 msgstr "Page outdated. Refresh"
-
-#: src/components/SettingsModal/DisplaySettings.tsx
-#~ msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
-#~ msgstr "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
 
 #: src/components/Earn/Discovery/EarnProductCard.tsx
 #: src/components/GmSwap/GmSwapBox/GmSwapBoxHeader.tsx
@@ -5032,10 +5037,6 @@ msgstr "Show detailed price impact breakdown: stored impact (increase orders) an
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
 msgstr "Use open interest in tokens for balance"
-
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Fee breakdown unavailable for this position"
-#~ msgstr "Fee breakdown unavailable for this position"
 
 #: landing/src/pages/Home/HeroSection/Features.tsx
 msgid "Seamless trading"
@@ -7028,10 +7029,6 @@ msgstr "View transaction"
 msgid "Project"
 msgstr "Project"
 
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Deposited margin"
-#~ msgstr "Deposited margin"
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "24h low"
@@ -7734,10 +7731,6 @@ msgstr "Total performance APY"
 msgid "No tokens on {0} for deposit"
 msgstr "No tokens on {0} for deposit"
 
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Margin breakdown"
-#~ msgstr "Margin breakdown"
-
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Total to claim"
 msgstr "Total to claim"
@@ -8111,10 +8104,6 @@ msgstr "Margin ({0})"
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
 msgid "Claim {0}"
 msgstr "Claim {0}"
-
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Open Fee"
-#~ msgstr "Open Fee"
 
 #. to network
 #: src/components/BridgeModal/BridgeOutModal.tsx
@@ -10447,10 +10436,6 @@ msgstr "{count, plural, one {Order} other {# Orders}}"
 msgid "Avalanche trading incentives"
 msgstr "Avalanche trading incentives"
 
-#: src/components/PositionItem/PositionItem.tsx
-#~ msgid "Deposited Margin"
-#~ msgstr "Deposited Margin"
-
 #: src/components/Errors/errorToasts.tsx
 #: src/components/Errors/errorToasts.tsx
 msgid "Transaction canceled"
@@ -10784,12 +10769,6 @@ msgstr "Loading Express Trading params..."
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "POOL CAP LONG"
 msgstr "POOL CAP LONG"
-
-#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
-#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-msgid "Initial margin, excluding borrow and funding fees"
-msgstr "Initial margin, excluding borrow and funding fees"
 
 #: src/domain/multichain/toastEnableExpress.tsx
 msgid "Express Trading enabled. Disable in <0>settings</0>"
