@@ -708,7 +708,19 @@ export function OrderEditor(p: Props) {
 
   const editorTitle = useMemo(() => {
     if (isSwapOrderType(p.order.orderType)) {
-      return t`Edit Limit Swap`;
+      const initialAmount = formatBalanceAmount(
+        p.order.initialCollateralDeltaAmount,
+        p.order.initialCollateralToken.decimals,
+        p.order.initialCollateralToken.symbol,
+        { isStable: p.order.initialCollateralToken.isStable }
+      );
+      const targetAmount = formatBalanceAmount(
+        p.order.minOutputAmount,
+        p.order.targetCollateralToken.decimals,
+        p.order.targetCollateralToken.symbol,
+        { isStable: p.order.targetCollateralToken.isStable }
+      );
+      return t`Edit Limit Swap: ${initialAmount} for ${targetAmount}`;
     }
 
     const longShortText = p.order.isLong ? t`Long` : t`Short`;
@@ -729,7 +741,16 @@ export function OrderEditor(p: Props) {
     }
 
     return t`Edit ${p.order.title}`;
-  }, [p.order.orderType, p.order.isLong, p.order.title, indexToken?.symbol]);
+  }, [
+    p.order.orderType,
+    p.order.isLong,
+    p.order.title,
+    p.order.initialCollateralDeltaAmount,
+    p.order.initialCollateralToken,
+    p.order.minOutputAmount,
+    p.order.targetCollateralToken,
+    indexToken?.symbol,
+  ]);
 
   return (
     <div className="PositionEditor">

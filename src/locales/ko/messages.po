@@ -1006,10 +1006,6 @@ msgstr "Express의 안정성을 갖춘 매끄러운 트레이딩"
 msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr "{0} <0/><1> to </1>{1} <2/>"
 
-#: src/components/OrderEditor/OrderEditor.tsx
-msgid "Edit Limit Swap"
-msgstr ""
-
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
@@ -4510,10 +4506,6 @@ msgstr "GM 풀"
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 msgid "PnL"
 msgstr "PnL"
-
-#: src/components/OrdersModal/TPSLOrdersList.tsx
-#~ msgid "No TP/SL orders"
-#~ msgstr "TP/SL 주문 없음"
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
@@ -9884,6 +9876,10 @@ msgstr "유효하지 않은 청산가"
 #: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Error, try again"
 msgstr "오류, 다시 시도하십시오"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
+msgstr ""
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"

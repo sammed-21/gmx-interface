@@ -1006,10 +1006,6 @@ msgstr "Operativa fluida con la fiabilidad de Express"
 msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr "{0} <0/><1> a </1>{1} <2/>"
 
-#: src/components/OrderEditor/OrderEditor.tsx
-msgid "Edit Limit Swap"
-msgstr ""
-
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
@@ -4510,10 +4506,6 @@ msgstr "GM pools"
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 msgid "PnL"
 msgstr "GyP"
-
-#: src/components/OrdersModal/TPSLOrdersList.tsx
-#~ msgid "No TP/SL orders"
-#~ msgstr "No hay órdenes TP/SL"
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
@@ -9884,6 +9876,10 @@ msgstr "Precio de liquidación no válido"
 #: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Error, try again"
 msgstr "Error, inténtelo de nuevo"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
+msgstr ""
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"

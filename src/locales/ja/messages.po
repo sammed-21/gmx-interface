@@ -1006,10 +1006,6 @@ msgstr "Express の信頼性によるシームレスな取引"
 msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr "{0} <0/><1> から </1>{1} <2/>"
 
-#: src/components/OrderEditor/OrderEditor.tsx
-msgid "Edit Limit Swap"
-msgstr ""
-
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
@@ -4510,10 +4506,6 @@ msgstr "GM プール"
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 msgid "PnL"
 msgstr "損益"
-
-#: src/components/OrdersModal/TPSLOrdersList.tsx
-#~ msgid "No TP/SL orders"
-#~ msgstr "テイクプロフィット/ストップロス注文なし"
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
@@ -9884,6 +9876,10 @@ msgstr "無効な清算価格"
 #: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Error, try again"
 msgstr "エラーが発生しました。再試行してください"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
+msgstr ""
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
