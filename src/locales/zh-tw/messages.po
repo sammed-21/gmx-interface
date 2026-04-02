@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "GLP pool"
-msgstr "GLP 池"
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Slippage exceeded"
 msgstr "滑點超出限制"
@@ -154,7 +150,6 @@ msgid "Include rPnL in leverage display"
 msgstr "在槓桿顯示中包含已實現盈虧"
 
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Arbitrum"
@@ -1463,10 +1458,6 @@ msgstr "TP 價格高於限價"
 msgid "Action(s)"
 msgstr "操作"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "May be higher on other sites that include position collateral"
-msgstr "在包含倉位抵押品的其他網站上可能更高"
-
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Deposit more {gasPaymentTokensText}."
 msgstr "Gas 餘額不足。請存入更多 {gasPaymentTokensText}。"
@@ -1603,7 +1594,6 @@ msgstr "推廣夥伴地址："
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/StatsTooltip/ChainsStatsTooltipRow.tsx
 #: src/pages/Dashboard/GmxCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -3038,10 +3028,6 @@ msgstr "加倉（市價）"
 msgid "Bridge transfer sent"
 msgstr "跨鏈轉帳已發送"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Total value of tokens in the GLP pool"
-msgstr "GLP 池中代幣的總價值"
-
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
 #: src/components/GmList/GlvList.tsx
 #: src/pages/PoolsDetails/PoolsDetails.tsx
@@ -3644,7 +3630,6 @@ msgstr "V1 Arbitrum"
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 msgid "Avalanche"
 msgstr "Avalanche"
 
@@ -3746,10 +3731,6 @@ msgstr "最大槓桿：{0}x"
 #: src/domain/synthetics/positions/utils.ts
 msgid "T"
 msgstr "T"
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "TVL includes GMX staked, GLP pool, GM pools, and position collateral"
-msgstr "TVL 包括已質押的 GMX、GLP 池、GM 池和倉位抵押品"
 
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed"
@@ -8915,6 +8896,10 @@ msgstr "池"
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "LIQUIDATION PRICE"
 msgstr "清算價格"
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "TVL includes GMX staked, GM pools, and position collateral"
+msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Venus"

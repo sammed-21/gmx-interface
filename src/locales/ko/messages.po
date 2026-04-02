@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "GLP pool"
-msgstr "GLP 풀"
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Slippage exceeded"
 msgstr "슬리피지 초과"
@@ -154,7 +150,6 @@ msgid "Include rPnL in leverage display"
 msgstr "레버리지 표시에 실현 PnL 포함"
 
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Arbitrum"
@@ -1463,10 +1458,6 @@ msgstr "TP 가격이 지정가보다 높습니다"
 msgid "Action(s)"
 msgstr "작업"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "May be higher on other sites that include position collateral"
-msgstr "포지션 담보를 포함하는 다른 사이트에서는 더 높게 표시될 수 있습니다"
-
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Deposit more {gasPaymentTokensText}."
 msgstr "Gas 잔액이 부족합니다. {gasPaymentTokensText}을(를) 추가로 입금하십시오."
@@ -1603,7 +1594,6 @@ msgstr "추천인 주소:"
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/StatsTooltip/ChainsStatsTooltipRow.tsx
 #: src/pages/Dashboard/GmxCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -3038,10 +3028,6 @@ msgstr "규모 증가 (Market)"
 msgid "Bridge transfer sent"
 msgstr "브릿지 전송이 전송되었습니다"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Total value of tokens in the GLP pool"
-msgstr "GLP 풀 내 토큰의 총 가치"
-
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
 #: src/components/GmList/GlvList.tsx
 #: src/pages/PoolsDetails/PoolsDetails.tsx
@@ -3644,7 +3630,6 @@ msgstr "V1 Arbitrum"
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 msgid "Avalanche"
 msgstr "Avalanche"
 
@@ -3746,10 +3731,6 @@ msgstr "최대 레버리지: {0}x"
 #: src/domain/synthetics/positions/utils.ts
 msgid "T"
 msgstr "T"
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "TVL includes GMX staked, GLP pool, GM pools, and position collateral"
-msgstr "TVL에는 GMX 스테이킹, GLP 풀, GM 풀, 포지션 담보가 포함됩니다"
 
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed"
@@ -8915,6 +8896,10 @@ msgstr "풀"
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "LIQUIDATION PRICE"
 msgstr "청산가"
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "TVL includes GMX staked, GM pools, and position collateral"
+msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Venus"

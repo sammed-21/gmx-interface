@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "GLP pool"
-msgstr "Pool GLP"
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Slippage exceeded"
 msgstr "Glissement dépassé"
@@ -154,7 +150,6 @@ msgid "Include rPnL in leverage display"
 msgstr "Inclure le rPnL dans l'affichage de l'effet de levier"
 
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Arbitrum"
@@ -1463,10 +1458,6 @@ msgstr "Prix TP au-dessus du prix limite"
 msgid "Action(s)"
 msgstr "Action(s)"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "May be higher on other sites that include position collateral"
-msgstr "Peut être plus élevé sur d'autres sites qui incluent la garantie de position"
-
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Deposit more {gasPaymentTokensText}."
 msgstr "Solde de Gas insuffisant. Déposez davantage de {gasPaymentTokensText}."
@@ -1603,7 +1594,6 @@ msgstr "Adresse de l'affilié :"
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/StatsTooltip/ChainsStatsTooltipRow.tsx
 #: src/pages/Dashboard/GmxCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -3038,10 +3028,6 @@ msgstr "Augmenter la taille (Market)"
 msgid "Bridge transfer sent"
 msgstr "Transfert bridge envoyé"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Total value of tokens in the GLP pool"
-msgstr "Valeur totale des tokens dans le pool GLP"
-
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
 #: src/components/GmList/GlvList.tsx
 #: src/pages/PoolsDetails/PoolsDetails.tsx
@@ -3644,7 +3630,6 @@ msgstr "V1 Arbitrum"
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 msgid "Avalanche"
 msgstr "Avalanche"
 
@@ -3746,10 +3731,6 @@ msgstr "Levier max : {0}x"
 #: src/domain/synthetics/positions/utils.ts
 msgid "T"
 msgstr "T"
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "TVL includes GMX staked, GLP pool, GM pools, and position collateral"
-msgstr "La TVL inclut les GMX stakés, le pool GLP, les pools GM et la garantie des positions"
 
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed"
@@ -8915,6 +8896,10 @@ msgstr "Pool"
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "LIQUIDATION PRICE"
 msgstr "LIQUIDATION PRICE"
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "TVL includes GMX staked, GM pools, and position collateral"
+msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Venus"

@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "GLP pool"
-msgstr "GLP プール"
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Slippage exceeded"
 msgstr "スリッページ超過"
@@ -154,7 +150,6 @@ msgid "Include rPnL in leverage display"
 msgstr "レバレッジ表示にrPnLを含める"
 
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Arbitrum"
@@ -1463,10 +1458,6 @@ msgstr "TP 価格がリミット価格を上回っています"
 msgid "Action(s)"
 msgstr "アクション"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "May be higher on other sites that include position collateral"
-msgstr "ポジション担保を含む他のサイトではより高い値が表示される場合があります"
-
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Deposit more {gasPaymentTokensText}."
 msgstr "Gas 残高が不足しています。{gasPaymentTokensText} を追加で入金してください。"
@@ -1603,7 +1594,6 @@ msgstr "アフィリエイトアドレス:"
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/StatsTooltip/ChainsStatsTooltipRow.tsx
 #: src/pages/Dashboard/GmxCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -3038,10 +3028,6 @@ msgstr "サイズを増加（Market）"
 msgid "Bridge transfer sent"
 msgstr "ブリッジ送金が送信されました"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Total value of tokens in the GLP pool"
-msgstr "GLPプール内のトークンの合計価値"
-
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
 #: src/components/GmList/GlvList.tsx
 #: src/pages/PoolsDetails/PoolsDetails.tsx
@@ -3644,7 +3630,6 @@ msgstr "V1 Arbitrum"
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 msgid "Avalanche"
 msgstr "Avalanche"
 
@@ -3746,10 +3731,6 @@ msgstr "最大レバレッジ: {0}x"
 #: src/domain/synthetics/positions/utils.ts
 msgid "T"
 msgstr "T"
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "TVL includes GMX staked, GLP pool, GM pools, and position collateral"
-msgstr "TVL には GMX のステーキング、GLP プール、GM プール、およびポジション担保が含まれます"
 
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed"
@@ -8915,6 +8896,10 @@ msgstr "プール"
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "LIQUIDATION PRICE"
 msgstr "清算価格"
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "TVL includes GMX staked, GM pools, and position collateral"
+msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Venus"

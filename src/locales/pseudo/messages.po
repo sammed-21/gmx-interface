@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "GLP pool"
-msgstr ""
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Slippage exceeded"
 msgstr ""
@@ -154,7 +150,6 @@ msgid "Include rPnL in leverage display"
 msgstr ""
 
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Arbitrum"
@@ -1463,10 +1458,6 @@ msgstr ""
 msgid "Action(s)"
 msgstr ""
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "May be higher on other sites that include position collateral"
-msgstr ""
-
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Deposit more {gasPaymentTokensText}."
 msgstr ""
@@ -1603,7 +1594,6 @@ msgstr ""
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/StatsTooltip/ChainsStatsTooltipRow.tsx
 #: src/pages/Dashboard/GmxCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -3038,10 +3028,6 @@ msgstr ""
 msgid "Bridge transfer sent"
 msgstr ""
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Total value of tokens in the GLP pool"
-msgstr ""
-
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
 #: src/components/GmList/GlvList.tsx
 #: src/pages/PoolsDetails/PoolsDetails.tsx
@@ -3644,7 +3630,6 @@ msgstr ""
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 msgid "Avalanche"
 msgstr ""
 
@@ -3745,10 +3730,6 @@ msgstr ""
 
 #: src/domain/synthetics/positions/utils.ts
 msgid "T"
-msgstr ""
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "TVL includes GMX staked, GLP pool, GM pools, and position collateral"
 msgstr ""
 
 #: src/lib/contracts/callContract.tsx
@@ -8914,6 +8895,10 @@ msgstr ""
 #: src/components/PositionList/PositionList.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "LIQUIDATION PRICE"
+msgstr ""
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "TVL includes GMX staked, GM pools, and position collateral"
 msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
