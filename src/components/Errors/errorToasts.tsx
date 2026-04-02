@@ -303,7 +303,7 @@ export function getNonEoaAccountChainWarningToastContent(chainId: number) {
 }
 
 export function InvalidSignatureToastContent() {
-  const { setFeedbackModalVisible, setIsSettingsVisible } = useSettings();
+  const { setIsSettingsVisible } = useSettings();
 
   return (
     <div>
@@ -316,11 +316,6 @@ export function InvalidSignatureToastContent() {
           settings
         </span>
       </Trans>
-      <br />
-      <br />
-      <div className="clickable underline" onClick={() => setFeedbackModalVisible(true)}>
-        <Trans>Report issue</Trans>
-      </div>
     </div>
   );
 }

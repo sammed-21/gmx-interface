@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "GLP pool"
-msgstr ""
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Slippage exceeded"
 msgstr ""
@@ -35,17 +31,9 @@ msgstr ""
 msgid "Pear Protocol"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What would make your rating a 9 or 10?"
-msgstr ""
-
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
 msgid "Price impact rebates claimed"
-msgstr ""
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Not likely"
 msgstr ""
 
 #: src/components/Errors/errorToasts.tsx
@@ -165,7 +153,6 @@ msgid "Include rPnL in leverage display"
 msgstr ""
 
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Arbitrum"
@@ -465,11 +452,6 @@ msgstr ""
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "Best swap path"
-msgstr ""
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "@username"
 msgstr ""
 
 #: src/components/Referrals/shared/modals/useClaimAffiliatesModalState.ts
@@ -826,10 +808,6 @@ msgstr ""
 msgid "Buy GMX on centralized exchanges"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Share for follow-up questions"
-msgstr ""
-
 #: src/components/SwapCard/SwapCard.tsx
 #: src/components/TradeBox/TradeBoxRows/AvailableLiquidityRow.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -879,11 +857,6 @@ msgstr ""
 
 #: src/components/PositionShare/CreateReferralCode.tsx
 msgid "Creating code..."
-msgstr ""
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Telegram contact (optional)"
 msgstr ""
 
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
@@ -1513,10 +1486,6 @@ msgstr ""
 msgid "Action(s)"
 msgstr ""
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "May be higher on other sites that include position collateral"
-msgstr ""
-
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Deposit more {gasPaymentTokensText}."
 msgstr ""
@@ -1649,7 +1618,6 @@ msgstr ""
 #: src/components/Referrals/shared/TimeRangeFilter.tsx
 #: src/components/StatsTooltip/ChainsStatsTooltipRow.tsx
 #: src/pages/Dashboard/GmxCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -1960,16 +1928,16 @@ msgstr ""
 msgid "Timestamp"
 msgstr ""
 
+#: src/pages/Ecosystem/ecosystemConstants.tsx
+msgid "KyberSwap"
+msgstr ""
+
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Insufficient gas for execution"
 msgstr ""
 
 #: src/components/TradeBox/SwapSlippageField.tsx
 msgid "Custom"
-msgstr ""
-
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Enter your answer"
 msgstr ""
 
 #: src/pages/RpcDebug/parts.tsx
@@ -2430,10 +2398,6 @@ msgstr ""
 
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "You have a <0>pending transfer</0> to {pendingReceiver}"
-msgstr ""
-
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we address your concerns?"
 msgstr ""
 
 #: src/lib/copyElementAsImage.ts
@@ -2965,10 +2929,6 @@ msgstr ""
 msgid "POSITION"
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "We value your feedback"
-msgstr ""
-
 #: src/components/GmxAccountModal/InsufficientWntBanner.tsx
 msgid "<0>Deposit</0> or <1>buy</1> {wrappedNativeTokenSymbol}."
 msgstr ""
@@ -3119,10 +3079,6 @@ msgstr ""
 
 #: src/domain/synthetics/markets/createBridgeInTxn.ts
 msgid "Bridge transfer sent"
-msgstr ""
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Total value of tokens in the GLP pool"
 msgstr ""
 
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
@@ -3723,7 +3679,6 @@ msgstr ""
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
-#: src/pages/Dashboard/OverviewCard.tsx
 msgid "Avalanche"
 msgstr ""
 
@@ -3744,10 +3699,6 @@ msgstr ""
 
 #: src/components/TradeHistory/keys.ts
 msgid "Update TWAP part"
-msgstr ""
-
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Help us improve"
 msgstr ""
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
@@ -3828,10 +3779,6 @@ msgstr ""
 
 #: src/domain/synthetics/positions/utils.ts
 msgid "T"
-msgstr ""
-
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "TVL includes GMX staked, GLP pool, GM pools, and position collateral"
 msgstr ""
 
 #: src/lib/contracts/callContract.tsx
@@ -4105,8 +4052,6 @@ msgid "No funds to withdraw"
 msgstr ""
 
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/useShiftSubmitState.tsx
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submitting..."
 msgstr ""
 
@@ -4210,10 +4155,6 @@ msgstr ""
 
 #: src/domain/tokens/approveTokens.tsx
 msgid "Approval cancelled"
-msgstr ""
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Your feedback helps us understand what we're doing well and where we can improve"
 msgstr ""
 
 #: src/components/Errors/errorToasts.tsx
@@ -5179,10 +5120,6 @@ msgstr ""
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "Additional reserve required:"
-msgstr ""
-
-#: src/pages/Ecosystem/ecosystemConstants.tsx
-msgid "Open Ocean"
 msgstr ""
 
 #: src/components/GmSwap/GmSwapBox/GmSwapBox.tsx
@@ -6583,10 +6520,6 @@ msgstr ""
 msgid "THREAD"
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Optional: share for follow-up questions"
-msgstr ""
-
 #: src/pages/TestPermits/TestPermits.tsx
 msgid "Permit signed for {0}"
 msgstr ""
@@ -6882,10 +6815,6 @@ msgstr ""
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "Claim submitted"
-msgstr ""
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "How likely are you to recommend our service to a friend or colleague?"
 msgstr ""
 
 #: src/pages/ParseTransaction/ParseTransaction.tsx
@@ -7611,10 +7540,6 @@ msgstr ""
 msgid "fees"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What could we improve?"
-msgstr ""
-
 #: src/components/Referrals/traders/joinCode/ReferralCodeFormSettlementChain.tsx
 msgid "Referral code update failed"
 msgstr ""
@@ -7679,11 +7604,6 @@ msgstr ""
 
 #: src/domain/synthetics/sidecarOrders/utils.ts
 msgid "TP price below limit price"
-msgstr ""
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Submit"
 msgstr ""
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
@@ -8097,10 +8017,6 @@ msgstr ""
 msgid "Max pool capacity reached"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Error occurred. Try again"
-msgstr ""
-
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
@@ -8148,10 +8064,6 @@ msgstr ""
 msgid "Two GLV variants mirror GLP's multi-asset exposure: one optimized for ETH markets (50% ETH / 50% USDC), the other for BTC markets (50% BTC / 50% USDC). This reflects the recovered funds composition and enables dynamic liquidity allocation across top GMX markets for enhanced yield."
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Enter your feedback"
-msgstr ""
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "Net rate / 1h"
@@ -8180,10 +8092,6 @@ msgstr ""
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Short positions"
-msgstr ""
-
-#: src/components/Errors/errorToasts.tsx
-msgid "Report issue"
 msgstr ""
 
 #: src/components/Referrals/shared/modals/ClaimAffiliatesModal.tsx
@@ -8803,10 +8711,6 @@ msgstr ""
 msgid "Total investment value"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What did you like most?"
-msgstr ""
-
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Performance and chart data are based on UTC times"
 msgstr ""
@@ -8897,10 +8801,6 @@ msgstr ""
 #: src/components/TVChartContainer/constants.ts
 #: src/domain/synthetics/positions/utils.ts
 msgid "Stop Market"
-msgstr ""
-
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we keep meeting your expectations?"
 msgstr ""
 
 #: src/components/DepthChart/DepthChartTooltip.tsx
@@ -9063,6 +8963,10 @@ msgstr ""
 #: src/components/PositionList/PositionList.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "LIQUIDATION PRICE"
+msgstr ""
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "TVL includes GMX staked, GM pools, and position collateral"
 msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
@@ -9328,10 +9232,6 @@ msgstr ""
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"
-msgstr ""
-
-#: src/components/Footer/Footer.tsx
-msgid "Leave feedback"
 msgstr ""
 
 #: landing/src/pages/Home/HeroSection/HeroSection.tsx
@@ -9949,10 +9849,6 @@ msgstr ""
 msgid "Invalid liquidation price"
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Error, try again"
-msgstr ""
-
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
 msgstr ""
@@ -10311,10 +10207,6 @@ msgstr ""
 msgid "Last 30d"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What issues did you encounter?"
-msgstr ""
-
 #: src/pages/Ecosystem/Ecosystem.tsx
 msgid "Dashboards"
 msgstr ""
@@ -10512,10 +10404,6 @@ msgstr ""
 
 #: src/components/BridgeModal/BridgeOutModal.tsx
 msgid "Withdraw {glvOrGm}: {0}"
-msgstr ""
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Very likely"
 msgstr ""
 
 #: src/pages/ReferralsTier/ReferralsTier.tsx
