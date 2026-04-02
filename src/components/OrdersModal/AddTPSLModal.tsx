@@ -202,7 +202,7 @@ export function AddTPSLModal({
 
   const indexTokenDecimals = indexToken?.decimals ?? 18;
 
-  const closeSizeHook = useCloseSizeInput({
+  const closeSize = useCloseSizeInput({
     positionSizeInUsd: position.sizeInUsd,
     positionSizeInTokens: position.sizeInTokens,
     indexTokenDecimals,
@@ -210,15 +210,15 @@ export function AddTPSLModal({
     initialPercentage: 100,
   });
 
-  const { closeSizeInput, closePercentage, closeSizeLabel } = closeSizeHook;
+  const { closeSizeInput, closePercentage, closeSizeLabel } = closeSize;
 
   const closeSizeUsd = useMemo(() => {
     if (!editTPSLSize || closePercentage >= 100) {
       return position.sizeInUsd;
     }
 
-    return closeSizeHook.closeSizeUsd > 0n ? closeSizeHook.closeSizeUsd : position.sizeInUsd;
-  }, [editTPSLSize, closePercentage, closeSizeHook.closeSizeUsd, position.sizeInUsd]);
+    return closeSize.closeSizeUsd > 0n ? closeSize.closeSizeUsd : position.sizeInUsd;
+  }, [editTPSLSize, closePercentage, closeSize.closeSizeUsd, position.sizeInUsd]);
 
   const sizeUsdEntry = useMemo(() => getDefaultEntryField(USD_DECIMALS, { value: closeSizeUsd }), [closeSizeUsd]);
 
@@ -545,9 +545,9 @@ export function AddTPSLModal({
   const handleEditTPSLSizeToggle = useCallback(
     (value: boolean) => {
       setEditTPSLSize(value);
-      closeSizeHook.handleSliderChange(100);
+      closeSize.handleSliderChange(100);
     },
-    [closeSizeHook]
+    [closeSize]
   );
 
   const tpPriceError = useMemo(() => {
@@ -686,9 +686,9 @@ export function AddTPSLModal({
       return t`Enter an amount`;
     }
     if (editTPSLSize && closeSizeInput) {
-      const decimals = closeSizeHook.showSizeInTokens ? indexTokenDecimals : USD_DECIMALS;
+      const decimals = closeSize.showSizeInTokens ? indexTokenDecimals : USD_DECIMALS;
       const parsedInput = parseValue(closeSizeInput, decimals);
-      const parsedMax = parseValue(closeSizeHook.formattedMaxCloseSize, decimals);
+      const parsedMax = parseValue(closeSize.formattedMaxCloseSize, decimals);
       if (parsedInput !== undefined && parsedMax !== undefined && parsedInput > parsedMax) {
         return t`Max close amount exceeded`;
       }
@@ -711,8 +711,8 @@ export function AddTPSLModal({
     orderPayloads.length,
     editTPSLSize,
     closeSizeInput,
-    closeSizeHook.showSizeInTokens,
-    closeSizeHook.formattedMaxCloseSize,
+    closeSize.showSizeInTokens,
+    closeSize.formattedMaxCloseSize,
     indexTokenDecimals,
   ]);
 
@@ -768,7 +768,7 @@ export function AddTPSLModal({
     onSuccess,
   ]);
 
-  const closeSizeReset = closeSizeHook.reset;
+  const closeSizeReset = closeSize.reset;
   useEffect(() => {
     if (isVisible) {
       setTpPriceInput(initialTpPriceInput ?? "");
@@ -913,15 +913,15 @@ export function AddTPSLModal({
             <BuyInputSection
               topLeftLabel={t`Close`}
               inputValue={closeSizeInput}
-              onInputValueChange={closeSizeHook.handleInputChange}
-              onClickBottomRightLabel={closeSizeHook.setMaxCloseSize}
+              onInputValueChange={closeSize.handleInputChange}
+              onClickBottomRightLabel={closeSize.setMaxCloseSize}
               qa="close-size"
             >
-              <span className="cursor-pointer select-none" onClick={closeSizeHook.handleSizeToggle}>
+              <span className="cursor-pointer select-none" onClick={closeSize.handleSizeToggle}>
                 {closeSizeLabel}
               </span>
             </BuyInputSection>
-            <MarginPercentageSlider value={closePercentage} onChange={closeSizeHook.handleSliderChange} />
+            <MarginPercentageSlider value={closePercentage} onChange={closeSize.handleSliderChange} />
           </div>
         )}
 

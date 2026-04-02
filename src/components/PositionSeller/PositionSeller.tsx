@@ -193,7 +193,7 @@ export function PositionSeller() {
     setNumberOfParts,
   } = usePositionSeller();
 
-  const closeSizeHook = useCloseSizeInput({
+  const closeSize = useCloseSizeInput({
     positionSizeInUsd: position?.sizeInUsd,
     positionSizeInTokens: position?.sizeInTokens,
     indexTokenDecimals: position?.indexToken?.decimals ?? 18,
@@ -213,7 +213,7 @@ export function PositionSeller() {
   const isMarket = orderOption === OrderOption.Market;
   const closeSizeUsd = parseValue(closeUsdInputValue || "0", USD_DECIMALS) ?? 0n;
 
-  const closePercentage = closeSizeHook.closePercentage;
+  const closePercentage = closeSize.closePercentage;
 
   const setReceiveTokenManually = useCallback(
     (token: Token) => {
@@ -231,7 +231,7 @@ export function PositionSeller() {
     }
   }, [isVisible, settings.receiveToGmxAccount]);
 
-  const closeSizeReset = closeSizeHook.reset;
+  const closeSizeReset = closeSize.reset;
 
   useEffect(() => {
     if (!isVisible) {
@@ -955,16 +955,16 @@ export function PositionSeller() {
                 <div className="flex flex-col gap-8">
                   <BuyInputSection
                     topLeftLabel={t`Close`}
-                    inputValue={closeSizeHook.closeSizeInput}
-                    onInputValueChange={closeSizeHook.handleInputChange}
+                    inputValue={closeSize.closeSizeInput}
+                    onInputValueChange={closeSize.handleInputChange}
                     qa="amount-input"
-                    maxDecimals={closeSizeHook.showSizeInTokens ? position?.indexToken?.decimals ?? 18 : USD_DECIMALS}
+                    maxDecimals={closeSize.showSizeInTokens ? position?.indexToken?.decimals ?? 18 : USD_DECIMALS}
                   >
-                    <span className="cursor-pointer select-none" onClick={closeSizeHook.handleSizeToggle}>
-                      {closeSizeHook.closeSizeLabel}
+                    <span className="cursor-pointer select-none" onClick={closeSize.handleSizeToggle}>
+                      {closeSize.closeSizeLabel}
                     </span>
                   </BuyInputSection>
-                  <MarginPercentageSlider value={closePercentage} onChange={closeSizeHook.handleSliderChange} />
+                  <MarginPercentageSlider value={closePercentage} onChange={closeSize.handleSliderChange} />
                 </div>
               </div>
 

@@ -188,7 +188,7 @@ export function OrderEditor(p: Props) {
 
   const isTriggerDecrease = isTriggerDecreaseOrderType(p.order.orderType);
 
-  const closeSizeHook = useCloseSizeInput({
+  const closeSize = useCloseSizeInput({
     positionSizeInUsd: existingPosition?.sizeInUsd,
     positionSizeInTokens: existingPosition?.sizeInTokens,
     indexTokenDecimals: positionIndexToken?.decimals ?? 18,
@@ -629,7 +629,7 @@ export function OrderEditor(p: Props) {
         const positionOrder = p.order as PositionOrderInfo;
 
         if (isTriggerDecrease) {
-          closeSizeHook.setFromUsdString(formatAmountFree(positionOrder.sizeDeltaUsd ?? 0n, USD_DECIMALS));
+          closeSize.setFromUsdString(formatAmountFree(positionOrder.sizeDeltaUsd ?? 0n, USD_DECIMALS));
         } else {
           setSizeInputValue(formatAmountFree(positionOrder.sizeDeltaUsd ?? 0n, USD_DECIMALS));
         }
@@ -646,7 +646,7 @@ export function OrderEditor(p: Props) {
       setIsInited(true);
     },
     [
-      closeSizeHook,
+      closeSize,
       indexToken?.visualMultiplier,
       isInited,
       isTriggerDecrease,
@@ -755,27 +755,25 @@ export function OrderEditor(p: Props) {
             <>
               <BuyInputSection
                 topLeftLabel={isTriggerDecrease ? t`Close` : t`Size`}
-                inputValue={isTriggerDecrease ? closeSizeHook.closeSizeInput : sizeInputValue}
+                inputValue={isTriggerDecrease ? closeSize.closeSizeInput : sizeInputValue}
                 onInputValueChange={
-                  isTriggerDecrease ? closeSizeHook.handleInputChange : (e) => setSizeInputValue(e.target.value)
+                  isTriggerDecrease ? closeSize.handleInputChange : (e) => setSizeInputValue(e.target.value)
                 }
                 bottomLeftValue={isTriggerDecrease ? formatUsd(sizeUsd) : undefined}
                 bottomRightLabel={isTriggerDecrease && positionSize !== undefined ? t`Max` : undefined}
                 bottomRightValue={isTriggerDecrease ? formatUsdPrice(positionSize) : undefined}
                 onClickMax={
                   isTriggerDecrease && positionSize !== undefined && positionSize > 0 && sizeUsd !== positionSize
-                    ? closeSizeHook.setMaxCloseSize
+                    ? closeSize.setMaxCloseSize
                     : undefined
                 }
                 maxDecimals={
-                  isTriggerDecrease && closeSizeHook.showSizeInTokens
-                    ? positionIndexToken?.decimals ?? 18
-                    : USD_DECIMALS
+                  isTriggerDecrease && closeSize.showSizeInTokens ? positionIndexToken?.decimals ?? 18 : USD_DECIMALS
                 }
               >
                 {isTriggerDecrease ? (
-                  <span className="cursor-pointer select-none" onClick={closeSizeHook.handleSizeToggle}>
-                    {closeSizeHook.closeSizeLabel}
+                  <span className="cursor-pointer select-none" onClick={closeSize.handleSizeToggle}>
+                    {closeSize.closeSizeLabel}
                   </span>
                 ) : (
                   t`USD`
@@ -808,10 +806,7 @@ export function OrderEditor(p: Props) {
               </BuyInputSection>
 
               {isTriggerDecrease && positionSize !== undefined && positionSize > 0n && (
-                <MarginPercentageSlider
-                  value={closeSizeHook.closePercentage}
-                  onChange={closeSizeHook.handleSliderChange}
-                />
+                <MarginPercentageSlider value={closeSize.closePercentage} onChange={closeSize.handleSliderChange} />
               )}
             </>
           )}

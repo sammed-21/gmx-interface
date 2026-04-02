@@ -1,53 +1,9 @@
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { USD_DECIMALS } from "config/factors";
-import { CLOSE_SIZE_DENOMINATION_KEY } from "config/localStorage";
+import { useSettings } from "context/SettingsContext/SettingsContextProvider";
 import { calculateDisplayDecimals, formatAmount, formatAmountFree, parseValue } from "lib/numbers";
 import { bigMath } from "sdk/utils/bigmath";
-
-const DENOMINATION_CHANGE_EVENT = "close-size-denomination-change";
-const SERIALIZED_KEY = JSON.stringify(CLOSE_SIZE_DENOMINATION_KEY);
-
-function readDenominationFromStorage(): boolean {
-  try {
-    const raw = localStorage.getItem(SERIALIZED_KEY);
-    if (raw !== null) {
-      return JSON.parse(raw) === true;
-    }
-  } catch {
-    // ignore
-  }
-  return false;
-}
-
-/**
- * A localStorage-backed boolean state that stays in sync across all hook instances
- * within the same page. When any instance writes a new value, it dispatches a custom
- * DOM event so every other instance updates immediately.
- */
-function useSyncedDenomination(): [boolean, (next: boolean) => void] {
-  const [value, setValue] = useState(readDenominationFromStorage);
-
-  useEffect(() => {
-    const handler = () => {
-      setValue(readDenominationFromStorage());
-    };
-    window.addEventListener(DENOMINATION_CHANGE_EVENT, handler);
-    return () => window.removeEventListener(DENOMINATION_CHANGE_EVENT, handler);
-  }, []);
-
-  const set = useCallback((next: boolean) => {
-    try {
-      localStorage.setItem(SERIALIZED_KEY, JSON.stringify(next));
-    } catch {
-      // ignore
-    }
-    setValue(next);
-    window.dispatchEvent(new Event(DENOMINATION_CHANGE_EVENT));
-  }, []);
-
-  return [value, set];
-}
 
 interface UseCloseSizeInputParams {
   positionSizeInUsd: bigint | undefined;
@@ -83,7 +39,7 @@ export function useCloseSizeInput({
   initialPercentage,
   onCloseSizeUsdChange,
 }: UseCloseSizeInputParams): UseCloseSizeInputReturn {
-  const [showSizeInTokens, setShowSizeInTokens] = useSyncedDenomination();
+  const { showCloseSizeInTokens: showSizeInTokens, setShowCloseSizeInTokens: setShowSizeInTokens } = useSettings();
 
   const [trackedPercentage, setTrackedPercentage] = useState<number | null>(initialPercentage ?? null);
   const [manualInput, setManualInput] = useState("");
@@ -187,7 +143,11 @@ export function useCloseSizeInput({
     const decimals = showSizeInTokens ? indexTokenDecimals : USD_DECIMALS;
     const parsed = parseValue(manualInput, decimals);
     if (parsed === undefined || parsed <= 0n || maxSize <= 0n) return 0;
-    return Math.min(100, Math.max(0, Number(bigMath.mulDiv(parsed, 100n, maxSize))));
+
+    const rawPercentage = Number(bigMath.mulDiv(parsed, 100n, maxSize));
+    const clampedPercentage = Math.max(0, rawPercentage);
+
+    return Math.min(100, clampedPercentage);
   }, [trackedPercentage, manualInput, showSizeInTokens, safeSizeUsd, safeSizeInTokens, indexTokenDecimals]);
 
   const closeSizeLabel = showSizeInTokens ? indexTokenSymbol : "USD";
