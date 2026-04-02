@@ -35,17 +35,9 @@ msgstr ""
 msgid "Pear Protocol"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What would make your rating a 9 or 10?"
-msgstr ""
-
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
 msgid "Price impact rebates claimed"
-msgstr ""
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Not likely"
 msgstr ""
 
 #: src/components/Errors/errorToasts.tsx
@@ -451,11 +443,6 @@ msgstr ""
 msgid "Best swap path"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "@username"
-msgstr ""
-
 #: src/domain/synthetics/referrals/claimAffiliateRewardsTxn.ts
 msgid "Failed to claim affiliate rewards"
 msgstr ""
@@ -813,10 +800,6 @@ msgstr ""
 msgid "Buy GMX on centralized exchanges"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Share for follow-up questions"
-msgstr ""
-
 #: src/components/SwapCard/SwapCard.tsx
 #: src/components/TradeBox/TradeBoxRows/AvailableLiquidityRow.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -870,11 +853,6 @@ msgstr ""
 
 #: src/components/PositionShare/CreateReferralCode.tsx
 msgid "Creating code..."
-msgstr ""
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Telegram contact (optional)"
 msgstr ""
 
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
@@ -1921,10 +1899,6 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Enter your answer"
-msgstr ""
-
 #: src/pages/RpcDebug/parts.tsx
 msgid "Markets info"
 msgstr ""
@@ -2401,10 +2375,6 @@ msgstr ""
 
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "You have a <0>pending transfer</0> to {pendingReceiver}"
-msgstr ""
-
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we address your concerns?"
 msgstr ""
 
 #: src/components/DepthChart/DepthChartTooltip.tsx
@@ -2913,10 +2883,6 @@ msgstr ""
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "POSITION"
-msgstr ""
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "We value your feedback"
 msgstr ""
 
 #: src/components/GmxAccountModal/InsufficientWntBanner.tsx
@@ -3701,10 +3667,6 @@ msgstr ""
 msgid "Update TWAP part"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Help us improve"
-msgstr ""
-
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 #: src/components/Earn/Portfolio/ClaimRewardsButton.tsx
 msgid "Claim rewards"
@@ -4052,8 +4014,6 @@ msgid "No funds to withdraw"
 msgstr ""
 
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/useShiftSubmitState.tsx
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submitting..."
 msgstr ""
 
@@ -4163,10 +4123,6 @@ msgstr ""
 
 #: src/domain/tokens/approveTokens.tsx
 msgid "Approval cancelled"
-msgstr ""
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Your feedback helps us understand what we're doing well and where we can improve"
 msgstr ""
 
 #: src/pages/UiPage/UiPage.tsx
@@ -6535,10 +6491,6 @@ msgstr ""
 msgid "THREAD"
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Optional: share for follow-up questions"
-msgstr ""
-
 #: src/pages/TestPermits/TestPermits.tsx
 msgid "Permit signed for {0}"
 msgstr ""
@@ -6830,10 +6782,6 @@ msgstr ""
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "Claim submitted"
-msgstr ""
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "How likely are you to recommend our service to a friend or colleague?"
 msgstr ""
 
 #: src/pages/ParseTransaction/ParseTransaction.tsx
@@ -7533,10 +7481,6 @@ msgstr ""
 msgid "fees"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What could we improve?"
-msgstr ""
-
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Referral code update failed"
 msgstr ""
@@ -7608,10 +7552,8 @@ msgstr ""
 msgid "TP price below limit price"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
 #: src/components/Referrals/JoinReferralCode.tsx
 #: src/components/Referrals/JoinReferralCode.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submit"
 msgstr ""
 
@@ -8010,10 +7952,6 @@ msgstr ""
 msgid "Max pool capacity reached"
 msgstr ""
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Error occurred. Try again"
-msgstr ""
-
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
@@ -8057,10 +7995,6 @@ msgstr ""
 msgid "Two GLV variants mirror GLP's multi-asset exposure: one optimized for ETH markets (50% ETH / 50% USDC), the other for BTC markets (50% BTC / 50% USDC). This reflects the recovered funds composition and enables dynamic liquidity allocation across top GMX markets for enhanced yield."
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Enter your feedback"
-msgstr ""
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "Net rate / 1h"
@@ -8089,10 +8023,6 @@ msgstr ""
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Short positions"
-msgstr ""
-
-#: src/components/Errors/errorToasts.tsx
-msgid "Report issue"
 msgstr ""
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
@@ -8732,10 +8662,6 @@ msgstr ""
 msgid "Total investment value"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What did you like most?"
-msgstr ""
-
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Performance and chart data are based on UTC times"
 msgstr ""
@@ -8826,10 +8752,6 @@ msgstr ""
 #: src/components/TVChartContainer/constants.ts
 #: src/domain/synthetics/positions/utils.ts
 msgid "Stop Market"
-msgstr ""
-
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we keep meeting your expectations?"
 msgstr ""
 
 #: src/components/DepthChart/DepthChartTooltip.tsx
@@ -9232,10 +9154,6 @@ msgstr ""
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"
-msgstr ""
-
-#: src/components/Footer/Footer.tsx
-msgid "Leave feedback"
 msgstr ""
 
 #: landing/src/pages/Home/HeroSection/HeroSection.tsx
@@ -9861,10 +9779,6 @@ msgstr ""
 msgid "Invalid liquidation price"
 msgstr ""
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Error, try again"
-msgstr ""
-
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
 msgstr ""
@@ -10239,10 +10153,6 @@ msgstr ""
 msgid "Last 30d"
 msgstr ""
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What issues did you encounter?"
-msgstr ""
-
 #: src/pages/Ecosystem/Ecosystem.tsx
 msgid "Dashboards"
 msgstr ""
@@ -10432,10 +10342,6 @@ msgstr ""
 
 #: src/components/BridgeModal/BridgeOutModal.tsx
 msgid "Withdraw {glvOrGm}: {0}"
-msgstr ""
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Very likely"
 msgstr ""
 
 #: src/pages/ReferralsTier/ReferralsTier.tsx
