@@ -45,6 +45,7 @@ export function useCloseSizeInput({
   const [manualInput, setManualInput] = useState("");
 
   const initialPercentageRef = useRef(initialPercentage);
+  const localDenominationRef = useRef(showSizeInTokens);
 
   const safeSizeUsd = positionSizeInUsd ?? 0n;
   const safeSizeInTokens = positionSizeInTokens ?? 0n;
@@ -188,6 +189,7 @@ export function useCloseSizeInput({
         setManualInput(formatAmount(newUsdSize, USD_DECIMALS, USD_DISPLAY_DECIMALS));
       }
     }
+    localDenominationRef.current = next;
     setShowSizeInTokens(next);
   }, [
     showSizeInTokens,
@@ -198,6 +200,36 @@ export function useCloseSizeInput({
     indexTokenDecimals,
     tokenDisplayDecimals,
     setShowSizeInTokens,
+  ]);
+
+  // Convert manualInput when denomination changes from another hook instance
+  useEffect(() => {
+    if (localDenominationRef.current === showSizeInTokens) return;
+    localDenominationRef.current = showSizeInTokens;
+
+    if (trackedPercentage !== null || !manualInput || safeSizeUsd <= 0n || safeSizeInTokens <= 0n) return;
+
+    if (showSizeInTokens) {
+      const parsedUsd = parseValue(manualInput, USD_DECIMALS);
+      if (parsedUsd !== undefined && parsedUsd > 0n) {
+        const tokens = bigMath.mulDiv(parsedUsd, safeSizeInTokens, safeSizeUsd);
+        setManualInput(formatAmount(tokens, indexTokenDecimals, tokenDisplayDecimals));
+      }
+    } else {
+      const parsedTokens = parseValue(manualInput, indexTokenDecimals);
+      if (parsedTokens !== undefined && parsedTokens > 0n) {
+        const usd = bigMath.mulDiv(parsedTokens, safeSizeUsd, safeSizeInTokens);
+        setManualInput(formatAmount(usd, USD_DECIMALS, USD_DISPLAY_DECIMALS));
+      }
+    }
+  }, [
+    showSizeInTokens,
+    trackedPercentage,
+    manualInput,
+    safeSizeUsd,
+    safeSizeInTokens,
+    indexTokenDecimals,
+    tokenDisplayDecimals,
   ]);
 
   const setMaxCloseSize = useCallback(() => {
