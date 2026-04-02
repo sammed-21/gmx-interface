@@ -91,9 +91,6 @@ export type SettingsContextType = {
   settingsWarningDotVisible: boolean;
   setSettingsWarningDotVisible: (val: boolean) => void;
 
-  feedbackModalVisible: boolean;
-  setFeedbackModalVisible: (val: boolean) => void;
-
   debugSwapMarketsConfig:
     | {
         disabledSwapMarkets?: string[];
@@ -257,8 +254,6 @@ export function SettingsContextProvider({ children }: { children: ReactNode }) {
     false
   );
 
-  const [feedbackModalVisible, setFeedbackModalVisible] = useState(false);
-
   useEffect(() => {
     if (shouldUseExecutionFeeBuffer && executionFeeBufferBps === undefined) {
       setExecutionFeeBufferBps(defaultExecutionFeeBufferBps ?? 0);
@@ -362,9 +357,6 @@ export function SettingsContextProvider({ children }: { children: ReactNode }) {
 
       showCloseSizeInTokens: showCloseSizeInTokens!,
       setShowCloseSizeInTokens,
-
-      feedbackModalVisible,
-      setFeedbackModalVisible,
     };
   }, [
     showDebugValues,
@@ -422,7 +414,6 @@ export function SettingsContextProvider({ children }: { children: ReactNode }) {
     setReceiveToGmxAccount,
     showCloseSizeInTokens,
     setShowCloseSizeInTokens,
-    feedbackModalVisible,
   ]);
 
   return <SettingsContext.Provider value={contextState}>{children}</SettingsContext.Provider>;

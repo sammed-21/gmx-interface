@@ -35,18 +35,10 @@ msgstr "未選擇獎勵"
 msgid "Pear Protocol"
 msgstr "Pear Protocol"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What would make your rating a 9 or 10?"
-msgstr "什麼能讓您的評分達到 9 或 10？"
-
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
 msgid "Price impact rebates claimed"
 msgstr "已領取價格影響返還"
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Not likely"
-msgstr "非常不可能"
 
 #: src/components/Errors/errorToasts.tsx
 msgid "Or update your wallet's RPC via <0>chainlist.org</0>"
@@ -183,6 +175,10 @@ msgstr "用於監控 GMX 兌換的 Telegram 機器人"
 #: src/pages/AccountDashboard/dailyAndCumulativePnLDebug.tsx
 msgid "Debug values unavailable"
 msgstr "除錯數值不可用"
+
+#: src/domain/tokens/approveTokens.tsx
+msgid "Insufficient {0} for gas on {networkName}<0/><1/><2>Swap</2> or <3>bridge</3> {1} to {networkName}"
+msgstr ""
 
 #: src/components/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "Existing limit order in {0} pool but lacks liquidity for this order"
@@ -458,11 +454,6 @@ msgstr "GMX Account 餘額"
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "Best swap path"
 msgstr "最佳兌換路徑"
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "@username"
-msgstr "@username"
 
 #: src/domain/synthetics/referrals/claimAffiliateRewardsTxn.ts
 msgid "Failed to claim affiliate rewards"
@@ -763,6 +754,11 @@ msgstr "外部兌換影響過高"
 msgid "Keep more of what you earn"
 msgstr "保留更多收益"
 
+#: src/components/Errors/gasErrors.tsx
+#: src/components/Errors/gasErrors.tsx
+msgid "Insufficient {nativeTokenSymbol} for gas on {0}. <0>Swap</0> or <1>bridge</1> {nativeTokenSymbol}"
+msgstr ""
+
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Accrued funding fees available for settlement"
 msgstr "可結算的累計資金費率費用"
@@ -824,10 +820,6 @@ msgstr "Lorem ipsum dolor"
 msgid "Buy GMX on centralized exchanges"
 msgstr "在中心化交易所購買 GMX"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Share for follow-up questions"
-msgstr "分享以便後續問題聯繫"
-
 #: src/components/SwapCard/SwapCard.tsx
 #: src/components/TradeBox/TradeBoxRows/AvailableLiquidityRow.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -855,10 +847,6 @@ msgstr "STIP.b 追溯獎勵"
 msgid "in liquidity"
 msgstr "流動性"
 
-#: src/components/TradeBox/hooks/useTradeButtonState.tsx
-msgid "{0} is required for collateral.<0/><1/>No swap path found for {1} to {2} within GMX.<2/><3/><4>Buy {3} on {4}</4>."
-msgstr ""
-
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Decentralized money market"
 msgstr "去中心化貨幣市場"
@@ -866,11 +854,6 @@ msgstr "去中心化貨幣市場"
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "By claiming, you agree to the <0>GLP Reimbursement</0> terms"
 msgstr "領取即表示您同意 <0>GLP 補償</0>條款"
-
-#: src/components/Errors/gasErrors.tsx
-#: src/components/Errors/gasErrors.tsx
-msgid "Insufficient {nativeTokenSymbol} for gas on {0}. <0>Buy {nativeTokenSymbol}</0>"
-msgstr "{0} 上的 {nativeTokenSymbol} 不足以支付 Gas 費用。<0>購買 {nativeTokenSymbol}</0>"
 
 #: src/components/GmAssetDropdown/GmAssetDropdown.tsx
 msgid "Add {marketName} to wallet"
@@ -887,11 +870,6 @@ msgstr "質押代幣不足"
 #: src/components/PositionShare/CreateReferralCode.tsx
 msgid "Creating code..."
 msgstr "建立代碼中..."
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Telegram contact (optional)"
-msgstr "Telegram 聯絡方式（選填）"
 
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
 msgid "Conversion creation failed"
@@ -1023,10 +1001,6 @@ msgstr "存入完成"
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 msgid "Claim {totalUsd}"
 msgstr "領取 {totalUsd}"
-
-#: src/domain/tokens/approveTokens.tsx
-msgid "Insufficient {0} for gas on {networkName}<0/><1/><2>Buy or transfer {1} to {networkName}</2>"
-msgstr "在 {networkName} 上 {0} 不足以支付 Gas 費用<0/><1/><2>購買或轉帳 {1} 至 {networkName}</2>"
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Yield Yak Swap"
@@ -1937,10 +1911,6 @@ msgstr "Gas 不足以執行"
 msgid "Custom"
 msgstr "自訂"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Enter your answer"
-msgstr "輸入您的回答"
-
 #: src/pages/RpcDebug/parts.tsx
 msgid "Markets info"
 msgstr "市場資訊"
@@ -2249,6 +2219,10 @@ msgstr "更新止損"
 msgid "How do I choose?"
 msgstr ""
 
+#: src/components/Errors/errorToasts.tsx
+msgid "Switching to external swap route. Try again"
+msgstr ""
+
 #: src/components/TenderlySettings/TenderlySettings.tsx
 #: src/pages/AccountDashboard/AccountDashboard.tsx
 msgid "Account"
@@ -2415,10 +2389,6 @@ msgstr ""
 msgid "You have a <0>pending transfer</0> to {pendingReceiver}"
 msgstr "您有一筆<0>待處理的轉帳</0>至 {pendingReceiver}"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we address your concerns?"
-msgstr "我們如何改善您的疑慮？"
-
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "此規模下無可用流動性來加倉做多。<0/>最大做多規模：{0}<1/><2/>減倉做空的成交價格。"
@@ -2565,10 +2535,6 @@ msgstr "變更可能需要幾分鐘才會顯示"
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 msgid "Excludes incentives"
 msgstr "不含激勵獎勵"
-
-#: src/components/Errors/gasErrors.tsx
-msgid "Insufficient {localizedList} for gas on {chainName}. <0>Buy {localizedList}</0>"
-msgstr "{chainName} 上的 {localizedList} Gas 餘額不足。<0>購買 {localizedList}</0>"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -2934,10 +2900,6 @@ msgstr "{symbol} 餘額不足：可用 {availableFormatted}，需要 {requiredFo
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "POSITION"
 msgstr "倉位"
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "We value your feedback"
-msgstr "我們重視您的意見"
 
 #: src/components/GmxAccountModal/InsufficientWntBanner.tsx
 msgid "<0>Deposit</0> or <1>buy</1> {wrappedNativeTokenSymbol}."
@@ -3725,10 +3687,6 @@ msgstr "質押"
 msgid "Update TWAP part"
 msgstr "更新 TWAP 部分"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Help us improve"
-msgstr "幫助我們改進"
-
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 #: src/components/Earn/Portfolio/ClaimRewardsButton.tsx
 msgid "Claim rewards"
@@ -4071,8 +4029,6 @@ msgid "No funds to withdraw"
 msgstr "沒有可提取的資金"
 
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/useShiftSubmitState.tsx
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submitting..."
 msgstr "提交中..."
 
@@ -4184,10 +4140,6 @@ msgstr "Blueberry Pulse"
 msgid "Approval cancelled"
 msgstr "授權已取消"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Your feedback helps us understand what we're doing well and where we can improve"
-msgstr "您的回饋幫助我們了解做得好的地方以及可以改進之處"
-
 #: src/pages/UiPage/UiPage.tsx
 msgid "Red 500"
 msgstr "Red 500"
@@ -4228,6 +4180,10 @@ msgstr "成交量"
 #: src/pages/DebugOracleKeeper/parts.tsx
 msgid "Trigger partial tickers"
 msgstr "觸發部分報價"
+
+#: src/components/TradeBox/hooks/useTradeButtonState.tsx
+msgid "{collateralSymbol} is required for collateral.<0/><1/>No swap path found for {0} to {collateralSymbol} within GMX.<2/><3/><4>Swap {collateralSymbol}</4> or <5>bridge {collateralSymbol}</5>."
+msgstr ""
 
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "<0>Buying {0}{1}<1>{poolName}</1></0> <2>with {tokensText}</2>"
@@ -6557,10 +6513,6 @@ msgstr "尚無返佣分配記錄"
 msgid "THREAD"
 msgstr "執行緒"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Optional: share for follow-up questions"
-msgstr "選填：提供以便後續聯繫"
-
 #: src/pages/TestPermits/TestPermits.tsx
 msgid "Permit signed for {0}"
 msgstr "已為 {0} 簽署許可"
@@ -6854,10 +6806,6 @@ msgstr "Solv Finance"
 msgid "Claim submitted"
 msgstr "領取已提交"
 
-#: src/components/RatingToast/RatingToast.tsx
-msgid "How likely are you to recommend our service to a friend or colleague?"
-msgstr "您有多大可能向朋友或同事推薦我們的服務？"
-
 #: src/pages/ParseTransaction/ParseTransaction.tsx
 msgid "Created"
 msgstr "已建立"
@@ -6949,6 +6897,10 @@ msgstr ""
 #: src/pages/RpcDebug/parts.tsx
 msgid "STATUS"
 msgstr "狀態"
+
+#: src/components/Errors/gasErrors.tsx
+msgid "Insufficient {localizedList} for gas on {chainName}. <0>Swap</0> or <1>bridge</1> {localizedList}"
+msgstr ""
 
 #: src/components/TwapRows/TwapRows.tsx
 msgid "<0>every</0> {seconds} seconds"
@@ -7555,10 +7507,6 @@ msgstr "倉位平倉時，止盈/止損訂單會自動取消。僅適用於啟�
 msgid "fees"
 msgstr "手續費"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What could we improve?"
-msgstr "我們可以改進什麼？"
-
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Referral code update failed"
 msgstr "推薦碼更新失敗"
@@ -7630,10 +7578,8 @@ msgstr "做多未平倉量最低抵押品因子"
 msgid "TP price below limit price"
 msgstr "止盈價格低於限價"
 
-#: src/components/NpsModal/NpsModal.tsx
 #: src/components/Referrals/JoinReferralCode.tsx
 #: src/components/Referrals/JoinReferralCode.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submit"
 msgstr "提交"
 
@@ -8032,10 +7978,6 @@ msgstr "所選期間內無交易"
 msgid "Max pool capacity reached"
 msgstr "已達池最大容量"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Error occurred. Try again"
-msgstr "發生錯誤，請重試"
-
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
@@ -8079,10 +8021,6 @@ msgstr "[{0}]"
 msgid "Two GLV variants mirror GLP's multi-asset exposure: one optimized for ETH markets (50% ETH / 50% USDC), the other for BTC markets (50% BTC / 50% USDC). This reflects the recovered funds composition and enables dynamic liquidity allocation across top GMX markets for enhanced yield."
 msgstr "兩種 GLV 變體反映了 GLP 的多資產配置：一種針對 ETH 市場最佳化（50% ETH / 50% USDC），另一種針對 BTC 市場（50% BTC / 50% USDC）。這反映了回收資金的組成，並實現跨頂級 GMX 市場的動態流動性配置以提升收益。"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Enter your feedback"
-msgstr "輸入您的意見回饋"
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "Net rate / 1h"
@@ -8112,10 +8050,6 @@ msgstr "已歸屬 GMX 未提取"
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Short positions"
 msgstr "做空倉位"
-
-#: src/components/Errors/errorToasts.tsx
-msgid "Report issue"
-msgstr "回報問題"
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
 msgid "Claim {0}"
@@ -8754,10 +8688,6 @@ msgstr "Telegram 帳戶"
 msgid "Total investment value"
 msgstr "總投資價值"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What did you like most?"
-msgstr "您最喜歡什麼？"
-
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Performance and chart data are based on UTC times"
 msgstr "績效和圖表數據均以 UTC 時間為基準"
@@ -8847,10 +8777,6 @@ msgstr "最低保證金：{0}"
 msgid "Stop Market"
 msgstr "Stop Market"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we keep meeting your expectations?"
-msgstr "我們如何能持續達到您的期望？"
-
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "Execution prices for increasing longs<0/>and decreasing shorts"
 msgstr "做多加倉<0/>及做空減倉的成交價格"
@@ -8888,6 +8814,11 @@ msgstr "做多流動性"
 #: src/components/TradeHistory/filters/ActionFilter.tsx
 msgid "Market orders"
 msgstr "市價單"
+
+#: src/components/Errors/errorToasts.tsx
+#: src/components/Errors/errorToasts.tsx
+msgid "Insufficient {0} for gas on {1}<0/><1/><2>Swap</2> or <3>bridge</3> {2} to {3}"
+msgstr ""
 
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "Deposits are not supported on Avalanche."
@@ -9249,10 +9180,6 @@ msgstr "（{0}，佔倉位規模）"
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"
 msgstr "已質押"
-
-#: src/components/Footer/Footer.tsx
-msgid "Leave feedback"
-msgstr "留下回饋"
 
 #: landing/src/pages/Home/HeroSection/HeroSection.tsx
 #: src/pages/Referrals/Referrals.tsx
@@ -9877,14 +9804,6 @@ msgstr "直接購買 GMX"
 msgid "Invalid liquidation price"
 msgstr "無效的清算價格"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Error, try again"
-msgstr "錯誤，請重試"
-
-#: src/components/OrderEditor/OrderEditor.tsx
-#~ msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
-#~ msgstr ""
-
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
 msgstr "可用於交易"
@@ -10259,10 +10178,6 @@ msgstr "申請提取"
 msgid "Last 30d"
 msgstr "最近 30 天"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What issues did you encounter?"
-msgstr "您遇到了哪些問題？"
-
 #: src/pages/Ecosystem/Ecosystem.tsx
 msgid "Dashboards"
 msgstr "儀表板"
@@ -10454,10 +10369,6 @@ msgstr "今年"
 msgid "Withdraw {glvOrGm}: {0}"
 msgstr "提取 {glvOrGm}: {0}"
 
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Very likely"
-msgstr "非常有可能"
-
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Save tier"
 msgstr "儲存等級"
@@ -10641,11 +10552,6 @@ msgstr "無目標代幣地址"
 #: src/domain/synthetics/positions/utils.ts
 msgid "Limit"
 msgstr "限價"
-
-#: src/components/Errors/errorToasts.tsx
-#: src/components/Errors/errorToasts.tsx
-msgid "Insufficient {0} for gas on {1}<0/><1/><2>Buy or transfer {2} to {3}</2>"
-msgstr "{1} 上的 {0} 不足以支付 Gas 費用<0/><1/><2>購買或轉帳 {2} 至 {3}</2>"
 
 #: src/pages/PriceImpactRebatesStats/PriceImpactRebatesStats.tsx
 msgid "TIMEKEY"

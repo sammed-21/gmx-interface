@@ -95,10 +95,6 @@ export function PositionItem(p: Props) {
     setIsTPSLModalVisible(true);
   }, []);
 
-  const handleCloseButtonClick = useCallback(() => {
-    p.onClosePositionClick?.();
-  }, [p]);
-
   function renderNetValue() {
     return (
       <TooltipWithPortal
@@ -600,7 +596,7 @@ export function PositionItem(p: Props) {
             <div className="flex items-center justify-end gap-4">
               <Button
                 variant="ghost"
-                onClick={handleCloseButtonClick}
+                onClick={p.onClosePositionClick}
                 disabled={isCloseDisabled}
                 data-qa="position-close-button"
               >
@@ -792,7 +788,7 @@ export function PositionItem(p: Props) {
                 <Button
                   variant="secondary"
                   disabled={isCloseDisabled}
-                  onClick={handleCloseButtonClick}
+                  onClick={p.onClosePositionClick}
                   data-qa="position-close-button"
                 >
                   <Trans>Close</Trans>

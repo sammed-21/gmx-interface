@@ -35,18 +35,10 @@ msgstr "Keine Belohnungen ausgewählt"
 msgid "Pear Protocol"
 msgstr "Pear Protocol"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What would make your rating a 9 or 10?"
-msgstr "Was würde Ihre Bewertung zu einer 9 oder 10 machen?"
-
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
 msgid "Price impact rebates claimed"
 msgstr "Preiseinfluss-Rückerstattungen beansprucht"
-
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Not likely"
-msgstr "Nicht wahrscheinlich"
 
 #: src/components/Errors/errorToasts.tsx
 msgid "Or update your wallet's RPC via <0>chainlist.org</0>"
@@ -183,6 +175,10 @@ msgstr "Telegram-Bot zur Überwachung von GMX Swaps"
 #: src/pages/AccountDashboard/dailyAndCumulativePnLDebug.tsx
 msgid "Debug values unavailable"
 msgstr "Debugwerte nicht verfügbar"
+
+#: src/domain/tokens/approveTokens.tsx
+msgid "Insufficient {0} for gas on {networkName}<0/><1/><2>Swap</2> or <3>bridge</3> {1} to {networkName}"
+msgstr ""
 
 #: src/components/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "Existing limit order in {0} pool but lacks liquidity for this order"
@@ -458,11 +454,6 @@ msgstr "GMX Account Guthaben"
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "Best swap path"
 msgstr "Bester Swap-Pfad"
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "@username"
-msgstr "@Benutzername"
 
 #: src/domain/synthetics/referrals/claimAffiliateRewardsTxn.ts
 msgid "Failed to claim affiliate rewards"
@@ -763,6 +754,11 @@ msgstr "Hohe externe Swap-Auswirkung"
 msgid "Keep more of what you earn"
 msgstr "Behalten Sie mehr von dem, was Sie verdienen"
 
+#: src/components/Errors/gasErrors.tsx
+#: src/components/Errors/gasErrors.tsx
+msgid "Insufficient {nativeTokenSymbol} for gas on {0}. <0>Swap</0> or <1>bridge</1> {nativeTokenSymbol}"
+msgstr ""
+
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Accrued funding fees available for settlement"
 msgstr "Aufgelaufene Finanzierungsgebühren zur Abwicklung verfügbar"
@@ -824,10 +820,6 @@ msgstr "Lorem ipsum dolor"
 msgid "Buy GMX on centralized exchanges"
 msgstr "GMX auf zentralen Börsen kaufen"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Share for follow-up questions"
-msgstr "Für Rückfragen teilen"
-
 #: src/components/SwapCard/SwapCard.tsx
 #: src/components/TradeBox/TradeBoxRows/AvailableLiquidityRow.tsx
 #: src/components/TVChart/ChartHeader.tsx
@@ -855,10 +847,6 @@ msgstr "STIP.b retroaktiver Bonus"
 msgid "in liquidity"
 msgstr "In Liquidität"
 
-#: src/components/TradeBox/hooks/useTradeButtonState.tsx
-msgid "{0} is required for collateral.<0/><1/>No swap path found for {1} to {2} within GMX.<2/><3/><4>Buy {3} on {4}</4>."
-msgstr ""
-
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Decentralized money market"
 msgstr "Dezentraler Geldmarkt"
@@ -866,11 +854,6 @@ msgstr "Dezentraler Geldmarkt"
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "By claiming, you agree to the <0>GLP Reimbursement</0> terms"
 msgstr "Durch die Inanspruchnahme stimmen Sie den <0>GLP-Erstattungs</0>bedingungen zu"
-
-#: src/components/Errors/gasErrors.tsx
-#: src/components/Errors/gasErrors.tsx
-msgid "Insufficient {nativeTokenSymbol} for gas on {0}. <0>Buy {nativeTokenSymbol}</0>"
-msgstr "Unzureichend {nativeTokenSymbol} für Gas auf {0}. <0>{nativeTokenSymbol} kaufen</0>"
 
 #: src/components/GmAssetDropdown/GmAssetDropdown.tsx
 msgid "Add {marketName} to wallet"
@@ -887,11 +870,6 @@ msgstr "Unzureichend gestakete Token"
 #: src/components/PositionShare/CreateReferralCode.tsx
 msgid "Creating code..."
 msgstr "Code wird erstellt..."
-
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Telegram contact (optional)"
-msgstr "Telegram-Kontakt (optional)"
 
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
 msgid "Conversion creation failed"
@@ -1023,10 +1001,6 @@ msgstr "Einzahlung abgeschlossen"
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 msgid "Claim {totalUsd}"
 msgstr "Beanspruche {totalUsd}"
-
-#: src/domain/tokens/approveTokens.tsx
-msgid "Insufficient {0} for gas on {networkName}<0/><1/><2>Buy or transfer {1} to {networkName}</2>"
-msgstr "Unzureichend {0} für Gas auf {networkName}<0/><1/><2>{1} kaufen oder auf {networkName} übertragen</2>"
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Yield Yak Swap"
@@ -1937,10 +1911,6 @@ msgstr "Unzureichendes Gas für die Ausführung"
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Enter your answer"
-msgstr "Geben Sie Ihre Antwort ein"
-
 #: src/pages/RpcDebug/parts.tsx
 msgid "Markets info"
 msgstr "Marktinformationen"
@@ -2249,6 +2219,10 @@ msgstr "Stop-Loss aktualisieren"
 msgid "How do I choose?"
 msgstr ""
 
+#: src/components/Errors/errorToasts.tsx
+msgid "Switching to external swap route. Try again"
+msgstr ""
+
 #: src/components/TenderlySettings/TenderlySettings.tsx
 #: src/pages/AccountDashboard/AccountDashboard.tsx
 msgid "Account"
@@ -2415,10 +2389,6 @@ msgstr ""
 msgid "You have a <0>pending transfer</0> to {pendingReceiver}"
 msgstr "Sie haben eine <0>ausstehende Übertragung</0> an {pendingReceiver}"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we address your concerns?"
-msgstr "Wie können wir Ihre Anliegen berücksichtigen?"
-
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "Keine Liquidität verfügbar, um Longs bei<0/>dieser Größe zu erhöhen. Maximale Long-Größe: {0}<1/><2/>Ausführungspreise für das Verringern von Shorts."
@@ -2565,10 +2535,6 @@ msgstr "Änderungen können einige Minuten dauern, bis sie angezeigt werden"
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 msgid "Excludes incentives"
 msgstr "Ohne Anreize"
-
-#: src/components/Errors/gasErrors.tsx
-msgid "Insufficient {localizedList} for gas on {chainName}. <0>Buy {localizedList}</0>"
-msgstr "Unzureichend {localizedList} für Gas auf {chainName}. <0>{localizedList} kaufen</0>"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -2934,10 +2900,6 @@ msgstr "Unzureichendes {symbol}-Guthaben: {availableFormatted} verfügbar, {requ
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "POSITION"
 msgstr "POSITION"
-
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "We value your feedback"
-msgstr "Wir schätzen Ihr Feedback"
 
 #: src/components/GmxAccountModal/InsufficientWntBanner.tsx
 msgid "<0>Deposit</0> or <1>buy</1> {wrappedNativeTokenSymbol}."
@@ -3725,10 +3687,6 @@ msgstr "Staken"
 msgid "Update TWAP part"
 msgstr "TWAP-Teil aktualisieren"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Help us improve"
-msgstr "Hilf uns zu verbessern"
-
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/ClaimModal.tsx
 #: src/components/Earn/Portfolio/ClaimRewardsButton.tsx
 msgid "Claim rewards"
@@ -4071,8 +4029,6 @@ msgid "No funds to withdraw"
 msgstr "Keine Mittel zum Abheben"
 
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/useShiftSubmitState.tsx
-#: src/components/NpsModal/NpsModal.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submitting..."
 msgstr "Einreichen..."
 
@@ -4184,10 +4140,6 @@ msgstr "Blueberry Pulse"
 msgid "Approval cancelled"
 msgstr "Genehmigung abgebrochen"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Your feedback helps us understand what we're doing well and where we can improve"
-msgstr "Ihr Feedback hilft uns zu verstehen, was wir gut machen und wo wir uns verbessern können"
-
 #: src/pages/UiPage/UiPage.tsx
 msgid "Red 500"
 msgstr "Red 500"
@@ -4228,6 +4180,10 @@ msgstr "VOL."
 #: src/pages/DebugOracleKeeper/parts.tsx
 msgid "Trigger partial tickers"
 msgstr "Partielle Ticker auslösen"
+
+#: src/components/TradeBox/hooks/useTradeButtonState.tsx
+msgid "{collateralSymbol} is required for collateral.<0/><1/>No swap path found for {0} to {collateralSymbol} within GMX.<2/><3/><4>Swap {collateralSymbol}</4> or <5>bridge {collateralSymbol}</5>."
+msgstr ""
 
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "<0>Buying {0}{1}<1>{poolName}</1></0> <2>with {tokensText}</2>"
@@ -6557,10 +6513,6 @@ msgstr "Noch kein Rückvergütungsverteilungsverlauf vorhanden"
 msgid "THREAD"
 msgstr "THREAD"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Optional: share for follow-up questions"
-msgstr "Optional: Teilen Sie diese für Rückfragen"
-
 #: src/pages/TestPermits/TestPermits.tsx
 msgid "Permit signed for {0}"
 msgstr "Genehmigung für {0} unterzeichnet"
@@ -6854,10 +6806,6 @@ msgstr "Solv Finance"
 msgid "Claim submitted"
 msgstr "Beanspruchung eingereicht"
 
-#: src/components/RatingToast/RatingToast.tsx
-msgid "How likely are you to recommend our service to a friend or colleague?"
-msgstr "Wie wahrscheinlich ist es, dass du unseren Service einem Freund oder Kollegen empfiehlst?"
-
 #: src/pages/ParseTransaction/ParseTransaction.tsx
 msgid "Created"
 msgstr "Erstellt"
@@ -6949,6 +6897,10 @@ msgstr ""
 #: src/pages/RpcDebug/parts.tsx
 msgid "STATUS"
 msgstr "STATUS"
+
+#: src/components/Errors/gasErrors.tsx
+msgid "Insufficient {localizedList} for gas on {chainName}. <0>Swap</0> or <1>bridge</1> {localizedList}"
+msgstr ""
 
 #: src/components/TwapRows/TwapRows.tsx
 msgid "<0>every</0> {seconds} seconds"
@@ -7555,10 +7507,6 @@ msgstr "TP/SL-Orders werden automatisch storniert, wenn die Position geschlossen
 msgid "fees"
 msgstr "Gebühren"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What could we improve?"
-msgstr "Was könnten wir verbessern?"
-
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Referral code update failed"
 msgstr "Aktualisierung des Empfehlungscodes fehlgeschlagen"
@@ -7630,10 +7578,8 @@ msgstr "Min. Sicherheitsfaktor OI Long"
 msgid "TP price below limit price"
 msgstr "TP-Preis unter dem Limit-Preis"
 
-#: src/components/NpsModal/NpsModal.tsx
 #: src/components/Referrals/JoinReferralCode.tsx
 #: src/components/Referrals/JoinReferralCode.tsx
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
 msgid "Submit"
 msgstr "Übermitteln"
 
@@ -8032,10 +7978,6 @@ msgstr "Keine Trades im ausgewählten Zeitraum"
 msgid "Max pool capacity reached"
 msgstr "Maximale Poolkapazität erreicht"
 
-#: src/components/NpsModal/NpsModal.tsx
-msgid "Error occurred. Try again"
-msgstr "Fehler aufgetreten. Erneut versuchen"
-
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
 #: src/components/GmSwap/GmFees/GmFees.tsx
@@ -8079,10 +8021,6 @@ msgstr "[{0}]"
 msgid "Two GLV variants mirror GLP's multi-asset exposure: one optimized for ETH markets (50% ETH / 50% USDC), the other for BTC markets (50% BTC / 50% USDC). This reflects the recovered funds composition and enables dynamic liquidity allocation across top GMX markets for enhanced yield."
 msgstr "Zwei GLV-Varianten spiegeln die Multi-Asset-Exposition von GLP wider: eine optimiert für ETH-Märkte (50% ETH / 50% USDC), die andere für BTC-Märkte (50% BTC / 50% USDC). Dies entspricht der Zusammensetzung der wiederhergestellten Mittel und ermöglicht eine dynamische Liquiditätsallokation über die führenden GMX-Märkte für eine verbesserte Rendite."
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Enter your feedback"
-msgstr "Geben Sie Ihr Feedback ein"
-
 #: src/components/TVChart/ChartHeader.tsx
 #: src/components/TVChart/ChartHeader.tsx
 msgid "Net rate / 1h"
@@ -8112,10 +8050,6 @@ msgstr "Vestetes GMX nicht abgezogen"
 #: src/pages/Dashboard/OverviewCard.tsx
 msgid "Short positions"
 msgstr "Short-Positionen"
-
-#: src/components/Errors/errorToasts.tsx
-msgid "Report issue"
-msgstr "Problem melden"
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
 msgid "Claim {0}"
@@ -8754,10 +8688,6 @@ msgstr "Telegram-Account"
 msgid "Total investment value"
 msgstr "Gesamtinvestitionswert"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What did you like most?"
-msgstr "Was hat Ihnen am besten gefallen?"
-
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Performance and chart data are based on UTC times"
 msgstr "Leistungs- und Diagrammdaten basieren auf UTC-Zeiten"
@@ -8847,10 +8777,6 @@ msgstr "Min. Margin: {0}"
 msgid "Stop Market"
 msgstr "Stop-Markt"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "How can we keep meeting your expectations?"
-msgstr "Wie können wir Ihre Erwartungen weiterhin erfüllen?"
-
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "Execution prices for increasing longs<0/>and decreasing shorts"
 msgstr "Ausführungspreise für steigende Longs<0/>und sinkende Shorts"
@@ -8888,6 +8814,11 @@ msgstr "Long-Liq."
 #: src/components/TradeHistory/filters/ActionFilter.tsx
 msgid "Market orders"
 msgstr "Market Orders"
+
+#: src/components/Errors/errorToasts.tsx
+#: src/components/Errors/errorToasts.tsx
+msgid "Insufficient {0} for gas on {1}<0/><1/><2>Swap</2> or <3>bridge</3> {2} to {3}"
+msgstr ""
 
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "Deposits are not supported on Avalanche."
@@ -9249,10 +9180,6 @@ msgstr "({0} der Positionsgröße)"
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"
 msgstr "Gestaket"
-
-#: src/components/Footer/Footer.tsx
-msgid "Leave feedback"
-msgstr "Feedback hinterlassen"
 
 #: landing/src/pages/Home/HeroSection/HeroSection.tsx
 #: src/pages/Referrals/Referrals.tsx
@@ -9877,14 +9804,6 @@ msgstr "GMX direkt kaufen"
 msgid "Invalid liquidation price"
 msgstr "Ungültiger Liquidationspreis"
 
-#: src/components/UserFeedbackModal/UserFeedbackModal.tsx
-msgid "Error, try again"
-msgstr "Fehler, erneut versuchen"
-
-#: src/components/OrderEditor/OrderEditor.tsx
-#~ msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
-#~ msgstr ""
-
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
 msgstr "Verfügbar zum Handeln"
@@ -10259,10 +10178,6 @@ msgstr "Abhebung anfordern"
 msgid "Last 30d"
 msgstr "Letzte 30T"
 
-#: src/domain/synthetics/userFeedback/utils.ts
-msgid "What issues did you encounter?"
-msgstr "Welche Probleme sind aufgetreten?"
-
 #: src/pages/Ecosystem/Ecosystem.tsx
 msgid "Dashboards"
 msgstr "Dashboards"
@@ -10454,10 +10369,6 @@ msgstr "Dieses Jahr"
 msgid "Withdraw {glvOrGm}: {0}"
 msgstr "{glvOrGm} abheben: {0}"
 
-#: src/components/RatingToast/RatingToast.tsx
-msgid "Very likely"
-msgstr "Sehr wahrscheinlich"
-
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Save tier"
 msgstr "Stufe speichern"
@@ -10641,11 +10552,6 @@ msgstr "Keine Zieltoken-Adresse"
 #: src/domain/synthetics/positions/utils.ts
 msgid "Limit"
 msgstr "Limit"
-
-#: src/components/Errors/errorToasts.tsx
-#: src/components/Errors/errorToasts.tsx
-msgid "Insufficient {0} for gas on {1}<0/><1/><2>Buy or transfer {2} to {3}</2>"
-msgstr "Unzureichend {0} für Gas auf {1}<0/><1/><2>{2} kaufen oder an {3} übertragen</2>"
 
 #: src/pages/PriceImpactRebatesStats/PriceImpactRebatesStats.tsx
 msgid "TIMEKEY"

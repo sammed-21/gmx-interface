@@ -72,7 +72,6 @@ import Badge, { BadgeIndicator } from "components/Badge/Badge";
 import Checkbox from "components/Checkbox/Checkbox";
 import { Claims } from "components/Claims/Claims";
 import ErrorBoundary from "components/Errors/ErrorBoundary";
-import { NpsModal } from "components/NpsModal/NpsModal";
 import { OneClickPromoBanner } from "components/OneClickPromoBanner/OneClickPromoBanner";
 import { OrderList } from "components/OrderList/OrderList";
 import { OrdersModal, type TpSlTabType } from "components/OrdersModal/OrdersModal";
@@ -632,7 +631,6 @@ export function SyntheticsPage(p: Props) {
           shareSource="auto-prompt"
         />
       ) : null}
-      <NpsModal />
     </AppPageLayout>
   );
 }
