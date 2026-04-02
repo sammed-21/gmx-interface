@@ -194,14 +194,41 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
   });
 
-  test.describe("Margin percentage", () => {
-    test("margin percentage reflects fromTokenInputValue / maxAvailableAmount", async ({ mount, page }) => {
+  test.describe("Margin percentage ↔ slider", () => {
+    test("slider reflects initial margin as percentage of max", async ({ mount, page }) => {
       // 5000 USDC of 10000 USDC max = 50%
       await mount(<IntegrationStory initialFromValue="5000" isLeverageSliderEnabled={true} />);
 
-      // The slider handle position should reflect ~50%
-      await expect(page.locator(".rc-slider")).toBeVisible();
-      await expect(page.locator(".rc-slider-handle")).toBeVisible();
+      const handle = page.locator(".rc-slider-handle");
+      await expect(handle).toHaveAttribute("aria-valuenow", "50");
+    });
+
+    test("typing margin updates slider position", async ({ mount, page }) => {
+      await mount(<IntegrationStory initialFromValue="" isLeverageSliderEnabled={true} />);
+
+      const handle = page.locator(".rc-slider-handle");
+      await expect(handle).toHaveAttribute("aria-valuenow", "0");
+
+      // Type 2500 of 10000 max = 25%
+      await page.getByPlaceholder("0.00").fill("2500");
+      await expect(handle).toHaveAttribute("aria-valuenow", "25");
+    });
+
+    test("typing 100% of max moves slider to 100", async ({ mount, page }) => {
+      await mount(<IntegrationStory initialFromValue="" isLeverageSliderEnabled={true} />);
+
+      await page.getByPlaceholder("0.00").fill("10000");
+      await expect(page.locator(".rc-slider-handle")).toHaveAttribute("aria-valuenow", "100");
+    });
+
+    test("clearing margin resets slider to 0", async ({ mount, page }) => {
+      await mount(<IntegrationStory initialFromValue="5000" isLeverageSliderEnabled={true} />);
+
+      const handle = page.locator(".rc-slider-handle");
+      await expect(handle).toHaveAttribute("aria-valuenow", "50");
+
+      await page.getByPlaceholder("0.00").fill("");
+      await expect(handle).toHaveAttribute("aria-valuenow", "0");
     });
   });
 

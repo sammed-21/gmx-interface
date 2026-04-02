@@ -194,45 +194,4 @@ test.describe("TradeboxMarginFields", () => {
       await expect(page.locator(".rc-slider-handle")).toBeVisible();
     });
   });
-
-  test.describe("Integration", () => {
-    test("margin and size fields coexist without interference", async ({ mount, page }) => {
-      await mount(<TradeboxMarginFieldsStory initialFromValue="500" initialToValue="0.25" />);
-
-      const marginInput = page.getByPlaceholder("0.00");
-      const sizeInput = page.locator('[data-qa="position-size-input"]');
-
-      await expect(marginInput).toHaveValue("500");
-      await expect(sizeInput).toBeVisible();
-
-      await marginInput.fill("750");
-      await expect(marginInput).toHaveValue("750");
-      await expect(sizeInput).toBeVisible();
-    });
-
-    test("all three fields render for limit orders", async ({ mount, page }) => {
-      await mount(
-        <TradeboxMarginFieldsStory
-          tradeMode={TradeMode.Limit}
-          initialFromValue="500"
-          initialToValue="0.25"
-          initialTriggerPrice="1950"
-        />
-      );
-
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
-      await expect(page.getByText("Limit price")).toBeVisible();
-
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("500");
-      await expect(page.locator('[data-qa="trigger-price-input"]')).toHaveValue("1950");
-    });
-
-    test("empty maxAvailableAmount does not crash", async ({ mount, page }) => {
-      await mount(<TradeboxMarginFieldsStory maxAvailableAmount={0n} />);
-
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
-    });
-  });
 });
