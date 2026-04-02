@@ -405,6 +405,10 @@ msgstr "필수 매개변수가 누락되었습니다"
 msgid "What is GLV?"
 msgstr "GLV란 무엇인가요?"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap: {fromSymbol} to {toSymbol}"
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Percentage"
 msgstr "비율"
@@ -9878,8 +9882,8 @@ msgid "Error, try again"
 msgstr "오류, 다시 시도하십시오"
 
 #: src/components/OrderEditor/OrderEditor.tsx
-msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
-msgstr ""
+#~ msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
+#~ msgstr ""
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"

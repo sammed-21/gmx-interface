@@ -405,6 +405,10 @@ msgstr "Paramètres requis manquants"
 msgid "What is GLV?"
 msgstr "Qu'est-ce que GLV ?"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap: {fromSymbol} to {toSymbol}"
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Percentage"
 msgstr "Pourcentage"
@@ -9878,8 +9882,8 @@ msgid "Error, try again"
 msgstr "Erreur, réessayez"
 
 #: src/components/OrderEditor/OrderEditor.tsx
-msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
-msgstr ""
+#~ msgid "Edit Limit Swap: {initialAmount} for {targetAmount}"
+#~ msgstr ""
 
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Available to trade"
