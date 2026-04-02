@@ -2436,6 +2436,10 @@ msgstr "{pendingReceiver}에게 <0>대기 중인 전송</0>이 있습니다"
 msgid "How can we address your concerns?"
 msgstr "어떤 부분을 개선하면 좋겠습니까?"
 
+#: src/lib/copyElementAsImage.ts
+msgid "Image downloaded"
+msgstr ""
+
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "이 크기에서 롱 증가를 위한 유동성이 없습니다.<0/>최대 롱 크기: {0}<1/><2/>숏 감소를 위한 체결 가격입니다."
@@ -4458,8 +4462,8 @@ msgid "Request Market Swap"
 msgstr "마켓 스왑 요청"
 
 #: src/lib/copyElementAsImage.ts
-msgid "Failed to copy image"
-msgstr ""
+#~ msgid "Failed to copy image"
+#~ msgstr ""
 
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
@@ -9312,6 +9316,10 @@ msgstr "{tokenSymbol}을 {nativeTokenSymbol}(으)로 변환"
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "({0} of position size)"
 msgstr "(포지션 크기의 {0})"
+
+#: src/lib/copyElementAsImage.ts
+msgid "Failed to export image"
+msgstr ""
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"

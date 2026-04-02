@@ -2,6 +2,8 @@ import { t } from "@lingui/macro";
 import type { toBlob } from "html-to-image";
 
 import { helperToast } from "lib/helperToast";
+import { emitMetricEvent } from "lib/metrics/emitMetricEvent";
+import type { ImageExportError } from "lib/metrics/types";
 
 type Options = NonNullable<Parameters<typeof toBlob>[1]>;
 
@@ -36,14 +38,18 @@ export async function copyElementAsImage(element: HTMLElement, extraOptions?: Op
   await navigator.clipboard.write([new ClipboardItem({ "image/png": renderElementToBlob(element, extraOptions) })]);
 }
 
-export async function shareElementAsImage(
-  element: HTMLElement,
-  fileName: string,
-  extraOptions?: Options
-): Promise<void> {
-  const blob = await renderElementToBlob(element, extraOptions);
-  const file = new File([blob], fileName, { type: "image/png" });
-  await navigator.share({ files: [file] });
+function downloadBlob(blob: Blob, fileName: string): void {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+    a.remove();
+  }, 1000);
 }
 
 export async function shareOrCopyElementAsImage({
@@ -59,14 +65,32 @@ export async function shareOrCopyElementAsImage({
 }): Promise<void> {
   try {
     if (isMobile) {
-      await shareElementAsImage(element, fileName, extraOptions);
+      const blob = await renderElementToBlob(element, extraOptions);
+      const file = new File([blob], fileName, { type: "image/png" });
+
+      // Android WebView (MetaMask, Trust Wallet, etc.) doesn't support Web Share API
+      const canShare = typeof navigator.canShare === "function" && navigator.canShare({ files: [file] });
+
+      if (canShare) {
+        await navigator.share({ files: [file] });
+      } else {
+        downloadBlob(blob, fileName);
+        helperToast.success(t`Image downloaded`);
+      }
     } else {
       await copyElementAsImage(element, extraOptions);
       helperToast.success(t`Image copied to clipboard`);
     }
-  } catch {
-    if (!isMobile) {
-      helperToast.error(t`Failed to copy image`);
+  } catch (error) {
+    // AbortError means user canceled the share dialog — not an error
+    if (error instanceof DOMException && error.name === "AbortError") {
+      return;
     }
+    helperToast.error(t`Failed to export image`);
+    emitMetricEvent<ImageExportError>({
+      event: "error.imageExport",
+      isError: true,
+      data: { errorMessage: error instanceof Error ? error.message : String(error) },
+    });
   }
 }

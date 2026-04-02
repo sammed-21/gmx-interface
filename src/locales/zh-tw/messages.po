@@ -2436,6 +2436,10 @@ msgstr "您有一筆<0>待處理的轉帳</0>至 {pendingReceiver}"
 msgid "How can we address your concerns?"
 msgstr "我們如何改善您的疑慮？"
 
+#: src/lib/copyElementAsImage.ts
+msgid "Image downloaded"
+msgstr ""
+
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "此規模下無可用流動性來加倉做多。<0/>最大做多規模：{0}<1/><2/>減倉做空的成交價格。"
@@ -4458,8 +4462,8 @@ msgid "Request Market Swap"
 msgstr "Request Market Swap"
 
 #: src/lib/copyElementAsImage.ts
-msgid "Failed to copy image"
-msgstr ""
+#~ msgid "Failed to copy image"
+#~ msgstr ""
 
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
@@ -9312,6 +9316,10 @@ msgstr "將 {tokenSymbol} 轉換為 {nativeTokenSymbol}"
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "({0} of position size)"
 msgstr "（{0}，佔倉位規模）"
+
+#: src/lib/copyElementAsImage.ts
+msgid "Failed to export image"
+msgstr ""
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"

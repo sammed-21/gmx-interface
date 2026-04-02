@@ -2436,6 +2436,10 @@ msgstr "You have a <0>pending transfer</0> to {pendingReceiver}"
 msgid "How can we address your concerns?"
 msgstr "How can we address your concerns?"
 
+#: src/lib/copyElementAsImage.ts
+msgid "Image downloaded"
+msgstr "Image downloaded"
+
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
@@ -4458,8 +4462,8 @@ msgid "Request Market Swap"
 msgstr "Request Market Swap"
 
 #: src/lib/copyElementAsImage.ts
-msgid "Failed to copy image"
-msgstr "Failed to copy image"
+#~ msgid "Failed to copy image"
+#~ msgstr "Failed to copy image"
 
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
@@ -9312,6 +9316,10 @@ msgstr "Convert {tokenSymbol} to {nativeTokenSymbol}"
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "({0} of position size)"
 msgstr "({0} of position size)"
+
+#: src/lib/copyElementAsImage.ts
+msgid "Failed to export image"
+msgstr "Failed to export image"
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"

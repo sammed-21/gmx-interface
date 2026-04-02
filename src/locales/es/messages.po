@@ -2436,6 +2436,10 @@ msgstr "Tiene una <0>transferencia pendiente</0> a {pendingReceiver}"
 msgid "How can we address your concerns?"
 msgstr "¿Cómo podemos atender sus inquietudes?"
 
+#: src/lib/copyElementAsImage.ts
+msgid "Image downloaded"
+msgstr ""
+
 #: src/components/DepthChart/DepthChartTooltip.tsx
 msgid "No liquidity available for increasing longs at<0/>this size. Max long size: {0}<1/><2/>Execution prices for decreasing shorts."
 msgstr "No hay liquidez disponible para incrementar largos a<0/>este tamaño. Tamaño máximo largo: {0}<1/><2/>Precios de ejecución para reducir cortos."
@@ -4458,8 +4462,8 @@ msgid "Request Market Swap"
 msgstr "Solicitar Intercambio de Mercado"
 
 #: src/lib/copyElementAsImage.ts
-msgid "Failed to copy image"
-msgstr ""
+#~ msgid "Failed to copy image"
+#~ msgstr ""
 
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
@@ -9312,6 +9316,10 @@ msgstr "Convertir {tokenSymbol} a {nativeTokenSymbol}"
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "({0} of position size)"
 msgstr "({0} del tamaño de la posición)"
+
+#: src/lib/copyElementAsImage.ts
+msgid "Failed to export image"
+msgstr ""
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked"
