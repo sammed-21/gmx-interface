@@ -11,9 +11,17 @@ import { useEditingOrderState } from "context/SyntheticsStateContext/hooks/order
 import { useCancelOrder } from "context/SyntheticsStateContext/hooks/orderHooks";
 import { selectIsSetAcceptablePriceImpactEnabled } from "context/SyntheticsStateContext/selectors/settingsSelectors";
 import { useSelector } from "context/SyntheticsStateContext/utils";
-import { isLimitDecreaseOrderType, OrderType, PositionOrderInfo } from "domain/synthetics/orders";
+import {
+  isIncreaseOrderType,
+  isLimitDecreaseOrderType,
+  isLimitIncreaseOrderType,
+  isStopLossOrderType,
+  OrderType,
+  PositionOrderInfo,
+} from "domain/synthetics/orders";
 import { PositionInfo, getIsPositionInfoLoaded } from "domain/synthetics/positions";
 import { getDecreasePositionAmounts } from "domain/synthetics/trade";
+import { DUST_USD } from "lib/legacy";
 import { formatDeltaUsd, formatUsd, formatBalanceAmount, formatPercentage } from "lib/numbers";
 import { getPositiveOrNegativeClass } from "lib/utils";
 import { bigMath } from "sdk/utils/bigmath";
@@ -29,7 +37,7 @@ type TabType = "all" | "takeProfit" | "stopLoss";
 
 type Props = {
   orders: PositionOrderInfo[];
-  position: PositionInfo;
+  position?: PositionInfo;
   marketDecimals: number | undefined;
   isMobile: boolean;
   activeTab?: TabType;
@@ -58,7 +66,7 @@ export function TPSLOrdersList({ orders, position, marketDecimals, isMobile, act
     if (activeTab === "stopLoss") {
       return <Trans>No SL orders</Trans>;
     }
-    return <Trans>No TP/SL orders</Trans>;
+    return <Trans>No resting orders</Trans>;
   }, [activeTab]);
 
   if (orders.length === 0) {
@@ -134,7 +142,7 @@ function useTPSLOrderViewModel({
   onEdit,
 }: {
   order: PositionOrderInfo;
-  position: PositionInfo;
+  position?: PositionInfo;
   marketDecimals: number | undefined;
   onEdit?: (orderKey: string) => void;
 }) {
@@ -144,10 +152,14 @@ function useTPSLOrderViewModel({
   const isSetAcceptablePriceImpactEnabled = useSelector(selectIsSetAcceptablePriceImpactEnabled);
   const [isCancelling, cancelOrder] = useCancelOrder(order);
 
-  const orderType = useMemo(
-    () => (isLimitDecreaseOrderType(order.orderType) ? t`Take-Profit` : t`Stop-Loss`),
-    [order.orderType]
-  );
+  const isIncrease = isIncreaseOrderType(order.orderType);
+
+  const orderType = useMemo(() => {
+    if (isLimitDecreaseOrderType(order.orderType)) return t`Take-Profit`;
+    if (isStopLossOrderType(order.orderType)) return t`Stop-Loss`;
+    if (isLimitIncreaseOrderType(order.orderType)) return t`Limit`;
+    return t`Stop Market`;
+  }, [order.orderType]);
 
   const triggerPriceDisplay = useMemo(
     () =>
@@ -159,7 +171,15 @@ function useTPSLOrderViewModel({
   );
 
   const sizeDisplay = useMemo(() => {
-    const isFullClose = order.sizeDeltaUsd === position.sizeInUsd;
+    if (isIncrease) {
+      return <span>+{formatUsd(order.sizeDeltaUsd)}</span>;
+    }
+
+    if (!position) {
+      return <span>-{formatUsd(order.sizeDeltaUsd)}</span>;
+    }
+
+    const isFullClose = order.sizeDeltaUsd >= position.sizeInUsd || position.sizeInUsd - order.sizeDeltaUsd < DUST_USD;
 
     if (isFullClose) {
       return <Trans>Full position close</Trans>;
@@ -174,9 +194,13 @@ function useTPSLOrderViewModel({
         <span className="ml-4 text-typography-secondary">(-{formatPercentage(sizePercentage)})</span>
       </span>
     );
-  }, [order.sizeDeltaUsd, position.sizeInUsd]);
+  }, [order.sizeDeltaUsd, position, isIncrease]);
 
   const estimatedPnl = useMemo(() => {
+    if (isIncrease || !position) {
+      return undefined;
+    }
+
     const entryPrice = position.entryPrice ?? 0n;
     const priceDiff = order.isLong ? order.triggerPrice - entryPrice : entryPrice - order.triggerPrice;
 
@@ -184,18 +208,24 @@ function useTPSLOrderViewModel({
     const pnlPercentage = position.collateralUsd > 0n ? bigMath.mulDiv(pnlUsd, 10000n, position.collateralUsd) : 0n;
 
     return { pnlUsd, pnlPercentage };
-  }, [order.isLong, order.sizeDeltaUsd, order.triggerPrice, position.collateralUsd, position.entryPrice]);
+  }, [order.isLong, order.sizeDeltaUsd, order.triggerPrice, position, isIncrease]);
 
   const shouldKeepLeverage = useMemo(() => {
-    if (order.sizeDeltaUsd >= position.sizeInUsd) {
+    if (!position || order.sizeDeltaUsd >= position.sizeInUsd) {
       return true;
     }
 
     return order.initialCollateralDeltaAmount > 0n;
-  }, [order.initialCollateralDeltaAmount, order.sizeDeltaUsd, position.sizeInUsd]);
+  }, [order.initialCollateralDeltaAmount, order.sizeDeltaUsd, position]);
 
   const decreaseAmounts = useMemo(() => {
-    if (minCollateralUsd === undefined || minPositionSizeUsd === undefined || !getIsPositionInfoLoaded(position)) {
+    if (
+      isIncrease ||
+      !position ||
+      minCollateralUsd === undefined ||
+      minPositionSizeUsd === undefined ||
+      !getIsPositionInfoLoaded(position)
+    ) {
       return undefined;
     }
 
@@ -216,6 +246,7 @@ function useTPSLOrderViewModel({
       isSetAcceptablePriceImpactEnabled,
     });
   }, [
+    isIncrease,
     minCollateralUsd,
     minPositionSizeUsd,
     order.marketInfo,
@@ -278,7 +309,7 @@ function TPSLOrderCard({
   onEdit,
 }: {
   order: PositionOrderInfo;
-  position: PositionInfo;
+  position?: PositionInfo;
   marketDecimals: number | undefined;
   onEdit?: (orderKey: string) => void;
 }) {
@@ -316,21 +347,25 @@ function TPSLOrderCard({
         <span className="text-body-medium numbers">{triggerPriceDisplay}</span>
       </div>
 
-      <div className="flex items-center justify-between">
-        <span className="text-14 font-medium text-typography-secondary">
-          <Trans>Est. PnL</Trans>
-        </span>
-        <span className={cx("text-body-medium numbers", getPositiveOrNegativeClass(estimatedPnl.pnlUsd))}>
-          {formatDeltaUsd(estimatedPnl.pnlUsd, estimatedPnl.pnlPercentage)}
-        </span>
-      </div>
+      {estimatedPnl && (
+        <div className="flex items-center justify-between">
+          <span className="text-14 font-medium text-typography-secondary">
+            <Trans>Est. PnL</Trans>
+          </span>
+          <span className={cx("text-body-medium numbers", getPositiveOrNegativeClass(estimatedPnl.pnlUsd))}>
+            {formatDeltaUsd(estimatedPnl.pnlUsd, estimatedPnl.pnlPercentage)}
+          </span>
+        </div>
+      )}
 
-      <div className="flex items-center justify-between">
-        <span className="text-14 font-medium text-typography-secondary">
-          <Trans>Receive</Trans>
-        </span>
-        <span className="text-body-medium numbers">{receiveDisplay}</span>
-      </div>
+      {estimatedPnl && (
+        <div className="flex items-center justify-between">
+          <span className="text-14 font-medium text-typography-secondary">
+            <Trans>Receive</Trans>
+          </span>
+          <span className="text-body-medium numbers">{receiveDisplay}</span>
+        </div>
+      )}
 
       <div className="mt-4 flex gap-8">
         <Button variant="secondary" className="flex-1" onClick={handleEdit}>
@@ -357,7 +392,7 @@ export function TPSLOrderRow({
   onEdit,
 }: {
   order: PositionOrderInfo;
-  position: PositionInfo;
+  position?: PositionInfo;
   marketDecimals: number | undefined;
   onEdit?: (orderKey: string) => void;
 }) {
@@ -384,9 +419,13 @@ export function TPSLOrderRow({
         <span className="numbers">{triggerPriceDisplay}</span>
       </TableTd>
       <TableTd>
-        <span className={cx("numbers", getPositiveOrNegativeClass(estimatedPnl.pnlUsd))}>
-          {formatDeltaUsd(estimatedPnl.pnlUsd, estimatedPnl.pnlPercentage)}
-        </span>
+        {estimatedPnl ? (
+          <span className={cx("numbers", getPositiveOrNegativeClass(estimatedPnl.pnlUsd))}>
+            {formatDeltaUsd(estimatedPnl.pnlUsd, estimatedPnl.pnlPercentage)}
+          </span>
+        ) : (
+          <span className="text-typography-secondary">—</span>
+        )}
       </TableTd>
       <TableTd>
         <span className="numbers">{receiveDisplay}</span>
