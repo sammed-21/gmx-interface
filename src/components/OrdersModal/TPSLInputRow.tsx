@@ -2,7 +2,7 @@ import { FloatingPortal, autoUpdate, flip, offset, shift, useFloating } from "@f
 import { Popover } from "@headlessui/react";
 import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
-import { ChangeEvent, RefObject, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { ChangeEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { USD_DECIMALS } from "config/factors";
 import {
@@ -350,6 +350,8 @@ export function TPSLInputRow({
 
   const handleMarkPriceClick = useCallback(() => {
     if (referencePrice === undefined || referencePrice === 0n) return;
+    setLastEditedField("price");
+    setGainLossInputValue("");
     onPriceChange(formatPrice(referencePrice));
   }, [referencePrice, formatPrice, onPriceChange]);
 
@@ -392,7 +394,9 @@ export function TPSLInputRow({
                 <div className="relative grow">
                   <NumberInput
                     value={priceValue}
-                    className={cx("h-18 w-full min-w-0 p-0 text-13 outline-none", { "text-red-500": priceError })}
+                    className={cx("h-18 w-full min-w-0 p-0 text-13 outline-none", {
+                      "text-red-500": priceError,
+                    })}
                     inputRef={priceInputRef}
                     onValueChange={handlePriceChange}
                     placeholder={priceLabel}
@@ -542,7 +546,7 @@ function DisplayModeSelector({
     [popoverReferenceRef, refs]
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (popoverReferenceRef?.current) {
       refs.setReference(popoverReferenceRef.current);
     }

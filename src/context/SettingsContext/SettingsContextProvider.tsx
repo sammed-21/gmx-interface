@@ -6,6 +6,7 @@ import { isDevelopment } from "config/env";
 import { DEFAULT_ACCEPTABLE_PRICE_IMPACT_BUFFER, DEFAULT_SLIPPAGE_AMOUNT } from "config/factors";
 import {
   BREAKDOWN_NET_PRICE_IMPACT_ENABLED_KEY,
+  CLOSE_SIZE_DENOMINATION_KEY,
   DEBUG_ERROR_BOUNDARY_KEY,
   DEBUG_SWAP_MARKETS_CONFIG_KEY,
   DISABLE_ORDER_VALIDATION_KEY,
@@ -106,6 +107,9 @@ export type SettingsContextType = {
 
   receiveToGmxAccount: boolean | null;
   setReceiveToGmxAccount: (val: boolean) => void;
+
+  showCloseSizeInTokens: boolean;
+  setShowCloseSizeInTokens: (val: boolean) => void;
 };
 
 const SettingsContext = createContext({});
@@ -245,6 +249,11 @@ export function SettingsContextProvider({ children }: { children: ReactNode }) {
     DEFAULT_TWAP_NUMBER_OF_PARTS
   );
 
+  const [showCloseSizeInTokens, setShowCloseSizeInTokens] = useLocalStorageSerializeKey(
+    CLOSE_SIZE_DENOMINATION_KEY,
+    false
+  );
+
   useEffect(() => {
     if (shouldUseExecutionFeeBuffer && executionFeeBufferBps === undefined) {
       setExecutionFeeBufferBps(defaultExecutionFeeBufferBps ?? 0);
@@ -345,6 +354,9 @@ export function SettingsContextProvider({ children }: { children: ReactNode }) {
 
       receiveToGmxAccount: receiveToGmxAccount ?? null,
       setReceiveToGmxAccount,
+
+      showCloseSizeInTokens: showCloseSizeInTokens!,
+      setShowCloseSizeInTokens,
     };
   }, [
     showDebugValues,
@@ -400,6 +412,8 @@ export function SettingsContextProvider({ children }: { children: ReactNode }) {
     setSavedTWAPNumberOfParts,
     receiveToGmxAccount,
     setReceiveToGmxAccount,
+    showCloseSizeInTokens,
+    setShowCloseSizeInTokens,
   ]);
 
   return <SettingsContext.Provider value={contextState}>{children}</SettingsContext.Provider>;

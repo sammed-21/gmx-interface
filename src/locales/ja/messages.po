@@ -131,6 +131,10 @@ msgstr "BonsaiDAO"
 msgid "Approval signed"
 msgstr "承認署名完了"
 
+#: src/components/TradeBox/TradeBoxHeaderTabs.tsx
+msgid "Leverage for the current order. Resulting position leverage: {formattedLeverage}"
+msgstr ""
+
 #: landing/src/pages/Home/RoadmapSection/Quareters.tsx
 msgid "<0>Multichain</0><1>MegaETH support</1><2>Just-in-time liquidity</2>"
 msgstr "<0>Multichain</0><1>MegaETH対応</1><2>ジャストインタイム流動性</2>"
@@ -180,9 +184,9 @@ msgid "Price impact from closing. Positive values benefit you. <0>Read more</0>.
 msgstr "クローズ時の価格への影響です。正の値はお客様に有利です。<0>詳細はこちら</0>。"
 
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
 #: src/components/UserIncentiveDistribution/UserIncentiveDistribution.tsx
 msgid "Type"
 msgstr "種類"
@@ -290,6 +294,10 @@ msgstr "ポジションのバーチャルインベントリ"
 msgid "Dynamically allocates liquidity to highest-utilized markets, maximizing capital efficiency and yield"
 msgstr "流動性を最も利用率の高いマーケットに動的に配分し、資本効率と利回りを最大化します"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Margin per part: {0} (min {1})"
+msgstr "パートあたりの証拠金：{0}（最小 {1}）"
+
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 #: src/components/TradeBox/ExpressTradingWarningCard.tsx
 msgid "Buy {gasPaymentTokensText}"
@@ -388,6 +396,10 @@ msgstr "必要なパラメータが不足しています"
 msgid "What is GLV?"
 msgstr "GLVとは？"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit Swap: {fromSymbol} to {toSymbol}"
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Percentage"
 msgstr "割合"
@@ -396,7 +408,7 @@ msgstr "割合"
 msgid "Swap UI fee"
 msgstr "スワップUI手数料"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No TP orders"
 msgstr "テイクプロフィット注文はありません"
 
@@ -442,7 +454,7 @@ msgstr "最適スワップパス"
 msgid "Failed to claim affiliate rewards"
 msgstr "アフィリエイト報酬の受け取りに失敗しました"
 
-#: src/components/TradeBox/hooks/useTradeButtonState.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
 msgid "decrease"
 msgstr ""
 
@@ -614,6 +626,10 @@ msgstr "展開"
 msgid "<0>Tried <1>@GMX_IO</1> for the first time. </0><2> Pretty impressive experience - no slippage, fast execution </2><3> Low size caps, but fun to do some degen gambling with </3>"
 msgstr "<0>初めて<1>@GMX_IO</1> を試しました。</0><2> かなり印象的な体験 - スリッページなし、高速実行 </2><3> サイズ上限が低いですが、デジェンギャンブルをするのに楽しい </3>"
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Stop Market: {suffix}"
+msgstr ""
+
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 msgid "V1 airdrop"
@@ -630,6 +646,10 @@ msgstr "注文約定価格"
 #: src/components/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "Insufficient liquidity in any {0}/USD pool"
 msgstr "{0}/USDプールに流動性不足"
+
+#: src/components/TradeBox/hooks/useTradeButtonState.tsx
+msgid "Open"
+msgstr ""
 
 #: src/pages/Dashboard/StatsCard.tsx
 msgid "Treasury"
@@ -821,10 +841,6 @@ msgstr "STIP.b遡及ボーナス"
 #: landing/src/pages/Home/LiqiuditySection/LiqiuditySection.tsx
 msgid "in liquidity"
 msgstr "流動性で"
-
-#: src/components/TradeBox/hooks/useTradeButtonState.tsx
-#~ msgid "{0} is required for collateral.<0/><1/>No swap path found for {1} to {2} within GMX.<2/><3/><4>Buy {3} on {4}</4>."
-#~ msgstr ""
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Decentralized money market"
@@ -1219,9 +1235,9 @@ msgid "Liquidity only available on {chainNames}. Switch networks to continue."
 msgstr "流動性は {chainNames} でのみ利用可能です。続行するにはネットワークを切り替えてください。"
 
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/domain/synthetics/positions/utils.ts
 msgid "Stop-Loss"
 msgstr "ストップロス"
@@ -1614,7 +1630,7 @@ msgstr "{typeString} ロング成行: 現在の価格でロングポジション
 msgid "Claims history"
 msgstr "クレーム履歴"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr "SL 注文はありません"
 
@@ -1648,7 +1664,7 @@ msgstr "注文がトリガーされた際にスワップ流動性が不足する
 msgid "Canceling {ordersText}..."
 msgstr "{ordersText} をキャンセル中..."
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "Size (% of position)"
 msgstr "サイズ（ポジションの %）"
 
@@ -1690,10 +1706,6 @@ msgstr "TWAPスワップ"
 #: src/pages/Dashboard/GmCard.tsx
 msgid "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
 msgstr "GM は GMX V2 マーケットの流動性提供者トークンです。V2 マーケットで発生する手数料の 63% が蓄積されます。"
-
-#: src/components/TPSLModal/TPSLModal.tsx
-msgid "TP/SL: {positionTitle}"
-msgstr "TP/SL: {positionTitle}"
 
 #: src/components/SettingsModal/RpcDebugSettings.tsx
 #: src/pages/RpcDebug/parts.tsx
@@ -1767,7 +1779,7 @@ msgstr "{glvOrGm}を出金"
 msgid "Receive voting power and participate in governance"
 msgstr "投票権を取得しガバナンスに参加"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "RECEIVE"
 msgstr "RECEIVE"
 
@@ -1901,7 +1913,7 @@ msgstr "マーケット情報"
 msgid "Slippage must be less than 5%"
 msgstr "スリッページは5%未満に設定してください"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "Gain"
 msgstr "利益"
 
@@ -2545,10 +2557,10 @@ msgstr "{chainName}でGMXを購入"
 
 #: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrderItem/OrderItem.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 #: src/components/TradeboxMarginFields/SizeField.tsx
 msgid "Size"
@@ -2675,7 +2687,7 @@ msgstr "バーチャルインベントリは、ETH/USDC、ETH/USDTなど類似�
 msgid "Current price"
 msgstr "現在の価格"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
 #: src/components/TradeboxMarginFields/PriceField.tsx
 msgid "Mark:"
 msgstr "マーク:"
@@ -2746,6 +2758,10 @@ msgstr "{sourceChainName}からの入金に失敗しました"
 #: src/components/AddressDropdown/AddressDropdownWithoutMultichain.tsx
 msgid "Copy address"
 msgstr "アドレスをコピー"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit SL: {suffix}"
+msgstr ""
 
 #: src/components/GmList/PerformanceLabel.tsx
 msgid "Projected yearly return vs. a Uniswap V2-style benchmark.<0/><1/>Note: Short timeframes may not reflect long-term performance.<2/><3/><4>View detailed stats on Dune</4>."
@@ -2873,7 +2889,7 @@ msgstr "ステークが送信されました"
 msgid "Insufficient {symbol} balance: {availableFormatted} available, {requiredFormatted} required"
 msgstr "{symbol}の残高が不足しています：利用可能 {availableFormatted}、必要額 {requiredFormatted}"
 
-#: src/components/PositionList/PositionList.tsx
+#: src/components/PositionList/SymbolSortDropdown.tsx
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "POSITION"
@@ -2987,6 +3003,10 @@ msgstr "TVL"
 #: src/components/GmxAccountModal/MainView.tsx
 msgid "Your GMX Account balance, usable for trading from any supported chain. <0>Read more</0>."
 msgstr "GMX Accountの残高です。対応するすべてのチェーンからお取引にご利用いただけます。<0>詳細はこちら</0>。"
+
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit Limit: {suffix}"
+msgstr ""
 
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
@@ -3329,10 +3349,10 @@ msgstr "指数（正）"
 msgid "Deposit in progress..."
 msgstr "入金処理中..."
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
 #: src/components/Referrals/AddAffiliateCode.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 msgid "Creating..."
 msgstr "作成中…"
 
@@ -3469,7 +3489,7 @@ msgstr "ワーカースレッド"
 msgid "Failed to update orders"
 msgstr "注文の更新に失敗しました"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/PriceImpactFeesRow.tsx
 msgid "Net price impact / fees"
 msgstr "正味の価格への影響 / 手数料"
@@ -3703,12 +3723,13 @@ msgstr "{0} で入金可能な対象トークンなし"
 msgid "Stop-Loss Decrease"
 msgstr "ストップロス Decrease"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "Est. PnL"
 msgstr "推定 PnL"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/domain/synthetics/orders/getPositionOrderError.tsx
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Max close amount exceeded"
 msgstr "最大クローズ額を超えています"
@@ -3774,10 +3795,6 @@ msgstr "多数の資産"
 msgid "Connect wallet or provide an account address in the URL"
 msgstr "ウォレットを接続するか、URLにアカウントアドレスを入力してください"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
-msgid "TP/SL: {positionTitle} decrease"
-msgstr "TP/SL: {positionTitle} Decrease"
-
 #: src/pages/DecodeError/DecodeError.tsx
 msgid "Error name:"
 msgstr "エラー名:"
@@ -3792,9 +3809,9 @@ msgstr "GM アイコン"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 msgid "Execution details"
 msgstr "約定詳細"
@@ -3850,9 +3867,9 @@ msgid "Virtual market ID"
 msgstr "仮想マーケットID"
 
 #: src/components/OrderEditor/OrderEditor.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
@@ -3917,8 +3934,6 @@ msgstr "自動キャンセルTP/SL注文は最大5件まで許可されていま
 
 #: src/components/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/components/OrderItem/OrderItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TableMarketFilter/MarketFilterBase.tsx
 #: src/components/TableMarketFilter/MarketFilterLongShort.tsx
 #: src/components/TradeBox/TradeBox.tsx
@@ -4123,7 +4138,7 @@ msgstr "<0>パーミット署名が無効です。再度お試しください</0
 msgid "Positive factor"
 msgstr "プラスファクター"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "Full position close"
 msgstr "ポジション全決済"
 
@@ -4232,8 +4247,8 @@ msgstr "<0><1>@GMX_IO</1> が Token Terminal とデータパートナーシッ�
 
 #: src/components/Earn/AdditionalOpportunities/OpportunityFilters.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/TokenSelector/MultichainMarketTokenSelector.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
 msgid "All"
 msgstr "すべて"
 
@@ -4256,8 +4271,6 @@ msgstr "<0>{wrappedNativeTokenSymbol}を購入</0>。"
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeBox/tradeboxConstants.tsx
 #: src/domain/synthetics/positions/utils.ts
 msgid "TWAP"
@@ -4367,7 +4380,7 @@ msgstr "マーケットスワップリクエスト"
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
 msgstr "純粋な{indexSymbol}ショートです。エクスポージャーはポジションからのみ発生します。"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "Loss"
 msgstr "損失"
 
@@ -4413,7 +4426,7 @@ msgstr "ネットワーク"
 msgid "<0>every</0> {hours} hours{0}"
 msgstr "<0>毎</0> {hours}時間{0}"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "{secondLabel}"
 msgstr "{secondLabel}"
 
@@ -4429,27 +4442,23 @@ msgstr "高いスワップ利益手数料"
 msgid "GM pools"
 msgstr "GM プール"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 msgid "PnL"
 msgstr "損益"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
-msgid "No TP/SL orders"
-msgstr "テイクプロフィット/ストップロス注文なし"
-
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positionSizeInUsdText}"
 msgstr "ポジションサイズが小さすぎます。最小: {minPositionSizeUsdText}、現在: {positionSizeInUsdText}"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/NextStoredImpactRows.tsx
 msgid "Stored price impact"
 msgstr "蓄積された価格への影響"
@@ -4528,8 +4537,6 @@ msgstr "ストップマーケットを更新"
 
 #: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/OrderEditor/OrderEditor.tsx
-#: src/components/PositionSeller/PositionSeller.tsx
-#: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/pages/PriceImpactRebatesStats/PriceImpactRebatesStats.tsx
 msgid "USD"
@@ -4835,10 +4842,6 @@ msgstr "獲得"
 msgid "Position would be immediately liquidated upon execution. Try reducing the size."
 msgstr "ポジションは約定時に即座に清算されます。サイズを縮小してみてください。"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
-msgid "Create TP/SL"
-msgstr "テイクプロフィット/ストップロスを作成"
-
 #: src/components/SettingsModal/RpcDebugSettings.tsx
 msgid "Purpose: {0} | public: {1}"
 msgstr "用途: {0} | public: {1}"
@@ -4860,8 +4863,16 @@ msgstr "リファラルコードが追加されました"
 msgid "Buy GMX bonds on Bond Protocol at a discount with a short vesting period"
 msgstr "Bond ProtocolでGMXボンドを短いベスティング期間で割引購入します"
 
+#: src/components/OrdersModal/OrdersModal.tsx
+msgid "{positionTitle} orders"
+msgstr ""
+
 #: src/components/Earn/Portfolio/RewardsBar.tsx
 msgid "Buyback accrued"
+msgstr ""
+
+#: src/components/OrdersModal/TPSLOrdersList.tsx
+msgid "No resting orders"
 msgstr ""
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
@@ -4891,7 +4902,7 @@ msgstr "<0>注文失敗: ウォレットアドレスの不一致</0><1/><2>更�
 msgid "Click to select, then use the trade box to increase size."
 msgstr "クリックして選択し、トレードボックスでサイズを増やしてください。"
 
-#: src/components/TPSLModal/TPSLModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
 msgid "Cancel all"
 msgstr "すべてキャンセル"
 
@@ -4975,6 +4986,10 @@ msgstr "残高に建玉をトークン単位で使用"
 msgid "Seamless trading"
 msgstr "シームレスな取引"
 
+#: src/components/PositionSeller/PositionSeller.tsx
+msgid "close"
+msgstr ""
+
 #: src/components/ClaimModal/ClaimModal.tsx
 msgid "Insufficient Pool Balance"
 msgstr ""
@@ -4996,6 +5011,9 @@ msgstr "設定が更新されました"
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionItem/PositionItem.tsx
@@ -5005,8 +5023,6 @@ msgstr "設定が更新されました"
 #: src/components/StatusNotification/FeesSettlementStatusNotification.tsx
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 #: src/components/TableMarketFilter/MarketFilterLongShort.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
 #: src/components/TradeBox/tradeboxConstants.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/TVChartContainer/DynamicLine.tsx
@@ -5074,7 +5090,7 @@ msgstr "サンプル値"
 msgid "Max rate long"
 msgstr "最大レート ロング"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "SL price"
 msgstr "ストップロス価格"
 
@@ -5385,7 +5401,7 @@ msgstr "{0}流動性が不足しています"
 msgid "SL price above mark price"
 msgstr "ストップロス価格がマーク価格を上回っています"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 msgid "Unable to calculate order"
 msgstr "注文を計算できません"
 
@@ -5458,9 +5474,9 @@ msgstr "GLV（GMX Liquidity Vault）は様々なGMトークンを保有し、GMX
 msgid "Settlement network changed to Arbitrum, but $12.50 remains in your Base GMX Account"
 msgstr "決済ネットワークがArbitrumに変更されましたが、$12.50がBaseのGMX Accountに残っています"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 msgid "Initial collateral, excluding borrow and funding fees"
 msgstr "借入手数料およびファンディング手数料を除く初期担保"
 
@@ -5744,7 +5760,9 @@ msgstr "GMX V2市場全体への流動性提供から手数料を獲得"
 msgid "Recommended"
 msgstr "おすすめ"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/hooks/useTradeButtonState.tsx
 #: src/components/TradeInfoIcon/TradeInfoIcon.tsx
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Decrease"
@@ -5755,9 +5773,9 @@ msgstr "減少"
 msgid "Trigger price below liquidation price"
 msgstr "トリガー価格が清算価格を下回っています"
 
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
 #: src/components/UserIncentiveDistribution/UserIncentiveDistribution.tsx
 #: src/components/UserIncentiveDistribution/UserIncentiveDistribution.tsx
 #: src/pages/AccountEvents/AccountEvents.tsx
@@ -6008,9 +6026,9 @@ msgstr "アクセスキー"
 msgid "V1 Avalanche"
 msgstr "V1 Avalanche"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 msgid "Collateral ({0})"
 msgstr "担保 ({0})"
@@ -6114,7 +6132,7 @@ msgstr "スプレッド"
 msgid "GMX newsletter and long-form updates"
 msgstr "GMXのニュースレターおよび詳細なアップデート"
 
-#: src/components/TPSLModal/TPSLInputRow.tsx
+#: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "TP price"
 msgstr "TP価格"
 
@@ -6265,7 +6283,7 @@ msgstr "ポジション手数料を精算中..."
 msgid "GMX announcements and updates"
 msgstr "GMXのお知らせとアップデート"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 msgid "Edit TP/SL size"
 msgstr "TP/SLサイズを編集"
 
@@ -6330,6 +6348,10 @@ msgstr "Yield Yak Optimizer"
 #: src/components/OldSubaccountWithdraw/OldSubaccountWithdraw.tsx
 msgid "Withdrawing {balanceFormatted} to main account..."
 msgstr "メインアカウントに{balanceFormatted}を出金中…"
+
+#: src/components/PositionList/SymbolSortDropdown.tsx
+msgid "Symbol (A to Z)"
+msgstr ""
 
 #: src/domain/synthetics/orders/useOrderTxnCallbacks.tsx
 msgid "{orderText} updated"
@@ -6516,6 +6538,10 @@ msgstr "注文エラー。この市場の価格は不安定です。<0>許容ス
 msgid "Asset"
 msgstr "資産"
 
+#: src/components/PositionList/SymbolSortDropdown.tsx
+msgid "Symbol (Z to A)"
+msgstr ""
+
 #: src/components/SettingsModal/RpcDebugSettings.tsx
 #: src/pages/RpcDebug/RpcDebug.tsx
 msgid "RPC debug"
@@ -6661,10 +6687,6 @@ msgstr "選択期間におけるベンチマークとの比較パフォーマン
 msgid "Dune Analytics dashboard"
 msgstr "Dune Analyticsダッシュボード"
 
-#: src/components/TradeBox/hooks/useTradeButtonState.tsx
-msgid "increase"
-msgstr ""
-
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Order may not execute: max leverage exceeded. Edit to reduce size. <0>Read more</0>."
 msgstr "注文が執行されない可能性があります：最大レバレッジを超過しています。サイズを縮小してください。<0>詳細はこちら</0>。"
@@ -6674,9 +6696,9 @@ msgid "No distribution history"
 msgstr "配分履歴なし"
 
 #: src/components/OrderItem/OrderItem.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionShare/PositionShareCard.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Mark price"
 msgstr "マーク価格"
@@ -6825,8 +6847,8 @@ msgid "Governance"
 msgstr "ガバナンス"
 
 #: src/components/OrderItem/OrderItem.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/StatusNotification/OrderStatusNotification.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Cancel"
 msgstr "キャンセル"
@@ -6912,6 +6934,10 @@ msgstr "これらの機能をご利用いただくには<0><1/><2>Arbitrum</2></
 msgid "Help us improve GMX for Liquidity Providers. For security, we won't contact you first. Send \"I'm a Liquidity Provider\" to our official Telegram account:"
 msgstr "流動性提供者の皆さまのためにGMXの改善にご協力ください。セキュリティ上の理由から、こちらから先にご連絡することはございません。公式Telegramアカウントに「I'm a Liquidity Provider」とメッセージをお送りください："
 
+#: src/components/OrderEditor/OrderEditor.tsx
+msgid "Edit TP: {suffix}"
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Min collateral factor"
 msgstr "最小担保ファクター"
@@ -6937,9 +6963,9 @@ msgstr "（{0}日前）"
 msgid "Liquidation"
 msgstr "清算"
 
-#: src/components/TPSLModal/TPSLModal.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "Add TP/SL"
 msgstr "TP/SLを追加"
 
@@ -7027,7 +7053,7 @@ msgid "Claiming rewards only available on {settlementChainName}. Switch networks
 msgstr "報酬の受け取りは{settlementChainName}でのみ利用可能です。リファラル報酬を受け取るにはネットワークを切り替えてください。"
 
 #: src/components/OrderItem/OrderItem.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "Edit"
 msgstr "編集"
 
@@ -7053,7 +7079,7 @@ msgstr "GMXアカウントから引き出し"
 msgid "Enter a valid amount"
 msgstr "有効な金額を入力してください"
 
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 msgid "Keep leverage at {currentLeverage}"
 msgstr "レバレッジを{currentLeverage}に維持"
 
@@ -7251,8 +7277,8 @@ msgstr "{0}の最大ロング値を超過しています"
 #: src/components/Earn/Portfolio/RewardsBar.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrderItem/OrderItem.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 #: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -7646,7 +7672,7 @@ msgstr "{0}ms"
 msgid "Deposit failed"
 msgstr "入金に失敗しました"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "EST. PNL"
 msgstr "予想PNL"
 
@@ -7703,7 +7729,7 @@ msgstr "24時間取引高"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 #: src/domain/synthetics/trade/utils/validation.ts
 #: src/domain/synthetics/trade/utils/validation.ts
@@ -7856,11 +7882,11 @@ msgid "Failed to download trade history CSV"
 msgstr "取引履歴CSVのダウンロードに失敗しました"
 
 #: src/components/OrderEditor/OrderEditor.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
 #: src/components/TradeBox/TradeBox.tsx
 msgid "Liquidation price"
 msgstr "清算価格"
@@ -8172,11 +8198,11 @@ msgstr "<0>{0}</0> を請求"
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeBox/TradeBox.tsx
@@ -8487,7 +8513,7 @@ msgstr "GMX報酬："
 msgid "Wallet trading only on these networks"
 msgstr "これらのネットワークではウォレット取引のみ利用可能です"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "Trigger Price"
 msgstr "トリガー価格"
 
@@ -8716,10 +8742,6 @@ msgstr "マーケットを検索"
 msgid "Negative funding fee"
 msgstr "ネガティブファンディング手数料"
 
-#: src/domain/synthetics/trade/utils/validation.ts
-msgid "Min margin per part: {0}"
-msgstr "パートあたりの最小証拠金：{0}"
-
 #: src/pages/DebugOracleKeeper/parts.tsx
 #: src/pages/RpcDebug/parts.tsx
 msgid "FAILURES"
@@ -8729,6 +8751,7 @@ msgstr "失敗回数"
 msgid "Min margin: {0}"
 msgstr "最小証拠金：{0}"
 
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/TradeBox/tradeboxConstants.tsx
 #: src/components/TVChartContainer/constants.ts
 #: src/domain/synthetics/positions/utils.ts
@@ -8855,6 +8878,9 @@ msgstr "{gmOrGlvLabel}の売却は成功しましたが、Baseへのブリッジ
 #: src/components/Claims/ClaimsHistory.tsx
 #: src/components/MarketNetFee/MarketNetFee.tsx
 #: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
+#: src/components/OrderEditor/OrderEditor.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionEditor/PositionEditor.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionItem/PositionItem.tsx
@@ -8864,8 +8890,6 @@ msgstr "{gmOrGlvLabel}の売却は成功しましたが、Baseへのブリッジ
 #: src/components/StatusNotification/FeesSettlementStatusNotification.tsx
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 #: src/components/TableMarketFilter/MarketFilterLongShort.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
 #: src/components/TradeBox/tradeboxConstants.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/TVChartContainer/DynamicLine.tsx
@@ -9099,6 +9123,7 @@ msgstr "入金済み："
 msgid "ACTION"
 msgstr "ACTION"
 
+#: src/components/TradeBox/hooks/useTradeButtonState.tsx
 #: src/components/TradeInfoIcon/TradeInfoIcon.tsx
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Increase"
@@ -9400,7 +9425,7 @@ msgid "What is GM?"
 msgstr "GMとは？"
 
 #: src/components/OrderList/OrderList.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/TradeHistory/useDownloadAsCsv.tsx
 msgid "TRIGGER PRICE"
 msgstr "TRIGGER PRICE"
@@ -9668,7 +9693,7 @@ msgstr "UniswapまたはGMXから直接GMXを購入してください（Arbitrum
 msgid "Oracle price"
 msgstr "Oracle価格"
 
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "SIZE (% OF POSITION)"
 msgstr "SIZE (% OF POSITION)"
 
@@ -9924,6 +9949,10 @@ msgstr "売却注文がキャンセルされました"
 msgid "Acceptable price impact"
 msgstr "許容価格への影響"
 
+#: src/components/PositionList/SymbolSortDropdown.tsx
+msgid "Default sorting"
+msgstr ""
+
 #: src/components/PositionEditor/usePositionEditorButtonState.tsx
 msgid "Reduce withdrawal to match the max. <0>Read more</0>.<1/><2/><3>Set max withdrawal</3>"
 msgstr "最大値に合わせて出金額を減らしてください。<0>詳細はこちら</0>。<1/><2/><3>最大出金額を設定</3>"
@@ -10083,10 +10112,6 @@ msgstr ""
 msgid "Oracle keeper monitoring"
 msgstr "Oracle keeper モニタリング"
 
-#: src/components/PositionSeller/PositionSeller.tsx
-msgid "{0}: {1} {2}{3}/USD decrease"
-msgstr "{0}: {1} {2}{3}/USD decrease"
-
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
 msgstr "新しいサイズまたは価格を入力"
@@ -10101,9 +10126,9 @@ msgstr "最大プール額を超えました"
 msgid "Unknown order"
 msgstr "不明な注文"
 
+#: src/components/OrdersModal/OrdersModal.tsx
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionShare/PositionShareCard.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/EntryPriceRow.tsx
 msgid "Entry price"
 msgstr "エントリー価格"
@@ -10505,6 +10530,7 @@ msgstr "送信先トークンアドレスがありません"
 
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/components/TradeBox/tradeboxConstants.tsx
 #: src/components/TradeHistory/keys.ts
 #: src/components/TVChartContainer/constants.ts
@@ -10611,9 +10637,15 @@ msgid "multiple asset classes"
 msgstr "複数の資産クラス"
 
 #: src/components/OrderEditor/OrderEditor.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionItem/PositionItem.tsx
+#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
 #: src/components/PositionSeller/PositionSeller.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/hooks/useTradeButtonState.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeInfoIcon/TradeInfoIcon.tsx
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
@@ -10641,9 +10673,9 @@ msgid "General performance details"
 msgstr "全般パフォーマンス詳細"
 
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
-#: src/components/TPSLModal/AddTPSLModal.tsx
-#: src/components/TPSLModal/TPSLModal.tsx
-#: src/components/TPSLModal/TPSLOrdersList.tsx
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/OrdersModal/OrdersModal.tsx
+#: src/components/OrdersModal/TPSLOrdersList.tsx
 #: src/domain/synthetics/positions/utils.ts
 msgid "Take-Profit"
 msgstr "テイクプロフィット"
