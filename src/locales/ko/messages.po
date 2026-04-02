@@ -4763,10 +4763,6 @@ msgstr "신규 주문 취소"
 msgid "Failed to unstake"
 msgstr "언스테이킹 실패"
 
-#: src/components/OrdersModal/OrdersModal.tsx
-msgid "Orders: {positionTitle}"
-msgstr ""
-
 #: src/pages/UiPage/UiPage.tsx
 msgid "Decoration is gray-400"
 msgstr "Decoration is gray-400"
@@ -4921,6 +4917,10 @@ msgstr "추천 코드가 추가되었습니다"
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy GMX bonds on Bond Protocol at a discount with a short vesting period"
 msgstr "Bond Protocol에서 짧은 베스팅 기간으로 GMX 채권을 할인 구매하십시오"
+
+#: src/components/OrdersModal/OrdersModal.tsx
+msgid "{positionTitle} orders"
+msgstr ""
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
 msgid "Buyback accrued"

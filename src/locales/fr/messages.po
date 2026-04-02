@@ -4763,10 +4763,6 @@ msgstr "Annuler les nouveaux ordres"
 msgid "Failed to unstake"
 msgstr "Échec de l'unstaking"
 
-#: src/components/OrdersModal/OrdersModal.tsx
-msgid "Orders: {positionTitle}"
-msgstr ""
-
 #: src/pages/UiPage/UiPage.tsx
 msgid "Decoration is gray-400"
 msgstr "La décoration est gray-400"
@@ -4921,6 +4917,10 @@ msgstr "Code de parrainage ajouté"
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy GMX bonds on Bond Protocol at a discount with a short vesting period"
 msgstr "Achetez des obligations GMX sur Bond Protocol avec une décote et une courte période d'acquisition progressive"
+
+#: src/components/OrdersModal/OrdersModal.tsx
+msgid "{positionTitle} orders"
+msgstr ""
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
 msgid "Buyback accrued"

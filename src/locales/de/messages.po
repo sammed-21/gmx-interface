@@ -4763,10 +4763,6 @@ msgstr "Neue Orders abbrechen"
 msgid "Failed to unstake"
 msgstr "Entstaken fehlgeschlagen"
 
-#: src/components/OrdersModal/OrdersModal.tsx
-msgid "Orders: {positionTitle}"
-msgstr ""
-
 #: src/pages/UiPage/UiPage.tsx
 msgid "Decoration is gray-400"
 msgstr "Dekoration ist gray-400"
@@ -4921,6 +4917,10 @@ msgstr "Empfehlungscode hinzugefügt"
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy GMX bonds on Bond Protocol at a discount with a short vesting period"
 msgstr "Kaufen Sie GMX-Bonds auf Bond Protocol mit einem Rabatt und einer kurzen Sperrfrist"
+
+#: src/components/OrdersModal/OrdersModal.tsx
+msgid "{positionTitle} orders"
+msgstr ""
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
 msgid "Buyback accrued"

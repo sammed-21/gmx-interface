@@ -4763,10 +4763,6 @@ msgstr "取消新订单"
 msgid "Failed to unstake"
 msgstr "解除质押失败"
 
-#: src/components/OrdersModal/OrdersModal.tsx
-msgid "Orders: {positionTitle}"
-msgstr ""
-
 #: src/pages/UiPage/UiPage.tsx
 msgid "Decoration is gray-400"
 msgstr "装饰色为 gray-400"
@@ -4921,6 +4917,10 @@ msgstr "推荐码已添加"
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy GMX bonds on Bond Protocol at a discount with a short vesting period"
 msgstr "在 Bond Protocol 上以折扣价购买 GMX 债券，归属期较短"
+
+#: src/components/OrdersModal/OrdersModal.tsx
+msgid "{positionTitle} orders"
+msgstr ""
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
 msgid "Buyback accrued"
