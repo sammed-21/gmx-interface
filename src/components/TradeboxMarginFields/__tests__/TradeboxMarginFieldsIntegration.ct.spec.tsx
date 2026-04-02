@@ -24,7 +24,7 @@ test.describe("TradeboxMarginFields Integration", () => {
     test("typing in margin sets focused input to 'from'", async ({ mount, page }) => {
       await mount(<IntegrationStory initialFromValue="" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("500");
 
       await expect(page.getByTestId("focused-input")).toHaveText("from");
@@ -41,14 +41,14 @@ test.describe("TradeboxMarginFields Integration", () => {
       // If balance is shown, clicking it should fill margin
       if (await balanceButton.isVisible()) {
         await balanceButton.click();
-        const marginInput = page.getByPlaceholder("0.00");
+        const marginInput = page.locator('[data-qa="margin-input"]');
         const value = await marginInput.inputValue();
         expect(value).toBeTruthy();
         expect(Number(value.replace(/,/g, ""))).toBeGreaterThan(0);
       } else {
         // Balance button not rendered (selector doesn't resolve token balance in CT)
         // Verify at least that the margin field renders without crashing
-        await expect(page.getByPlaceholder("0.00")).toBeVisible();
+        await expect(page.locator('[data-qa="margin-input"]')).toBeVisible();
       }
     });
 
@@ -56,7 +56,7 @@ test.describe("TradeboxMarginFields Integration", () => {
       await mount(<IntegrationStory initialFromValue="" maxAvailableAmount={0n} />);
 
       // Balance button may not exist when balance is defined but max is 0
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("");
     });
   });
@@ -210,14 +210,14 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(handle).toHaveAttribute("aria-valuenow", "0");
 
       // Type 2500 of 10000 max = 25%
-      await page.getByPlaceholder("0.00").fill("2500");
+      await page.locator('[data-qa="margin-input"]').fill("2500");
       await expect(handle).toHaveAttribute("aria-valuenow", "25");
     });
 
     test("typing 100% of max moves slider to 100", async ({ mount, page }) => {
       await mount(<IntegrationStory initialFromValue="" isLeverageSliderEnabled={true} />);
 
-      await page.getByPlaceholder("0.00").fill("10000");
+      await page.locator('[data-qa="margin-input"]').fill("10000");
       await expect(page.locator(".rc-slider-handle")).toHaveAttribute("aria-valuenow", "100");
     });
 
@@ -227,7 +227,7 @@ test.describe("TradeboxMarginFields Integration", () => {
       const handle = page.locator(".rc-slider-handle");
       await expect(handle).toHaveAttribute("aria-valuenow", "50");
 
-      await page.getByPlaceholder("0.00").fill("");
+      await page.locator('[data-qa="margin-input"]').fill("");
       await expect(handle).toHaveAttribute("aria-valuenow", "0");
     });
   });
@@ -267,17 +267,17 @@ test.describe("TradeboxMarginFields Integration", () => {
 
   test.describe("Field recalculation on price change", () => {
     test("USD mode: size updates when price changes and margin is focused", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
 
       // Initial: 1 ETH * $2000 = $2000.00
       await expect(sizeInput).toHaveValue("2000.00");
       await expect(marginInput).toHaveValue("1000");
 
       // Change price to $2500
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
 
       // Size updates: 1 ETH * $2500 = $2500.00
       await expect(sizeInput).toHaveValue("2500.00");
@@ -286,7 +286,7 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
 
     test("token mode: size unchanged when price changes", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
 
       // Switch to token mode
       const toggle = page.locator('[data-qa="position-size-display-mode-button"]');
@@ -297,21 +297,21 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(sizeInput).toHaveValue("1");
 
       // Change price
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
 
       // Token amount unchanged
       await expect(sizeInput).toHaveValue("1");
       // Margin unchanged
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
 
     test("100% margin unchanged after price change (USD mode)", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="10000" initialToValue="5" />);
+      const component = await mount(<PriceChangeStory initialFromValue="10000" initialToValue="5" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("10000");
 
-      await page.getByTestId("set-price-3000").click();
+      await component.update(<PriceChangeStory initialFromValue="10000" initialToValue="5" ethPrice={3000} />);
 
       // Margin stays at 100%
       await expect(marginInput).toHaveValue("10000");
@@ -320,39 +320,39 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
 
     test("100% margin unchanged after price change (token mode)", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="10000" initialToValue="5" />);
+      const component = await mount(<PriceChangeStory initialFromValue="10000" initialToValue="5" />);
 
       // Switch to token mode
       const toggle = page.locator('[data-qa="position-size-display-mode-button"]');
       await toggle.click();
       await page.locator("td").filter({ hasText: /^ETH$/ }).click();
 
-      await page.getByTestId("set-price-3000").click();
+      await component.update(<PriceChangeStory initialFromValue="10000" initialToValue="5" ethPrice={3000} />);
 
       // Margin unchanged
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("10000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("10000");
       // Token amount unchanged
       await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("5");
     });
 
     test("focused size field is NOT overwritten by price change", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       await sizeInput.fill("5000");
 
       await expect(page.getByTestId("focused-input")).toHaveText("to");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
 
       // Protected by focusedInput="to"
       await expect(sizeInput).toHaveValue("5000");
     });
 
     test("margin set via input then price change: margin stays, size updates", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="" initialToValue="2" />);
+      const component = await mount(<PriceChangeStory initialFromValue="" initialToValue="2" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("5000");
       await expect(page.getByTestId("focused-input")).toHaveText("from");
 
@@ -360,7 +360,7 @@ test.describe("TradeboxMarginFields Integration", () => {
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       await expect(sizeInput).toHaveValue("4000.00");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<PriceChangeStory initialFromValue="" initialToValue="2" ethPrice={2500} />);
 
       // Margin stays
       await expect(marginInput).toHaveValue("5000");
@@ -369,13 +369,13 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
 
     test("switching USD→token after price change shows correct token amount", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       await expect(sizeInput).toHaveValue("2000.00");
 
       // Price doubles
-      await page.getByTestId("set-price-3000").click();
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="1" ethPrice={3000} />);
       await expect(sizeInput).toHaveValue("3000.00");
 
       // Switch to token — underlying amount should still be 1 ETH
@@ -387,7 +387,7 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
 
     test("after unfocusing size, next price change recalculates USD", async ({ mount, page }) => {
-      await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       // Type in size (focused=to)
@@ -395,14 +395,14 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(page.getByTestId("focused-input")).toHaveText("to");
 
       // Focus margin (focused=from)
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.focus();
       await expect(page.getByTestId("focused-input")).toHaveText("from");
 
       // Now price change should recalculate size USD
       // toTokenInputValue was set to usdToTokens("6000") at $2000 = "3"
       // After price → $2500: tokensToUsd("3") = $7500
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
       await expect(sizeInput).toHaveValue("7500.00");
       await expect(marginInput).toHaveValue("1000");
     });
@@ -412,7 +412,7 @@ test.describe("TradeboxMarginFields Integration", () => {
     test("clicking slider mark updates size, margin stays fixed", async ({ mount, page }) => {
       await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       const sizeInput = page.locator('[data-qa="position-size-input"]');
 
       await expect(marginInput).toHaveValue("1000");
@@ -433,7 +433,7 @@ test.describe("TradeboxMarginFields Integration", () => {
     test("clicking 100% mark sets size to max, margin unchanged", async ({ mount, page }) => {
       await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       const sizeInput = page.locator('[data-qa="position-size-input"]');
 
       const mark100 = page.locator(".rc-slider-mark-text").filter({ hasText: "100%" });
@@ -471,19 +471,19 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(sizeInput).toHaveValue("5000");
       await expect(page.getByTestId("focused-input")).toHaveText("to");
       // Margin unchanged
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
 
     test("price change updates USD size with leverage off (margin focused)", async ({ mount, page }) => {
-      await mount(<LeverageOffStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<LeverageOffStory initialFromValue="1000" initialToValue="1" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
 
       // Initial: 1 ETH * $2000
       await expect(sizeInput).toHaveValue("2000.00");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<LeverageOffStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
 
       // Size updates: 1 ETH * $2500
       await expect(sizeInput).toHaveValue("2500.00");
@@ -492,7 +492,7 @@ test.describe("TradeboxMarginFields Integration", () => {
     });
 
     test("token mode: size stays fixed on price change with leverage off", async ({ mount, page }) => {
-      await mount(<LeverageOffStory initialFromValue="1000" initialToValue="1" />);
+      const component = await mount(<LeverageOffStory initialFromValue="1000" initialToValue="1" />);
 
       // Switch to token mode
       const toggle = page.locator('[data-qa="position-size-display-mode-button"]');
@@ -502,32 +502,32 @@ test.describe("TradeboxMarginFields Integration", () => {
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       await expect(sizeInput).toHaveValue("1");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<LeverageOffStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
 
       // Token amount unchanged
       await expect(sizeInput).toHaveValue("1");
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
   });
 
   test.describe("ETH margin (pay token ≠ collateral)", () => {
     test("USD mode: margin (ETH) stays, size updates on price change", async ({ mount, page }) => {
-      await mount(<EthMarginPriceChangeStory initialFromValue="5" initialToValue="1" />);
+      const component = await mount(<EthMarginPriceChangeStory initialFromValue="5" initialToValue="1" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
 
       await expect(sizeInput).toHaveValue("2000.00");
       await expect(marginInput).toHaveValue("5");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<EthMarginPriceChangeStory initialFromValue="5" initialToValue="1" ethPrice={2500} />);
 
       await expect(sizeInput).toHaveValue("2500.00");
       await expect(marginInput).toHaveValue("5");
     });
 
     test("token mode: margin (ETH) stays, size in tokens unchanged on price change", async ({ mount, page }) => {
-      await mount(<EthMarginPriceChangeStory initialFromValue="5" initialToValue="1" />);
+      const component = await mount(<EthMarginPriceChangeStory initialFromValue="5" initialToValue="1" />);
 
       const toggle = page.locator('[data-qa="position-size-display-mode-button"]');
       await toggle.click();
@@ -536,47 +536,47 @@ test.describe("TradeboxMarginFields Integration", () => {
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       await expect(sizeInput).toHaveValue("1");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<EthMarginPriceChangeStory initialFromValue="5" initialToValue="1" ethPrice={2500} />);
 
       await expect(sizeInput).toHaveValue("1");
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("5");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("5");
     });
 
     test("100% margin (ETH) unchanged after price change (USD mode)", async ({ mount, page }) => {
-      await mount(<EthMarginPriceChangeStory initialFromValue="10" initialToValue="5" />);
+      const component = await mount(<EthMarginPriceChangeStory initialFromValue="10" initialToValue="5" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("10");
 
-      await page.getByTestId("set-price-3000").click();
+      await component.update(<EthMarginPriceChangeStory initialFromValue="10" initialToValue="5" ethPrice={3000} />);
 
       await expect(marginInput).toHaveValue("10");
       await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("15000.00");
     });
 
     test("100% margin (ETH) unchanged after price change (token mode)", async ({ mount, page }) => {
-      await mount(<EthMarginPriceChangeStory initialFromValue="10" initialToValue="5" />);
+      const component = await mount(<EthMarginPriceChangeStory initialFromValue="10" initialToValue="5" />);
 
       const toggle = page.locator('[data-qa="position-size-display-mode-button"]');
       await toggle.click();
       await page.locator("td").filter({ hasText: /^ETH$/ }).click();
 
-      await page.getByTestId("set-price-3000").click();
+      await component.update(<EthMarginPriceChangeStory initialFromValue="10" initialToValue="5" ethPrice={3000} />);
 
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("10");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("10");
       await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("5");
     });
 
     test("after typing margin (ETH), price change: margin stays, size updates", async ({ mount, page }) => {
-      await mount(<EthMarginPriceChangeStory initialFromValue="" initialToValue="2" />);
+      const component = await mount(<EthMarginPriceChangeStory initialFromValue="" initialToValue="2" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("5");
       await expect(page.getByTestId("focused-input")).toHaveText("from");
 
       await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("4000.00");
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<EthMarginPriceChangeStory initialFromValue="" initialToValue="2" ethPrice={2500} />);
 
       await expect(marginInput).toHaveValue("5");
       await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("5000.00");
@@ -585,39 +585,39 @@ test.describe("TradeboxMarginFields Integration", () => {
 
   test.describe("Manual leverage OFF — slider sync on price change", () => {
     test("slider 50% then price change: token amount recalculates, margin stays", async ({ mount, page }) => {
-      await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
+      const component = await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
 
       await page.locator(".rc-slider-mark-text").filter({ hasText: "50%" }).click();
       const tokensBefore = await page.getByTestId("to-value").textContent();
       expect(Number(tokensBefore)).toBeGreaterThan(0);
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<LeverageOffStory initialFromValue="1000" initialToValue="" ethPrice={2500} />);
 
       // With USDC margin, USD stays ~stable but token count changes with price
       await expect(page.getByTestId("to-value")).not.toHaveText(tokensBefore!);
       expect(Number(await page.getByTestId("to-value").textContent())).toBeGreaterThan(0);
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
 
     test("slider 100% then price change: token amount updates to new max, margin stays", async ({ mount, page }) => {
-      await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
+      const component = await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
 
       await page.locator(".rc-slider-mark-text").filter({ hasText: "100%" }).click();
       const tokensBefore = await page.getByTestId("to-value").textContent();
       expect(Number(tokensBefore)).toBeGreaterThan(0);
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<LeverageOffStory initialFromValue="1000" initialToValue="" ethPrice={2500} />);
 
       await expect(page.getByTestId("to-value")).not.toHaveText(tokensBefore!);
       expect(Number(await page.getByTestId("to-value").textContent())).toBeGreaterThan(0);
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
 
     test("after typing in size field, price change uses passive sync only (no slider sync)", async ({
       mount,
       page,
     }) => {
-      await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
+      const component = await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
 
       const sizeInput = page.locator('[data-qa="position-size-input"]');
 
@@ -629,19 +629,19 @@ test.describe("TradeboxMarginFields Integration", () => {
       await expect(page.getByTestId("focused-input")).toHaveText("to");
 
       // Focus margin so passive sync can fire
-      await page.getByPlaceholder("0.00").focus();
+      await page.locator('[data-qa="margin-input"]').focus();
       await expect(page.getByTestId("focused-input")).toHaveText("from");
 
       // Price change — slider sync should NOT fire, only passive USD sync
       // toTokenInputValue was set to usdToTokens("5000") at $2000 = "2.5" ETH
       // After price $2500: tokensToUsd("2.5") = "6250.00"
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<LeverageOffStory initialFromValue="1000" initialToValue="" ethPrice={2500} />);
       await expect(sizeInput).toHaveValue("6250.00");
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
 
     test("slider 50% then price change in token mode: token amount recalculates", async ({ mount, page }) => {
-      await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
+      const component = await mount(<LeverageOffStory initialFromValue="1000" initialToValue="" />);
 
       const toggle = page.locator('[data-qa="position-size-display-mode-button"]');
       await toggle.click();
@@ -652,60 +652,100 @@ test.describe("TradeboxMarginFields Integration", () => {
       const tokensBefore = await page.getByTestId("to-value").textContent();
       expect(Number(tokensBefore)).toBeGreaterThan(0);
 
-      await page.getByTestId("set-price-2500").click();
+      await component.update(<LeverageOffStory initialFromValue="1000" initialToValue="" ethPrice={2500} />);
 
       // Token amount should change (auto-retries until value differs)
       await expect(page.getByTestId("to-value")).not.toHaveText(tokensBefore!);
       expect(Number(await page.getByTestId("to-value").textContent())).toBeGreaterThan(0);
-      await expect(page.getByPlaceholder("0.00")).toHaveValue("1000");
+      await expect(page.locator('[data-qa="margin-input"]')).toHaveValue("1000");
     });
   });
 
-  test.describe("Focus management", () => {
-    test("margin input focus sets focusedInput to 'from'", async ({ mount, page }) => {
-      await mount(<IntegrationStory />);
+  test.describe("Anchor behavior (last focused field)", () => {
+    test("anchor=margin: typing margin then slider click updates margin, size stays", async ({ mount, page }) => {
+      await mount(<IntegrationStory initialFromValue="" initialToValue="1" isLeverageSliderEnabled={true} />);
 
-      const marginInput = page.getByPlaceholder("0.00");
-      await marginInput.focus();
-
-      await expect(page.getByTestId("focused-input")).toHaveText("from");
-    });
-
-    test("size input focus sets focusedInput to 'to'", async ({ mount, page }) => {
-      await mount(<IntegrationStory />);
-
+      const marginInput = page.locator('[data-qa="margin-input"]');
       const sizeInput = page.locator('[data-qa="position-size-input"]');
-      await sizeInput.focus();
 
-      await expect(page.getByTestId("focused-input")).toHaveText("to");
+      // Type margin — sets anchor to margin
+      await marginInput.fill("5000");
+
+      // Click 25% on slider — overwrites margin to 25% of 10000 = 2500
+      await page.locator(".rc-slider-mark-text").filter({ hasText: "25%" }).click();
+      await expect(marginInput).toHaveValue("2500");
+
+      // Size input is unaffected by margin slider
+      await expect(sizeInput).toBeVisible();
     });
 
-    test("margin input change sets focusedInput to 'from'", async ({ mount, page }) => {
-      await mount(<IntegrationStory initialFromValue="" />);
+    test("anchor=size: typing size then slider click updates margin, size unchanged", async ({ mount, page }) => {
+      await mount(<IntegrationStory initialFromValue="1000" initialToValue="" isLeverageSliderEnabled={true} />);
 
-      // First focus size to set "to"
+      const marginInput = page.locator('[data-qa="margin-input"]');
       const sizeInput = page.locator('[data-qa="position-size-input"]');
-      await sizeInput.focus();
-      await expect(page.getByTestId("focused-input")).toHaveText("to");
 
-      // Now type in margin
-      const marginInput = page.getByPlaceholder("0.00");
-      await marginInput.fill("500");
-      await expect(page.getByTestId("focused-input")).toHaveText("from");
+      // Type size — sets anchor to size
+      await sizeInput.fill("5000");
+      await expect(sizeInput).toHaveValue("5000");
+
+      // Click 50% on slider — updates margin to 50% of 10000 = 5000
+      await page.locator(".rc-slider-mark-text").filter({ hasText: "50%" }).click();
+      // Wait for slider to settle at 50 before checking margin
+      await expect(page.locator(".rc-slider-handle")).toHaveAttribute("aria-valuenow", "50");
+      await expect(marginInput).toHaveValue("5000");
+
+      // Size stays (slider drives margin, not size, in leverage ON mode)
+      // Passive sync reformats to "5000.00" after focus returns to margin
+      await expect(sizeInput).toHaveValue("5000.00");
     });
 
-    test("size input change sets focusedInput to 'to'", async ({ mount, page }) => {
-      await mount(<IntegrationStory />);
+    test("anchor=size: price change does NOT overwrite user-typed size", async ({ mount, page }) => {
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="" />);
 
-      // First focus margin
-      const marginInput = page.getByPlaceholder("0.00");
-      await marginInput.focus();
-      await expect(page.getByTestId("focused-input")).toHaveText("from");
-
-      // Now type in size
       const sizeInput = page.locator('[data-qa="position-size-input"]');
       await sizeInput.fill("9999");
-      await expect(page.getByTestId("focused-input")).toHaveText("to");
+
+      // Price change — size is protected because anchor is size
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="" ethPrice={2500} />);
+      await expect(sizeInput).toHaveValue("9999");
+    });
+
+    test("anchor=margin: price change recalculates size USD", async ({ mount, page }) => {
+      const component = await mount(<PriceChangeStory initialFromValue="" initialToValue="2" />);
+
+      const marginInput = page.locator('[data-qa="margin-input"]');
+      // Type margin — sets anchor to margin
+      await marginInput.fill("5000");
+
+      // Initial: 2 ETH * $2000 = $4000
+      await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("4000.00");
+
+      // Price change → size updates because anchor is margin
+      await component.update(<PriceChangeStory initialFromValue="" initialToValue="2" ethPrice={2500} />);
+      await expect(page.locator('[data-qa="position-size-input"]')).toHaveValue("5000.00");
+      await expect(marginInput).toHaveValue("5000");
+    });
+
+    test("switching anchor: type size, then focus margin, price change now updates size", async ({ mount, page }) => {
+      const component = await mount(<PriceChangeStory initialFromValue="1000" initialToValue="1" />);
+
+      const sizeInput = page.locator('[data-qa="position-size-input"]');
+      const marginInput = page.locator('[data-qa="margin-input"]');
+
+      // Type size — anchor is now size
+      await sizeInput.fill("6000");
+      await expect(sizeInput).toHaveValue("6000");
+
+      // Focus margin — switches anchor to margin
+      await marginInput.focus();
+
+      // Price change → size updates (anchor switched to margin)
+      // toTokenInputValue was set to usdToTokens("6000") at $2000 = "3"
+      // After price $2500: tokensToUsd("3") = "7500.00"
+      await component.update(<PriceChangeStory initialFromValue="1000" initialToValue="1" ethPrice={2500} />);
+      await expect(sizeInput).toHaveValue("7500.00");
+      await expect(marginInput).toHaveValue("1000");
     });
   });
 });

@@ -352,26 +352,25 @@ export function IntegrationStory({
 export type PriceChangeStoryProps = {
   initialFromValue?: string;
   initialToValue?: string;
-  initialEthPrice?: number;
+  ethPrice?: number;
   isLeverageSliderEnabled?: boolean;
   maxAvailableAmount?: bigint;
 };
 
 /**
  * Story with dynamic ETH price for testing field recalculation on price changes.
- * Buttons change the mark price; debug spans expose internal state.
+ * Uses ethPrice prop controlled via component.update() in tests.
  */
 export function PriceChangeStory({
   initialFromValue = "1000",
   initialToValue = "1",
-  initialEthPrice = 2000,
+  ethPrice = 2000,
   isLeverageSliderEnabled = true,
   maxAvailableAmount = expandDecimals(10000, 6),
 }: PriceChangeStoryProps) {
   const [fromValue, setFromValue] = useState(initialFromValue);
   const [toValue, setToValue] = useState(initialToValue);
   const [focused, setFocused] = useState<"from" | "to">("from");
-  const [ethPrice, setEthPrice] = useState(initialEthPrice);
 
   const setToValueWithReset = useCallback((value: string, _resetPriceImpact: boolean) => {
     setToValue(value);
@@ -419,18 +418,6 @@ export function PriceChangeStory({
         <span data-testid="eth-price">{ethPrice}</span>
       </div>
 
-      <div data-testid="price-controls">
-        <button data-testid="set-price-1500" onClick={() => setEthPrice(1500)}>
-          $1500
-        </button>
-        <button data-testid="set-price-2500" onClick={() => setEthPrice(2500)}>
-          $2500
-        </button>
-        <button data-testid="set-price-3000" onClick={() => setEthPrice(3000)}>
-          $3000
-        </button>
-      </div>
-
       <TradeboxMarginFields
         maxAvailableAmount={maxAvailableAmount}
         onSelectFromTokenAddress={noop}
@@ -448,7 +435,7 @@ export function PriceChangeStory({
 export type LeverageOffStoryProps = {
   initialFromValue?: string;
   initialToValue?: string;
-  initialEthPrice?: number;
+  ethPrice?: number;
   maxAvailableAmount?: bigint;
 };
 
@@ -459,13 +446,12 @@ export type LeverageOffStoryProps = {
 export function LeverageOffStory({
   initialFromValue = "1000",
   initialToValue = "",
-  initialEthPrice = 2000,
+  ethPrice = 2000,
   maxAvailableAmount = expandDecimals(10000, 6),
 }: LeverageOffStoryProps) {
   const [fromValue, setFromValue] = useState(initialFromValue);
   const [toValue, setToValue] = useState(initialToValue);
   const [focused, setFocused] = useState<"from" | "to">("from");
-  const [ethPrice, setEthPrice] = useState(initialEthPrice);
 
   const setToValueWithReset = useCallback((value: string, _resetPriceImpact: boolean) => {
     setToValue(value);
@@ -516,15 +502,6 @@ export function LeverageOffStory({
         <span data-testid="eth-price">{ethPrice}</span>
       </div>
 
-      <div data-testid="price-controls">
-        <button data-testid="set-price-2500" onClick={() => setEthPrice(2500)}>
-          $2500
-        </button>
-        <button data-testid="set-price-3000" onClick={() => setEthPrice(3000)}>
-          $3000
-        </button>
-      </div>
-
       <TradeboxMarginFields
         maxAvailableAmount={maxAvailableAmount}
         onSelectFromTokenAddress={noop}
@@ -542,23 +519,22 @@ export function LeverageOffStory({
 export type EthMarginPriceChangeStoryProps = {
   initialFromValue?: string;
   initialToValue?: string;
-  initialEthPrice?: number;
+  ethPrice?: number;
   maxAvailableAmount?: bigint;
 };
 
 /**
- * Story with ETH as pay token (margin ≠ collateral) and dynamic price buttons.
+ * Story with ETH as pay token (margin ≠ collateral) and dynamic price.
  */
 export function EthMarginPriceChangeStory({
   initialFromValue = "5",
   initialToValue = "1",
-  initialEthPrice = 2000,
+  ethPrice = 2000,
   maxAvailableAmount = expandDecimals(10, 18),
 }: EthMarginPriceChangeStoryProps) {
   const [fromValue, setFromValue] = useState(initialFromValue);
   const [toValue, setToValue] = useState(initialToValue);
   const [focused, setFocused] = useState<"from" | "to">("from");
-  const [ethPrice, setEthPrice] = useState(initialEthPrice);
 
   const setToValueWithReset = useCallback((value: string, _resetPriceImpact: boolean) => {
     setToValue(value);
@@ -604,15 +580,6 @@ export function EthMarginPriceChangeStory({
         <span data-testid="from-value">{fromValue}</span>
         <span data-testid="to-value">{toValue}</span>
         <span data-testid="eth-price">{ethPrice}</span>
-      </div>
-
-      <div data-testid="price-controls">
-        <button data-testid="set-price-2500" onClick={() => setEthPrice(2500)}>
-          $2500
-        </button>
-        <button data-testid="set-price-3000" onClick={() => setEthPrice(3000)}>
-          $3000
-        </button>
       </div>
 
       <TradeboxMarginFields

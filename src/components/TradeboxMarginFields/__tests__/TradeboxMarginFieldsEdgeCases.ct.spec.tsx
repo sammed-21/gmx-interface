@@ -13,24 +13,24 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     test("empty fromTokenInputValue renders without crashing", async ({ mount, page }) => {
       await mount(<EdgeCaseStory initialFromValue="" />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
-      const marginInput = page.getByPlaceholder("0.00");
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("");
     });
 
     test("empty toTokenInputValue renders without crashing", async ({ mount, page }) => {
       await mount(<EdgeCaseStory initialToValue="" />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
     });
 
     test("maxAvailableAmount=0n does not divide by zero", async ({ mount, page }) => {
       await mount(<EdgeCaseStory maxAvailableAmount={0n} initialFromValue="1000" />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
       // Slider should still render
       await expect(page.locator(".rc-slider")).toBeVisible();
     });
@@ -38,8 +38,8 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     test("both inputs empty renders cleanly", async ({ mount, page }) => {
       await mount(<EdgeCaseStory initialFromValue="" initialToValue="" maxAvailableAmount={0n} />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
       await expect(page.locator(".rc-slider")).toBeVisible();
     });
   });
@@ -48,15 +48,15 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     test("undefined toToken does not crash component", async ({ mount, page }) => {
       await mount(<UndefinedToTokenStory />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
     });
 
     test("undefined toToken disables size conversion (canConvert false)", async ({ mount, page }) => {
       await mount(<UndefinedToTokenStory />);
 
       // Component should still be interactive
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("500");
       await expect(marginInput).toHaveValue("500");
     });
@@ -81,7 +81,7 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     test("rapid margin input changes don't crash", async ({ mount, page }) => {
       await mount(<RapidInputStory />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
 
       await marginInput.fill("100");
       await marginInput.fill("500");
@@ -130,18 +130,18 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
     test("very large margin amount renders without overflow", async ({ mount, page }) => {
       await mount(<LargeValuesStory />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      const marginInput = page.getByPlaceholder("0.00");
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("999999999");
     });
 
     test("dust amounts render without crashing", async ({ mount, page }) => {
       await mount(<DustAmountsStory />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("0.000001");
     });
 
@@ -153,7 +153,7 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
 
       await expect(sizeInput).toHaveValue("999999999999");
       // Component should still be responsive
-      await expect(page.getByText("Margin")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
     });
 
     test("typing very small decimal in size field doesn't crash", async ({ mount, page }) => {
@@ -163,7 +163,7 @@ test.describe("TradeboxMarginFields Edge Cases", () => {
       await sizeInput.fill("0.00000001");
 
       await expect(sizeInput).toHaveValue("0.00000001");
-      await expect(page.getByText("Margin")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
     });
   });
 });

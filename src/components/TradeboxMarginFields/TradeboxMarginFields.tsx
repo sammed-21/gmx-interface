@@ -243,6 +243,7 @@ export function TradeboxMarginFields({
         onDepositTokenAddress={onDepositTokenAddress}
         onMaxClick={() => handleMarginPercentageChange(100)}
         onFocus={() => setFocusedInput("from")}
+        qa="margin"
       />
 
       <div className="flex flex-col gap-4">

@@ -9,8 +9,8 @@ test.describe("TradeboxMarginFields", () => {
     test("renders margin field, size field, and percentage slider", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory />);
 
-      await expect(page.getByText("Margin")).toBeVisible();
-      await expect(page.getByText("Size")).toBeVisible();
+      await expect(page.locator('[data-qa="margin"]')).toBeVisible();
+      await expect(page.locator('[data-qa="position-size"]')).toBeVisible();
 
       // Slider percentage marks
       for (const mark of ["0%", "25%", "50%", "75%", "100%"]) {
@@ -21,14 +21,14 @@ test.describe("TradeboxMarginFields", () => {
     test("shows initial margin value", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory initialFromValue="500" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await expect(marginInput).toHaveValue("500");
     });
 
     test("margin input has placeholder 0.00", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory initialFromValue="" />);
 
-      await expect(page.getByPlaceholder("0.00")).toBeVisible();
+      await expect(page.locator('[data-qa="margin-input"]')).toBeVisible();
     });
 
     test("size input has placeholder 0.0", async ({ mount, page }) => {
@@ -64,7 +64,7 @@ test.describe("TradeboxMarginFields", () => {
     test("typing updates the margin value", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory initialFromValue="" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("500");
       await expect(marginInput).toHaveValue("500");
     });
@@ -72,7 +72,7 @@ test.describe("TradeboxMarginFields", () => {
     test("accepts decimal values", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory initialFromValue="" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("123.45");
       await expect(marginInput).toHaveValue("123.45");
     });
@@ -80,7 +80,7 @@ test.describe("TradeboxMarginFields", () => {
     test("clearing margin sets value to empty", async ({ mount, page }) => {
       await mount(<TradeboxMarginFieldsStory initialFromValue="1000" />);
 
-      const marginInput = page.getByPlaceholder("0.00");
+      const marginInput = page.locator('[data-qa="margin-input"]');
       await marginInput.fill("");
       await expect(marginInput).toHaveValue("");
     });
