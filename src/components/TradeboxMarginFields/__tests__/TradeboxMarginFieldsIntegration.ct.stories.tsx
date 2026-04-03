@@ -1,54 +1,31 @@
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ChangeEvent, ReactNode, useCallback, useMemo, useState } from "react";
 import { MemoryRouter } from "react-router-dom";
-import { createConfig, http, WagmiProvider } from "wagmi";
-import { arbitrum } from "wagmi/chains";
+import { WagmiProvider } from "wagmi";
 
-import { ARBITRUM } from "config/chains";
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import { StateCtx } from "context/SyntheticsStateContext/utils";
 import { expandDecimals, PRECISION } from "lib/numbers";
-import type { DeepPartial } from "lib/types";
 import type { MarketInfo } from "sdk/utils/markets/types";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
 import { TradeboxMarginFields } from "../TradeboxMarginFields";
+import {
+  noop,
+  USDC_ADDRESS,
+  ETH_ADDRESS,
+  USDC_TOKEN,
+  ETH_TOKEN,
+  createMockState,
+  queryClient,
+  wagmiConfig,
+} from "./testFixtures";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
-
-const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
-const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
 const BTC_ADDRESS = "0x47904963fc8b2340414262125aF798B9655E58Cd";
-
-const USDC_TOKEN = {
-  name: "USD Coin",
-  symbol: "USDC",
-  decimals: 6,
-  address: USDC_ADDRESS,
-  isStable: true,
-  prices: {
-    minPrice: expandDecimals(1, 30),
-    maxPrice: expandDecimals(1, 30),
-  },
-  balance: expandDecimals(10000, 6),
-} as TokenData;
-
-const ETH_TOKEN = {
-  name: "Ethereum",
-  symbol: "ETH",
-  decimals: 18,
-  address: ETH_ADDRESS,
-  prices: {
-    minPrice: expandDecimals(2000, 30),
-    maxPrice: expandDecimals(2000, 30),
-  },
-  balance: expandDecimals(10, 18),
-} as TokenData;
 
 const BTC_TOKEN = {
   name: "Bitcoin",
@@ -63,12 +40,6 @@ const BTC_TOKEN = {
 } as TokenData;
 
 const MARKET_ADDRESS = "0x70d95587d40A2caf56bd97485aB3Eec10Bee6336";
-
-const TOKENS_DATA = {
-  [USDC_ADDRESS]: USDC_TOKEN,
-  [ETH_ADDRESS]: ETH_TOKEN,
-  [BTC_ADDRESS]: BTC_TOKEN,
-};
 
 function createMockMarketInfo(ethToken: TokenData = ETH_TOKEN): MarketInfo {
   return {
@@ -159,100 +130,30 @@ function createMockMarketInfo(ethToken: TokenData = ETH_TOKEN): MarketInfo {
   } as MarketInfo;
 }
 
-type MockStateOverrides = {
-  tradeMode?: TradeMode;
-  tradeType?: TradeType;
-  fromTokenInputValue?: string;
-  toTokenInputValue?: string;
-  focusedInput?: "from" | "to";
-  triggerPriceInputValue?: string;
-  isLeverageSliderEnabled?: boolean;
-  fromTokenAddress?: string;
-  toTokenAddress?: string;
-  marketAddress?: string;
-  tokensData?: Record<string, TokenData>;
-  marketInfo?: MarketInfo;
-};
+function useDynamicTokensData(ethPrice: number) {
+  const dynamicEthToken = useMemo(
+    () =>
+      ({
+        ...ETH_TOKEN,
+        prices: {
+          minPrice: expandDecimals(ethPrice, 30),
+          maxPrice: expandDecimals(ethPrice, 30),
+        },
+      }) as TokenData,
+    [ethPrice]
+  );
 
-function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
-  const {
-    tradeMode = TradeMode.Market,
-    tradeType = TradeType.Long,
-    fromTokenInputValue = "1000",
-    toTokenInputValue = "0.5",
-    focusedInput = "from",
-    triggerPriceInputValue = "",
-    isLeverageSliderEnabled = true,
-    fromTokenAddress = USDC_ADDRESS,
-    toTokenAddress = ETH_ADDRESS,
-    marketAddress,
-    tokensData = TOKENS_DATA,
-    marketInfo,
-  } = overrides;
+  const tokensData = useMemo(
+    () => ({
+      [USDC_ADDRESS]: USDC_TOKEN,
+      [ETH_ADDRESS]: dynamicEthToken,
+      [BTC_ADDRESS]: BTC_TOKEN,
+    }),
+    [dynamicEthToken]
+  );
 
-  const state: DeepPartial<SyntheticsState> = {
-    pageType: "trade",
-    globals: {
-      chainId: ARBITRUM,
-      srcChainId: undefined,
-      tokensDataResult: { tokensData },
-      marketsInfo: {
-        marketsInfoData: marketInfo ? { [marketInfo.marketTokenAddress]: marketInfo } : {},
-      },
-      positionsInfo: { positionsInfoData: {} },
-      ordersInfo: { ordersInfoData: {} },
-      uiFeeFactor: 0n,
-      jitLiquidityData: {},
-      isFirstOrder: false,
-      account: undefined,
-    },
-    externalSwap: {
-      baseOutput: undefined,
-      setBaseOutput: () => undefined,
-      shouldFallbackToInternalSwap: false,
-      setShouldFallbackToInternalSwap: () => undefined,
-    },
-    claims: {
-      accruedPositionPriceImpactFees: [],
-      claimablePositionPriceImpactFees: [],
-    },
-    tradebox: {
-      tradeType,
-      tradeMode,
-      fromTokenAddress,
-      toTokenAddress,
-      marketAddress: marketInfo ? marketInfo.marketTokenAddress : marketAddress,
-      marketInfo: marketInfo ?? undefined,
-      collateralAddress: USDC_ADDRESS,
-      collateralToken: tokensData[USDC_ADDRESS] ?? USDC_TOKEN,
-      focusedInput,
-      fromTokenInputValue,
-      toTokenInputValue,
-      triggerPriceInputValue,
-      isFromTokenGmxAccount: false,
-      leverageOption: 20000,
-      availableTokensOptions: {
-        swapTokens: [tokensData[USDC_ADDRESS] ?? USDC_TOKEN, tokensData[ETH_ADDRESS] ?? ETH_TOKEN],
-        infoTokens: tokensData,
-        sortedLongAndShortTokens: [toTokenAddress],
-      },
-    },
-    settings: {
-      isLeverageSliderEnabled,
-    },
-  };
-
-  return state as SyntheticsState;
+  return { dynamicEthToken, tokensData };
 }
-
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: false, gcTime: 0 } },
-});
-
-const wagmiConfig = createConfig({
-  chains: [arbitrum],
-  transports: { [arbitrum.id]: http() },
-});
 
 function TestProviders({ state, children }: { state: SyntheticsState; children: ReactNode }) {
   return (
@@ -316,7 +217,7 @@ export function IntegrationStory({
     [tradeMode, tradeType, fromValue, toValue, focused, triggerPrice, isLeverageSliderEnabled]
   );
 
-  const isLimit = tradeMode === TradeMode.Limit;
+  const isLimit = tradeMode === TradeMode.Limit || tradeMode === TradeMode.StopMarket;
 
   const handleTriggerPriceChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTriggerPrice(e.target.value);
@@ -376,26 +277,7 @@ export function PriceChangeStory({
     setToValue(value);
   }, []);
 
-  const dynamicEthToken = useMemo(
-    () =>
-      ({
-        ...ETH_TOKEN,
-        prices: {
-          minPrice: expandDecimals(ethPrice, 30),
-          maxPrice: expandDecimals(ethPrice, 30),
-        },
-      }) as TokenData,
-    [ethPrice]
-  );
-
-  const tokensData = useMemo(
-    () => ({
-      [USDC_ADDRESS]: USDC_TOKEN,
-      [ETH_ADDRESS]: dynamicEthToken,
-      [BTC_ADDRESS]: BTC_TOKEN,
-    }),
-    [dynamicEthToken]
-  );
+  const { tokensData } = useDynamicTokensData(ethPrice);
 
   const state = useMemo(
     () =>
@@ -457,27 +339,7 @@ export function LeverageOffStory({
     setToValue(value);
   }, []);
 
-  const dynamicEthToken = useMemo(
-    () =>
-      ({
-        ...ETH_TOKEN,
-        prices: {
-          minPrice: expandDecimals(ethPrice, 30),
-          maxPrice: expandDecimals(ethPrice, 30),
-        },
-      }) as TokenData,
-    [ethPrice]
-  );
-
-  const tokensData = useMemo(
-    () => ({
-      [USDC_ADDRESS]: USDC_TOKEN,
-      [ETH_ADDRESS]: dynamicEthToken,
-      [BTC_ADDRESS]: BTC_TOKEN,
-    }),
-    [dynamicEthToken]
-  );
-
+  const { dynamicEthToken, tokensData } = useDynamicTokensData(ethPrice);
   const marketInfo = useMemo(() => createMockMarketInfo(dynamicEthToken), [dynamicEthToken]);
 
   const state = useMemo(
@@ -540,26 +402,7 @@ export function EthMarginPriceChangeStory({
     setToValue(value);
   }, []);
 
-  const dynamicEthToken = useMemo(
-    () =>
-      ({
-        ...ETH_TOKEN,
-        prices: {
-          minPrice: expandDecimals(ethPrice, 30),
-          maxPrice: expandDecimals(ethPrice, 30),
-        },
-      }) as TokenData,
-    [ethPrice]
-  );
-
-  const tokensData = useMemo(
-    () => ({
-      [USDC_ADDRESS]: USDC_TOKEN,
-      [ETH_ADDRESS]: dynamicEthToken,
-      [BTC_ADDRESS]: BTC_TOKEN,
-    }),
-    [dynamicEthToken]
-  );
+  const { tokensData } = useDynamicTokensData(ethPrice);
 
   const state = useMemo(
     () =>
@@ -633,6 +476,52 @@ export function IntegrationNoTriggerCallbackStory() {
         setToTokenInputValue={setToValueWithReset}
         triggerPriceInputValue={undefined}
         onTriggerPriceInputChange={undefined}
+      />
+    </TestProviders>
+  );
+}
+
+/**
+ * Story for maxAvailableAmount divergence test.
+ * Balance is 10000 USDC but maxAvailableAmount is only 5000 USDC.
+ */
+export function MaxAvailableDivergenceStory() {
+  const [fromValue, setFromValue] = useState("");
+  const [toValue, setToValue] = useState("");
+  const [focused, setFocused] = useState<"from" | "to">("from");
+
+  const setToValueWithReset = useCallback((value: string, _resetPriceImpact: boolean) => {
+    setToValue(value);
+  }, []);
+
+  const state = useMemo(
+    () =>
+      createMockState({
+        fromTokenInputValue: fromValue,
+        toTokenInputValue: toValue,
+        focusedInput: focused,
+        isLeverageSliderEnabled: true,
+      }),
+    [fromValue, toValue, focused]
+  );
+
+  return (
+    <TestProviders state={state}>
+      <div data-testid="debug-state" className="hidden">
+        <span data-testid="focused-input">{focused}</span>
+        <span data-testid="from-value">{fromValue}</span>
+        <span data-testid="to-value">{toValue}</span>
+      </div>
+
+      <TradeboxMarginFields
+        maxAvailableAmount={expandDecimals(5000, 6)}
+        onSelectFromTokenAddress={noop}
+        onDepositTokenAddress={noop}
+        fromTokenInputValue={fromValue}
+        setFromTokenInputValue={(value) => setFromValue(value)}
+        setFocusedInput={setFocused}
+        toTokenInputValue={toValue}
+        setToTokenInputValue={setToValueWithReset}
       />
     </TestProviders>
   );

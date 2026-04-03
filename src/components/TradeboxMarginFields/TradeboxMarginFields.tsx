@@ -74,6 +74,9 @@ export function TradeboxMarginFields({
   const showPriceField = isLimit && triggerPriceInputValue !== undefined;
   const sizeFieldInputValue = sizeDisplayMode === "usd" ? sizeInputValue : toTokenInputValue;
 
+  // For limit orders, use trigger price for USD↔token conversion so the displayed
+  // position size reflects the limit fill price. Each trigger price keystroke
+  // recomputes this, but the size-sync effect guards against overwriting focused fields.
   const sizeConversionPrice = isLimit && triggerPrice !== undefined ? triggerPrice : markPrice;
   const { tokensToUsd, usdToTokens, canConvert } = useSizeConversion({
     toToken,
@@ -150,6 +153,8 @@ export function TradeboxMarginFields({
 
   const handleMarginPercentageChange = useCallback(
     (percentage: number) => {
+      // maxAvailableAmount is pre-bounded to wallet balance by the parent (via useMaxAvailableAmount);
+      // 0n means the user has no available margin to commit
       if (fromToken?.decimals === undefined || maxAvailableAmount === 0n) return;
 
       const formatted = calcMarginAmountByPercentage(

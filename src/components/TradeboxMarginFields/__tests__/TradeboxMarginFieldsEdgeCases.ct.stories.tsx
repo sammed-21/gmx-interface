@@ -1,61 +1,28 @@
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ChangeEvent, ReactNode, useCallback, useMemo, useState } from "react";
 import { MemoryRouter } from "react-router-dom";
-import { createConfig, http, WagmiProvider } from "wagmi";
-import { arbitrum } from "wagmi/chains";
+import { WagmiProvider } from "wagmi";
 
-import { ARBITRUM } from "config/chains";
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import { StateCtx } from "context/SyntheticsStateContext/utils";
 import { expandDecimals } from "lib/numbers";
-import type { DeepPartial } from "lib/types";
 import type { TokenData } from "sdk/utils/tokens/types";
-import { TradeMode, TradeType } from "sdk/utils/trade/types";
+import { TradeMode } from "sdk/utils/trade/types";
 
 import { TradeboxMarginFields } from "../TradeboxMarginFields";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
-
-const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
-const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
-
-const USDC_TOKEN = {
-  name: "USD Coin",
-  symbol: "USDC",
-  decimals: 6,
-  address: USDC_ADDRESS,
-  isStable: true,
-  prices: {
-    minPrice: expandDecimals(1, 30),
-    maxPrice: expandDecimals(1, 30),
-  },
-  balance: expandDecimals(10000, 6),
-} as TokenData;
-
-const ETH_TOKEN = {
-  name: "Ethereum",
-  symbol: "ETH",
-  decimals: 18,
-  address: ETH_ADDRESS,
-  prices: {
-    minPrice: expandDecimals(2000, 30),
-    maxPrice: expandDecimals(2000, 30),
-  },
-  balance: expandDecimals(10, 18),
-} as TokenData;
-
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: false, gcTime: 0 } },
-});
-
-const wagmiConfig = createConfig({
-  chains: [arbitrum],
-  transports: { [arbitrum.id]: http() },
-});
+import {
+  noop,
+  USDC_ADDRESS,
+  ETH_ADDRESS,
+  USDC_TOKEN,
+  ETH_TOKEN,
+  createMockState,
+  queryClient,
+  wagmiConfig,
+} from "./testFixtures";
 
 function TestProviders({ state, children }: { state: SyntheticsState; children: ReactNode }) {
   return (
@@ -73,92 +40,13 @@ function TestProviders({ state, children }: { state: SyntheticsState; children: 
   );
 }
 
-type MockStateOverrides = {
-  tradeMode?: TradeMode;
-  tradeType?: TradeType;
-  fromTokenInputValue?: string;
-  toTokenInputValue?: string;
-  focusedInput?: "from" | "to";
-  triggerPriceInputValue?: string;
-  isLeverageSliderEnabled?: boolean;
-  tokensData?: Record<string, TokenData>;
-  toTokenAddress?: string;
-  fromTokenAddress?: string;
-};
-
-function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
-  const {
-    tradeMode = TradeMode.Market,
-    tradeType = TradeType.Long,
-    fromTokenInputValue = "1000",
-    toTokenInputValue = "0.5",
-    focusedInput = "from",
-    triggerPriceInputValue = "",
-    isLeverageSliderEnabled = true,
-    tokensData = { [USDC_ADDRESS]: USDC_TOKEN, [ETH_ADDRESS]: ETH_TOKEN },
-    toTokenAddress = ETH_ADDRESS,
-    fromTokenAddress = USDC_ADDRESS,
-  } = overrides;
-
-  const state: DeepPartial<SyntheticsState> = {
-    pageType: "trade",
-    globals: {
-      chainId: ARBITRUM,
-      srcChainId: undefined,
-      tokensDataResult: { tokensData },
-      marketsInfo: { marketsInfoData: {} },
-      positionsInfo: { positionsInfoData: {} },
-      ordersInfo: { ordersInfoData: {} },
-      uiFeeFactor: 0n,
-      jitLiquidityData: {},
-      isFirstOrder: false,
-      account: undefined,
-    },
-    externalSwap: {
-      baseOutput: undefined,
-      setBaseOutput: () => undefined,
-      shouldFallbackToInternalSwap: false,
-      setShouldFallbackToInternalSwap: () => undefined,
-    },
-    claims: {
-      accruedPositionPriceImpactFees: [],
-      claimablePositionPriceImpactFees: [],
-    },
-    tradebox: {
-      tradeType,
-      tradeMode,
-      fromTokenAddress,
-      toTokenAddress,
-      marketAddress: undefined,
-      marketInfo: undefined,
-      collateralAddress: fromTokenAddress,
-      collateralToken: tokensData[fromTokenAddress] ?? USDC_TOKEN,
-      focusedInput,
-      fromTokenInputValue,
-      toTokenInputValue,
-      triggerPriceInputValue,
-      isFromTokenGmxAccount: false,
-      leverageOption: 20000,
-      availableTokensOptions: {
-        swapTokens: Object.values(tokensData),
-        infoTokens: tokensData,
-        sortedLongAndShortTokens: [toTokenAddress],
-      },
-    },
-    settings: {
-      isLeverageSliderEnabled,
-    },
-  };
-
-  return state as SyntheticsState;
-}
-
 export type EdgeCaseStoryProps = {
   initialFromValue?: string;
   initialToValue?: string;
   maxAvailableAmount?: bigint;
   tradeMode?: TradeMode;
   initialTriggerPrice?: string;
+  ethPrice?: number;
 };
 
 /**
@@ -170,6 +58,7 @@ export function EdgeCaseStory({
   maxAvailableAmount = expandDecimals(10000, 6),
   tradeMode = TradeMode.Market,
   initialTriggerPrice,
+  ethPrice = 2000,
 }: EdgeCaseStoryProps) {
   const [fromValue, setFromValue] = useState(initialFromValue);
   const [toValue, setToValue] = useState(initialToValue);
@@ -180,6 +69,26 @@ export function EdgeCaseStory({
     setToValue(value);
   }, []);
 
+  const dynamicEthToken = useMemo(
+    () =>
+      ({
+        ...ETH_TOKEN,
+        prices: {
+          minPrice: expandDecimals(ethPrice, 30),
+          maxPrice: expandDecimals(ethPrice, 30),
+        },
+      }) as TokenData,
+    [ethPrice]
+  );
+
+  const tokensData = useMemo(
+    () => ({
+      [USDC_ADDRESS]: USDC_TOKEN,
+      [ETH_ADDRESS]: dynamicEthToken,
+    }),
+    [dynamicEthToken]
+  );
+
   const state = useMemo(
     () =>
       createMockState({
@@ -188,11 +97,12 @@ export function EdgeCaseStory({
         toTokenInputValue: toValue,
         focusedInput: focused,
         triggerPriceInputValue: triggerPrice,
+        tokensData,
       }),
-    [tradeMode, fromValue, toValue, focused, triggerPrice]
+    [tradeMode, fromValue, toValue, focused, triggerPrice, tokensData]
   );
 
-  const isLimit = tradeMode === TradeMode.Limit;
+  const isLimit = tradeMode === TradeMode.Limit || tradeMode === TradeMode.StopMarket;
 
   const handleTriggerPriceChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTriggerPrice(e.target.value);
