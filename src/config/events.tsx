@@ -44,14 +44,10 @@ export const appEventsData: EventData[] = [
     bodyText: (
       <>
         Trade perpetuals, create and share your referral code, and provide liquidity on MegaETH using its native
-        stablecoin: USDm
+        stablecoin: USDm.{" "}
+        <ExternalLink href="https://gmxio.substack.com/p/gmx-is-now-live-on-megaeth-trade">Read more</ExternalLink>.
       </>
     ),
-    link: {
-      text: "Read more",
-      href: "https://gmxio.substack.com/p/gmx-is-now-live-on-megaeth-trade",
-      newTab: true,
-    },
   },
   {
     id: OM_MANTRA_MIGRATION_EVENT_ID,
