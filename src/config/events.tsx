@@ -39,7 +39,7 @@ export const appEventsData: EventData[] = [
     id: "megaeth-launch",
     isActive: true,
     startDate: "03 Apr 2026, 0:00",
-    endDate: "10 Apr 2026, 0:00",
+    endDate: "10 Apr 2026, 16:00",
     title: "GMX is now live on MegaETH",
     bodyText: (
       <>
