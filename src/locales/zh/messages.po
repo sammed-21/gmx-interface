@@ -679,6 +679,10 @@ msgstr "查看状态"
 msgid "No"
 msgstr "否"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Buying GM is disabled for this market"
+msgstr ""
+
 #: src/pages/TestPermits/TestPermits.tsx
 #: src/pages/TestPermits/TestPermits.tsx
 #: src/pages/TestPermits/TestPermits.tsx

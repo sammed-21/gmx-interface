@@ -679,6 +679,10 @@ msgstr "ステータスを表示"
 msgid "No"
 msgstr "いいえ"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Buying GM is disabled for this market"
+msgstr ""
+
 #: src/pages/TestPermits/TestPermits.tsx
 #: src/pages/TestPermits/TestPermits.tsx
 #: src/pages/TestPermits/TestPermits.tsx
