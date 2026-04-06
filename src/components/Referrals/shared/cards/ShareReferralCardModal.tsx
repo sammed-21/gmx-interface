@@ -17,7 +17,7 @@ import CopyStrokeIcon from "img/ic_copy_stroke.svg?react";
 import ShareArrowOutlineIcon from "img/ic_share_arrow_outline.svg?react";
 import XIcon from "img/ic_x.svg?react";
 import LogoText from "img/logo-text.svg?react";
-import shareReferralCodeBg from "img/share_refferral_code_bg.png";
+import shareReferralCodeBg from "img/share_referral_code_bg.png";
 
 type ShareReferralCardModalProps = {
   isVisible: boolean;
