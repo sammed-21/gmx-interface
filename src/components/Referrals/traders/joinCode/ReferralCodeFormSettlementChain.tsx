@@ -61,7 +61,7 @@ export function ReferralCodeFormSettlementChain({
         setReferralCode("");
       }
     } catch (error) {
-      toastCustomOrStargateError(chainId, error as Error);
+      toastCustomOrStargateError(chainId, error);
     } finally {
       setIsSubmitting(false);
       setIsValidating(false);

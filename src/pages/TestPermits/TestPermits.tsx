@@ -70,7 +70,6 @@ export function TestPermits() {
             [token.address]: { name: params.name, version: params.version, nonce: params.nonce, error: false },
           }));
         } catch (error) {
-          // @ts-expect-error
           if (!error.message.includes("Cannot decode zero data ")) {
             // eslint-disable-next-line no-console
             console.error("Error fetching onchain params for token", token.symbol, token.address, error);
@@ -113,7 +112,7 @@ export function TestPermits() {
       setPermitData(permit);
       helperToast.success(t`Permit signed for ${selectedToken.symbol}`);
     } catch (error) {
-      helperToast.error(t`Error signing permit for ${selectedToken.symbol}: ${(error as Error).message}`);
+      helperToast.error(t`Error signing permit for ${selectedToken.symbol}: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -152,7 +151,7 @@ export function TestPermits() {
         </div>
       );
     } catch (error) {
-      helperToast.error(t`Error sending permit for ${selectedToken.symbol}: ${(error as Error).message}`);
+      helperToast.error(t`Error sending permit for ${selectedToken.symbol}: ${error.message}`);
     } finally {
       setIsLoading(false);
     }

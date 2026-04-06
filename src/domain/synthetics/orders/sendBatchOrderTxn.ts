@@ -7,7 +7,7 @@ import { buildAndSignExpressBatchOrderTxn } from "domain/synthetics/express/expr
 import { GlvShiftParam } from "domain/synthetics/jit/utils";
 import { isLimitOrderType, isTriggerDecreaseOrderType } from "domain/synthetics/orders";
 import { TokensData } from "domain/tokens";
-import { extendError, type ErrorLike } from "lib/errors";
+import { extendError } from "lib/errors";
 import { sendExpressTransaction } from "lib/transactions/sendExpressTransaction";
 import { sendWalletTransaction } from "lib/transactions/sendWalletTransaction";
 import { TxnCallback, TxnEventBuilder } from "lib/transactions/types";
@@ -134,7 +134,7 @@ export async function sendBatchOrderTxn({
           return res;
         })
         .catch((error) => {
-          throw extendError(error as ErrorLike, {
+          throw extendError(error, {
             errorContext: "sending",
           });
         });
@@ -156,7 +156,7 @@ export async function sendBatchOrderTxn({
       },
     });
   } catch (error) {
-    callback?.(eventBuilder.Error(error as ErrorLike));
+    callback?.(eventBuilder.Error(error));
 
     throw error;
   }
@@ -322,7 +322,7 @@ const makeBatchOrderSimulation = async ({
       }
     }
   } catch (error) {
-    throw extendError(error as ErrorLike, {
+    throw extendError(error, {
       errorContext: "simulation",
       simulationMethod,
     });

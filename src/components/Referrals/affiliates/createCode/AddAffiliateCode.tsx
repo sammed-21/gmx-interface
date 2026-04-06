@@ -182,7 +182,7 @@ function AffiliateCodeFormMultichain({
         );
       }
     } catch (err) {
-      toastCustomOrStargateError(chainId, err as Error);
+      toastCustomOrStargateError(chainId, err);
     } finally {
       setIsSubmitting(false);
       setIsValidating(false);

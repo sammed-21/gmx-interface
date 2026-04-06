@@ -11,7 +11,6 @@ import {
 } from "context/SyntheticsStateContext/selectors/globalSelectors";
 import { useSelector } from "context/SyntheticsStateContext/utils";
 import { useChainId } from "lib/chains";
-import { type ErrorLike } from "lib/errors";
 import { FAST_EXPRESS_PARAMS_TIMEOUT_ERROR } from "lib/errors/customErrors";
 import { throttleLog } from "lib/logging";
 import { metrics } from "lib/metrics";
@@ -110,7 +109,7 @@ export function useExpressOrdersParams({
       } catch (error) {
         // Only log non-timeout errors to reduce log volume
         if (error instanceof Error && error.message !== FAST_EXPRESS_PARAMS_TIMEOUT_ERROR) {
-          metrics.pushError(error as ErrorLike, `fastExpressParams.error.${label}`);
+          metrics.pushError(error, `fastExpressParams.error.${label}`);
         }
         throw error;
       }

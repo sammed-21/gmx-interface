@@ -31,7 +31,6 @@ import { signRegisterCode } from "domain/synthetics/express/expressOrderUtils";
 import { ValidationBannerErrorName } from "domain/synthetics/trade/utils/validation";
 import { useChainId } from "lib/chains";
 import { useDebounce } from "lib/debounce/useDebounce";
-import { ErrorLike } from "lib/errors";
 import { helperToast } from "lib/helperToast";
 import { metrics } from "lib/metrics";
 import { formatUsd } from "lib/numbers";
@@ -148,7 +147,7 @@ function CreateReferralCodeSettlement({ onSuccess }: Props) {
         }
       } catch (err) {
         setError(t`Referral code creation failed`);
-        metrics.pushError(err as ErrorLike, "createReferralCode");
+        metrics.pushError(err, "createReferralCode");
       } finally {
         setIsProcessing(false);
       }
@@ -340,8 +339,8 @@ function CreateReferralCodeMultichain({ onSuccess }: Props) {
           );
         }
       } catch (err) {
-        toastCustomOrStargateError(chainId, err as Error);
-        metrics.pushError(err as ErrorLike, "createReferralCodeMultichain");
+        toastCustomOrStargateError(chainId, err);
+        metrics.pushError(err, "createReferralCodeMultichain");
       } finally {
         setIsSubmitting(false);
         setIsValidating(false);

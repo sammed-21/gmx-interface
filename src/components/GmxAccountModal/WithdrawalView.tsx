@@ -201,9 +201,7 @@ function getSameChainWithdrawalTokens({
         token.address !== zeroAddress &&
         token.gmxAccountBalance !== undefined &&
         token.gmxAccountBalance > 0n &&
-        !MULTI_CHAIN_WITHDRAWAL_TRADE_TOKENS[chainId as keyof typeof MULTI_CHAIN_WITHDRAWAL_TRADE_TOKENS]?.includes(
-          token.address
-        )
+        !MULTI_CHAIN_WITHDRAWAL_TRADE_TOKENS[chainId as SettlementChainId]?.includes(token.address)
       );
     })
     .sort(sortTokenDataByBalance);
@@ -442,7 +440,7 @@ function useWithdrawViewTransactions({
         }
       });
     } catch (error) {
-      const prettyError = toastCustomOrStargateError(chainId, error as Error, {
+      const prettyError = toastCustomOrStargateError(chainId, error, {
         actionName: "Multichain Withdrawal",
         metricId: metricData.metricId,
       });

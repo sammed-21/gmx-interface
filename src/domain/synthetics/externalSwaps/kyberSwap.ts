@@ -2,7 +2,6 @@ import { getContract } from "config/contracts";
 import { getKyberSwapUrl, KYBER_SWAP_CLIENT_ID, EXCLUDED_KYBER_SWAP_SOURCES } from "config/externalSwaps";
 import { USD_DECIMALS } from "config/factors";
 import { buildUrl } from "lib/buildUrl";
-import { type ErrorLike } from "lib/errors";
 import { metrics } from "lib/metrics";
 import { formatTokenAmount, numberToBigint } from "lib/numbers";
 import type { ContractsChainId } from "sdk/configs/chains";
@@ -177,8 +176,8 @@ export async function getKyberSwapTxnData({
       outputAmount: amountOutBigint,
     };
   } catch (e) {
-    (e as Error).message += ` URL: ${routeUrl.replace(receiverAddress, "...")}`;
-    metrics.pushError(e as ErrorLike, "externalSwap.getKyberSwapTxnData");
+    e.message += ` URL: ${routeUrl.replace(receiverAddress, "...")}`;
+    metrics.pushError(e, "externalSwap.getKyberSwapTxnData");
     return undefined;
   }
 }

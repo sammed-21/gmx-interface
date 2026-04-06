@@ -297,14 +297,14 @@ class Metrics {
             }
           });
         } catch (error) {
-          this.pushError(error as ErrorLike, "subscribeToLongTasks");
+          this.pushError(error, "subscribeToLongTasks");
           this.performanceObserver?.disconnect();
         }
       });
 
       this.performanceObserver.observe({ entryTypes: ["longtask"], buffered: true });
     } catch (error) {
-      this.pushError(error as ErrorLike, "subscribeToLongTasks");
+      this.pushError(error, "subscribeToLongTasks");
       this.performanceObserver?.disconnect();
     }
   };

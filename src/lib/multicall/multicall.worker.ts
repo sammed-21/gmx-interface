@@ -43,9 +43,9 @@ async function run(event: MessageEvent) {
     postMessage({
       id,
       error: {
-        name: (error as Error).name,
-        message: (error as Error).message,
-        stack: (error as Error).stack,
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
       },
     });
   }

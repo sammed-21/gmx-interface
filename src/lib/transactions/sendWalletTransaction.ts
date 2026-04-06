@@ -1,4 +1,4 @@
-import { ErrorLike, extendError } from "lib/errors";
+import { extendError } from "lib/errors";
 import { additionalTxnErrorValidation } from "lib/errors/additionalValidation";
 import { applyGasLimitBuffer } from "lib/gas/estimateGasLimit";
 import { GasPriceData, getGasPrice } from "lib/gas/gasPrice";
@@ -133,7 +133,7 @@ export async function sendWalletTransaction({
       wait: makeWalletTxnResultWaiter(res.hash, res),
     };
   } catch (error) {
-    callback?.(eventBuilder.Error(error as ErrorLike));
+    callback?.(eventBuilder.Error(error));
 
     throw error;
   }

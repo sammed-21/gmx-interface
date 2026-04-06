@@ -87,8 +87,8 @@ function FundingHistoryItemLabel({
 
   const isLoading = isMultichainFundingItemLoading({ operation, step, isExecutionError });
 
-  const key = `${operation}${isExecutionError ? "-failed" : ""}`;
-  let text = labels[key as keyof typeof labels] ?? `${operation} ${isExecutionError ? " failed" : ""}`;
+  const key = `${operation}${isExecutionError ? "-failed" : ""}` as keyof typeof labels;
+  let text = labels[key] ?? `${operation} ${isExecutionError ? " failed" : ""}`;
 
   if (isLoading) {
     return (

@@ -157,7 +157,7 @@ export function ReferralCodeFormMultichain({
         </>
       );
     } catch (error) {
-      toastCustomOrStargateError(chainId, error as Error);
+      toastCustomOrStargateError(chainId, error);
     } finally {
       setIsSubmitting(false);
       setIsValidating(false);

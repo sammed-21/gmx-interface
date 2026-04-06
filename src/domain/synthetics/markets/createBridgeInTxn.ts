@@ -112,7 +112,6 @@ export async function createBridgeInTxn({
 
     await txnResult.wait();
   } catch (error) {
-    // @ts-expect-error
     toastCustomOrStargateError(chainId, error, { actionName: "Bridge Deposit", collateral: tokenAddress });
   }
 }

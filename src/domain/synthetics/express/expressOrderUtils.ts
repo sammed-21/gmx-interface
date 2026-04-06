@@ -41,7 +41,7 @@ import {
 } from "domain/synthetics/subaccount";
 import { SignedTokenPermit, TokenData, TokensAllowanceData, TokensData } from "domain/tokens";
 import { applyMinimalBuffer } from "domain/tokens/useMaxAvailableAmount";
-import { extendError, type ErrorLike } from "lib/errors";
+import { extendError } from "lib/errors";
 import { isIgnoredEstimateGasError } from "lib/errors/customErrors";
 import { applyGasLimitBuffer, estimateGasLimit } from "lib/gas/estimateGasLimit";
 import { metrics } from "lib/metrics";
@@ -414,8 +414,8 @@ export async function estimateExpressParams({
         );
       }
     } catch (error) {
-      if (!isIgnoredEstimateGasError(error as ErrorLike)) {
-        const extendedError = extendError(error as ErrorLike, { data: { estimationMethod } });
+      if (!isIgnoredEstimateGasError(error)) {
+        const extendedError = extendError(error, { data: { estimationMethod } });
         metrics.pushError(extendedError, "expressOrders.estimateGas");
       }
 
@@ -1071,13 +1071,13 @@ async function validateSignature({
       });
     }
   } catch (error) {
-    metrics.pushError(error as ErrorLike, errorSource);
+    metrics.pushError(error, errorSource);
 
     if (silent) {
       return;
     }
 
-    throw extendError(error as ErrorLike, {
+    throw extendError(error, {
       data: {
         signature,
         expectedAccount,

@@ -3,7 +3,6 @@ import useSWR from "swr";
 
 import { getIsFlagEnabled } from "config/ab";
 import { ARBITRUM_SEPOLIA } from "config/chains";
-import { type ErrorLike } from "lib/errors";
 import { metrics } from "lib/metrics";
 import { FREQUENT_UPDATE_INTERVAL } from "lib/timeConstants";
 
@@ -37,7 +36,7 @@ export function useIsSponsoredCallBalanceAvailable(chainId: number): SponsoredCa
 
         return gasTankBalance.balance > MIN_GELATO_USD_BALANCE;
       } catch (error) {
-        metrics.pushError(error as ErrorLike, "expressOrders.useIsSponsoredCallBalanceAvailable");
+        metrics.pushError(error, "expressOrders.useIsSponsoredCallBalanceAvailable");
         return false;
       }
     },

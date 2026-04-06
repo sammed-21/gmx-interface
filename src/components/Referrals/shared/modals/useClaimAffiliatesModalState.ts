@@ -26,7 +26,6 @@ import { getTotalClaimableAffiliateRewardsUsd } from "domain/synthetics/referral
 import { convertToUsd, useTokensDataRequest } from "domain/synthetics/tokens";
 import { getDefaultInsufficientGasMessage } from "domain/synthetics/trade/utils/validation";
 import { useChainId } from "lib/chains";
-import { type ErrorLike } from "lib/errors";
 import { helperToast } from "lib/helperToast";
 import { metrics } from "lib/metrics";
 import { expandDecimals } from "lib/numbers";
@@ -248,7 +247,7 @@ export function useClaimAffiliatesModalState({ onClose }: { onClose: () => void 
         throw new Error("Transaction receipt status is failed");
       }
     } catch (error) {
-      metrics.pushError(error as ErrorLike, "settlementClaimAffiliateRewards");
+      metrics.pushError(error, "settlementClaimAffiliateRewards");
       helperToast.error(t`Failed to claim affiliate rewards`);
     } finally {
       setIsSubmitting(false);
@@ -380,7 +379,7 @@ export function useClaimAffiliatesModalState({ onClose }: { onClose: () => void 
       onClose();
     } catch (error) {
       helperToast.error(t`Claiming affiliate rewards failed`);
-      metrics.pushError(error as ErrorLike, "multichainClaimAffiliateRewards");
+      metrics.pushError(error, "multichainClaimAffiliateRewards");
     } finally {
       setIsSubmitting(false);
     }

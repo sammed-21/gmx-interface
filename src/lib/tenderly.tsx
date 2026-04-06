@@ -256,7 +256,6 @@ async function processSimulation({
   } catch (e) {
     helperToast.error(
       <>
-        {/* @ts-expect-error */}
         {e.message}
         <br />
         <br />

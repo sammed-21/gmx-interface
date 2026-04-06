@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import useSWR from "swr";
 import { zeroAddress } from "viem";
 
-import { type ErrorLike } from "lib/errors";
 import { getSubsquidGraphClient } from "lib/indexers";
 import { metrics } from "lib/metrics";
 import { MarketInfo as SquidMarketInfo } from "sdk/codegen/subsquid";
@@ -269,7 +268,7 @@ export function useFastMarketsInfoRequest(chainId: number) {
           return acc;
         }, {} as RawMarketsInfoData);
       } catch (e) {
-        metrics.pushError(e as ErrorLike, "useFastMarketsInfoRequest");
+        metrics.pushError(e, "useFastMarketsInfoRequest");
         throw e;
       }
     },

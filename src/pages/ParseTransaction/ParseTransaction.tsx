@@ -570,7 +570,6 @@ function LogEntryComponent(props: LogEntryComponentProps) {
       try {
         value = field(props.value, props);
       } catch (e) {
-        // @ts-expect-error
         value = e.message;
         withError = true;
       }
@@ -589,7 +588,6 @@ function LogEntryComponent(props: LogEntryComponentProps) {
     try {
       value = field(props.value, props);
     } catch (e) {
-      // @ts-expect-error
       value = e.message;
       withError = true;
     }
@@ -606,7 +604,6 @@ function LogEntryComponent(props: LogEntryComponentProps) {
       try {
         value = field(props.value, props);
       } catch (e) {
-        // @ts-expect-error
         value = e.message;
         withError = true;
       }
