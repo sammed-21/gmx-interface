@@ -28,10 +28,12 @@ import { getMinCollateralUsdForLeverage, getTradeFlagsForCollateralEdit } from "
 import { usePriceImpactWarningState } from "domain/synthetics/trade/usePriceImpactWarningState";
 import { useMaxAvailableAmount } from "domain/tokens/useMaxAvailableAmount";
 import { useChainId } from "lib/chains";
+import { helperToast } from "lib/helperToast";
 import { useLocalizedMap } from "lib/i18n";
 import { formatAmountFree, formatBalanceAmount, formatTokenAmountWithUsd } from "lib/numbers";
 import { getByKey } from "lib/objects";
 import { usePrevious } from "lib/usePrevious";
+import { useIsNonEoaAccountOnAnyChain } from "lib/wallets/useAccountType";
 import {
   convertTokenAddress,
   getTokenVisualMultiplier,
@@ -65,6 +67,7 @@ import "./PositionEditor.scss";
 export function PositionEditor() {
   const { chainId, srcChainId } = useChainId();
   const { expressOrdersEnabled, setExpressOrdersEnabled, setIsSettingsVisible } = useSettings();
+  const { isNonEoaAccountOnAnyChain } = useIsNonEoaAccountOnAnyChain();
   const [, setEditingPositionKey] = usePositionEditorPositionState();
   const tokensData = useTokensData();
   const nativeToken = getByKey(tokensData, NATIVE_TOKEN_ADDRESS);
@@ -87,6 +90,11 @@ export function PositionEditor() {
 
   const handleSetCollateralAddress = useCallback(
     (tokenAddress: string, isGmxAccount?: boolean) => {
+      if (isGmxAccount && isNonEoaAccountOnAnyChain) {
+        helperToast.error(t`Smart wallets are not supported on Express Trading or One-Click Trading`);
+        return;
+      }
+
       if (isGmxAccount && !expressOrdersEnabled) {
         setExpressOrdersEnabled(true);
         toastEnableExpress(() => setIsSettingsVisible(true));
@@ -99,6 +107,7 @@ export function PositionEditor() {
     },
     [
       expressOrdersEnabled,
+      isNonEoaAccountOnAnyChain,
       setSelectedCollateralAddress,
       setExpressOrdersEnabled,
       setIsSettingsVisible,
