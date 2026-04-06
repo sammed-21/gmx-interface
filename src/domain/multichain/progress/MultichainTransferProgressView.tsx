@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useCopyToClipboard } from "react-use";
 
-import { getChainName } from "config/chains";
+import { AnyChainId, getChainName } from "config/chains";
 import { getChainIcon } from "config/icons";
 import { getTokenAddressByGlv } from "domain/synthetics/markets/glv";
 import { Operation } from "domain/synthetics/markets/types";
@@ -355,9 +355,9 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                         value={
                           finishedError.creationTx ? (
                             <ExternalLink
-                              href={CHAIN_ID_TO_TX_URL_BUILDER[
-                                finishedError.chainId as keyof typeof CHAIN_ID_TO_TX_URL_BUILDER
-                              ](finishedError.creationTx)}
+                              href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                                finishedError.creationTx
+                              )}
                             >
                               <ExternalLinkIcon className="size-16 text-typography-secondary" />
                             </ExternalLink>
@@ -374,9 +374,9 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                         value={
                           finishedError.executionTx ? (
                             <ExternalLink
-                              href={CHAIN_ID_TO_TX_URL_BUILDER[
-                                finishedError.chainId as keyof typeof CHAIN_ID_TO_TX_URL_BUILDER
-                              ](finishedError.executionTx)}
+                              href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                                finishedError.executionTx
+                              )}
                             >
                               <ExternalLinkIcon className="size-16 text-typography-secondary" />
                             </ExternalLink>
@@ -394,9 +394,9 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                           value={
                             finishedError.creationTx ? (
                               <ExternalLink
-                                href={CHAIN_ID_TO_TX_URL_BUILDER[
-                                  finishedError.chainId as keyof typeof CHAIN_ID_TO_TX_URL_BUILDER
-                                ](finishedError.creationTx)}
+                                href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                                  finishedError.creationTx
+                                )}
                                 variant="icon"
                               >
                                 {shortenAddressOrEns(finishedError.creationTx, 11)}
@@ -412,9 +412,9 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                           value={
                             finishedError.executionTx ? (
                               <ExternalLink
-                                href={CHAIN_ID_TO_TX_URL_BUILDER[
-                                  finishedError.chainId as keyof typeof CHAIN_ID_TO_TX_URL_BUILDER
-                                ](finishedError.executionTx)}
+                                href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                                  finishedError.executionTx
+                                )}
                                 variant="icon"
                               >
                                 {shortenAddressOrEns(finishedError.executionTx, 11)}

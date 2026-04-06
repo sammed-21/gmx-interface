@@ -315,10 +315,7 @@ export const MULTI_CHAIN_DEPOSIT_TRADE_TOKENS = {} as Record<SettlementChainId, 
 export const MULTI_CHAIN_WITHDRAWAL_TRADE_TOKENS = {} as Record<SettlementChainId, string[]>;
 export const MULTI_CHAIN_PLATFORM_TOKENS_MAP = {} as Record<SettlementChainId, string[]>;
 
-export const CHAIN_ID_TO_TOKEN_ID_MAP: Record<
-  SettlementChainId | SourceChainId,
-  Record<string, MultichainTokenId>
-> = {} as any;
+export const CHAIN_ID_TO_TOKEN_ID_MAP: Partial<Record<AnyChainId, Record<string, MultichainTokenId>>> = {} as any;
 
 export const MULTICHAIN_SOURCE_TO_SETTLEMENTS_MAPPING: MultichainSourceToSettlementsMap = {} as any;
 
@@ -333,7 +330,7 @@ for (const tokenSymbol in TOKEN_GROUPS) {
     }
 
     CHAIN_ID_TO_TOKEN_ID_MAP[firstChainId] = CHAIN_ID_TO_TOKEN_ID_MAP[firstChainId] || {};
-    CHAIN_ID_TO_TOKEN_ID_MAP[firstChainId][tokenId.address] = tokenId;
+    CHAIN_ID_TO_TOKEN_ID_MAP[firstChainId]![tokenId.address] = tokenId;
 
     if (!isSettlementChain(firstChainId)) {
       continue;
@@ -395,7 +392,7 @@ for (const tokenSymbol in TOKEN_GROUPS) {
 }
 
 export function getMultichainTokenId(chainId: number, tokenAddress: string): MultichainTokenId | undefined {
-  return CHAIN_ID_TO_TOKEN_ID_MAP[chainId as keyof typeof CHAIN_ID_TO_TOKEN_ID_MAP]?.[tokenAddress];
+  return CHAIN_ID_TO_TOKEN_ID_MAP[chainId as AnyChainId]?.[tokenAddress];
 }
 
 export function getStargatePoolAddress(chainId: number, tokenAddress: string): string | undefined {
@@ -407,7 +404,7 @@ export function getStargatePoolAddress(chainId: number, tokenAddress: string): s
 }
 
 export function getLayerZeroEndpointId(chainId: number): LayerZeroEndpointId | undefined {
-  return CHAIN_ID_TO_ENDPOINT_ID[chainId as keyof typeof CHAIN_ID_TO_ENDPOINT_ID];
+  return CHAIN_ID_TO_ENDPOINT_ID[chainId as AnyChainId];
 }
 
 export function getMappedTokenId(
@@ -458,7 +455,7 @@ export const MULTICHAIN_FUNDING_SLIPPAGE_BPS = 50;
 
 export const StargateErrorsAbi = _StargateErrorsAbi as Abi;
 
-export const CHAIN_ID_TO_ENDPOINT_ID: Record<SettlementChainId | SourceChainId, LayerZeroEndpointId> = {
+export const CHAIN_ID_TO_ENDPOINT_ID: Partial<Record<AnyChainId, LayerZeroEndpointId>> = {
   [ARBITRUM_SEPOLIA]: 40231,
   [SOURCE_SEPOLIA]: 40161,
   [SOURCE_OPTIMISM_SEPOLIA]: 40232,

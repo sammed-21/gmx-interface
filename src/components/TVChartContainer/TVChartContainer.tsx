@@ -5,7 +5,7 @@ import { isAddressEqual, type Address } from "viem";
 
 import { colors } from "config/colors";
 import { TV_SAVE_LOAD_CHARTS_KEY, WAS_TV_CHART_OVERRIDDEN_KEY } from "config/localStorage";
-import { RESOLUTION_TO_SECONDS, SUPPORTED_RESOLUTIONS_V2 } from "config/tradingview";
+import { type TradingViewResolution, RESOLUTION_TO_SECONDS, SUPPORTED_RESOLUTIONS_V2 } from "config/tradingview";
 import { useSettings } from "context/SettingsContext/SettingsContextProvider";
 import { useSyntheticsEvents } from "context/SyntheticsEvents/SyntheticsEventsProvider";
 import { selectChartToken } from "context/SyntheticsStateContext/selectors/chartSelectors";
@@ -676,8 +676,9 @@ export default function TVChartContainer({
         ?.activeChart()
         .onIntervalChanged()
         .subscribe(null, (interval) => {
-          if (supportedResolutions[interval as keyof typeof supportedResolutions]) {
-            const period = supportedResolutions[interval as keyof typeof supportedResolutions];
+          const res = interval as TradingViewResolution;
+          if (supportedResolutions[res]) {
+            const period = supportedResolutions[res];
             setPeriod(period);
             tvWidgetRef.current?.saveChartToServer(undefined, undefined, {
               chartName: `gmx-chart-v2`,

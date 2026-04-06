@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 import { chainlinkClient } from "lib/indexers/clients";
-import { CHART_PERIODS } from "lib/legacy";
+import { type ChartPeriod, CHART_PERIODS } from "lib/legacy";
 import { MaxInt256 } from "lib/numbers";
 import { getNormalizedTokenSymbol } from "sdk/configs/tokens";
 
@@ -9,8 +9,8 @@ import { FEED_ID_MAP } from "./constants";
 import type { Bar, FromOldToNewArray } from "../tradingview/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getCandlesFromPrices(prices: any, period: any) {
-  const periodTime = CHART_PERIODS[period as keyof typeof CHART_PERIODS];
+function getCandlesFromPrices(prices: any, period: ChartPeriod) {
+  const periodTime = CHART_PERIODS[period];
 
   if (prices.length < 2) {
     return [];
@@ -92,7 +92,7 @@ export function getChainlinkChartPricesFromGraph(tokenSymbol: string, period: st
       });
 
       prices.sort(([timeA], [timeB]) => timeA - timeB);
-      prices = getCandlesFromPrices(prices, period);
+      prices = getCandlesFromPrices(prices, period as ChartPeriod);
       return prices;
     })
     .catch((err) => {

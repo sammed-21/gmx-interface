@@ -1,5 +1,6 @@
 import cx from "classnames";
 
+import { AnyChainId } from "config/chains";
 import { CHAIN_ID_TO_NETWORK_ICON } from "config/icons";
 import { importImage } from "lib/legacy";
 
@@ -81,7 +82,7 @@ function TokenIcon({ className, symbol, displaySize, badge, badgeClassName, chai
     }
     sub = (
       <img
-        src={CHAIN_ID_TO_NETWORK_ICON[chainIdBadge as keyof typeof CHAIN_ID_TO_NETWORK_ICON]}
+        src={CHAIN_ID_TO_NETWORK_ICON[chainIdBadge as AnyChainId]}
         width={size}
         height={size}
         className={cx("absolute z-10 box-content rounded-full bg-slate-900", offset)}

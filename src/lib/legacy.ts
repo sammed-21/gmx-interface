@@ -136,6 +136,8 @@ export const CHART_PERIODS = {
   "1y": 60 * 60 * 24 * 365,
 };
 
+export type ChartPeriod = keyof typeof CHART_PERIODS;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getTotalVolumeSum(volumes: any) {
   if (!volumes || volumes.length === 0) {

@@ -17,7 +17,7 @@ import { useCallback, useMemo } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-import { locales } from "lib/i18n";
+import { type Locale } from "lib/i18n";
 
 import Button from "components/Button/Button";
 
@@ -27,7 +27,7 @@ import ChevronLeftIcon from "img/ic_chevron_left.svg?react";
 
 import "./DateRangeSelect.scss";
 
-export const LOCALE_DATE_LOCALE_MAP: Record<keyof typeof locales, DateLocale> = {
+export const LOCALE_DATE_LOCALE_MAP: Record<Locale, DateLocale> = {
   en: dateEn,
   es: dateEs,
   zh: dateZh,
@@ -106,10 +106,9 @@ export function DateRangeSelect({ startDate, endDate, onChange, handleClassName 
   );
 
   const { _, i18n } = useLingui();
-  const localeStr = i18n.locale;
+  const localeStr = i18n.locale as Locale;
 
-  const locale: DateLocale =
-    LOCALE_DATE_LOCALE_MAP[localeStr as keyof typeof LOCALE_DATE_LOCALE_MAP] ?? LOCALE_DATE_LOCALE_MAP.en;
+  const locale: DateLocale = LOCALE_DATE_LOCALE_MAP[localeStr] ?? LOCALE_DATE_LOCALE_MAP.en;
 
   const buttonText = useMemo(() => {
     if (!startDate || !endDate) {
@@ -221,10 +220,9 @@ export function DateSelect({
   );
 
   const { i18n, _ } = useLingui();
-  const localeStr = i18n.locale;
+  const localeStr = i18n.locale as Locale;
 
-  const locale: DateLocale =
-    LOCALE_DATE_LOCALE_MAP[localeStr as keyof typeof LOCALE_DATE_LOCALE_MAP] ?? LOCALE_DATE_LOCALE_MAP.en;
+  const locale: DateLocale = LOCALE_DATE_LOCALE_MAP[localeStr] ?? LOCALE_DATE_LOCALE_MAP.en;
 
   const buttonText = useMemo(() => {
     if (!date) {

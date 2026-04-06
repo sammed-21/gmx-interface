@@ -1,8 +1,8 @@
-import { ARBITRUM, AVALANCHE } from "./chains";
+import { ARBITRUM, AVALANCHE, type ContractsChainId } from "./chains";
 
 export const GMX_STATS_API_URL = "https://stats.gmx.io/api";
 
-const BACKEND_URLS = {
+const BACKEND_URLS: { default: string } & Partial<Record<ContractsChainId, string>> = {
   default: "https://gmx-server-mainnet.uw.r.appspot.com",
 
   [ARBITRUM]: "https://gmx-server-mainnet.uw.r.appspot.com",
@@ -21,7 +21,7 @@ function getServerBaseUrl(chainId: number) {
     }
   }
 
-  return BACKEND_URLS[chainId as keyof typeof BACKEND_URLS] || BACKEND_URLS.default;
+  return BACKEND_URLS[chainId as ContractsChainId] || BACKEND_URLS.default;
 }
 
 export function getServerUrl(chainId: number, path: string) {

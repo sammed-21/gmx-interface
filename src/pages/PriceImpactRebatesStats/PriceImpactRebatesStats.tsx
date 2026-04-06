@@ -101,12 +101,12 @@ const RebateGroupRow = memo(({ rebateGroup }: { rebateGroup: RebateGroup }) => {
   const handleCopyCommandClick = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
-      const chainIdToNetwork = {
+      const chainIdToNetwork: Record<number, string> = {
         [ARBITRUM]: "arbitrum",
         [AVALANCHE]: "avalanche",
         [AVALANCHE_FUJI]: "avalancheFuji",
       };
-      const networkStr = chainIdToNetwork[chainId as keyof typeof chainIdToNetwork];
+      const networkStr = chainIdToNetwork[chainId];
       copyToClipboard(
         `MARKET=${rebateGroup.marketInfo?.marketTokenAddress} TOKEN=${rebateGroup.tokenData?.address} TIME_KEY=${
           rebateGroup.timeKey

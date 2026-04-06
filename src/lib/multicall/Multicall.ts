@@ -1,6 +1,6 @@
 import { Chain, createPublicClient, http } from "viem";
 
-import { getViemChain } from "config/chains";
+import { getViemChain, type ContractsChainId } from "config/chains";
 import { isWebWorker } from "config/env";
 import { getProviderNameFromUrl } from "config/rpc";
 import { emitReportEndpointFailure } from "lib/FallbackTracker/events";
@@ -45,11 +45,11 @@ export class Multicall {
         // retries works strangely in viem, so we disable them
         retryCount: 0,
         retryDelay: 10000000,
-        batch: BATCH_CONFIGS[chainId as keyof typeof BATCH_CONFIGS].http,
+        batch: BATCH_CONFIGS[chainId as ContractsChainId].http,
         timeout: MAX_PRIMARY_TIMEOUT,
       }),
       pollingInterval: undefined,
-      batch: BATCH_CONFIGS[chainId as keyof typeof BATCH_CONFIGS].client,
+      batch: BATCH_CONFIGS[chainId as ContractsChainId].client,
       chain: getViemChain(chainId) as Chain,
     });
   }

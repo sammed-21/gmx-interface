@@ -276,7 +276,7 @@ export default function EarnYieldOverview() {
   const isGmxSuspended = arbStakingData?.isRewardsSuspended;
 
   const networkCards = useMemo(
-    () => ({
+    (): Record<number, { chainId: number; title: React.ReactNode; rows: React.ReactNode[] }> => ({
       [ARBITRUM]: {
         chainId: ARBITRUM,
         title: <Trans>Arbitrum</Trans>,
@@ -395,7 +395,7 @@ export default function EarnYieldOverview() {
   );
 
   const selectedCard = useMemo(
-    () => networkCards[mobileChainId as keyof typeof networkCards] ?? networkCards[ARBITRUM],
+    () => networkCards[mobileChainId] ?? networkCards[ARBITRUM],
     [mobileChainId, networkCards]
   );
 

@@ -6,6 +6,7 @@ import {
   BOTANIX,
   MEGAETH,
   SOURCE_ETHEREUM_MAINNET,
+  type ContractsChainId,
 } from "./chains";
 import { isDevelopment } from "./env";
 import { getIndexerUrlKey } from "./localStorage";
@@ -84,7 +85,5 @@ export function getIndexerUrl(
     ];
   }
 
-  return INDEXER_URLS[chainId as keyof typeof INDEXER_URLS]?.[
-    indexer as keyof (typeof INDEXER_URLS)[keyof typeof INDEXER_URLS]
-  ];
+  return INDEXER_URLS[chainId as ContractsChainId]?.[indexer as keyof (typeof INDEXER_URLS)[keyof typeof INDEXER_URLS]];
 }
