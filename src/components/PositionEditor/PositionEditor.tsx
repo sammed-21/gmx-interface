@@ -34,6 +34,7 @@ import { formatAmountFree, formatBalanceAmount, formatTokenAmountWithUsd } from 
 import { getByKey } from "lib/objects";
 import { usePrevious } from "lib/usePrevious";
 import { useIsNonEoaAccountOnAnyChain } from "lib/wallets/useAccountType";
+import { useIsGeminiWallet } from "lib/wallets/useIsGeminiWallet";
 import {
   convertTokenAddress,
   getTokenVisualMultiplier,
@@ -68,6 +69,8 @@ export function PositionEditor() {
   const { chainId, srcChainId } = useChainId();
   const { expressOrdersEnabled, setExpressOrdersEnabled, setIsSettingsVisible } = useSettings();
   const { isNonEoaAccountOnAnyChain } = useIsNonEoaAccountOnAnyChain();
+  const isGeminiWallet = useIsGeminiWallet();
+  const isExpressUnsupportedWallet = isNonEoaAccountOnAnyChain || isGeminiWallet;
   const [, setEditingPositionKey] = usePositionEditorPositionState();
   const tokensData = useTokensData();
   const nativeToken = getByKey(tokensData, NATIVE_TOKEN_ADDRESS);
@@ -90,7 +93,7 @@ export function PositionEditor() {
 
   const handleSetCollateralAddress = useCallback(
     (tokenAddress: string, isGmxAccount?: boolean) => {
-      if (isGmxAccount && isNonEoaAccountOnAnyChain) {
+      if (isGmxAccount && isExpressUnsupportedWallet) {
         helperToast.error(t`Smart wallets are not supported on Express Trading or One-Click Trading`);
         return;
       }
@@ -107,7 +110,7 @@ export function PositionEditor() {
     },
     [
       expressOrdersEnabled,
-      isNonEoaAccountOnAnyChain,
+      isExpressUnsupportedWallet,
       setSelectedCollateralAddress,
       setExpressOrdersEnabled,
       setIsSettingsVisible,
