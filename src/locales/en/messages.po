@@ -2787,10 +2787,6 @@ msgstr "Update Take-Profit"
 msgid "Unstaking more than 20% of your max historical staked GMX will reset your accrued rewards."
 msgstr "Unstaking more than 20% of your max historical staked GMX will reset your accrued rewards."
 
-#: src/pages/Referrals/Referrals.tsx
-msgid "Get fee discounts and earn up to 20% commission through the GMX <0/> referral programs."
-msgstr "Get fee discounts and earn up to 20% commission through the GMX <0/> referral programs."
-
 #: src/components/GmxAccountModal/TransferDetailsView.tsx
 msgid "Deposit from {sourceChainName} failed"
 msgstr "Deposit from {sourceChainName} failed"
@@ -5327,6 +5323,10 @@ msgstr "Support for"
 msgid "Toros"
 msgstr "Toros"
 
+#: src/components/Referrals/affiliates/createCode/CreateAffiliateWizard.tsx
+msgid "Earn up to 15% in<0/> rebates as an Affiliate"
+msgstr "Earn up to 15% in<0/> rebates as an Affiliate"
+
 #: src/components/PositionDropdown/PositionDropdown.tsx
 msgid "Select market"
 msgstr "Select market"
@@ -6140,6 +6140,10 @@ msgstr "Receive at least {toAmountText} if executed. Price updates based on fees
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell order executed"
 msgstr "Sell order executed"
+
+#: src/pages/Referrals/Referrals.tsx
+msgid "Get fee discounts and earn up to 15% commission through the GMX <0/> referral program."
+msgstr "Get fee discounts and earn up to 15% commission through the GMX <0/> referral program."
 
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
@@ -10486,10 +10490,6 @@ msgstr "No liquidity available for increasing shorts at<0/>this size. Max short 
 #: src/components/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "<0>Switch to {0} pool</0> for potentially lower price impact"
 msgstr "<0>Switch to {0} pool</0> for potentially lower price impact"
-
-#: src/components/Referrals/affiliates/createCode/CreateAffiliateWizard.tsx
-msgid "Earn up to 20% in<0/> rebates as an Affiliate"
-msgstr "Earn up to 20% in<0/> rebates as an Affiliate"
 
 #: src/pages/BuyGMX/BuyGmxModal.tsx
 msgid "Buy on other platforms"
