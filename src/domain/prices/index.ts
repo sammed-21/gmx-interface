@@ -51,7 +51,7 @@ function getCandlesFromPrices(prices: any, period: ChartPeriod) {
 export function getChainlinkChartPricesFromGraph(tokenSymbol: string, period: string): Promise<FromOldToNewArray<Bar>> {
   tokenSymbol = getNormalizedTokenSymbol(tokenSymbol);
   const marketName = tokenSymbol + "_USD";
-  const feedId = FEED_ID_MAP[marketName as keyof typeof FEED_ID_MAP];
+  const feedId = FEED_ID_MAP[marketName];
   if (!feedId) {
     throw new Error(`undefined marketName ${marketName}`);
   }

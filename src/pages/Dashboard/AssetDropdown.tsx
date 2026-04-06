@@ -19,7 +19,7 @@ import nansenPortfolioIcon from "img/nansen_portfolio.svg";
 
 import "./AssetDropdown.scss";
 
-const PLATFORM_TOKEN_ROUTES = {
+const PLATFORM_TOKEN_ROUTES: Record<string, string> = {
   GMX: "/buy_gmx",
   GLP: "/buy_glp",
   GM: "/pools",
@@ -79,10 +79,7 @@ function AssetDropdown({ assetSymbol, token: propsToken, position = "right", mar
           >
             <Menu.Item as="div">
               {token.isPlatformToken && (
-                <Link
-                  to={PLATFORM_TOKEN_ROUTES[token.symbol as keyof typeof PLATFORM_TOKEN_ROUTES]}
-                  className="asset-item"
-                >
+                <Link to={PLATFORM_TOKEN_ROUTES[token.symbol]} className="asset-item">
                   <img className="asset-item-icon" width={16} height={16} src={token.imageUrl} alt={token.symbol} />
                   <p>
                     <Trans>Buy {token.symbol}</Trans>

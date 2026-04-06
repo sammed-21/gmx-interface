@@ -22,6 +22,7 @@ import {
   parseSymbolName,
 } from "domain/tradingview/utils";
 import { parseError } from "lib/errors";
+import type { ChartPeriod } from "lib/legacy";
 import {
   FreshnessMetricId,
   getRequestId,
@@ -194,7 +195,7 @@ export class DataFeed extends EventTarget implements IBasicDataFeed {
       if (!isStable) {
         bars = await this.fetchCandles(symbolInfo.name, resolution, countBack + offset);
       } else {
-        const currentCandleTime = getCurrentCandleTime(SUPPORTED_RESOLUTIONS_V2[res]);
+        const currentCandleTime = getCurrentCandleTime(SUPPORTED_RESOLUTIONS_V2[res] as ChartPeriod);
         bars = this.getStableCandles(currentCandleTime, resolution, countBack + offset);
       }
     } catch (e) {
@@ -264,7 +265,7 @@ export class DataFeed extends EventTarget implements IBasicDataFeed {
     const interval = new PauseableInterval<Bar | undefined>(async ({ lastReturnedValue }) => {
       let candlesToFetch = 1;
 
-      const currentCandleTime = getCurrentCandleTime(SUPPORTED_RESOLUTIONS_V2[res]);
+      const currentCandleTime = getCurrentCandleTime(SUPPORTED_RESOLUTIONS_V2[res] as ChartPeriod);
 
       if (lastReturnedValue) {
         const periodSeconds = RESOLUTION_TO_SECONDS[res];

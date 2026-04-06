@@ -126,7 +126,7 @@ export function StakeModal(props: {
   const [isUnstaking, setIsUnstaking] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const isMetamaskMobile = useIsMetamaskMobile();
-  const icons = getIcons(chainId);
+  const icons: Record<string, string | undefined> = getIcons(chainId);
   const hasOutdatedUi = useHasOutdatedUi();
 
   const stakeAmount = useMemo(() => parseValue(stakeValue, 18), [stakeValue]);
@@ -457,7 +457,7 @@ export function StakeModal(props: {
               <img
                 className="icon h-24"
                 height="24"
-                src={icons?.[activeTokenSymbol.toLowerCase() as keyof typeof icons]}
+                src={icons?.[activeTokenSymbol.toLowerCase()]}
                 alt={activeTokenSymbol}
               />
               {activeTokenSymbol}

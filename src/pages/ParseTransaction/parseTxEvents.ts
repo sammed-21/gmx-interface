@@ -6,7 +6,7 @@ import { abis } from "sdk/abis";
 import { keccakString } from "sdk/utils/hash";
 
 const PANIC_SIGNATURE4 = keccakString("Panic(uint256)").slice(0, 10);
-const PANIC_MAP = {
+const PANIC_MAP: Record<string, string> = {
   0x00: "generic compiler inserted panics",
   0x01: "call assert with an argument that evaluates to false",
   0x11: "arithmetic operation results in underflow or overflow outside of an unchecked { ... } block.",
@@ -36,7 +36,7 @@ function parseError(reasonBytes: any, shouldThrow = true) {
     const [panicCode] = defaultAbiCoder.decode(["uint256"], "0x" + reasonBytes.slice(10));
     return {
       name: "Panic",
-      args: [panicCode.toString(), PANIC_MAP[panicCode.toString() as keyof typeof PANIC_MAP]],
+      args: [panicCode.toString(), PANIC_MAP[panicCode.toString()]],
     } as any;
   }
 

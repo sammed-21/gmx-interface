@@ -53,7 +53,7 @@ type Props = {
 const MIN_DATE = new Date(2021, 8, 6);
 const MAX_DATE = addYears(new Date(), 1);
 
-const PRESETS = {
+const PRESETS: Record<string, Duration | undefined> = {
   days30: {
     days: 30,
   } satisfies Duration,
@@ -126,7 +126,7 @@ export function DateRangeSelect({ startDate, endDate, onChange, handleClassName 
   const handlePresetSelect = useCallback(
     (event: React.MouseEvent) => {
       const button = event.target as HTMLButtonElement;
-      const preset = button.dataset.preset as keyof typeof PRESETS;
+      const preset = button.dataset.preset;
 
       if (!preset) {
         return;
@@ -243,7 +243,7 @@ export function DateSelect({
   const handlePresetSelect = useCallback(
     (event: React.MouseEvent) => {
       const button = event.target as HTMLButtonElement;
-      const preset = button.dataset.preset as keyof typeof PRESETS;
+      const preset = button.dataset.preset;
 
       if (!preset) {
         return;

@@ -1,4 +1,4 @@
-import { CHART_PERIODS } from "lib/legacy";
+import { CHART_PERIODS, type ChartPeriod } from "lib/legacy";
 
 import type { Bar } from "./types";
 
@@ -17,9 +17,9 @@ export function formatTimeInBarToMs(bar: Bar) {
 /**
  * @unit seconds
  */
-export function getCurrentCandleTime(period: string) {
+export function getCurrentCandleTime(period: ChartPeriod) {
   // Converts current time to seconds, rounds down to nearest period, adds timezone offset
-  const periodSeconds = CHART_PERIODS[period as keyof typeof CHART_PERIODS];
+  const periodSeconds = CHART_PERIODS[period];
   return Math.floor(Date.now() / 1000 / periodSeconds) * periodSeconds;
 }
 
