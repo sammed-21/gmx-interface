@@ -2787,10 +2787,6 @@ msgstr "Take-Profit aktualisieren"
 msgid "Unstaking more than 20% of your max historical staked GMX will reset your accrued rewards."
 msgstr ""
 
-#: src/pages/Referrals/Referrals.tsx
-msgid "Get fee discounts and earn up to 20% commission through the GMX <0/> referral programs."
-msgstr ""
-
 #: src/components/GmxAccountModal/TransferDetailsView.tsx
 msgid "Deposit from {sourceChainName} failed"
 msgstr "Einzahlung von {sourceChainName} fehlgeschlagen"
@@ -5327,6 +5323,10 @@ msgstr "Unterstützung für"
 msgid "Toros"
 msgstr "Toros"
 
+#: src/components/Referrals/affiliates/createCode/CreateAffiliateWizard.tsx
+msgid "Earn up to 15% in<0/> rebates as an Affiliate"
+msgstr ""
+
 #: src/components/PositionDropdown/PositionDropdown.tsx
 msgid "Select market"
 msgstr "Markt auswählen"
@@ -6140,6 +6140,10 @@ msgstr "Erhalten Sie mindestens {toAmountText} bei Ausführung. Preis wird basie
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell order executed"
 msgstr "Verkaufsorder ausgeführt"
+
+#: src/pages/Referrals/Referrals.tsx
+msgid "Get fee discounts and earn up to 15% commission through the GMX <0/> referral program."
+msgstr ""
 
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/domain/synthetics/claimHistory/claimPriceImpactRebate.ts
@@ -10486,10 +10490,6 @@ msgstr "Keine Liquidität verfügbar, um Shorts bei<0/>dieser Größe zu erhöhe
 #: src/components/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "<0>Switch to {0} pool</0> for potentially lower price impact"
 msgstr "<0>Zum {0}-Pool wechseln</0> für potenziell geringeren Preiseinfluss"
-
-#: src/components/Referrals/affiliates/createCode/CreateAffiliateWizard.tsx
-msgid "Earn up to 20% in<0/> rebates as an Affiliate"
-msgstr ""
 
 #: src/pages/BuyGMX/BuyGmxModal.tsx
 msgid "Buy on other platforms"
