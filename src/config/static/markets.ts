@@ -770,10 +770,6 @@ const MARKETS_UI_CONFIGS: Record<ContractsChainId, Record<string, MarketUiConfig
   },
 };
 
-/**
- * GM pools where deposits (Buy GM) are disabled from the UI.
- * Keyed by chain ID → Set of market token addresses.
- */
 export const DEPOSIT_DISABLED_MARKET_ADDRESSES: Record<number, Set<string>> = {
   [ARBITRUM]: new Set([
     // ETH side [WETH-USDC]
