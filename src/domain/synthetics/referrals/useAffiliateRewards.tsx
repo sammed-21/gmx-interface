@@ -11,7 +11,7 @@ export function useAffiliateRewards(chainId: ContractsChainId) {
   const { account } = useWallet();
   const { marketsData, marketsAddresses } = useMarkets(chainId);
 
-  const { data } = useMulticall(chainId, "useAffiliateRewards", {
+  const { data, mutate } = useMulticall(chainId, "useAffiliateRewards", {
     key: account && marketsAddresses?.length ? [account, marketsAddresses.join("-")] : null,
     request: () => {
       return {
@@ -58,5 +58,6 @@ export function useAffiliateRewards(chainId: ContractsChainId) {
 
   return {
     affiliateRewardsData: data,
+    mutateAffiliateRewards: mutate,
   };
 }

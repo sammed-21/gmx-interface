@@ -8,7 +8,7 @@ import { selectBotanixStakingAssetsPerShare } from "context/SyntheticsStateConte
 import { useSelector } from "context/SyntheticsStateContext/utils";
 import { useDebounce } from "lib/debounce/useDebounce";
 import { type ErrorLike } from "lib/errors";
-import { metrics, OpenOceanQuoteTiming } from "lib/metrics";
+import { metrics, KyberSwapQuoteTiming } from "lib/metrics";
 import { ContractsChainId } from "sdk/configs/chains";
 import { getContract } from "sdk/configs/contracts";
 import { convertTokenAddress } from "sdk/configs/tokens";
@@ -16,7 +16,7 @@ import { getBotanixStakingExternalSwapQuote } from "sdk/utils/swap/botanixStakin
 import { ExternalSwapAggregator, ExternalSwapQuote } from "sdk/utils/trade/types";
 
 import { getNeedTokenApprove, useTokensAllowanceData } from "../tokens";
-import { getOpenOceanTxnData, OpenOceanQuote } from "./openOcean";
+import { getKyberSwapTxnData, KyberSwapQuote } from "./kyberSwap";
 
 export function useExternalSwapOutputRequest({
   chainId,
@@ -56,7 +56,7 @@ export function useExternalSwapOutputRequest({
   const prevAmountIn = usePrevious(amountIn);
   const botanixAssetsPerShare = useSelector(selectBotanixStakingAssetsPerShare);
 
-  const { data } = useSWR<OpenOceanQuote | undefined>(debouncedKey, {
+  const { data } = useSWR<KyberSwapQuote | undefined>(debouncedKey, {
     keepPreviousData: enabled && prevTokensKey === tokensKey && prevAmountIn === amountIn,
     fetcher: async () => {
       try {
@@ -77,7 +77,7 @@ export function useExternalSwapOutputRequest({
           return undefined;
         }
 
-        const result = await getOpenOceanTxnData({
+        const result = await getKyberSwapTxnData({
           chainId,
           senderAddress: getContract(chainId, "ExternalHandler"),
           receiverAddress,
@@ -88,10 +88,10 @@ export function useExternalSwapOutputRequest({
           slippage,
         });
 
-        metrics.pushTiming<OpenOceanQuoteTiming>("openOcean.quote.timing", Date.now() - startTime);
+        metrics.pushTiming<KyberSwapQuoteTiming>("kyberSwap.quote.timing", Date.now() - startTime);
 
         if (!result) {
-          throw new Error("Failed to fetch open ocean txn data");
+          throw new Error("Failed to fetch KyberSwap txn data");
         }
 
         return result;
@@ -147,7 +147,7 @@ export function useExternalSwapOutputRequest({
     );
 
     const quote: ExternalSwapQuote = {
-      aggregator: ExternalSwapAggregator.OpenOcean,
+      aggregator: ExternalSwapAggregator.KyberSwap,
       inTokenAddress: tokenInAddress,
       outTokenAddress: tokenOutAddress,
       receiver: receiverAddress,

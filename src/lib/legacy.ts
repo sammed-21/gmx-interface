@@ -11,7 +11,7 @@ import { BASIS_POINTS_DIVISOR_BIGINT, USD_DECIMALS } from "config/factors";
 import { PRODUCTION_HOST } from "config/links";
 
 import { isValidTimestamp } from "./dates";
-import { PRECISION, bigNumberify, calculateDisplayDecimals, expandDecimals, formatAmount } from "./numbers";
+import { PRECISION, calculateDisplayDecimals, expandDecimals, formatAmount, toBigInt } from "./numbers";
 
 // use a random placeholder account instead of the zero address as the zero address might have tokens
 export const PLACEHOLDER_ACCOUNT = privateKeyToAccount(generatePrivateKey()).address;
@@ -469,7 +469,7 @@ export function getStakingProcessedData(
   data.gmxBalance = balanceData.gmx;
   data.gmxBalanceUsd = mulDiv(balanceData.gmx, gmxPrice, expandDecimals(1, 18));
 
-  data.gmxSupply = bigNumberify(gmxSupply);
+  data.gmxSupply = toBigInt(gmxSupply);
 
   data.gmxSupplyUsd = mulDiv(data.gmxSupply, gmxPrice, expandDecimals(1, 18));
   data.stakedGmxSupply = stakedGmxSupply;
@@ -693,8 +693,7 @@ export function importImage(name: string) {
   throw new Error(`Image ${name} not found`);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getTwitterIntentURL(text: any, url = "", hashtag = "") {
+export function getTwitterIntentURL(text: string | string[], url = "", hashtag = ""): string {
   let finalURL = "https://twitter.com/intent/tweet?text=";
   if (text.length > 0) {
     finalURL += Array.isArray(text) ? text.map((t) => encodeURIComponent(t)).join("%0a%0a") : encodeURIComponent(text);

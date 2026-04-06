@@ -25,7 +25,6 @@ import {
   PerformanceSnapshotsResponse,
   RawIncentivesStats,
   TickersResponse,
-  UserFeedbackBody,
 } from "./types";
 
 function parseOracleCandle(rawCandle: number[]): Bar {
@@ -193,16 +192,6 @@ export class OracleKeeperFetcher implements OracleFetcher {
 
   fetchPostBatchReport(body: BatchReportBody): Promise<Response> {
     return this.post("/report/ui/batch_report", body);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  fetchPostFeedback(body: UserFeedbackBody, debug: any): Promise<Response> {
-    if (debug) {
-      // eslint-disable-next-line no-console
-      console.log("sendFeedback", body);
-    }
-
-    return this.post("/report/ui/feedback", body);
   }
 
   fetchApys(period: ApyPeriod): Promise<ApyInfo> {
