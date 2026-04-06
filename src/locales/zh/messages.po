@@ -502,6 +502,11 @@ msgstr "选择代币"
 msgid "Image generation failed. Refresh and try again."
 msgstr "图片生成失败。请刷新后重试。"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding"
+msgstr ""
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstaking..."
 msgstr "取消质押中..."
@@ -815,6 +820,10 @@ msgstr "用于后续问题的跟进联系"
 msgid "Available liquidity"
 msgstr "可用流动性"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "No net rate history available for this market."
+msgstr ""
+
 #: src/components/ModalViews/RedirectModal.tsx
 msgid "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
 msgstr "该网站是开源 <0>GMX 前端</0>的社区部署实例，托管在分布式点对点 <1>IPFS 网络</1>上"
@@ -943,6 +952,11 @@ msgstr "最大网络费用缓冲精度为 0.01%"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "DeltaPrime"
 msgstr "DeltaPrime"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing"
+msgstr ""
 
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
@@ -1141,6 +1155,10 @@ msgstr "自动复利收益（无需手动领取，不同于 GLP）"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstake {tokenSymbol}"
 msgstr "解除质押 {tokenSymbol}"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Borrowing Rate"
+msgstr ""
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Invalid slippage value"
@@ -1941,6 +1959,10 @@ msgstr "滑点不得超过 5%"
 msgid "Gain"
 msgstr "盈利"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Borrowing Rate"
+msgstr ""
+
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 msgid "Swapped {0} for {1}"
@@ -2427,6 +2449,10 @@ msgstr "转账完成"
 msgid "GM bridging to..."
 msgstr "GM 跨链桥接至..."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Funding Rate"
+msgstr ""
+
 #: src/context/SubaccountContext/SubaccountContextProvider.tsx
 msgid "Deactivate 1CT"
 msgstr "停用 1CT"
@@ -2565,6 +2591,10 @@ msgstr "不包含激励"
 #: src/components/Errors/gasErrors.tsx
 msgid "Insufficient {localizedList} for gas on {chainName}. <0>Buy {localizedList}</0>"
 msgstr "{chainName} 上的 Gas {localizedList} 不足。<0>购买 {localizedList}</0>"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Positions"
+msgstr ""
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -4055,6 +4085,10 @@ msgstr "可以随时解除质押吗？"
 msgid "Max profit limit reached"
 msgstr "已达到最大利润上限"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Virtual inventory for swaps (long / short)"
 msgstr "兑换虚拟库存（做多 / 做空）"
@@ -4257,6 +4291,10 @@ msgstr "正在加载市场数据..."
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "{longOrShort} positions do not pay a funding fee or a borrow fee"
 msgstr "{longOrShort} 仓位无需支付资金费用或借贷费用"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Funding Rate"
+msgstr ""
 
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "in {0}"
@@ -4684,6 +4722,11 @@ msgstr "您需要 {0} 上的 USDC 或 ETH 才能通过 GMX Account 创建推荐�
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Current tier:"
 msgstr "当前等级："
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Net Rate"
+msgstr ""
 
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
@@ -6454,6 +6497,10 @@ msgstr "TP/SL 订单超过头寸"
 msgid "pay"
 msgstr "支付"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding Rate"
+msgstr ""
+
 #: src/pages/Earn/EarnAdditionalOpportunitiesPage.tsx
 msgid "No opportunities match your holdings"
 msgstr "没有与您持仓匹配的机会"
@@ -7206,6 +7253,10 @@ msgstr "限价增加"
 msgid "Transferring..."
 msgstr "转账中..."
 
+#: src/components/TVChart/Chart.tsx
+msgid "Net Rate History"
+msgstr ""
+
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
 msgid "Sell {gmOrGlvLabel} failed."
 msgstr "卖出 {gmOrGlvLabel} 失败。"
@@ -7868,6 +7919,11 @@ msgstr "买入 GM 失败"
 msgid "Unknown shift GM order"
 msgstr "未知的转移 GM 订单"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Net Rate"
+msgstr ""
+
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Shifting {symbol}..."
 msgstr "正在转移 {symbol}..."
@@ -8229,6 +8285,10 @@ msgstr "编辑推荐码"
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell request sent"
 msgstr "卖出请求已发送"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing Rate"
+msgstr ""
 
 #: src/domain/synthetics/markets/createGlvWithdrawalTxn.ts
 #: src/domain/synthetics/markets/createWithdrawalTxn.ts
@@ -9970,6 +10030,10 @@ msgstr "状态"
 msgid "Somewhat unimportant text, but still readable"
 msgstr "相对次要的文本，但仍可阅读"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate"
+msgstr ""
+
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "30s"
 msgstr "30 秒"
@@ -10218,6 +10282,10 @@ msgstr "Oracle keeper 监控"
 #: src/components/PositionSeller/PositionSeller.tsx
 msgid "{0}: {1} {2}{3}/USD decrease"
 msgstr "{0}：{1} {2}{3}/USD 减仓"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate Projection:"
+msgstr ""
 
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
@@ -10780,6 +10848,10 @@ msgstr "链接"
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to deposit"
 msgstr "可存入"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Positions"
+msgstr ""
 
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Enter a referral code to get fee discounts"

@@ -502,6 +502,11 @@ msgstr "Select token"
 msgid "Image generation failed. Refresh and try again."
 msgstr "Image generation failed. Refresh and try again."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding"
+msgstr "Funding"
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstaking..."
 msgstr "Unstaking..."
@@ -815,6 +820,10 @@ msgstr "Share for follow-up questions"
 msgid "Available liquidity"
 msgstr "Available liquidity"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "No net rate history available for this market."
+msgstr "No net rate history available for this market."
+
 #: src/components/ModalViews/RedirectModal.tsx
 msgid "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
 msgstr "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
@@ -943,6 +952,11 @@ msgstr "Max network fee buffer precision is 0.01%"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "DeltaPrime"
 msgstr "DeltaPrime"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing"
+msgstr "Borrowing"
 
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
@@ -1141,6 +1155,10 @@ msgstr "Auto-compounds yield (no manual claiming needed, unlike GLP)"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstake {tokenSymbol}"
 msgstr "Unstake {tokenSymbol}"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Borrowing Rate"
+msgstr "Short Borrowing Rate"
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Invalid slippage value"
@@ -1941,6 +1959,10 @@ msgstr "Slippage must be less than 5%"
 msgid "Gain"
 msgstr "Gain"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Borrowing Rate"
+msgstr "Long Borrowing Rate"
+
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 msgid "Swapped {0} for {1}"
@@ -2427,6 +2449,10 @@ msgstr "Transfer completed"
 msgid "GM bridging to..."
 msgstr "GM bridging to..."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Funding Rate"
+msgstr "Short Funding Rate"
+
 #: src/context/SubaccountContext/SubaccountContextProvider.tsx
 msgid "Deactivate 1CT"
 msgstr "Deactivate 1CT"
@@ -2565,6 +2591,10 @@ msgstr "Excludes incentives"
 #: src/components/Errors/gasErrors.tsx
 msgid "Insufficient {localizedList} for gas on {chainName}. <0>Buy {localizedList}</0>"
 msgstr "Insufficient {localizedList} for gas on {chainName}. <0>Buy {localizedList}</0>"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Positions"
+msgstr "Short Positions"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -4055,6 +4085,10 @@ msgstr "Can I unstake anytime?"
 msgid "Max profit limit reached"
 msgstr "Max profit limit reached"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
+msgstr "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Virtual inventory for swaps (long / short)"
 msgstr "Virtual inventory for swaps (long / short)"
@@ -4257,6 +4291,10 @@ msgstr "Loading markets data..."
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "{longOrShort} positions do not pay a funding fee or a borrow fee"
 msgstr "{longOrShort} positions do not pay a funding fee or a borrow fee"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Funding Rate"
+msgstr "Long Funding Rate"
 
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "in {0}"
@@ -4684,6 +4722,11 @@ msgstr "You need USDC or ETH on {0} to create a referral code via GMX Account. D
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Current tier:"
 msgstr "Current tier:"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Net Rate"
+msgstr "Short Net Rate"
 
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
@@ -6454,6 +6497,10 @@ msgstr "TP/SL orders exceed the position"
 msgid "pay"
 msgstr "pay"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding Rate"
+msgstr "Funding Rate"
+
 #: src/pages/Earn/EarnAdditionalOpportunitiesPage.tsx
 msgid "No opportunities match your holdings"
 msgstr "No opportunities match your holdings"
@@ -7206,6 +7253,10 @@ msgstr "Limit Increase"
 msgid "Transferring..."
 msgstr "Transferring..."
 
+#: src/components/TVChart/Chart.tsx
+msgid "Net Rate History"
+msgstr "Net Rate History"
+
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
 msgid "Sell {gmOrGlvLabel} failed."
 msgstr "Sell {gmOrGlvLabel} failed."
@@ -7868,6 +7919,11 @@ msgstr "Buy GM failed"
 msgid "Unknown shift GM order"
 msgstr "Unknown shift GM order"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Net Rate"
+msgstr "Long Net Rate"
+
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Shifting {symbol}..."
 msgstr "Shifting {symbol}..."
@@ -8229,6 +8285,10 @@ msgstr "Edit referral code"
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell request sent"
 msgstr "Sell request sent"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing Rate"
+msgstr "Borrowing Rate"
 
 #: src/domain/synthetics/markets/createGlvWithdrawalTxn.ts
 #: src/domain/synthetics/markets/createWithdrawalTxn.ts
@@ -9970,6 +10030,10 @@ msgstr "Status"
 msgid "Somewhat unimportant text, but still readable"
 msgstr "Somewhat unimportant text, but still readable"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate"
+msgstr "Net Rate"
+
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "30s"
 msgstr "30s"
@@ -10218,6 +10282,10 @@ msgstr "Oracle keeper monitoring"
 #: src/components/PositionSeller/PositionSeller.tsx
 msgid "{0}: {1} {2}{3}/USD decrease"
 msgstr "{0}: {1} {2}{3}/USD decrease"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate Projection:"
+msgstr "Net Rate Projection:"
 
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
@@ -10780,6 +10848,10 @@ msgstr "Link"
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to deposit"
 msgstr "Available to deposit"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Positions"
+msgstr "Long Positions"
 
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Enter a referral code to get fee discounts"

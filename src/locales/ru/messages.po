@@ -502,6 +502,11 @@ msgstr "Выберите токен"
 msgid "Image generation failed. Refresh and try again."
 msgstr "Не удалось сгенерировать изображение. Обновите страницу и попробуйте снова."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding"
+msgstr ""
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstaking..."
 msgstr "Снятие со стейкинга..."
@@ -815,6 +820,10 @@ msgstr "Для дальнейших вопросов"
 msgid "Available liquidity"
 msgstr "Доступная ликвидность"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "No net rate history available for this market."
+msgstr ""
+
 #: src/components/ModalViews/RedirectModal.tsx
 msgid "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
 msgstr "Этот сайт является экземпляром с открытым исходным кодом <0>фронтенда GMX</0>, развёрнутым сообществом, и размещён в распределённой одноранговой сети <1>IPFS</1>"
@@ -943,6 +952,11 @@ msgstr "Максимальная точность буфера сетевой к
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "DeltaPrime"
 msgstr "DeltaPrime"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing"
+msgstr ""
 
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
@@ -1141,6 +1155,10 @@ msgstr "Автоматически реинвестирует доходност
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstake {tokenSymbol}"
 msgstr "Вывести из стейкинга {tokenSymbol}"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Borrowing Rate"
+msgstr ""
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Invalid slippage value"
@@ -1941,6 +1959,10 @@ msgstr "Проскальзывание должно быть менее 5%"
 msgid "Gain"
 msgstr "Прибыль"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Borrowing Rate"
+msgstr ""
+
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 msgid "Swapped {0} for {1}"
@@ -2427,6 +2449,10 @@ msgstr "Перевод завершён"
 msgid "GM bridging to..."
 msgstr "GM перевод на..."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Funding Rate"
+msgstr ""
+
 #: src/context/SubaccountContext/SubaccountContextProvider.tsx
 msgid "Deactivate 1CT"
 msgstr "Деактивировать 1CT"
@@ -2565,6 +2591,10 @@ msgstr "Без учёта бонусов"
 #: src/components/Errors/gasErrors.tsx
 msgid "Insufficient {localizedList} for gas on {chainName}. <0>Buy {localizedList}</0>"
 msgstr "Недостаточно {localizedList} для газа в {chainName}. <0>Купить {localizedList}</0>"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Positions"
+msgstr ""
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -4055,6 +4085,10 @@ msgstr "Могу ли я вывести из стейкинга в любой м
 msgid "Max profit limit reached"
 msgstr "Достигнут лимит максимальной прибыли"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Virtual inventory for swaps (long / short)"
 msgstr "Виртуальные запасы для свопов (лонг / шорт)"
@@ -4257,6 +4291,10 @@ msgstr "Загрузка данных рынков..."
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "{longOrShort} positions do not pay a funding fee or a borrow fee"
 msgstr "Позиции {longOrShort} не платят комиссию за финансирование или комиссию за заимствование"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Funding Rate"
+msgstr ""
 
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "in {0}"
@@ -4684,6 +4722,11 @@ msgstr "Для создания реферального кода через GMX
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Current tier:"
 msgstr "Текущий уровень:"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Net Rate"
+msgstr ""
 
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
@@ -6454,6 +6497,10 @@ msgstr "Ордера TP/SL превышают позицию"
 msgid "pay"
 msgstr "оплатить"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding Rate"
+msgstr ""
+
 #: src/pages/Earn/EarnAdditionalOpportunitiesPage.tsx
 msgid "No opportunities match your holdings"
 msgstr "Нет возможностей, соответствующих вашим активам"
@@ -7206,6 +7253,10 @@ msgstr "Увеличение лимита"
 msgid "Transferring..."
 msgstr "Перевод..."
 
+#: src/components/TVChart/Chart.tsx
+msgid "Net Rate History"
+msgstr ""
+
 #: src/domain/multichain/progress/MultichainTransferProgressView.tsx
 msgid "Sell {gmOrGlvLabel} failed."
 msgstr "Не удалось продать {gmOrGlvLabel}."
@@ -7868,6 +7919,11 @@ msgstr "Покупка GM не удалась"
 msgid "Unknown shift GM order"
 msgstr "Неизвестный ордер сдвига GM"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Net Rate"
+msgstr ""
+
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Shifting {symbol}..."
 msgstr "Сдвиг {symbol}..."
@@ -8229,6 +8285,10 @@ msgstr "Редактирование реферального кода"
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell request sent"
 msgstr "Запрос на продажу отправлен"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing Rate"
+msgstr ""
 
 #: src/domain/synthetics/markets/createGlvWithdrawalTxn.ts
 #: src/domain/synthetics/markets/createWithdrawalTxn.ts
@@ -9970,6 +10030,10 @@ msgstr "Статус"
 msgid "Somewhat unimportant text, but still readable"
 msgstr "Относительно второстепенный текст, но всё ещё читаемый"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate"
+msgstr ""
+
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "30s"
 msgstr "30с"
@@ -10218,6 +10282,10 @@ msgstr "Мониторинг Oracle keeper"
 #: src/components/PositionSeller/PositionSeller.tsx
 msgid "{0}: {1} {2}{3}/USD decrease"
 msgstr "{0}: {1} {2}{3}/USD уменьшение"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate Projection:"
+msgstr ""
 
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
@@ -10780,6 +10848,10 @@ msgstr "Ссылка"
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to deposit"
 msgstr "Доступно для депозита"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Positions"
+msgstr ""
 
 #: src/components/Referrals/JoinReferralCode.tsx
 msgid "Enter a referral code to get fee discounts"
