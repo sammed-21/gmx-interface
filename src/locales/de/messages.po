@@ -2436,6 +2436,12 @@ msgstr "GM-Bridging zu..."
 msgid "Deactivate 1CT"
 msgstr "1CT deaktivieren"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/TradeBox.tsx
+msgid "Max:"
+msgstr ""
+
 #: src/components/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr "Details anzeigen"

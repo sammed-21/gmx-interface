@@ -2436,6 +2436,12 @@ msgstr "GM 브리징 중..."
 msgid "Deactivate 1CT"
 msgstr "1CT 비활성화"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/TradeBox.tsx
+msgid "Max:"
+msgstr ""
+
 #: src/components/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr "세부 사항 표시"

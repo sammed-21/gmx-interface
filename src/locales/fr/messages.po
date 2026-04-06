@@ -2436,6 +2436,12 @@ msgstr "Pontage GM vers..."
 msgid "Deactivate 1CT"
 msgstr "Désactiver 1CT"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/TradeBox.tsx
+msgid "Max:"
+msgstr ""
+
 #: src/components/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr "Afficher les détails"

@@ -2436,6 +2436,12 @@ msgstr "GM 跨链桥接至..."
 msgid "Deactivate 1CT"
 msgstr "停用 1CT"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/TradeBox.tsx
+msgid "Max:"
+msgstr ""
+
 #: src/components/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr "显示详情"
