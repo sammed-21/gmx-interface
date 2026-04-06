@@ -259,8 +259,7 @@ type RawVestingData = {
   affiliateVesterAverageStakedAmount: bigint;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getVestingData(vestingInfo: any): RawVestingData | undefined {
+export function getVestingData(vestingInfo: bigint[] | undefined): RawVestingData | undefined {
   if (!vestingInfo || vestingInfo.length === 0) {
     return undefined;
   }
@@ -626,8 +625,7 @@ export function getPageTitle(data: any) {
 export function isHashZero(value: any) {
   return value === zeroHash;
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isAddressZero(value: any) {
+export function isAddressZero(value: unknown) {
   return value === zeroAddress;
 }
 
