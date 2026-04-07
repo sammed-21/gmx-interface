@@ -267,6 +267,7 @@ export function useClaimAffiliatesModalState({ onClose }: { onClose: () => void 
     toReceiveUsd,
     failedSwapTokenSymbols,
     swapEstimatedNetworkFeeAmount,
+    swapRouteFetchProgress,
   } = useClaimAffiliateSwapRoutes({
     account,
     chainId,
@@ -668,7 +669,10 @@ export function useClaimAffiliatesModalState({ onClose }: { onClose: () => void 
     } else if (isSwapEnabled && !swapTargetTokenAddress) {
       return { text: t`Swap token unavailable`, disabled: true };
     } else if (isSwapRouteLoadingForSubmit) {
-      return { text: t`Fetching swap route...`, disabled: true };
+      const progressText = swapRouteFetchProgress
+        ? t`Fetching swap route (${swapRouteFetchProgress.current}/${swapRouteFetchProgress.total})...`
+        : t`Fetching swap route...`;
+      return { text: progressText, disabled: true };
     } else if (hasSwapRouteErrorForSubmit) {
       return { text: t`Swap route unavailable`, disabled: true };
     } else if (isSlippageTooLow) {
@@ -705,6 +709,7 @@ export function useClaimAffiliatesModalState({ onClose }: { onClose: () => void 
     isSwapEnabled,
     isSwapRouteLoadingForSubmit,
     isSlippageTooLow,
+    swapRouteFetchProgress,
     networkFeeInfo.isLoading,
     selectedMarketAddresses.length,
     srcChainId,

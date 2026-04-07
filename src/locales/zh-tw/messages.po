@@ -7834,6 +7834,10 @@ msgstr "<0>全倉保證金</0><1>交叉抵押品</1>"
 msgid "Click on"
 msgstr "點擊"
 
+#: src/components/Referrals/shared/modals/useClaimAffiliatesModalState.ts
+msgid "Fetching swap route ({0}/{1})..."
+msgstr ""
+
 #: src/domain/synthetics/orders/createStakeOrUnStakeTxn.tsx
 msgid "Failed to stake"
 msgstr "質押失敗"

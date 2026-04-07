@@ -105,7 +105,11 @@ async function fetchSpenderApprovals({
   return result;
 }
 
-async function fetchSwapRoutes(params: SwapRouteParams, signal: AbortSignal): Promise<ClaimSwapRouteResult> {
+async function fetchSwapRoutes(
+  params: SwapRouteParams,
+  signal: AbortSignal,
+  onProgress: (current: number, total: number) => void
+): Promise<ClaimSwapRouteResult> {
   const externalHandlerAddress = getContract(params.chainId, "ExternalHandler");
 
   // Fetch quotes sequentially to avoid KyberSwap 429 rate limits
@@ -115,8 +119,11 @@ async function fetchSwapRoutes(params: SwapRouteParams, signal: AbortSignal): Pr
     isSlippageError?: boolean;
   }[] = [];
 
-  for (const tokenToSwap of params.tokensToSwap) {
+  const total = params.tokensToSwap.length + 1; // +1 for approvals check
+  for (let idx = 0; idx < params.tokensToSwap.length; idx++) {
+    const tokenToSwap = params.tokensToSwap[idx];
     signal.throwIfAborted();
+    onProgress(idx + 1, total);
 
     let quoteData: KyberSwapQuote | undefined;
     try {
@@ -146,6 +153,7 @@ async function fetchSwapRoutes(params: SwapRouteParams, signal: AbortSignal): Pr
     (r): r is typeof r & { quoteData: KyberSwapQuote } => r.quoteData !== undefined
   );
 
+  onProgress(total, total);
   const needSpenderApprovalByToken = await fetchSpenderApprovals({
     chainId: params.chainId,
     externalHandlerAddress,
@@ -307,22 +315,29 @@ export function useClaimAffiliateSwapRoutes({
   const swapRouteSwrKey =
     swapRouteParams !== undefined ? ["claim-affiliate-swap-routes", swapRouteParams.estimationKey] : null;
 
+  const [swapRouteFetchProgress, setSwapRouteFetchProgress] = useState<
+    { current: number; total: number } | undefined
+  >();
   const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
+    if (!swapRouteEstimationKey) {
+      abortControllerRef.current?.abort();
+    }
+  }, [swapRouteEstimationKey]);
+
+  useEffect(() => {
     return () => {
-      if (!swapRouteParams?.estimationKey) {
-        return;
-      }
       abortControllerRef.current?.abort();
     };
-  }, [swapRouteParams?.estimationKey]);
+  }, []);
 
   const swapRouteAsyncResult = useSWR<ClaimSwapRouteResult>(swapRouteSwrKey, {
     refreshInterval: 10_000,
 
     fetcher: async () => {
       abortControllerRef.current?.abort();
+      setSwapRouteFetchProgress(undefined);
       const abortController = new AbortController();
       abortControllerRef.current = abortController;
 
@@ -330,7 +345,13 @@ export function useClaimAffiliateSwapRoutes({
         throw new Error("Invalid swap route parameters");
       }
 
-      return fetchSwapRoutes(swapRouteParams, abortController.signal);
+      try {
+        return await fetchSwapRoutes(swapRouteParams, abortController.signal, (current, total) => {
+          setSwapRouteFetchProgress({ current, total });
+        });
+      } finally {
+        setSwapRouteFetchProgress(undefined);
+      }
     },
   });
 
@@ -407,5 +428,6 @@ export function useClaimAffiliateSwapRoutes({
     toReceiveUsd,
     swapEstimatedNetworkFeeAmount,
     failedSwapTokenSymbols,
+    swapRouteFetchProgress,
   };
 }

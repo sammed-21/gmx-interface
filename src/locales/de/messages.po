@@ -7834,6 +7834,10 @@ msgstr "<0>Cross-Margin</0><1>Cross-Collateral</1>"
 msgid "Click on"
 msgstr "Klicken Sie auf"
 
+#: src/components/Referrals/shared/modals/useClaimAffiliatesModalState.ts
+msgid "Fetching swap route ({0}/{1})..."
+msgstr ""
+
 #: src/domain/synthetics/orders/createStakeOrUnStakeTxn.tsx
 msgid "Failed to stake"
 msgstr "Staken fehlgeschlagen"

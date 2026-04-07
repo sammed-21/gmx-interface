@@ -7834,6 +7834,10 @@ msgstr "<0>교차 증거금</0><1>교차 담보</1>"
 msgid "Click on"
 msgstr "클릭하여"
 
+#: src/components/Referrals/shared/modals/useClaimAffiliatesModalState.ts
+msgid "Fetching swap route ({0}/{1})..."
+msgstr ""
+
 #: src/domain/synthetics/orders/createStakeOrUnStakeTxn.tsx
 msgid "Failed to stake"
 msgstr "스테이킹에 실패했습니다"

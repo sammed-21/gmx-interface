@@ -7834,6 +7834,10 @@ msgstr "<0>Кросс-маржа</0><1>Кросс-обеспечение</1>"
 msgid "Click on"
 msgstr "Нажмите на"
 
+#: src/components/Referrals/shared/modals/useClaimAffiliatesModalState.ts
+msgid "Fetching swap route ({0}/{1})..."
+msgstr ""
+
 #: src/domain/synthetics/orders/createStakeOrUnStakeTxn.tsx
 msgid "Failed to stake"
 msgstr "Не удалось стейкать"
