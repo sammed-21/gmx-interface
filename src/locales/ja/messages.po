@@ -3358,6 +3358,10 @@ msgstr "UI手数料"
 msgid "<0>Liquidity providers receive 63% of all trading and liquidation fees. By depositing WBTC, ETH, USDC, or other supported assets, you can earn up to ~35% annualized yield on the largest pools.</0><1><2> GM pools – choose single-market exposure for targeted returns</2><3> GLV vaults – auto-diversify across markets for a hands-off strategy</3></1><4>Historically, both options have outperformed standard LP benchmarks. See live stats on the Pools page.</4>"
 msgstr "<0>流動性プロバイダーは、すべての取引手数料および清算手数料の63%を受け取ります。WBTC、ETH、USDC、またはその他のサポート対象資産を入金することで、最大プールで年間約35%の利回りを得ることができます。</0><1><2> GMプール – 単一マーケットへのエクスポージャーを選択し、狙ったリターンを獲得</2><3> GLVボールト – マーケット間で自動分散し、手間のかからない戦略を実現</3></1><4>歴史的に、どちらのオプションも標準的なLPベンチマークを上回っています。プールページでライブ統計をご確認ください。</4>"
 
+#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+msgid "Uploading..."
+msgstr ""
+
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Minimum {0} capital required for rankings.<0/><1/>Capital = max(sum of collateral of open positions - realized PnL + starting pending PnL)."
 msgstr "ランキングには最低{0}の資本が必要です。<0/><1/>資本 = max(オープンポジションの担保合計 - 確定損益 + 開始時の未確定PnL)。"

@@ -3358,6 +3358,10 @@ msgstr "UI 费用"
 msgid "<0>Liquidity providers receive 63% of all trading and liquidation fees. By depositing WBTC, ETH, USDC, or other supported assets, you can earn up to ~35% annualized yield on the largest pools.</0><1><2> GM pools – choose single-market exposure for targeted returns</2><3> GLV vaults – auto-diversify across markets for a hands-off strategy</3></1><4>Historically, both options have outperformed standard LP benchmarks. See live stats on the Pools page.</4>"
 msgstr "<0>流动性提供者可获得所有交易和清算费用的 63%。通过存入 WBTC、ETH、USDC 或其他支持的资产，您可在最大的池中获得高达约 35% 的年化收益。</0><1><2> GM 池 – 选择单一市场敞口以获取针对性回报</2><3> GLV 金库 – 跨市场自动分散投资，适合省心策略</3></1><4>从历史数据来看，两种方案均优于标准 LP 基准。请前往池页面查看实时数据。</4>"
 
+#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+msgid "Uploading..."
+msgstr ""
+
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Minimum {0} capital required for rankings.<0/><1/>Capital = max(sum of collateral of open positions - realized PnL + starting pending PnL)."
 msgstr "排名所需最低资金为 {0}。<0/><1/>资金 = max(未平仓仓位抵押品总和 - 已实现盈亏 + 起始待结算 PnL)。"

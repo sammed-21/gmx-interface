@@ -3358,6 +3358,10 @@ msgstr "Comisión de la interfaz"
 msgid "<0>Liquidity providers receive 63% of all trading and liquidation fees. By depositing WBTC, ETH, USDC, or other supported assets, you can earn up to ~35% annualized yield on the largest pools.</0><1><2> GM pools – choose single-market exposure for targeted returns</2><3> GLV vaults – auto-diversify across markets for a hands-off strategy</3></1><4>Historically, both options have outperformed standard LP benchmarks. See live stats on the Pools page.</4>"
 msgstr "<0>Los proveedores de liquidez reciben el 63 % de todas las comisiones de negociación y liquidación. Al depositar WBTC, ETH, USDC u otros activos compatibles, puede obtener un rendimiento anualizado de hasta ~35 % en los pools más grandes.</0><1><2> GM pools: elija exposición a un solo mercado para obtener rendimientos específicos</2><3> Bóvedas GLV: diversifique automáticamente entre mercados con una estrategia sin intervención</3></1><4>Históricamente, ambas opciones han superado los índices de referencia LP estándar. Consulte las estadísticas en directo en la página de Pools.</4>"
 
+#: src/components/Referrals/shared/cards/ShareReferralCardModal.tsx
+msgid "Uploading..."
+msgstr ""
+
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Minimum {0} capital required for rankings.<0/><1/>Capital = max(sum of collateral of open positions - realized PnL + starting pending PnL)."
 msgstr "Capital mínimo de {0} requerido para las clasificaciones.<0/><1/>Capital = max(suma de garantía de posiciones abiertas - PnL realizado + PnL pendiente inicial)."
