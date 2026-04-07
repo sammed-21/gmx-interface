@@ -1,9 +1,10 @@
 import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react";
 import { Popover } from "@headlessui/react";
-import { Trans, t } from "@lingui/macro";
+import type { MessageDescriptor } from "@lingui/core";
+import { Trans, msg, t } from "@lingui/macro";
 import cx from "classnames";
 import { format } from "date-fns/format";
-import { type ReactNode, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import {
   CartesianGrid,
   Line,
@@ -18,8 +19,9 @@ import {
 import { selectTradeboxMarketInfo } from "context/SyntheticsStateContext/selectors/tradeboxSelectors";
 import { useSelector } from "context/SyntheticsStateContext/utils";
 import { RateTimeframe, useRateSnapshots } from "domain/synthetics/markets/useRateSnapshots";
+import { useLocalizedMap } from "lib/i18n";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
-import { PRECISION_DECIMALS } from "lib/numbers";
+import { bigintToNumber, PRECISION_DECIMALS } from "lib/numbers";
 import { RatesSnapshot } from "sdk/utils/rates/types";
 
 import Loader from "components/Loader/Loader";
@@ -32,25 +34,25 @@ type RateType = "netRate" | "borrowingRate" | "fundingRate";
 type RateProjection = "1h" | "8h" | "24h" | "1y";
 
 const RATE_TYPES: RateType[] = ["netRate", "borrowingRate", "fundingRate"];
-const RATE_TYPE_LABELS: Record<RateType, ReactNode> = {
-  netRate: <Trans>Net Rate</Trans>,
-  borrowingRate: <Trans>Borrowing Rate</Trans>,
-  fundingRate: <Trans>Funding Rate</Trans>,
+const RATE_TYPE_LABELS: Record<RateType, MessageDescriptor> = {
+  netRate: msg`Net Rate`,
+  borrowingRate: msg`Borrowing Rate`,
+  fundingRate: msg`Funding Rate`,
 };
 
 const TIMEFRAMES: RateTimeframe[] = ["1d", "7d", "30d"];
-const TIMEFRAME_LABELS: Record<RateTimeframe, string> = {
-  "1d": "24h",
-  "7d": "7d",
-  "30d": "30d",
+const TIMEFRAME_LABELS: Record<RateTimeframe, MessageDescriptor> = {
+  "1d": msg`24h`,
+  "7d": msg`7d`,
+  "30d": msg`30d`,
 };
 
 const PROJECTIONS: RateProjection[] = ["1h", "8h", "24h", "1y"];
-const PROJECTION_LABELS: Record<RateProjection, string> = {
-  "1h": "1h",
-  "8h": "8h",
-  "24h": "24h",
-  "1y": "1Y",
+const PROJECTION_LABELS: Record<RateProjection, MessageDescriptor> = {
+  "1h": msg`1h`,
+  "8h": msg`8h`,
+  "24h": msg`24h`,
+  "1y": msg`1Y`,
 };
 
 const PROJECTION_MULTIPLIERS: Record<RateProjection, number> = {
@@ -59,8 +61,6 @@ const PROJECTION_MULTIPLIERS: Record<RateProjection, number> = {
   "24h": 86400,
   "1y": 31536000,
 };
-
-const RATE_PRECISION = 10 ** PRECISION_DECIMALS;
 
 const LONG_COLOR = "var(--color-green-500)";
 const SHORT_COLOR = "var(--color-red-500)";
@@ -90,8 +90,18 @@ function getRateFields(rateType: RateType): { longKey: keyof RatesSnapshot; shor
 }
 
 function rateToProjectedPercent(rateString: string, projection: RateProjection): number {
-  const perSecondFloat = Number(rateString) / RATE_PRECISION;
-  return perSecondFloat * PROJECTION_MULTIPLIERS[projection] * 100;
+  const rate = BigInt(rateString);
+  const multiplier = BigInt(PROJECTION_MULTIPLIERS[projection]);
+  return bigintToNumber(rate * multiplier * 100n, PRECISION_DECIMALS);
+}
+
+/**
+ * API stores borrowing rate as a positive cost magnitude. To match the convention used in the
+ * rest of the UI (header, MarketNetFee tooltip — where borrowing is shown as a negative number
+ * representing the cost the trader pays), we negate it for display.
+ */
+function borrowingRateToProjectedPercent(rateString: string, projection: RateProjection): number {
+  return -rateToProjectedPercent(rateString, projection);
 }
 
 function getPercentageDisplayDecimals(values: number[]): number {
@@ -108,9 +118,9 @@ function formatRate(value: number, decimals = 4): string {
   return `${sign}${value.toFixed(decimals)}%`;
 }
 
-function formatProjectionSuffix(projection: RateProjection): string {
+function formatProjectionSuffix(projection: RateProjection, projectionLabel: string): string {
   if (projection === "1y") return " APR";
-  return `/${projection}`;
+  return `/${projectionLabel}`;
 }
 
 function getRateDirectionLabel(rateType: RateType, direction: "long" | "short"): string {
@@ -141,18 +151,28 @@ type ChartDataPoint = {
   raw: RatesSnapshot;
 };
 
+function isChartDataPoint(value: unknown): value is ChartDataPoint {
+  if (value === null || typeof value !== "object") return false;
+  const v = value as Record<string, unknown>;
+  return v.timestamp instanceof Date && typeof v.longRate === "number" && typeof v.shortRate === "number";
+}
+
 function buildChartData(snapshots: RatesSnapshot[], rateType: RateType, projection: RateProjection): ChartDataPoint[] {
   const { longKey, shortKey } = getRateFields(rateType);
+  const convert = rateType === "borrowingRate" ? borrowingRateToProjectedPercent : rateToProjectedPercent;
 
   return snapshots.map((snapshot) => ({
     timestamp: new Date(snapshot.timestamp * 1000),
-    longRate: rateToProjectedPercent(String(snapshot[longKey]), projection),
-    shortRate: rateToProjectedPercent(String(snapshot[shortKey]), projection),
+    longRate: convert(String(snapshot[longKey]), projection),
+    shortRate: convert(String(snapshot[shortKey]), projection),
     raw: snapshot,
   }));
 }
 
 export function NetRateChart() {
+  const rateTypeLabels = useLocalizedMap(RATE_TYPE_LABELS);
+  const timeframeLabels = useLocalizedMap(TIMEFRAME_LABELS);
+
   const marketInfo = useSelector(selectTradeboxMarketInfo);
   const marketAddress = marketInfo?.marketTokenAddress;
 
@@ -180,9 +200,15 @@ export function NetRateChart() {
     return getPercentageDisplayDecimals(allValues);
   }, [chartData]);
 
-  const rateTypeTabs = useMemo(() => RATE_TYPES.map((type) => ({ label: RATE_TYPE_LABELS[type], value: type })), []);
+  const rateTypeTabs = useMemo(
+    () => RATE_TYPES.map((type) => ({ label: rateTypeLabels[type], value: type })),
+    [rateTypeLabels]
+  );
 
-  const timeframeTabs = useMemo(() => TIMEFRAMES.map((tf) => ({ label: TIMEFRAME_LABELS[tf], value: tf })), []);
+  const timeframeTabs = useMemo(
+    () => TIMEFRAMES.map((tf) => ({ label: timeframeLabels[tf], value: tf })),
+    [timeframeLabels]
+  );
 
   const xAxisTickFormatter = useCallback(
     (value: Date) => {
@@ -196,8 +222,9 @@ export function NetRateChart() {
 
   const renderTooltip = useCallback(
     ({ active, payload }: TooltipProps<number, string>) => {
-      if (!active || !payload || payload.length === 0) return null;
-      const point = payload[0]!.payload as ChartDataPoint;
+      if (!active) return null;
+      const point = payload?.[0]?.payload;
+      if (!isChartDataPoint(point)) return null;
       return (
         <NetRateTooltip
           point={point}
@@ -300,6 +327,7 @@ export function NetRateChart() {
 }
 
 function ProjectionDropdown({ value, onChange }: { value: RateProjection; onChange: (value: RateProjection) => void }) {
+  const projectionLabels = useLocalizedMap(PROJECTION_LABELS);
   const { refs, floatingStyles } = useFloating({
     placement: "bottom-end",
     middleware: [offset(4), flip(), shift()],
@@ -312,7 +340,7 @@ function ProjectionDropdown({ value, onChange }: { value: RateProjection; onChan
         ref={refs.setReference}
         className="text-body-small flex items-center gap-4 rounded-4 px-8 py-4 text-typography-secondary hover:text-typography-primary"
       >
-        <Trans>Net Rate Projection:</Trans> <span className="text-typography-primary">{PROJECTION_LABELS[value]}</span>
+        <Trans>Net Rate Projection:</Trans> <span className="text-typography-primary">{projectionLabels[value]}</span>
         <ChevronDownIcon className="size-16" />
       </Popover.Button>
       <Popover.Panel
@@ -335,7 +363,7 @@ function ProjectionDropdown({ value, onChange }: { value: RateProjection; onChan
                   close();
                 }}
               >
-                {PROJECTION_LABELS[p]}
+                {projectionLabels[p]}
               </button>
             ))}
           </>
@@ -356,7 +384,8 @@ function NetRateTooltip({
   projection: RateProjection;
   decimals: number;
 }) {
-  const suffix = formatProjectionSuffix(projection);
+  const projectionLabels = useLocalizedMap(PROJECTION_LABELS);
+  const suffix = formatProjectionSuffix(projection, projectionLabels[projection]);
   const { raw } = point;
 
   return (
@@ -387,8 +416,8 @@ function NetRateBreakdownTooltip({
   const shortNet = rateToProjectedPercent(raw.netRateShort, projection);
   const longFunding = rateToProjectedPercent(raw.fundingRateLong, projection);
   const shortFunding = rateToProjectedPercent(raw.fundingRateShort, projection);
-  const longBorrowing = rateToProjectedPercent(raw.borrowingRateLong, projection);
-  const shortBorrowing = rateToProjectedPercent(raw.borrowingRateShort, projection);
+  const longBorrowing = borrowingRateToProjectedPercent(raw.borrowingRateLong, projection);
+  const shortBorrowing = borrowingRateToProjectedPercent(raw.borrowingRateShort, projection);
 
   return (
     <div className="flex flex-col gap-6">

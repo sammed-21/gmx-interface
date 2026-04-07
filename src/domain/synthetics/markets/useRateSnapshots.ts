@@ -25,32 +25,29 @@ export function useRateSnapshots({
   const chainId = useSelector(selectChainId);
   const sdk = useGmxSdk(chainId);
 
-  const { data, isLoading, error } = useSWR<RatesSnapshot[] | undefined>(
-    sdk && marketAddress ? ["useRateSnapshots", chainId, marketAddress, timeframe] : null,
-    {
-      fetcher: async () => {
-        const result: MarketRates[] = await sdk!.fetchRates({
-          period: TIMEFRAME_TO_PERIOD[timeframe],
-          address: marketAddress,
-        });
+  const swrKey = sdk && marketAddress ? ["useRateSnapshots", chainId, marketAddress, timeframe] : null;
 
-        const marketData = result.find((r) => r.marketAddress.toLowerCase() === marketAddress!.toLowerCase());
+  const { data, isLoading, error } = useSWR<RatesSnapshot[] | undefined>(swrKey, {
+    fetcher: async () => {
+      const result: MarketRates[] = await sdk!.fetchRates({
+        period: TIMEFRAME_TO_PERIOD[timeframe],
+        address: marketAddress,
+      });
 
-        if (!marketData) {
-          return [];
-        }
+      const marketData = result.find((r) => r.marketAddress.toLowerCase() === marketAddress!.toLowerCase());
 
-        return [...marketData.ratesSnapshots].reverse();
-      },
-      refreshInterval: REFRESH_INTERVAL,
-    }
-  );
+      if (!marketData) {
+        return [];
+      }
 
-  const isWaitingForDeps = !sdk || !marketAddress;
+      return [...marketData.ratesSnapshots].reverse();
+    },
+    refreshInterval: REFRESH_INTERVAL,
+  });
 
   return {
     snapshots: data,
-    isLoading: isLoading || (isWaitingForDeps && !data),
+    isLoading: isLoading || (!swrKey && sdk !== undefined),
     error,
   };
 }

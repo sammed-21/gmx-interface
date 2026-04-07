@@ -5788,6 +5788,11 @@ msgstr "Max funding factor"
 msgid "Your discount is now active!"
 msgstr "Your discount is now active!"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "24h"
+msgstr "24h"
+
 #: src/components/GmSwap/GmSwapBox/GmSwapWarningsRow.tsx
 #: src/pages/UiPage/BannerTest.tsx
 msgid "High price impact"
@@ -6208,6 +6213,10 @@ msgstr "Spread"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "GMX newsletter and long-form updates"
 msgstr "GMX newsletter and long-form updates"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "8h"
+msgstr "8h"
 
 #: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "TP price"
@@ -6753,6 +6762,7 @@ msgid "One-Click Trading approval nonce expired. Re-sign to continue."
 msgstr "One-Click Trading approval nonce expired. Re-sign to continue."
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "30d"
 msgstr "30d"
 
@@ -9345,6 +9355,10 @@ msgstr "Open GMTrade"
 msgid "Execute TWAP part"
 msgstr "Execute TWAP part"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1Y"
+msgstr "1Y"
+
 #: src/components/TradeHistory/keys.ts
 msgid "Create Limit Swap"
 msgstr "Create Limit Swap"
@@ -10321,6 +10335,7 @@ msgid "Failed to decode error. Make sure the hex data is valid and starts with \
 msgstr "Failed to decode error. Make sure the hex data is valid and starts with \"0x\"."
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "7d"
 msgstr "7d"
 
@@ -10344,6 +10359,10 @@ msgstr "Proportional stored impact"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Rage Trade"
 msgstr "Rage Trade"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1h"
+msgstr "1h"
 
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "EIP-4844, 20-27 Mar"

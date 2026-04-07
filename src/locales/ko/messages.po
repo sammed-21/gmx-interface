@@ -515,7 +515,7 @@ msgstr "이미지 생성에 실패했습니다. 새로고침 후 다시 시도�
 #: src/components/NetRateChart/NetRateChart.tsx
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Funding"
-msgstr ""
+msgstr "자금조달"
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstaking..."
@@ -842,7 +842,7 @@ msgstr "가용 유동성"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "No net rate history available for this market."
-msgstr ""
+msgstr "이 마켓의 순이자율 기록이 없습니다."
 
 #: src/components/ModalViews/RedirectModal.tsx
 msgid "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
@@ -966,7 +966,7 @@ msgstr "DeltaPrime"
 #: src/components/NetRateChart/NetRateChart.tsx
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Borrowing"
-msgstr ""
+msgstr "차입"
 
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
@@ -1168,7 +1168,7 @@ msgstr "{tokenSymbol} 언스테이킹"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Short Borrowing Rate"
-msgstr ""
+msgstr "숏 차입 이자율"
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Invalid slippage value"
@@ -1988,7 +1988,7 @@ msgstr "이익"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Long Borrowing Rate"
-msgstr ""
+msgstr "롱 차입 이자율"
 
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
@@ -2456,7 +2456,7 @@ msgstr "GM 브리징 중..."
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Short Funding Rate"
-msgstr ""
+msgstr "숏 자금조달 이자율"
 
 #: src/context/SubaccountContext/SubaccountContextProvider.tsx
 msgid "Deactivate 1CT"
@@ -2586,7 +2586,7 @@ msgstr "인센티브 제외"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Short Positions"
-msgstr ""
+msgstr "숏 포지션"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -4090,7 +4090,7 @@ msgstr "최대 수익 한도에 도달했습니다"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
-msgstr ""
+msgstr "신규 마켓의 경우 기록이 아직 인덱싱되지 않았을 수 있습니다. 차트 위의 Net Rate / 1H를 참고해 주세요."
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Virtual inventory for swaps (long / short)"
@@ -4277,7 +4277,7 @@ msgstr "{longOrShort} 포지션은 펀딩 수수료 또는 차입 수수료를 �
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Long Funding Rate"
-msgstr ""
+msgstr "롱 자금조달 이자율"
 
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "in {0}"
@@ -4701,7 +4701,7 @@ msgstr "현재 등급:"
 #: src/components/NetRateChart/NetRateChart.tsx
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Short Net Rate"
-msgstr ""
+msgstr "숏 순이자율"
 
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
@@ -5788,6 +5788,11 @@ msgstr "최대 펀딩 계수"
 msgid "Your discount is now active!"
 msgstr ""
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "24h"
+msgstr "24시간"
+
 #: src/components/GmSwap/GmSwapBox/GmSwapWarningsRow.tsx
 #: src/pages/UiPage/BannerTest.tsx
 msgid "High price impact"
@@ -6209,6 +6214,10 @@ msgstr "스프레드"
 msgid "GMX newsletter and long-form updates"
 msgstr "GMX 뉴스레터 및 심층 업데이트"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "8h"
+msgstr "8시간"
+
 #: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "TP price"
 msgstr "TP 가격"
@@ -6478,7 +6487,7 @@ msgstr "지불"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Funding Rate"
-msgstr ""
+msgstr "자금조달 이자율"
 
 #: src/pages/Earn/EarnAdditionalOpportunitiesPage.tsx
 msgid "No opportunities match your holdings"
@@ -6753,6 +6762,7 @@ msgid "One-Click Trading approval nonce expired. Re-sign to continue."
 msgstr "One-Click Trading 승인 nonce가 만료되었습니다. 계속하려면 다시 서명하십시오."
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "30d"
 msgstr "30일"
 
@@ -7251,7 +7261,7 @@ msgstr "전송 중..."
 
 #: src/components/TVChart/Chart.tsx
 msgid "Net Rate History"
-msgstr ""
+msgstr "순이자율 기록"
 
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
@@ -7923,7 +7933,7 @@ msgstr "알 수 없는 GM 이전 주문"
 #: src/components/NetRateChart/NetRateChart.tsx
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Long Net Rate"
-msgstr ""
+msgstr "롱 순이자율"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Shifting {symbol}..."
@@ -8281,7 +8291,7 @@ msgstr "판매 요청이 전송되었습니다"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Borrowing Rate"
-msgstr ""
+msgstr "차입 이자율"
 
 #: src/domain/synthetics/markets/createGlvWithdrawalTxn.ts
 #: src/domain/synthetics/markets/createWithdrawalTxn.ts
@@ -9345,6 +9355,10 @@ msgstr "GMTrade 열기"
 msgid "Execute TWAP part"
 msgstr "TWAP 부분 체결"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1Y"
+msgstr "1년"
+
 #: src/components/TradeHistory/keys.ts
 msgid "Create Limit Swap"
 msgstr "지정가 스왑 생성"
@@ -10010,7 +10024,7 @@ msgstr "상태"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Net Rate"
-msgstr ""
+msgstr "순이자율"
 
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "30s"
@@ -10251,7 +10265,7 @@ msgstr "Oracle keeper 모니터링"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Net Rate Projection:"
-msgstr ""
+msgstr "순이자율 예측:"
 
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
@@ -10321,6 +10335,7 @@ msgid "Failed to decode error. Make sure the hex data is valid and starts with \
 msgstr "오류 디코딩에 실패했습니다. 16진수 데이터가 유효하고 \"0x\"로 시작하는지 확인하십시오."
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "7d"
 msgstr "7일"
 
@@ -10344,6 +10359,10 @@ msgstr "비례 저장 영향"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Rage Trade"
 msgstr "레이지 트레이드"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1h"
+msgstr "1시간"
 
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "EIP-4844, 20-27 Mar"
@@ -10813,7 +10832,7 @@ msgstr "입금 가능"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Long Positions"
-msgstr ""
+msgstr "롱 포지션"
 
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "General performance details"
