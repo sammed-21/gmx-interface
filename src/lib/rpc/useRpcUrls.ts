@@ -36,7 +36,7 @@ class RpcTrackersRegistry {
     }
 
     const networkStatusObserver = NetworkStatusObserver.getInstance();
-    const chainIds = CONTRACTS_CHAIN_IDS.concat(SOURCE_CHAIN_IDS);
+    const chainIds = [...CONTRACTS_CHAIN_IDS, ...SOURCE_CHAIN_IDS];
 
     for (const chainId of chainIds) {
       const config = isContractsChain(chainId)

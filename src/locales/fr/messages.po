@@ -3645,7 +3645,6 @@ msgstr "Frais de financement"
 #: src/components/MetricsDebugSettings/MetricsDebugSettings.tsx
 #: src/components/OrderItem/TwapOrdersList/TwapOrdersList.tsx
 #: src/components/OrderItem/TwapOrdersList/TwapOrdersList.tsx
-#: src/components/SettingsModal/RpcDebugSettings.tsx
 msgid "{0}"
 msgstr "{0}"
 
@@ -3889,6 +3888,7 @@ msgid "Withdrawing from subaccount..."
 msgstr "Retrait du sous-compte…"
 
 #: src/components/BridgeModal/BridgeOutModal.tsx
+#: src/components/GmxAccountModal/keys.ts
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 msgid "Withdrawal failed"
@@ -10243,6 +10243,10 @@ msgstr "Tableaux de bord"
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Leftover collateral below {0} USD"
 msgstr "Collatéral restant inférieur à {0} USD"
+
+#: src/components/SettingsModal/RpcDebugSettings.tsx
+msgid "{label}"
+msgstr ""
 
 #: src/domain/synthetics/positions/utils.ts
 msgid "trigger"

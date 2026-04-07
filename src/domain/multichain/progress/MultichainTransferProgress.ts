@@ -76,9 +76,9 @@ const MultichainTransferError = {
 } as const;
 
 export abstract class MultichainTransferProgress<
-  Step extends string | "finished" = "finished",
+  CustomStep extends string = never,
   Group extends string | undefined = undefined,
-> extends LongCrossChainTask<Step, Group, MultichainTransferError> {
+> extends LongCrossChainTask<CustomStep, Group, MultichainTransferError> {
   static readonly errors = MultichainTransferError;
   abstract readonly isGlv: boolean;
   abstract readonly operation: Operation;

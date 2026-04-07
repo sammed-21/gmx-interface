@@ -23,7 +23,6 @@ import { isGlvInfo } from "domain/synthetics/markets/glv";
 import { convertToUsd, getMidPrice, getTokenData } from "domain/tokens";
 import { useMaxAvailableAmount } from "domain/tokens/useMaxAvailableAmount";
 import { useChainId } from "lib/chains";
-import type { ErrorData } from "lib/errors";
 import { helperToast } from "lib/helperToast";
 import { EMPTY_OBJECT } from "lib/objects";
 import { getPageOutdatedError, useHasOutdatedUi } from "lib/useHasOutdatedUi";
@@ -219,9 +218,7 @@ export function BridgeInModal({
         });
       });
     } catch (error) {
-      const toastParams = getTxnErrorToast(chainId, error as ErrorData | undefined, {
-        defaultMessage: t`Deposit failed`,
-      });
+      const toastParams = getTxnErrorToast(chainId, error, { defaultMessage: t`Deposit failed` });
       helperToast.error(toastParams.errorContent, {
         autoClose: toastParams.autoCloseToast,
         tradingErrorInfo: {

@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { useAccount, usePublicClient } from "wagmi";
 
-import { type SettlementChainId, type SourceChainId } from "config/chains";
+import { type SourceChainId } from "config/chains";
 import { tryGetContract } from "config/contracts";
 import { CHAIN_ID_PREFERRED_DEPOSIT_TOKEN, getStargatePoolAddress } from "config/multichain";
 import { useGmxAccountDepositViewChain } from "context/GmxAccountContext/hooks";
@@ -23,8 +23,7 @@ export function useMultichainDepositNetworkComposeGas(opts?: {
   const { chainId } = useChainId();
   const [depositViewChain] = useGmxAccountDepositViewChain();
 
-  const tokenAddress: string | undefined =
-    opts?.tokenAddress ?? CHAIN_ID_PREFERRED_DEPOSIT_TOKEN[chainId as SettlementChainId];
+  const tokenAddress: string | undefined = opts?.tokenAddress ?? CHAIN_ID_PREFERRED_DEPOSIT_TOKEN[chainId];
 
   const { address: account } = useAccount();
   const settlementChainPublicClient = usePublicClient({ chainId });

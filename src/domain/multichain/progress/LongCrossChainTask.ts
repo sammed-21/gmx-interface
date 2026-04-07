@@ -24,19 +24,21 @@ const DEBUG = false;
 // eslint-disable-next-line no-console
 export const debugLog = DEBUG ? (...args: any[]) => console.log("[LongCrossChainTask]", ...args) : noop;
 
+export type Step<CustomStep extends string = never> = CustomStep | "finished";
+
 export abstract class LongCrossChainTask<
-  Step extends string | "finished" = "finished",
+  CustomStep extends string = never,
   Group extends string | undefined = undefined,
   ErrorType = unknown,
 > {
-  private readonly resolversRegistry: Record<Step, PromiseWithResolvers<void>> = {} as Record<
-    Step,
+  private readonly resolversRegistry: Record<Step<CustomStep>, PromiseWithResolvers<void>> = {} as Record<
+    Step<CustomStep>,
     PromiseWithResolvers<void>
   >;
   private readonly dynamicGroups: Partial<Record<NonNullable<Group>, Record<string, PromiseWithResolvers<void>>>> =
     {} as Partial<Record<NonNullable<Group>, Record<string, PromiseWithResolvers<void>>>>;
 
-  readonly steps: Step[] = [];
+  readonly steps: Step<CustomStep>[] = [];
   readonly groups: Group[] = [];
 
   readonly startTimestamp = Date.now();
@@ -47,7 +49,7 @@ export abstract class LongCrossChainTask<
     public readonly sourceChainId: number,
     public readonly settlementChainId: number
   ) {
-    this.resolversRegistry["finished" as Step] = Promise.withResolvers<void>();
+    this.resolversRegistry["finished"] = Promise.withResolvers<void>();
     // TODO MLTCH add steps when managers say to show steps
     // Defer initialization to next tick to allow subclass properties (steps, groups, etc.)
     // to be initialized before we access them
@@ -81,15 +83,15 @@ export abstract class LongCrossChainTask<
     return true;
   }
 
-  protected getResolver(name: Step) {
+  protected getResolver(name: Step<CustomStep>) {
     return this.resolversRegistry[name];
   }
 
-  public getStepPromise(name: Step) {
+  public getStepPromise(name: Step<CustomStep>) {
     return this.getResolver(name)?.promise;
   }
 
-  protected resolve(name: Step) {
+  protected resolve(name: Step<CustomStep>) {
     debugLog("resolve", name);
     if (name === "finished") {
       this.finishTimestamp = Date.now();
@@ -97,7 +99,7 @@ export abstract class LongCrossChainTask<
     this.resolversRegistry[name]?.resolve();
   }
 
-  protected reject(name: Step, reason?: ErrorType) {
+  protected reject(name: Step<CustomStep>, reason?: ErrorType) {
     debugLog("reject", name, reason);
     if (name === "finished") {
       this.finishTimestamp = Date.now();

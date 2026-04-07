@@ -28,14 +28,13 @@ export async function getReferralCodeTakenStatus(
 
   await Promise.all(
     CONTRACTS_CHAIN_IDS.map(async (otherChainId) => {
-      const cid = otherChainId as ContractsChainId;
       try {
-        const res = await getReferralCodeOwner(cid, referralCodeBytes32);
-        ownerMap[cid] = res;
+        const res = await getReferralCodeOwner(otherChainId, referralCodeBytes32);
+        ownerMap[otherChainId] = res;
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(`Failed to check referral code owner on chain ${otherChainId}:`, error);
-        failedChains.push(cid);
+        failedChains.push(otherChainId);
       }
     })
   );
@@ -43,21 +42,18 @@ export async function getReferralCodeTakenStatus(
   const takenMap: Partial<Record<ContractsChainId, boolean>> = {};
 
   for (const otherChainId of CONTRACTS_CHAIN_IDS) {
-    const cid = otherChainId as ContractsChainId;
-    if (failedChains.includes(cid)) {
+    if (failedChains.includes(otherChainId)) {
       continue;
     }
 
-    const owner = ownerMap[cid];
+    const owner = ownerMap[otherChainId];
     const takenOnOtherChain =
       !isAddressZero(owner) && (owner !== account || (owner === account && chainId === otherChainId));
 
-    takenMap[cid] = takenOnOtherChain;
+    takenMap[otherChainId] = takenOnOtherChain;
   }
 
-  const checkedChains = CONTRACTS_CHAIN_IDS.filter(
-    (id) => !failedChains.includes(id as ContractsChainId)
-  ) as ContractsChainId[];
+  const checkedChains = CONTRACTS_CHAIN_IDS.filter((id) => !failedChains.includes(id));
   const allTaken = checkedChains.length > 0 && checkedChains.every((id) => takenMap[id]);
   const someTaken = Object.values(takenMap).some(identity);
 

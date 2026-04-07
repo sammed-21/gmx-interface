@@ -3645,7 +3645,6 @@ msgstr "펀딩 수수료"
 #: src/components/MetricsDebugSettings/MetricsDebugSettings.tsx
 #: src/components/OrderItem/TwapOrdersList/TwapOrdersList.tsx
 #: src/components/OrderItem/TwapOrdersList/TwapOrdersList.tsx
-#: src/components/SettingsModal/RpcDebugSettings.tsx
 msgid "{0}"
 msgstr "{0}"
 
@@ -3889,6 +3888,7 @@ msgid "Withdrawing from subaccount..."
 msgstr "서브계정에서 출금하는 중…"
 
 #: src/components/BridgeModal/BridgeOutModal.tsx
+#: src/components/GmxAccountModal/keys.ts
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 msgid "Withdrawal failed"
@@ -10243,6 +10243,10 @@ msgstr "대시보드"
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Leftover collateral below {0} USD"
 msgstr "잔여 담보 {0} USD 미만"
+
+#: src/components/SettingsModal/RpcDebugSettings.tsx
+msgid "{label}"
+msgstr ""
 
 #: src/domain/synthetics/positions/utils.ts
 msgid "trigger"
