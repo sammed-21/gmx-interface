@@ -212,7 +212,7 @@ export function NetRateChart() {
 
   return (
     <div className="flex h-full w-full flex-col gap-8 p-8">
-      <div className="flex flex-wrap items-center justify-between gap-8">
+      <div className="flex flex-wrap items-center justify-between gap-8 pb-8 pt-4">
         <PoolsTabs tabs={rateTypeTabs} selected={activeRateType} setSelected={setRateType} />
         <div className="flex flex-wrap items-center gap-8">
           <PoolsTabs tabs={timeframeTabs} selected={activeTimeframe} setSelected={setTimeframe} />
@@ -220,7 +220,7 @@ export function NetRateChart() {
         </div>
       </div>
 
-      <div className="flex items-center gap-16 px-4">
+      <div className="flex items-center gap-16 px-4 pb-8">
         <span className="text-body-small flex items-center gap-6 text-typography-secondary">
           <span className="inline-block size-8 rounded-full bg-green-500" />
           <Trans>Long Positions</Trans>
