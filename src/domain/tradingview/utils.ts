@@ -2,8 +2,10 @@ import { CHART_PERIODS, type ChartPeriod } from "lib/legacy";
 
 import type { Bar } from "./types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getObjectKeyFromValue(value: any, object: any) {
+export function getObjectKeyFromValue<V extends string | number>(
+  value: V,
+  object: Record<string, V>
+): string | undefined {
   return Object.keys(object).find((key) => object[key] === value);
 }
 

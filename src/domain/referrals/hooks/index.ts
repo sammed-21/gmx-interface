@@ -13,12 +13,15 @@ import { isAddressZero, isHashZero } from "lib/legacy";
 import { useMulticall } from "lib/multicall/useMulticall";
 import { basisPointsToFloat } from "lib/numbers";
 import { CONFIG_UPDATE_INTERVAL } from "lib/timeConstants";
+import type { WalletSigner } from "lib/wallets";
 import { getPublicClientWithRpc } from "lib/wallets/rainbowKitConfig";
 import { abis } from "sdk/abis";
 import { ContractsChainId } from "sdk/configs/chains";
 import { decodeReferralCode, encodeReferralCode } from "sdk/utils/referrals";
 
 import { UserReferralInfo } from "../types";
+
+type CallContractOpts = Parameters<typeof callContract>[4];
 
 export * from "./useReferralsData";
 export * from "./useAffiliateReferralStats";
@@ -155,10 +158,8 @@ export async function setAffiliateTier(
   chainId: ContractsChainId,
   affiliate: string,
   tierId: number,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  signer: any,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  opts: any
+  signer: WalletSigner | undefined,
+  opts: CallContractOpts
 ) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const referralStorageContract = new ethers.Contract(referralStorageAddress, abis.ReferralStorage, signer);
@@ -167,8 +168,12 @@ export async function setAffiliateTier(
   return callContract(chainId, contract, "setReferrerTier", [referralStorageAddress, affiliate, tierId], opts);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function registerReferralCode(chainId: any, referralCode: any, signer: any, opts: any) {
+export async function registerReferralCode(
+  chainId: ContractsChainId,
+  referralCode: string,
+  signer: WalletSigner | undefined,
+  opts: CallContractOpts
+) {
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const referralCodeHex = encodeReferralCode(referralCode);
   const contract = new ethers.Contract(referralStorageAddress, abis.ReferralStorage, signer);
@@ -176,8 +181,12 @@ export async function registerReferralCode(chainId: any, referralCode: any, sign
   return callContract(chainId, contract, "registerCode", [referralCodeHex], opts);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function setTraderReferralCodeByUser(chainId: any, referralCode: any, signer: any, opts: any) {
+export async function setTraderReferralCodeByUser(
+  chainId: ContractsChainId,
+  referralCode: string,
+  signer: WalletSigner | undefined,
+  opts: CallContractOpts
+) {
   const referralCodeHex = encodeReferralCode(referralCode);
   const referralStorageAddress = getContract(chainId, "ReferralStorage");
   const contract = new ethers.Contract(referralStorageAddress, abis.ReferralStorage, signer);
@@ -397,9 +406,17 @@ export async function validateReferralCodeExists(referralCode: string, chainId: 
   return !isAddressZero(referralCodeOwner);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useAffiliateCodes(chainId: any, account: any) {
-  const [affiliateCodes, setAffiliateCodes] = useState({ code: null, success: false });
+type AffiliateCodesQueryResponse = {
+  affiliateStats: Array<{ referralCode: Hash }>;
+};
+
+type AffiliateCodesState = {
+  code: string | null;
+  success: boolean;
+};
+
+export function useAffiliateCodes(chainId: ContractsChainId, account: string | undefined) {
+  const [affiliateCodes, setAffiliateCodes] = useState<AffiliateCodesState>({ code: null, success: false });
   const query = gql`
     query userReferralCodes($account: String!) {
       affiliateStats: affiliateStats(
@@ -415,12 +432,10 @@ export function useAffiliateCodes(chainId: any, account: any) {
   useEffect(() => {
     if (!chainId) return;
     getReferralsGraphClient(chainId)
-      ?.query({ query, variables: { account: account?.toLowerCase() } })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .then((res: any) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const parsedAffiliateCodes = res?.data?.affiliateStats.map((c: any) => decodeReferralCode(c?.referralCode));
-        setAffiliateCodes({ code: parsedAffiliateCodes[0], success: true });
+      ?.query<AffiliateCodesQueryResponse>({ query, variables: { account: account?.toLowerCase() } })
+      .then((res) => {
+        const parsedAffiliateCodes = res?.data?.affiliateStats.map((c) => decodeReferralCode(c?.referralCode));
+        setAffiliateCodes({ code: parsedAffiliateCodes[0] ?? null, success: true });
       });
     return () => {
       setAffiliateCodes({ code: null, success: false });

@@ -1,6 +1,6 @@
 import { t } from "@lingui/macro";
 import mapKeys from "lodash/mapKeys";
-import { zeroAddress, zeroHash } from "viem";
+import { Address, zeroAddress, zeroHash } from "viem";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { useEnsName } from "wagmi";
 
@@ -9,6 +9,7 @@ import { SOURCE_ETHEREUM_MAINNET, getExplorerUrl } from "config/chains";
 import { isLocal } from "config/env";
 import { BASIS_POINTS_DIVISOR_BIGINT, USD_DECIMALS } from "config/factors";
 import { PRODUCTION_HOST } from "config/links";
+import type { TokenInfo } from "sdk/utils/tokens/types";
 
 import { isValidTimestamp } from "./dates";
 import { PRECISION, calculateDisplayDecimals, expandDecimals, formatAmount, toBigInt } from "./numbers";
@@ -35,9 +36,19 @@ export function isHomeSite() {
   return import.meta.env.VITE_APP_IS_HOME_SITE === "true";
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getExchangeRate(tokenAInfo: any, tokenBInfo: any, inverted: any) {
-  if (!tokenAInfo || !tokenAInfo.minPrice || !tokenBInfo || !tokenBInfo.maxPrice) {
+export function getExchangeRate(
+  tokenAInfo: TokenInfo | undefined,
+  tokenBInfo: TokenInfo | undefined,
+  inverted: boolean
+) {
+  if (
+    !tokenAInfo ||
+    tokenAInfo.minPrice === undefined ||
+    tokenAInfo.minPrice === 0n ||
+    !tokenBInfo ||
+    tokenBInfo.maxPrice === undefined ||
+    tokenBInfo.maxPrice === 0n
+  ) {
     return;
   }
   if (inverted) {
@@ -46,17 +57,28 @@ export function getExchangeRate(tokenAInfo: any, tokenBInfo: any, inverted: any)
   return (tokenBInfo.maxPrice * PRECISION) / tokenAInfo.minPrice;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function shouldInvertTriggerRatio(tokenA: any, tokenB: any) {
+function shouldInvertTriggerRatio(tokenA: TokenInfo, tokenB: TokenInfo) {
   if (tokenA.isStable && tokenB.isStable) return false;
   if ((tokenB.isStable || tokenB.isUsdg) && !tokenA.isStable) return true;
-  if (tokenB.maxPrice && tokenA.maxPrice && tokenB.maxPrice < tokenA.maxPrice) return true;
+  if (
+    tokenB.maxPrice !== undefined &&
+    tokenB.maxPrice !== 0n &&
+    tokenA.maxPrice !== undefined &&
+    tokenA.maxPrice !== 0n &&
+    tokenB.maxPrice < tokenA.maxPrice
+  ) {
+    return true;
+  }
   return false;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getExchangeRateDisplay(rate: any, tokenA: any, tokenB: any, opts: { omitSymbols?: boolean } = {}) {
-  if (!rate || rate == 0 || !tokenA || !tokenB) return "...";
+export function getExchangeRateDisplay(
+  rate: bigint | undefined,
+  tokenA: TokenInfo | undefined,
+  tokenB: TokenInfo | undefined,
+  opts: { omitSymbols?: boolean } = {}
+) {
+  if (rate === undefined || rate === 0n || !tokenA || !tokenB) return "...";
   if (shouldInvertTriggerRatio(tokenA, tokenB)) {
     [tokenA, tokenB] = [tokenB, tokenA];
     rate = (PRECISION * PRECISION) / rate;
@@ -81,8 +103,7 @@ export function getPositionKey(
   return account + ":" + tokenAddress0 + ":" + tokenAddress1 + ":" + isLong;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function shortenAddress(address: any, length: any, padStart = 1) {
+export function shortenAddress(address: string | undefined, length: number, padStart = 1) {
   if (!length) {
     return "";
   }
@@ -99,8 +120,7 @@ export function shortenAddress(address: any, length: any, padStart = 1) {
   return address.substring(0, left) + "..." + address.substring(address.length - (length - (left + 3)), address.length);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useENS(address: any) {
+export function useENS(address: Address | undefined) {
   const { data } = useEnsName({
     address,
     chainId: SOURCE_ETHEREUM_MAINNET,
@@ -138,8 +158,7 @@ export const CHART_PERIODS = {
 
 export type ChartPeriod = keyof typeof CHART_PERIODS;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getTotalVolumeSum(volumes: any) {
+export function getTotalVolumeSum(volumes: { data: { volume: string | number | bigint } }[] | undefined) {
   if (!volumes || volumes.length === 0) {
     return;
   }
@@ -407,6 +426,7 @@ export type StakingProcessedData = Partial<{
   cumulativeGmxRewardsUsd: bigint;
   cumulativeNativeTokenRewards: bigint;
   cumulativeNativeTokenRewardsUsd: bigint;
+  avgGMXAprTotal: bigint;
 }> & {
   gmxAprForEsGmx: bigint;
   gmxAprForNativeToken: bigint;
@@ -617,14 +637,12 @@ export function getStakingProcessedData(
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getPageTitle(data: any) {
+export function getPageTitle(data: string) {
   const title = t`Decentralized perpetual exchange | GMX`;
   return `${data} | ${title}`;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isHashZero(value: any) {
+export function isHashZero(value: string | undefined) {
   return value === zeroHash;
 }
 export function isAddressZero(value: unknown) {

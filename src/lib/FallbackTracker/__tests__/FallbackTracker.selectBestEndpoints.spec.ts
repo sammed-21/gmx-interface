@@ -93,8 +93,9 @@ describe("FallbackTracker", () => {
 
         const selectNextFallbacksMock = config.selectNextFallbacks as ReturnType<typeof vi.fn>;
         const callArgs = selectNextFallbacksMock.mock.calls[0][0];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const hasPrimary = callArgs.endpointsStats.some((s: any) => s.endpoint === tracker.state.primary);
+        const hasPrimary = callArgs.endpointsStats.some(
+          (s: { endpoint: string }) => s.endpoint === tracker.state.primary
+        );
         expect(hasPrimary).toBe(false);
       });
 

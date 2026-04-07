@@ -217,8 +217,7 @@ export function useTreasuryVenus({
 }
 
 function buildVenusRequest({ addresses, deployment }: { addresses: string[]; deployment: VenusDeployment }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const request: Record<string, any> = {};
+  const request: MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>> = {};
 
   deployment.vTokens.forEach((vToken) => {
     const calls: Record<string, ContractCallConfig> = {};

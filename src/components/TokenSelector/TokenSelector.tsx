@@ -90,8 +90,7 @@ export default function TokenSelector(props: Props) {
 
   const visibleTokens = tokens.filter((t) => t && !t.isTempHidden);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSelectToken = (token: any) => {
+  const onSelectToken = (token: Token) => {
     setIsModalVisible(false);
     props.onSelectToken(token);
   };

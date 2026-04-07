@@ -1,13 +1,13 @@
 import { getContract } from "config/contracts";
 import { useMulticall } from "lib/multicall";
 import { formatDeltaUsd, formatUsd } from "lib/numbers";
+import { ContractsChainId } from "sdk/configs/chains";
 
 import { MarketInfo } from "../markets";
 import { convertToContractPrice, parseContractPrice } from "../tokens";
 
 export function useDebugExecutionPrice(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  chainId: any,
+  chainId: ContractsChainId,
   p: {
     marketInfo?: MarketInfo;
     sizeInUsd?: bigint;

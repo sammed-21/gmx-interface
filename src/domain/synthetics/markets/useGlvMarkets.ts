@@ -124,8 +124,9 @@ export function useGlvMarketsInfo(
           throw new Error("Not all required data is loaded");
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const request = glvs.reduce((acc: Record<string, any>, { glv, markets }) => {
+        const request = glvs.reduce<
+          MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>>
+        >((acc, { glv, markets }) => {
           const glvLongToken = tokensData[glv.longToken];
           const glvShortToken = tokensData[glv.shortToken];
 

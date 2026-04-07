@@ -35,8 +35,9 @@ const UPLOAD_URL = ROOT_SHARE_URL + "/api/upload";
 const UPLOAD_SHARE = ROOT_SHARE_URL + "/api/s";
 const config = { quality: 0.95, canvasWidth: 460, canvasHeight: 240, type: "image/jpeg" };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getShareURL(imageInfo: any, ref: any) {
+type UploadedImageInfo = { id: string };
+
+function getShareURL(imageInfo: UploadedImageInfo | null | undefined, ref: { success: boolean; code: string | null }) {
   if (!imageInfo) return;
   let url = `${UPLOAD_SHARE}?id=${imageInfo.id}`;
   if (ref.success && ref.code) {
@@ -86,7 +87,7 @@ function PositionShare({
 }: Props) {
   const userAffiliateCode = useAffiliateCodes(chainId, account);
   const { userReferralCodeString: usedReferralCode } = useUserReferralCode(chainId, account);
-  const [uploadedImageInfo, setUploadedImageInfo] = useState<any>();
+  const [uploadedImageInfo, setUploadedImageInfo] = useState<UploadedImageInfo | null | undefined>();
   const [uploadedImageError, setUploadedImageError] = useState<string | null>(null);
   const [showPnlAmounts, setShowPnlAmounts] = useState(false);
   const [isPnlInLeverage, setIsPnlInLeverage] = useState(false);

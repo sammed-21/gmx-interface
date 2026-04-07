@@ -8,15 +8,17 @@ import { getNormalizedTokenSymbol } from "sdk/configs/tokens";
 import { FEED_ID_MAP } from "./constants";
 import type { Bar, FromOldToNewArray } from "../tradingview/types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getCandlesFromPrices(prices: any, period: ChartPeriod) {
+type PricePoint = [timestamp: number, price: number];
+type RawCandle = { t: number; o: number; h: number; l: number; c: number };
+
+function getCandlesFromPrices(prices: PricePoint[], period: ChartPeriod): Bar[] {
   const periodTime = CHART_PERIODS[period];
 
   if (prices.length < 2) {
     return [];
   }
 
-  const candles: any[] = [];
+  const candles: RawCandle[] = [];
   const first = prices[0];
   let prevTsGroup = Math.floor(first[0] / periodTime) * periodTime;
   let prevPrice = first[1];
@@ -80,8 +82,7 @@ export function getChainlinkChartPricesFromGraph(tokenSymbol: string, period: st
       let prices: any[] = [];
       const uniqTs = new Set();
       chunks.forEach((chunk) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        chunk.data.rounds.forEach((item: any) => {
+        chunk.data.rounds.forEach((item: { unixTimestamp: number; value: string | number }) => {
           if (uniqTs.has(item.unixTimestamp)) {
             return;
           }

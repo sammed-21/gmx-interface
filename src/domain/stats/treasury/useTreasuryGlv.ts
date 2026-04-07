@@ -6,6 +6,7 @@ import { getContractMarketPrices } from "domain/synthetics/markets/utils";
 import { convertToContractTokenPrices } from "domain/synthetics/tokens";
 import type { TokensData } from "domain/synthetics/tokens";
 import { useMulticall } from "lib/multicall";
+import type { ContractCallConfig, MulticallRequestConfig } from "lib/multicall";
 import type { ContractsChainId } from "sdk/configs/chains";
 import type { MarketsData } from "sdk/utils/markets/types";
 import { convertToUsd, getMidPrice } from "sdk/utils/tokens";
@@ -193,8 +194,7 @@ function buildTreasuryGlvRequest({
   const dataStoreAddress = getContract(chainId, "DataStore");
   const glvReaderAddress = getContract(chainId, "GlvReader");
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const request: Record<string, any> = {};
+  const request: MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>> = {};
   const assets: GlvAsset[] = [];
 
   glvList.forEach(({ glv, markets }) => {
