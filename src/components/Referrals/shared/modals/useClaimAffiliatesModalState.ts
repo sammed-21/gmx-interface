@@ -586,13 +586,19 @@ export function useClaimAffiliatesModalState({ onClose }: { onClose: () => void 
   }, [isSelectionLimitedBySwapMultichain, rankedMarketAddresses]);
 
   useEffect(() => {
-    if (isInitialSelectionAppliedRef.current || mainRewards.length === 0) {
+    if (isInitialSelectionAppliedRef.current) {
       return;
     }
 
-    setSelectedMarketAddresses(mainRewards.map((reward) => reward.marketAddress));
-    isInitialSelectionAppliedRef.current = true;
-  }, [mainRewards]);
+    if (mainRewards.length > 0) {
+      setSelectedMarketAddresses(mainRewards.map((reward) => reward.marketAddress));
+      isInitialSelectionAppliedRef.current = true;
+    } else if (smallRewards.length > 0) {
+      setSelectedMarketAddresses(smallRewards.map((reward) => reward.marketAddress));
+      setShowSmallRewards(true);
+      isInitialSelectionAppliedRef.current = true;
+    }
+  }, [mainRewards, smallRewards]);
 
   useEffect(() => {
     if (!shouldShowSmallRewardsToggle && showSmallRewards) {
