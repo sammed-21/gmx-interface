@@ -69,7 +69,7 @@ export function LeverageSlider(p: Props) {
   }, [finalMarks]);
 
   return (
-    <div className={cx("mb-20 mt-16 cursor-pointer px-4", p.className)} data-qa="leverage-slider">
+    <div className={cx("mb-20 mt-16 px-4", p.className)} data-qa="leverage-slider">
       <Slider
         min={0}
         max={max}

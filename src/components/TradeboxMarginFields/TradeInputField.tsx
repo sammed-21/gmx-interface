@@ -106,7 +106,7 @@ export function TradeInputField({
         <>
           <NumberInput
             value={inputValue}
-            className="text-body-large h-24 w-full min-w-0 p-0 outline-none"
+            className="text-body-large w-full min-w-0 p-0 outline-none"
             inputRef={inputRef}
             onValueChange={onInputValueChange}
             onFocus={onFocus}
@@ -121,6 +121,7 @@ export function TradeInputField({
       }
       rightHeadline={rightHeadline}
       rightContent={rightContent}
+      hideDivider={!showDisplayModeToggle || !onDisplayModeChange}
     />
   );
 }

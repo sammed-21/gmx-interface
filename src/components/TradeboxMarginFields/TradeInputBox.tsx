@@ -7,6 +7,7 @@ type Props = {
   rightHeadline?: ReactNode;
   rightContent?: ReactNode;
   bottomContent?: ReactNode;
+  hideDivider?: boolean;
   className?: string;
   qa?: string;
   isDisabled?: boolean;
@@ -18,6 +19,7 @@ export function TradeInputBox({
   rightHeadline,
   rightContent,
   bottomContent,
+  hideDivider,
   className,
   qa,
   isDisabled,
@@ -49,14 +51,16 @@ export function TradeInputBox({
         )}
         onClick={handleBoxClick}
       >
-        <div className="flex min-w-0 grow flex-col gap-2 py-8 pl-12">
+        <div className="flex min-w-0 grow flex-col gap-2 pb-8 pl-12 pt-10">
           <div className="text-body-small pr-12 text-typography-secondary">{leftHeadline}</div>
-          <div className="flex items-center border-r-1/2 border-r-slate-600 pr-12">{leftContent}</div>
+          <div className={cx("flex items-center pr-12", { "border-r-1/2 border-r-slate-600": !hideDivider })}>
+            {leftContent}
+          </div>
           {bottomContent}
         </div>
 
         {(rightHeadline || rightContent) && (
-          <div className="flex w-[100px] shrink-0 flex-col justify-end gap-4 px-12 pb-8 pt-10">
+          <div className="flex w-[124px] shrink-0 flex-col justify-end gap-4 px-12 pb-8 pt-10">
             {rightHeadline && (
               <div className="text-body-small flex items-center justify-end text-typography-secondary">
                 {rightHeadline}
