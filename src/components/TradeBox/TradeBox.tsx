@@ -74,6 +74,7 @@ import {
   formatBalanceAmount,
   formatDeltaUsd,
   formatPercentage,
+  formatTokenAmount,
   formatTokenAmountWithUsd,
   formatUsd,
   formatUsdPrice,
@@ -863,6 +864,19 @@ export function TradeBox({ isMobile }: { isMobile: boolean }) {
       }
     };
 
+    const closeAlternateValue = (() => {
+      if (closeDisplayMode === "token") {
+        return formatUsd(closeSizeHook.closeSizeUsd);
+      }
+      if (!selectedPosition || !toToken || selectedPosition.sizeInUsd === 0n) {
+        return "0";
+      }
+      const closeSizeInTokens =
+        (closeSizeHook.closeSizeUsd * selectedPosition.sizeInTokens) / selectedPosition.sizeInUsd;
+      const visualMultiplier = BigInt(toToken.visualMultiplier ?? 1);
+      return formatTokenAmount(closeSizeInTokens / visualMultiplier, toToken.decimals, toToken.symbol);
+    })();
+
     return (
       <>
         <TradeInputField
@@ -872,7 +886,7 @@ export function TradeBox({ isMobile }: { isMobile: boolean }) {
           displayMode={closeDisplayMode}
           onDisplayModeChange={handleCloseDisplayModeChange}
           tokenSymbol={toToken?.symbol}
-          alternateValue={formatUsd(closeSizeHook.closeSizeUsd)}
+          alternateValue={closeAlternateValue}
           rightHeadline={
             selectedPosition?.sizeInUsd ? (
               <button

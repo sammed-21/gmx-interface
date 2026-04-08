@@ -60,6 +60,7 @@ import {
   formatBalanceAmount,
   formatDeltaUsd,
   formatPercentage,
+  formatTokenAmount,
   formatUsd,
   parseValue,
 } from "lib/numbers";
@@ -921,7 +922,15 @@ export function AddTPSLModal({
                 }
               }}
               tokenSymbol={indexToken.symbol}
-              alternateValue={formatUsd(closeSize.closeSizeUsd)}
+              alternateValue={(() => {
+                if (closeSize.showSizeInTokens) {
+                  return formatUsd(closeSize.closeSizeUsd);
+                }
+                if (position.sizeInUsd === 0n) return "0";
+                const closeSizeInTokens = (closeSize.closeSizeUsd * position.sizeInTokens) / position.sizeInUsd;
+                const vm = BigInt(indexToken.visualMultiplier ?? 1);
+                return formatTokenAmount(closeSizeInTokens / vm, indexToken.decimals, indexToken.symbol);
+              })()}
               rightHeadline={
                 <button
                   type="button"

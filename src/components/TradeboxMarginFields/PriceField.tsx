@@ -45,10 +45,11 @@ export function PriceField({
   return (
     <TradeInputField
       label={priceLabel}
-      alternateValue={alternateValue}
+      alternateValue={null}
       displayMode="usd"
       showDisplayModeToggle={false}
       unitLabel="USD"
+      rightHeadline={alternateValue}
       inputValue={inputValue}
       onInputValueChange={onInputValueChange}
       onFocus={onFocus}

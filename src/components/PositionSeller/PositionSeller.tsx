@@ -64,7 +64,14 @@ import { helperToast } from "lib/helperToast";
 import { useLocalizedMap } from "lib/i18n";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { initDecreaseOrderMetricData, sendOrderSubmittedMetric, sendTxnValidationErrorMetric } from "lib/metrics/utils";
-import { expandDecimals, formatDeltaUsd, formatPercentage, formatUsd, parseValue } from "lib/numbers";
+import {
+  expandDecimals,
+  formatDeltaUsd,
+  formatPercentage,
+  formatTokenAmount,
+  formatUsd,
+  parseValue,
+} from "lib/numbers";
 import { useJsonRpcProvider } from "lib/rpc";
 import { useHasOutdatedUi } from "lib/useHasOutdatedUi";
 import { userAnalytics } from "lib/userAnalytics";
@@ -964,7 +971,15 @@ export function PositionSeller() {
                       }
                     }}
                     tokenSymbol={position?.indexToken?.symbol}
-                    alternateValue={formatUsd(closeSize.closeSizeUsd)}
+                    alternateValue={(() => {
+                      if (closeSize.showSizeInTokens) {
+                        return formatUsd(closeSize.closeSizeUsd);
+                      }
+                      if (!position || !toToken || position.sizeInUsd === 0n) return "0";
+                      const closeSizeInTokens = (closeSize.closeSizeUsd * position.sizeInTokens) / position.sizeInUsd;
+                      const visualMultiplier = BigInt(toToken.visualMultiplier ?? 1);
+                      return formatTokenAmount(closeSizeInTokens / visualMultiplier, toToken.decimals, toToken.symbol);
+                    })()}
                     rightHeadline={
                       <button
                         type="button"
