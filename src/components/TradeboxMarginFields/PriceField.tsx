@@ -1,4 +1,5 @@
 import { t } from "@lingui/macro";
+import cx from "classnames";
 import { ChangeEvent, useMemo } from "react";
 
 import { TokenData } from "domain/synthetics/tokens";
@@ -36,7 +37,10 @@ export function PriceField({
     });
 
     return (
-      <span className={onMarkPriceClick ? "cursor-pointer" : undefined} onClick={onMarkPriceClick}>
+      <span
+        className={cx("whitespace-nowrap", onMarkPriceClick ? "cursor-pointer" : undefined)}
+        onClick={onMarkPriceClick}
+      >
         {t`Mark:`} <span className="text-typography-primary">{formattedMarkPrice}</span>
       </span>
     );
