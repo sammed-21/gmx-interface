@@ -11,6 +11,7 @@ import {
 } from "config/chains";
 import { BASIS_POINTS_DIVISOR, BASIS_POINTS_DIVISOR_BIGINT, USD_DECIMALS } from "config/factors";
 import { getMappedTokenId } from "config/multichain";
+import { isDepositDisabledMarket } from "config/static/markets";
 import { ExpressTxnParams } from "domain/synthetics/express/types";
 import {
   GlvInfo,
@@ -791,6 +792,10 @@ export function getGmSwapError(p: {
 
   if (!marketInfo || !marketToken) {
     return { buttonErrorMessage: t`Loading...` };
+  }
+
+  if (isDeposit && isDepositDisabledMarket(chainId, marketInfo.marketTokenAddress)) {
+    return { buttonErrorMessage: t`Buying GM is disabled for this market` };
   }
 
   const glvTooltipMessage = glvInfo
