@@ -445,10 +445,6 @@ msgstr ""
 msgid "Contact Support"
 msgstr ""
 
-#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
-msgid "Returned collateral"
-msgstr "Garantie restituée"
-
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Double {indexSymbol} exposure from position and collateral. Higher liquidation price than stablecoin collateral."
 msgstr "Double exposition {indexSymbol} liée à la position et à la garantie. Prix de liquidation plus élevé qu'avec une garantie en stablecoin."
@@ -604,6 +600,10 @@ msgstr "Projets développés par la communauté GMX. <0/>Faites preuve de pruden
 #: src/pages/PriceImpactRebatesStats/PriceImpactRebatesStats.tsx
 msgid "ADDRESS"
 msgstr "ADRESSE"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Negative funding fees reduce margin and affect liquidation price. Positive funding fees are claimable in the Claims tab."
+msgstr ""
 
 #: src/pages/Earn/EarnPageLayout.tsx
 msgid "Additional opportunities"
@@ -911,7 +911,7 @@ msgstr "fournir de la liquidité"
 msgid "Plutus"
 msgstr "Plutus"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Don't ask again"
 msgstr ""
 
@@ -1069,10 +1069,6 @@ msgstr "Paraswap"
 #: src/components/MarketSelector/PoolSelector.tsx
 msgid "Search pool"
 msgstr "Rechercher un pool"
-
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Your {symbol} collateral exceeds the {indexName} long position size. Stable collateral covers any losses—no liquidation price."
-msgstr "Votre garantie en {symbol} dépasse la taille de la position long {indexName}. La garantie stable couvre toutes les pertes — pas de prix de liquidation."
 
 #: landing/src/pages/Home/SocialSection/SocialSection.tsx
 msgid "Driven by <0/> our community"
@@ -1318,6 +1314,10 @@ msgstr "Désactiver la vérification PnL du modal de partage"
 msgid "Threshold for stable funding"
 msgstr "Seuil de financement stable"
 
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Initial margin"
+msgstr ""
+
 #: src/components/UserIncentiveDistribution/UserIncentiveDistribution.tsx
 msgid "Competition airdrop"
 msgstr "Airdrop de compétition"
@@ -1425,10 +1425,7 @@ msgstr "Frais de réseau élevés"
 msgid "Overview"
 msgstr "Aperçu"
 
-#: src/components/OrderItem/OrderItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeBox/TradeBoxRows/CollateralSelectorField.tsx
-#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Collateral"
 msgstr "Collatéral"
 
@@ -1629,10 +1626,6 @@ msgstr "Montant short maximum du pool"
 #: src/components/Earn/Portfolio/RecommendedAssets/RecommendedAssets.tsx
 msgid "APR"
 msgstr "TAEG"
-
-#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
-msgid "Only positions with over {0} in capital used are ranked.<0/><1/>The capital used is calculated as the highest value of [<2>sum of collateral of open positions - realized PnL + period start pending PnL</2>]."
-msgstr "Seules les positions avec plus de {0} en capital utilisé sont classées.<0/><1/>Le capital utilisé est calculé comme la valeur la plus élevée de [<2>somme du collatéral des positions ouvertes - PnL réalisé + PnL en attente au début de la période</2>]."
 
 #: src/pages/ReferralsTier/ReferralsTier.tsx
 msgid "Affiliate address:"
@@ -1837,11 +1830,6 @@ msgstr "RECEVOIR"
 msgid "VI POSITIONS"
 msgstr "VI POSITIONS"
 
-#: src/components/NetworkFeeRow/NetworkFeeRow.tsx
-#: src/components/NetworkFeeRow/NetworkFeeRow.tsx
-msgid "Blockchain gas fee (not GMX-specific). Doesn't impact your collateral."
-msgstr "Frais de Gas de la blockchain (non spécifique à GMX). N'affecte pas votre garantie."
-
 #: src/components/OrderEditor/OrderEditor.tsx
 #: src/components/TradeBox/TradeBox.tsx
 #: src/components/TradeboxMarginFields/PriceField.tsx
@@ -1872,10 +1860,6 @@ msgstr ""
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Sellable cap for pool GM: {0} [{1}] reached, as tokens are reserved by traders. Choose a different pool, reduce the sell size, or split your withdrawal from multiple pools."
 msgstr "Plafond de vente atteint pour le pool GM : {0} [{1}], car des jetons sont réservés par les traders. Choisissez un autre pool, réduisez le montant de la vente ou répartissez votre retrait sur plusieurs pools."
-
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Your {symbol} collateral exceeds the {indexName} short position size. Collateral value rises with the index, covering any losses—no liquidation price."
-msgstr "Votre garantie {symbol} dépasse la taille de la position short {indexName}. La valeur de la garantie augmente avec l'indice, couvrant toute perte — pas de prix de liquidation."
 
 #: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionItem/PositionItem.tsx
@@ -2063,7 +2047,6 @@ msgid "Total value of tokens in GM pools"
 msgstr "Valeur totale des jetons dans les pools GM"
 
 #: src/components/Claims/ClaimableCardUI.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Price impact rebates"
 msgstr "Remises sur l'impact sur le prix"
@@ -2104,6 +2087,10 @@ msgstr "Actifs disponibles pour le trading"
 #: src/components/TradeHistory/keys.ts
 msgid "Failed withdraw"
 msgstr "Retrait échoué"
+
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Leftover margin below {0} USD"
+msgstr ""
 
 #: src/components/TradeHistory/keys.ts
 msgid "Failed Market Decrease"
@@ -2198,10 +2185,6 @@ msgstr "MARCHÉS"
 msgid "Max {0}"
 msgstr "Max {0}"
 
-#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
-msgid "Collateral at liquidation"
-msgstr "Garantie à la liquidation"
-
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Sender has withdrawn all tokens from GMX vesting vault"
 msgstr "L'expéditeur a retiré tous les jetons du vault d'acquisition progressive GMX"
@@ -2250,7 +2233,7 @@ msgstr "Minimum de parties : {MIN_TWAP_NUMBER_OF_PARTS}"
 msgid "Update Stop-Loss"
 msgstr "Mettre à jour le Stop-Loss"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "How do I choose?"
 msgstr ""
 
@@ -2345,6 +2328,10 @@ msgstr "Sortir max {0}"
 #: src/components/GmxAccountModal/SelectAssetToDepositView.tsx
 msgid "No assets available for deposit"
 msgstr "Aucun actif disponible pour le dépôt"
+
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+msgid "Only positions with over {0} in capital used are ranked.<0/><1/>The capital used is calculated as the highest value of [<2>sum of margin of open positions - realized PnL + period start pending PnL</2>]."
+msgstr ""
 
 #: src/components/TVChartContainer/useChartContextMenu.ts
 msgid "Set Short Stop Loss @ {0}"
@@ -2680,6 +2667,11 @@ msgstr ""
 msgid "Open positions"
 msgstr "Positions ouvertes"
 
+#: src/components/NetworkFeeRow/NetworkFeeRow.tsx
+#: src/components/NetworkFeeRow/NetworkFeeRow.tsx
+msgid "Blockchain gas fee (not GMX-specific). Doesn't impact your margin."
+msgstr ""
+
 #: src/components/PositionShare/PositionShareCard.tsx
 msgid "Coin"
 msgstr "Pièce"
@@ -2755,10 +2747,6 @@ msgstr "Facteur de réduction de la garantie réclamable"
 #: src/pages/PoolsDetails/PoolsDetailsAbout.tsx
 msgid "Auto-rebalancing vault of GM tokens that accrues fees from leverage trading and swaps. Backed by {0} and {1}."
 msgstr "Vault à rééquilibrage automatique de tokens GM qui accumule les frais issus du trading à effet de levier et des échanges. Adossé à {0} et {1}."
-
-#: src/components/PositionEditor/PositionEditor.tsx
-msgid "Edit collateral: {0} {1}{2}/USD"
-msgstr "Modifier la garantie : {0} {1}{2}/USD"
 
 #: src/components/ExpressTradingOutOfGasBanner/ExpressTradingOutOfGasBanner.tsx
 msgid "Insufficient gas balance. Express Trading and One-Click Trading unavailable."
@@ -3131,10 +3119,6 @@ msgstr ""
 msgid "Primary failed"
 msgstr "Primaire échoué"
 
-#: src/components/PositionDropdown/PositionDropdown.tsx
-msgid "Edit collateral"
-msgstr "Modifier la garantie"
-
 #: src/domain/synthetics/trade/utils/validation.ts
 #: src/domain/synthetics/trade/utils/validation.ts
 #: src/domain/synthetics/trade/utils/validation.ts
@@ -3276,8 +3260,8 @@ msgstr "Trader depuis votre portefeuille"
 msgid "Deposit USD capacity"
 msgstr "Capacité de dépôt en USD"
 
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
 msgid "Arbitrum wallet"
 msgstr ""
 
@@ -3342,7 +3326,6 @@ msgid "Warning: May not execute due to low liquidity at your min. receive price"
 msgstr "Attention : l'exécution pourrait échouer en raison d'une faible liquidité à votre prix de réception minimum"
 
 #: src/components/GmSwap/GmFees/GmFees.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "UI fee"
@@ -3351,10 +3334,6 @@ msgstr "Frais d'interface"
 #: landing/src/pages/Home/FaqSection/FaqSection.tsx
 msgid "<0>Liquidity providers receive 63% of all trading and liquidation fees. By depositing WBTC, ETH, USDC, or other supported assets, you can earn up to ~35% annualized yield on the largest pools.</0><1><2> GM pools – choose single-market exposure for targeted returns</2><3> GLV vaults – auto-diversify across markets for a hands-off strategy</3></1><4>Historically, both options have outperformed standard LP benchmarks. See live stats on the Pools page.</4>"
 msgstr "<0>Les fournisseurs de liquidité reçoivent 63 % de tous les frais de trading et de liquidation. En déposant du WBTC, ETH, USDC ou d'autres actifs pris en charge, vous pouvez obtenir jusqu'à ~35 % de rendement annualisé sur les plus grands pools.</0><1><2> GM pools – choisissez une exposition sur un seul marché pour des rendements ciblés</2><3> GLV vaults – diversification automatique entre les marchés pour une stratégie sans intervention</3></1><4>Historiquement, les deux options ont surpassé les benchmarks LP standards. Consultez les statistiques en direct sur la page Pools.</4>"
-
-#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
-msgid "Minimum {0} capital required for rankings.<0/><1/>Capital = max(sum of collateral of open positions - realized PnL + starting pending PnL)."
-msgstr "Capital minimum de {0} requis pour le classement.<0/><1/>Capital = max(somme des garanties des positions ouvertes - PnL réalisé + PnL en attente de départ)."
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Can't withdraw collateral. Remaining would be {estimatedRemainingCollateralUsdText}, below minimum"
@@ -3555,6 +3534,10 @@ msgstr "Thread Worker"
 msgid "Failed to update orders"
 msgstr "Échec de la mise à jour des ordres"
 
+#: src/components/OrderItem/OrderItem.tsx
+msgid "Margin delta"
+msgstr ""
+
 #: src/components/OrdersModal/AddTPSLModal.tsx
 #: src/components/TradeBox/TradeBoxRows/PriceImpactFeesRow.tsx
 msgid "Net price impact / fees"
@@ -3660,10 +3643,6 @@ msgstr "{0}"
 msgid "Cumulative"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Liquidation price changes with fees and collateral value."
-msgstr "Le prix de liquidation varie en fonction des frais et de la valeur de la garantie."
-
 #: src/components/Errors/LowGasPaymentTokenBalanceWarning.tsx
 msgid "Low {symbol} balance. This amount leaves little for future fees on {0}"
 msgstr ""
@@ -3761,6 +3740,10 @@ msgstr "Définir l'impact sur le prix acceptable"
 msgid "V1 volume"
 msgstr "Volume V1"
 
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Returned margin"
+msgstr ""
+
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 msgid "Sending order request..."
 msgstr "Envoi de la demande d'ordre…"
@@ -3837,6 +3820,10 @@ msgstr "Partagez votre avis sur GMX"
 msgid "Withdraw failed"
 msgstr "Échec du retrait"
 
+#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
+msgid "Minimum {0} capital required for rankings.<0/><1/>Capital = max(sum of margin of open positions - realized PnL + starting pending PnL)."
+msgstr ""
+
 #. chainname balance
 #: src/components/MultichainBalanceTooltip/MultichainBalanceTooltip.tsx
 msgid "{0} balance"
@@ -3894,6 +3881,10 @@ msgstr "Prix acceptable"
 msgid "Withdrawing from subaccount..."
 msgstr "Retrait du sous-compte…"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Current margin"
+msgstr ""
+
 #: src/components/BridgeModal/BridgeOutModal.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
@@ -3904,6 +3895,10 @@ msgstr "Retrait échoué"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/VestModal.tsx
 msgid "esGMX"
 msgstr "esGMX"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Position value after PnL and accrued fees"
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "POOL VALUE"
@@ -3942,6 +3937,10 @@ msgstr "label de marché"
 #: landing/src/pages/Home/HeroSection/HeroSection.tsx
 msgid "Total volume"
 msgstr "Volume total"
+
+#: src/components/PositionList/PositionList.tsx
+msgid "MARGIN"
+msgstr ""
 
 #: src/pages/TestPermits/TestPermits.tsx
 msgid "Sign permit"
@@ -4034,6 +4033,10 @@ msgstr "Exécutée"
 #: src/components/Referrals/affiliates/dashboard/AffiliatesStats.tsx
 msgid "V2 volume"
 msgstr "Volume V2"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Liquidation price changes with fees and margin value."
+msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 msgid "Read the rules"
@@ -4166,10 +4169,6 @@ msgstr "Données {chainName}"
 msgid "Net referred traders in the selected period (gained - lost)."
 msgstr ""
 
-#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
-msgid "No liquidation price. Collateral covers any losses."
-msgstr "Pas de prix de liquidation. La garantie couvre toutes les pertes."
-
 #: src/components/TradeHistory/keys.ts
 #: src/context/SyntheticsEvents/SyntheticsEventsProvider.tsx
 msgid "Liquidated"
@@ -4276,6 +4275,10 @@ msgstr "Approbation GMX en attente..."
 #: src/components/UserIncentiveDistribution/UserIncentiveDistribution.tsx
 msgid "AMOUNT"
 msgstr "MONTANT"
+
+#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
+msgid "Current margin excludes pending borrow and funding fees. Post-close margin reflects realized PnL and settled fees."
+msgstr ""
 
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
@@ -4507,7 +4510,6 @@ msgid "Position size too small. Min: {minPositionSizeUsdText}, current: {positio
 msgstr "Taille de position trop faible. Min. : {minPositionSizeUsdText}, actuelle : {positionSizeInUsdText}"
 
 #: src/components/OrdersModal/AddTPSLModal.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/TradeBox/TradeBoxRows/NextStoredImpactRows.tsx
 msgid "Stored price impact"
@@ -4750,6 +4752,12 @@ msgstr "Le slippage est la différence entre le prix d'exécution attendu et ré
 msgid "In other tokens"
 msgstr "En autres tokens"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Margin before pending borrow and funding fees"
+msgstr ""
+
 #: src/components/StatusNotification/OrderStatusNotification.tsx
 msgid "Cancel new orders"
 msgstr "Annuler les nouveaux ordres"
@@ -4773,7 +4781,7 @@ msgstr "Conditions générales d'utilisation"
 msgid "TVL (SUPPLY)"
 msgstr "TVL (FOURNITURE)"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Update Default Destination"
 msgstr ""
 
@@ -4818,10 +4826,6 @@ msgstr "Ordre d'achat GM inconnu"
 #: src/lib/useHasOutdatedUi.ts
 msgid "Page outdated. Refresh"
 msgstr "Page obsolète. Actualisez"
-
-#: src/components/SettingsModal/DisplaySettings.tsx
-msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in tooltips and execution details. <0>Read more</0>."
-msgstr "Afficher le détail de l'impact sur le prix : impact enregistré (ordres d'augmentation) et impact de clôture (ordres de réduction) dans les infobulles et les détails d'exécution. <0>En savoir plus</0>."
 
 #: src/components/Earn/Discovery/EarnProductCard.tsx
 #: src/components/GmSwap/GmSwapBox/GmSwapBoxHeader.tsx
@@ -4875,6 +4879,10 @@ msgstr "Taux de distribution, {0}"
 #: src/components/Referrals/traders/joinCode/ReferralCodeFormSettlementChain.tsx
 msgid "Referral code added"
 msgstr "Code de parrainage ajouté"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Your {symbol} margin exceeds the {indexName} short position size. Margin value rises with the index, covering any losses—no liquidation price."
+msgstr ""
 
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy GMX bonds on Bond Protocol at a discount with a short vesting period"
@@ -4994,6 +5002,10 @@ msgstr "Max {MAX_REFERRAL_CODE_LENGTH} caractères"
 #: src/components/Earn/Discovery/EarnProductCard.tsx
 msgid "Provide isolated liquidity per market"
 msgstr "Fournir de la liquidité isolée par marché"
+
+#: src/components/SettingsModal/DisplaySettings.tsx
+msgid "Show detailed price impact breakdown: stored impact (increase orders) and close impact (decrease orders) in execution details. <0>Read more</0>."
+msgstr ""
 
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Use open interest in tokens for balance"
@@ -5120,6 +5132,10 @@ msgstr "Récupération terminée"
 #: src/components/GmAssetDropdown/GmAssetDropdown.tsx
 msgid "Open in explorer"
 msgstr "Ouvrir dans l'explorateur"
+
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Margin at liquidation"
+msgstr ""
 
 #: src/components/SettingsModal/DebugSettings.tsx
 msgid "Permits testing"
@@ -5330,6 +5346,10 @@ msgstr "Réservé actuellement :"
 msgid "Support for"
 msgstr "Support pour"
 
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+msgid "No liquidation price. Margin covers any losses."
+msgstr ""
+
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Toros"
 msgstr "Toros"
@@ -5497,12 +5517,6 @@ msgstr "GLV (GMX Liquidity Vault) détient divers jetons GM, vous offrant une ex
 msgid "Settlement network changed to Arbitrum, but $12.50 remains in your Base GMX Account"
 msgstr "Le réseau de règlement a été changé pour Arbitrum, mais 12,50 $ restent dans votre GMX Account sur Base"
 
-#: src/components/OrdersModal/AddTPSLModal.tsx
-#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
-#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-msgid "Initial collateral, excluding borrow and funding fees"
-msgstr "Garantie initiale, hors frais d'emprunt et de financement"
-
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/PositionShare/CreateReferralCode.tsx
 #: src/components/Referrals/affiliates/createCode/AddAffiliateCode.tsx
@@ -5536,10 +5550,6 @@ msgstr "Vos fonds sont en sécurité dans LayerZero sur la chaîne de destinatio
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Umami DAO"
 msgstr "Umami DAO"
-
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Click the edit icon to adjust collateral."
-msgstr "Cliquez sur l'icône de modification pour ajuster la garantie."
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Staked on Avalanche"
@@ -5857,6 +5867,10 @@ msgstr "REMISE"
 msgid "Insufficient {fromSymbol} balance. Gas token switched to {toSymbol}"
 msgstr "Solde {fromSymbol} insuffisant. Jeton Gas remplacé par {toSymbol}"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Position may still liquidate from fees alone (funding + borrowing), reducing margin over time."
+msgstr ""
+
 #: src/pages/Earn/EarnPageLayout.tsx
 msgid "Buyback Tracker"
 msgstr ""
@@ -6061,13 +6075,6 @@ msgstr "Garantie insuffisante. Plus de garantie nécessaire"
 #: src/components/TenderlySettings/TenderlySettings.tsx
 msgid "Access key"
 msgstr "Clé d'accès"
-
-#: src/components/OrdersModal/AddTPSLModal.tsx
-#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
-#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
-#: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
-msgid "Collateral ({0})"
-msgstr "Collatéral ({0})"
 
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Real-time rants about GMX trades"
@@ -6417,11 +6424,6 @@ msgstr "{orderText} mis à jour"
 msgid "Withdrawal sent"
 msgstr "Retrait envoyé"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
-#: src/components/SettingsModal/TradingSettings.tsx
-msgid "Because positions on Arbitrum can be funded from both your wallet and your GMX Account, we can't always determine where to return the collateral automatically.<0/><1/>Choose:<2/>• <3>Wallet</3> if you mostly trade from your personal wallet on Arbitrum<4/>• <5>GMX Account</5> if you plan to keep trading or reusing collateral on GMX.<6/><7/>You can change this preference anytime in Settings or when closing a position."
-msgstr ""
-
 #: src/components/Referrals/affiliates/faq.tsx
 msgid "How do I share my code?"
 msgstr ""
@@ -6437,6 +6439,10 @@ msgstr "Vaults d'auto-composition GLP"
 
 #: src/components/Referrals/affiliates/faq.tsx
 msgid "Yes. To earn rebates on both Arbitrum and Avalanche, create your code on both networks. You can use the same code name on each."
+msgstr ""
+
+#: src/components/PositionDropdown/PositionDropdown.tsx
+msgid "Edit margin"
 msgstr ""
 
 #: src/components/TradeBox/hooks/useTradeButtonState.tsx
@@ -6845,6 +6851,10 @@ msgstr "Version :"
 msgid "Available"
 msgstr "Disponible"
 
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
+msgid "You chose to send the remaining margin to your <0>{chosenLabel}</0>. Do you want to make this the default destination when closing positions?"
+msgstr ""
+
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Swap profit fee"
 msgstr "Frais de profit d'échange"
@@ -7056,10 +7066,6 @@ msgstr "Le destinataire n’a jamais staké de tokens GLP auparavant"
 msgid "You can find referral code in <0>X</0> or on other social media platforms."
 msgstr ""
 
-#: src/domain/synthetics/trade/utils/validation.ts
-msgid "Min collateral: {0}"
-msgstr "Collatéral minimum : {0}"
-
 #: src/components/Referrals/shared/cards/ClaimableRebatesCard.tsx
 msgid "Claim rebates"
 msgstr ""
@@ -7108,10 +7114,6 @@ msgstr "Staker les récompenses {tokenSymbol}"
 msgid "Max amount exceeded"
 msgstr "Montant maximal dépassé"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
-msgid "You chose to send the remaining collateral to your <0>{chosenLabel}</0>. Do you want to make this the default destination when closing positions?"
-msgstr ""
-
 #: src/pages/TestPermits/TestPermits.tsx
 #: src/pages/TestPermits/TestPermits.tsx
 #: src/pages/TestPermits/TestPermits.tsx
@@ -7123,7 +7125,7 @@ msgstr "-"
 msgid "RPC endpoints"
 msgstr "Points de terminaison RPC"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "No, keep {currentLabel} as default"
 msgstr ""
 
@@ -7256,10 +7258,6 @@ msgstr "({0} de {1})"
 msgid "Total realized and unrealized PnL including fees and price impact"
 msgstr "PnL total réalisé et non réalisé, frais et impact sur le prix inclus"
 
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Position may still liquidate from fees alone (funding + borrowing), reducing collateral over time."
-msgstr "La position peut encore être liquidée par les frais seuls (funding + borrowing), réduisant la garantie au fil du temps."
-
 #: src/pages/Dashboard/StatsCard.tsx
 msgid "In GMX"
 msgstr "En GMX"
@@ -7352,10 +7350,6 @@ msgstr "Entrez le montant de dépôt"
 msgid "Approve {0}"
 msgstr "Approuver {0}"
 
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Position value after PnL, fees, and net price impact"
-msgstr "Valeur de la position après PnL, frais et impact net sur le prix"
-
 #: src/pages/DebugOracleKeeper/DebugOracleKeeper.tsx
 #: src/pages/RpcDebug/RpcDebug.tsx
 msgid "PREVIOUS"
@@ -7391,6 +7385,10 @@ msgstr "N/A"
 #: landing/src/pages/Home/LaunchSection/LaunchSection.tsx
 msgid "Operates on open, permissionless networks to ensure transparency, decentralization, and unrestricted access"
 msgstr "Fonctionne sur des réseaux ouverts et sans permission pour garantir la transparence, la décentralisation et un accès sans restriction"
+
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Low margin after fees. Deposit more to reduce liquidation risk."
+msgstr ""
 
 #: src/components/PoolSelector2/PoolSelector2.tsx
 msgid "{formattedNetRate} / 1h"
@@ -7559,6 +7557,10 @@ msgstr ""
 msgid "Staked GMX"
 msgstr "GMX stakés"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Click the edit icon to adjust margin."
+msgstr ""
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Open interest reserve factor shorts"
 msgstr "Facteur de réserve des positions ouvertes pour les shorts"
@@ -7600,8 +7602,6 @@ msgstr "des frais d'ouverture"
 msgid "Only use this for full account transfers.<0/>This will transfer all your GMX, esGMX, GLP, Multiplier Points and voting power to your new account.<1/>Transfers are only supported if the receiving account has not staked GMX or GLP tokens before.<2/>Transfers are one-way, you will not be able to transfer staked tokens back to the sending account."
 msgstr "Utilisez cette fonction uniquement pour les transferts de compte complets.<0/>Cela transférera tous vos GMX, esGMX, GLP, Multiplier Points et droits de vote vers votre nouveau compte.<1/>Les transferts ne sont possibles que si le compte destinataire n'a jamais staké de tokens GMX ou GLP auparavant.<2/>Les transferts sont irréversibles, vous ne pourrez pas retransférer les tokens stakés vers le compte émetteur."
 
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/PositionSeller/rows/PositionSellerPriceImpactFeesRow.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -7774,6 +7774,10 @@ msgstr "PNL EST."
 msgid "Your {currentTierDiscount}% discount is now active!"
 msgstr ""
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Your {symbol} margin exceeds the {indexName} long position size. Stable margin covers any losses—no liquidation price."
+msgstr ""
+
 #: src/components/Earn/Portfolio/AssetsList/GmGlvAssetCard.tsx
 msgid "Total performance APY"
 msgstr "APY de performance totale"
@@ -7891,7 +7895,6 @@ msgstr "Déplacement de {symbol}..."
 msgid "Max reserved + JIT {directionLabel}"
 msgstr ""
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Close price impact"
 msgstr "Impact sur le prix de clôture"
@@ -7936,7 +7939,6 @@ msgstr "Conclu"
 msgid "GMX announcements"
 msgstr "GMX announcements"
 
-#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Close fee"
@@ -8000,6 +8002,11 @@ msgstr "Profitez d'une expérience de trading fluide et évitez la congestion de
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 msgid "Top positions"
 msgstr "Meilleures positions"
+
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/SettingsModal/TradingSettings.tsx
+msgid "Send remaining margin to"
+msgstr ""
 
 #: src/pages/PoolsDetails/PoolsDetailsAbout.tsx
 msgid "Buy GM with {0} up to the caps below"
@@ -8138,6 +8145,13 @@ msgstr "GMX en vesting non retiré"
 msgid "Short positions"
 msgstr "Positions short"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionEditor/PositionEditorAdvancedRows.tsx
+#: src/components/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
+#: src/components/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
+msgid "Margin ({0})"
+msgstr ""
+
 #: src/components/Referrals/shared/modals/ClaimAffiliatesModal.tsx
 msgid "Claim {0}"
 msgstr "Récupérer {0}"
@@ -8161,6 +8175,10 @@ msgstr "Exposant d'emprunt short"
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Price impact"
 msgstr "Impact sur le prix"
+
+#: src/components/PositionEditor/PositionEditor.tsx
+msgid "Edit margin: {0} {1}{2}/USD"
+msgstr ""
 
 #: src/components/AddressView/AddressView.tsx
 msgid "You"
@@ -8380,7 +8398,10 @@ msgstr "Créer un code"
 msgid "Error submitting order"
 msgstr "Erreur lors de la soumission de l'ordre"
 
+#: src/components/OrderItem/OrderItem.tsx
+#: src/components/PositionItem/PositionItem.tsx
 #: src/components/TradeboxMarginFields/MarginField.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Margin"
 msgstr "Marge"
 
@@ -8834,6 +8855,7 @@ msgid "FAILURES"
 msgstr "ÉCHECS"
 
 #: src/domain/synthetics/trade/utils/validation.ts
+#: src/domain/synthetics/trade/utils/validation.ts
 msgid "Min margin: {0}"
 msgstr "Marge min. : {0}"
 
@@ -8868,11 +8890,6 @@ msgstr "Exposition aux tokens de garantie"
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
 msgid "Search type"
 msgstr "Rechercher un type"
-
-#: src/components/PositionSeller/PositionSeller.tsx
-#: src/components/SettingsModal/TradingSettings.tsx
-msgid "Send remaining collateral to"
-msgstr ""
 
 #: src/components/PoolSelector2/PoolSelector2.tsx
 msgid "Long liq."
@@ -9191,10 +9208,6 @@ msgstr "Frais de financement positifs accumulés dans les positions, pas encore 
 msgid "GM earns fees from one market. GLV holds multiple GM tokens and auto-rebalances across related markets. Both auto-compound returns. Choose GM for single-market exposure or GLV to diversify across multiple pools."
 msgstr "GM perçoit des frais d'un seul marché. GLV détient plusieurs tokens GM et se rééquilibre automatiquement entre les marchés liés. Les deux réinvestissent automatiquement les rendements. Choisissez GM pour une exposition à un seul marché ou GLV pour diversifier entre plusieurs pools."
 
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Negative funding fees reduce collateral and affect liquidation price. Positive funding fees are claimable in the Claims tab."
-msgstr "Les frais de financement négatifs réduisent la garantie et affectent le prix de liquidation. Les frais de financement positifs sont récupérables dans l'onglet Claims."
-
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Position impact amount"
 msgstr "Montant d'impact sur la position"
@@ -9239,10 +9252,6 @@ msgstr ""
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Swap price impact"
 msgstr "Impact sur le prix du swap"
-
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Position may liquidate from fees alone (funding + borrowing), reducing collateral over time."
-msgstr "La position peut être liquidée uniquement par les frais (financement + emprunt), réduisant la garantie au fil du temps."
 
 #: src/components/Claims/ClaimHistoryRow/ClaimCollateralHistoryRow.tsx
 #: src/components/Claims/filters/ActionFilter.tsx
@@ -9327,12 +9336,12 @@ msgstr "Liquidité insuffisante disponible dans le pool"
 msgid "Vested claimable GMX:"
 msgstr "GMX acquis récupérables :"
 
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
-#: src/components/CollateralDestinationSelector/CollateralDestinationSelector.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
 #: src/components/GmxAccountModal/AvailableToTradeAssetsView.tsx
 #: src/components/GmxAccountModal/GmxAccountModalDesktop.tsx
 #: src/components/GmxAccountModal/GmxAccountModalMobile.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
+#: src/components/MarginDestinationSelector/MarginDestinationSelector.tsx
 #: src/components/TokenSelector/MultichainMarketTokenSelector.tsx
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 #: src/pages/AccountDashboard/AccountDashboard.tsx
@@ -9627,6 +9636,11 @@ msgstr "C :"
 msgid "Existing position uses {0} collateral. This action won't affect it. <0>Switch to {1} collateral</0>"
 msgstr "La position existante utilise la garantie {0}. Cette action ne l'affectera pas. <0>Passer à la garantie {1}</0>"
 
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
+#: src/components/SettingsModal/TradingSettings.tsx
+msgid "Because positions on Arbitrum can be funded from both your wallet and your GMX Account, we can't always determine where to return the margin automatically.<0/><1/>Choose:<2/>• <3>Wallet</3> if you mostly trade from your personal wallet on Arbitrum<4/>• <5>GMX Account</5> if you plan to keep trading or reusing margin on GMX.<6/><7/>You can change this preference anytime in Settings or when closing a position."
+msgstr ""
+
 #: src/components/ClaimModal/ClaimModal.tsx
 msgid "<0>Positive funding fees accrued from your positions</0>"
 msgstr "<0>Frais de financement positifs accumulés à partir de vos positions</0>"
@@ -9668,12 +9682,6 @@ msgstr "Récompenses esGMX :"
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Optimal usage factor long"
 msgstr "Facteur d'utilisation optimal long"
-
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/PositionItem/PositionItem.tsx
-#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
-msgid "Initial collateral"
-msgstr "Garantie initiale"
 
 #: src/pages/ParseTransaction/ParseTransaction.tsx
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
@@ -9737,7 +9745,7 @@ msgstr "Diminution limite"
 msgid "Gas payment token"
 msgstr "Jeton de paiement du Gas"
 
-#: src/components/PositionSeller/CollateralDestinationDialog.tsx
+#: src/components/PositionSeller/MarginDestinationDialog.tsx
 msgid "Yes, set {chosenLabel} as default"
 msgstr ""
 
@@ -9939,7 +9947,6 @@ msgid "Transaction failed"
 msgstr "Transaction échouée"
 
 #: src/components/MarketStats/components/CompositionTable.tsx
-#: src/components/PositionList/PositionList.tsx
 msgid "COLLATERAL"
 msgstr "COLLATÉRAL"
 
@@ -10254,10 +10261,6 @@ msgstr "Les 30 derniers j"
 msgid "Dashboards"
 msgstr "Tableaux de bord"
 
-#: src/domain/synthetics/trade/utils/validation.ts
-msgid "Leftover collateral below {0} USD"
-msgstr "Collatéral restant inférieur à {0} USD"
-
 #: src/domain/synthetics/positions/utils.ts
 msgid "trigger"
 msgstr "déclenchement"
@@ -10307,10 +10310,6 @@ msgstr "Obtenez une exposition optimisée aux pools les plus utilisés"
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Stop Market price below mark price"
 msgstr "Prix Stop Market inférieur au prix de référence"
-
-#: src/components/PositionItem/PositionItem.tsx
-msgid "Low collateral after fees. Deposit more to reduce liquidation risk."
-msgstr "Garantie insuffisante après les frais. Déposez davantage pour réduire le risque de liquidation."
 
 #: src/components/MarketSelector/MarketSelector.tsx
 #: src/components/MarketsList/MarketsList.tsx
@@ -10753,6 +10752,10 @@ msgstr "Lien"
 msgid "Available to deposit"
 msgstr "Disponible pour déposer"
 
+#: src/components/PositionItem/PositionItem.tsx
+msgid "Position may liquidate from fees alone (funding + borrowing), reducing margin over time."
+msgstr ""
+
 #: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "General performance details"
 msgstr "Détails de la performance générale"
@@ -10835,6 +10838,10 @@ msgstr "OK"
 msgid "Active management"
 msgstr "Gestion active"
 
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Min. required margin"
+msgstr ""
+
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "DeBank"
 msgstr "DeBank"
@@ -10851,10 +10858,6 @@ msgstr "Incitation bonus GLV (test)"
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 msgid "Insufficient balance"
 msgstr "Solde insuffisant"
-
-#: src/components/OrderItem/OrderItem.tsx
-msgid "Collateral delta"
-msgstr "Variation de la garantie"
 
 #: src/components/Errors/getContractErrorToastContent.tsx
 msgid "Insufficient collateral. Need {amountText} more collateral"
@@ -10881,10 +10884,6 @@ msgstr ""
 #: src/components/Earn/BuybackTracker/BuybackChart.tsx
 msgid "Week"
 msgstr ""
-
-#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
-msgid "Min. required collateral"
-msgstr "Garantie minimale requise"
 
 #: src/domain/synthetics/orders/useOrderTxnCallbacks.tsx
 msgid "{orderText} update failed"

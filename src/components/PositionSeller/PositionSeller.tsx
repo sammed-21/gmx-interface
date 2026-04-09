@@ -95,10 +95,10 @@ import { getIsValidTwapParams } from "sdk/utils/twap";
 import { AlertInfoCard } from "components/AlertInfo/AlertInfoCard";
 import { AmountWithUsdBalance } from "components/AmountWithUsd/AmountWithUsd";
 import Button from "components/Button/Button";
-import { CollateralDestinationSelector } from "components/CollateralDestinationSelector/CollateralDestinationSelector";
 import { ColorfulBanner } from "components/ColorfulBanner/ColorfulBanner";
 import { ValidationBannerErrorContent } from "components/Errors/gasErrors";
 import ExternalLink from "components/ExternalLink/ExternalLink";
+import { MarginDestinationSelector } from "components/MarginDestinationSelector/MarginDestinationSelector";
 import Modal from "components/Modal/Modal";
 import Tabs from "components/Tabs/Tabs";
 import ToggleSwitch from "components/ToggleSwitch/ToggleSwitch";
@@ -112,7 +112,7 @@ import { ValueTransition } from "components/ValueTransition/ValueTransition";
 import InfoCircleIcon from "img/ic_info_circle_stroke.svg?react";
 import SpinnerIcon from "img/ic_spinner.svg?react";
 
-import { CollateralDestinationDialog } from "./CollateralDestinationDialog";
+import { MarginDestinationDialog } from "./MarginDestinationDialog";
 import { PositionSellerAdvancedRows } from "./PositionSellerAdvancedDisplayRows";
 import { HighPriceImpactOrFeesWarningCard } from "../HighPriceImpactOrFeesWarningCard/HighPriceImpactOrFeesWarningCard";
 import { SyntheticsInfoRow } from "../SyntheticsInfoRow";
@@ -757,9 +757,9 @@ export function PositionSeller() {
                 <div className="mb-16">
                   <div className="flex items-center justify-between gap-8">
                     <span className="text-14 text-typography-secondary">
-                      <Trans>Send remaining collateral to</Trans>
+                      <Trans>Send remaining margin to</Trans>
                     </span>
-                    <CollateralDestinationSelector
+                    <MarginDestinationSelector
                       isReceiveToGmxAccount={isReceiveToGmxAccount}
                       onChangeDestination={handleSetIsReceiveToGmxAccount}
                     />
@@ -1108,7 +1108,7 @@ export function PositionSeller() {
         </div>
       </Modal>
 
-      <CollateralDestinationDialog
+      <MarginDestinationDialog
         isVisible={isDestinationDialogVisible}
         setIsVisible={setIsDestinationDialogVisible}
         chosenReceiveToGmxAccount={isReceiveToGmxAccount}
