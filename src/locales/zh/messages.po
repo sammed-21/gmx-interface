@@ -2427,6 +2427,13 @@ msgstr "GM 跨链桥接至..."
 msgid "Deactivate 1CT"
 msgstr "停用 1CT"
 
+#: src/components/OrdersModal/AddTPSLModal.tsx
+#: src/components/PositionEditor/PositionEditor.tsx
+#: src/components/PositionSeller/PositionSeller.tsx
+#: src/components/TradeBox/TradeBox.tsx
+msgid "Max:"
+msgstr ""
+
 #: src/components/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr "显示详情"
@@ -2501,7 +2508,6 @@ msgstr "{txnTypeText} {0} 订单为"
 #: src/components/GmxAccountModal/DepositView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/OrderEditor/OrderEditor.tsx
-#: src/components/PositionEditor/PositionEditor.tsx
 msgid "Max"
 msgstr "最大"
 
@@ -7395,7 +7401,6 @@ msgstr "{formattedNetRate} / 1 小时"
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
 #: src/components/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
 #: src/components/GmxAccountModal/MainView.tsx
-#: src/components/PositionEditor/PositionEditor.tsx
 #: src/pages/PoolsDetails/PoolsDetailsHeader.tsx
 msgid "Balance"
 msgstr "余额"
