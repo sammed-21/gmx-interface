@@ -53,7 +53,7 @@ export function TradeInputBox({
       >
         <div className="flex min-w-0 grow flex-col gap-2 pb-8 pl-12 pt-10">
           <div className="text-body-small pr-12 text-typography-secondary">{leftHeadline}</div>
-          <div className={cx("flex items-center pr-12", { "border-r-1/2 border-r-slate-600": !hideDivider })}>
+          <div className={cx("flex items-center gap-4 pr-12", { "border-r-1/2 border-r-slate-600": !hideDivider })}>
             {leftContent}
           </div>
           {bottomContent}
