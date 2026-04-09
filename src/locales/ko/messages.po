@@ -4951,6 +4951,10 @@ msgstr "GMX 미결제약정 관련 텔레그램 봇"
 msgid "<0>Order failed: wallet address mismatch</0><1/><2>Refresh and retry</2>"
 msgstr "<0>주문 실패: 지갑 주소 불일치</0><1/><2>새로고침 후 재시도</2>"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Please refer to Net Rate / 1H above the chart."
+msgstr ""
+
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
 msgstr "클릭하여 선택한 후 거래 창에서 규모를 늘리십시오."
@@ -8666,6 +8670,10 @@ msgstr "판매 가능"
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Select positions where accrued funding fee exceeds the {0} gas cost to settle"
 msgstr "발생 펀딩 수수료가 정산 Gas 비용 {0}을 초과하는 포지션을 선택하십시오"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Unable to load rate history."
+msgstr ""
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"

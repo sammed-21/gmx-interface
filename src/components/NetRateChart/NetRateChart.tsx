@@ -118,11 +118,6 @@ function formatRate(value: number, decimals = 4): string {
   return `${sign}${value.toFixed(decimals)}%`;
 }
 
-function formatProjectionSuffix(projection: RateProjection, projectionLabel: string): string {
-  if (projection === "1y") return " APR";
-  return `/${projectionLabel}`;
-}
-
 function getRateDirectionLabel(rateType: RateType, direction: "long" | "short"): string {
   if (direction === "long") {
     switch (rateType) {
@@ -184,7 +179,7 @@ export function NetRateChart() {
   const activeTimeframe = timeframe || "7d";
   const activeProjection = projection || "1h";
 
-  const { snapshots, isLoading } = useRateSnapshots({
+  const { snapshots, isLoading, error } = useRateSnapshots({
     marketAddress,
     timeframe: activeTimeframe,
   });
@@ -251,10 +246,20 @@ export function NetRateChart() {
         <span className="text-body-small flex items-center gap-6 text-typography-secondary">
           <span className="inline-block size-8 rounded-full bg-green-500" />
           <Trans>Long Positions</Trans>
+          {chartData.length > 0 && (
+            <span className="text-typography-primary">
+              {formatRate(chartData[chartData.length - 1].longRate, yAxisDecimals)}
+            </span>
+          )}
         </span>
         <span className="text-body-small flex items-center gap-6 text-typography-secondary">
           <span className="inline-block size-8 rounded-full bg-red-500" />
           <Trans>Short Positions</Trans>
+          {chartData.length > 0 && (
+            <span className="text-typography-primary">
+              {formatRate(chartData[chartData.length - 1].shortRate, yAxisDecimals)}
+            </span>
+          )}
         </span>
       </div>
 
@@ -262,6 +267,16 @@ export function NetRateChart() {
         {isLoading ? (
           <div className="flex h-full items-center justify-center">
             <Loader />
+          </div>
+        ) : error && chartData.length === 0 ? (
+          <div className="flex h-full flex-col items-center justify-center gap-8 px-16 text-center">
+            <MinusCircleIcon className="size-24 text-typography-secondary" />
+            <p className="text-body-medium font-bold text-typography-primary">
+              <Trans>Unable to load rate history.</Trans>
+            </p>
+            <p className="text-body-small text-typography-secondary">
+              <Trans>Please refer to Net Rate / 1H above the chart.</Trans>
+            </p>
           </div>
         ) : chartData.length === 0 ? (
           <div className="flex h-full flex-col items-center justify-center gap-8 px-16 text-center">
@@ -385,7 +400,7 @@ function NetRateTooltip({
   decimals: number;
 }) {
   const projectionLabels = useLocalizedMap(PROJECTION_LABELS);
-  const suffix = formatProjectionSuffix(projection, projectionLabels[projection]);
+  const suffix = `/${projectionLabels[projection]}`;
   const { raw } = point;
 
   return (

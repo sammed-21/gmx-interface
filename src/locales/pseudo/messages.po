@@ -4951,6 +4951,10 @@ msgstr ""
 msgid "<0>Order failed: wallet address mismatch</0><1/><2>Refresh and retry</2>"
 msgstr ""
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Please refer to Net Rate / 1H above the chart."
+msgstr ""
+
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
 msgstr ""
@@ -8665,6 +8669,10 @@ msgstr ""
 
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Select positions where accrued funding fee exceeds the {0} gas cost to settle"
+msgstr ""
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Unable to load rate history."
 msgstr ""
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx

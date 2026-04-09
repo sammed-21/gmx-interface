@@ -4951,6 +4951,10 @@ msgstr "Bot de Telegram para interés abierto en GMX"
 msgid "<0>Order failed: wallet address mismatch</0><1/><2>Refresh and retry</2>"
 msgstr "<0>Orden fallida: discrepancia en la dirección del monedero</0><1/><2>Actualizar y reintentar</2>"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Please refer to Net Rate / 1H above the chart."
+msgstr ""
+
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
 msgstr "Haga clic para seleccionar y luego utilice el cuadro de operaciones para aumentar el tamaño."
@@ -8666,6 +8670,10 @@ msgstr "Vendible"
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Select positions where accrued funding fee exceeds the {0} gas cost to settle"
 msgstr "Seleccione las posiciones en las que la comisión de financiación acumulada supere el coste de gas de {0} para compensar"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Unable to load rate history."
+msgstr ""
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"
