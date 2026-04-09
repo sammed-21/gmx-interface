@@ -1662,6 +1662,10 @@ msgstr "{typeString} Long Market: {0} a long position at the current price"
 msgid "Claims history"
 msgstr "Claims history"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Shifting into this market is disabled"
+msgstr "Shifting into this market is disabled"
+
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr "No SL orders"
