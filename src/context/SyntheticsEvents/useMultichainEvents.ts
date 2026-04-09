@@ -24,6 +24,7 @@ import {
   subscribeToOftSentEvents,
 } from "context/WebsocketContext/subscribeToEvents";
 import { isMultichainFundingItemLoading } from "domain/multichain/isMultichainFundingItemLoading";
+import { LayerZeroEndpointId } from "domain/multichain/types";
 import { MultichainFundingHistoryItem } from "domain/multichain/types";
 import { isStepGreater } from "domain/multichain/useGmxAccountFundingHistory";
 import { useChainId } from "lib/chains";
@@ -189,7 +190,7 @@ export function useMultichainEvents({ hasPageLostFocus }: { hasPageLostFocus: bo
         continue;
       }
 
-      const settlementChainId = ENDPOINT_ID_TO_CHAIN_ID[info.dstEid];
+      const settlementChainId = ENDPOINT_ID_TO_CHAIN_ID[info.dstEid as LayerZeroEndpointId];
       if (settlementChainId !== chainId) {
         continue;
       }
@@ -479,7 +480,7 @@ export function useMultichainEvents({ hasPageLostFocus }: { hasPageLostFocus: bo
         continue;
       }
 
-      const sourceChainId = ENDPOINT_ID_TO_CHAIN_ID[info.dstEid];
+      const sourceChainId = ENDPOINT_ID_TO_CHAIN_ID[info.dstEid as LayerZeroEndpointId];
 
       debugLog("withdrawal got OFTSent event for", sourceChainId, info.txnHash);
 
