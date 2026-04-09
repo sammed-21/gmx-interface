@@ -38,8 +38,8 @@ export const appEventsData: EventData[] = [
   {
     id: "gold-silver-arbitrum-listing",
     isActive: true,
-    startDate: "09 Apr 2026, 15:00",
-    endDate: "16 Apr 2026, 15:00",
+    startDate: "09 Apr 2026, 16:00",
+    endDate: "16 Apr 2026, 16:00",
     title: "GOLD and SILVER commodity markets added on Arbitrum",
     bodyText: (
       <>
