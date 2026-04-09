@@ -74,9 +74,13 @@ export function MarginField({
       ? formatBalanceAmount(fromToken.balance, fromToken.decimals, "", { isStable: fromToken.isStable })
       : undefined;
 
-  const handleBalanceClick = useCallback(() => {
-    onMaxClick?.();
-  }, [onMaxClick]);
+  const handleBalanceClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onMaxClick?.();
+    },
+    [onMaxClick]
+  );
 
   const showUsd = fromUsd !== undefined && !fromToken?.isStable;
 

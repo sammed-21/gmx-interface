@@ -892,7 +892,10 @@ export function TradeBox({ isMobile }: { isMobile: boolean }) {
               <button
                 type="button"
                 className="flex items-center gap-4 text-typography-secondary hover:text-typography-primary"
-                onClick={closeSizeHook.setMaxCloseSize}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeSizeHook.setMaxCloseSize();
+                }}
               >
                 {t`Max:`} <span className="numbers">{closeSizeHook.formattedMaxCloseSize}</span>
               </button>

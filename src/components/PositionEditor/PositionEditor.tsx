@@ -417,7 +417,10 @@ export function PositionEditor() {
                 <button
                   type="button"
                   className="flex items-center gap-4 text-typography-secondary hover:text-typography-primary"
-                  onClick={() => handleCollateralPercentageChange(100)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCollateralPercentageChange(100);
+                  }}
                 >
                   {isDeposit ? <WalletIcon className="size-14" /> : t`Max:`}{" "}
                   <span className="numbers">

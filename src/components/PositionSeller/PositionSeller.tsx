@@ -991,7 +991,10 @@ export function PositionSeller() {
                       <button
                         type="button"
                         className="flex items-center gap-4 text-typography-secondary hover:text-typography-primary"
-                        onClick={closeSize.setMaxCloseSize}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          closeSize.setMaxCloseSize();
+                        }}
                       >
                         {t`Max:`} <span className="numbers">{closeSize.formattedMaxCloseSize}</span>
                       </button>
