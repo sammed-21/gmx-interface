@@ -11,6 +11,7 @@ import {
 } from "config/chains";
 import { BASIS_POINTS_DIVISOR, BASIS_POINTS_DIVISOR_BIGINT, USD_DECIMALS } from "config/factors";
 import { getMappedTokenId } from "config/multichain";
+import { isDepositDisabledMarket } from "config/static/markets";
 import { ExpressTxnParams } from "domain/synthetics/express/types";
 import {
   GlvInfo,
@@ -391,7 +392,7 @@ export function getIncreaseError(p: {
       : nextPositionValues?.nextCollateralUsd;
 
   if (roundedNextCollateralUsd === undefined ? undefined : roundedNextCollateralUsd < _minCollateralUsd) {
-    return { buttonErrorMessage: t`Min collateral: ${formatUsd(_minCollateralUsd)}` };
+    return { buttonErrorMessage: t`Min margin: ${formatUsd(_minCollateralUsd)}` };
   }
 
   if (sizeDeltaUsd <= 0) {
@@ -606,7 +607,7 @@ export function getDecreaseError(p: {
         : nextPositionValues.nextCollateralUsd < (minCollateralUsd ?? 0n))
     ) {
       return {
-        buttonErrorMessage: t`Leftover collateral below ${formatAmount(minCollateralUsd, USD_DECIMALS, 2)} USD`,
+        buttonErrorMessage: t`Leftover margin below ${formatAmount(minCollateralUsd, USD_DECIMALS, 2)} USD`,
       };
     }
   }
@@ -791,6 +792,10 @@ export function getGmSwapError(p: {
 
   if (!marketInfo || !marketToken) {
     return { buttonErrorMessage: t`Loading...` };
+  }
+
+  if (isDeposit && isDepositDisabledMarket(chainId, marketInfo.marketTokenAddress)) {
+    return { buttonErrorMessage: t`Buying GM is disabled for this market` };
   }
 
   const glvTooltipMessage = glvInfo

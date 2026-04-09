@@ -112,7 +112,11 @@ export function getAvailableUsdLiquidityForPosition(
     return 0n;
   }
 
-  const maxReservedUsd = maxReservedUsdWithJit ?? getMaxReservedUsd(marketInfo, isLong);
+  const nativeMaxReservedUsd = getMaxReservedUsd(marketInfo, isLong);
+  const maxReservedUsd =
+    maxReservedUsdWithJit !== undefined
+      ? bigMath.max(maxReservedUsdWithJit, nativeMaxReservedUsd)
+      : nativeMaxReservedUsd;
   const reservedUsd = getReservedUsd(marketInfo, isLong);
 
   const maxOpenInterest = getMaxOpenInterestUsd(marketInfo, isLong);
