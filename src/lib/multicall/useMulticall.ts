@@ -1,4 +1,3 @@
-// @ts-expect-error crypto-js has no type declarations
 import cryptoJs from "crypto-js";
 import { useCallback, useRef } from "react";
 import useSWR, { SWRConfiguration, useSWRConfig } from "swr";

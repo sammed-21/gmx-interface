@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-// @ts-expect-error no declaration file for shallowequal
 import shallowEqual from "shallowequal";
 
 import { getExcessiveExecutionFee } from "config/chains";

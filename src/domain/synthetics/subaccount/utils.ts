@@ -1,4 +1,3 @@
-// @ts-expect-error no declaration file for crypto-js
 import cryptoJs from "crypto-js";
 import { ethers, Provider } from "ethers";
 import {

@@ -1,4 +1,3 @@
-// @ts-expect-error no declaration file for crypto-js
 import { AES } from "crypto-js";
 import { Signer } from "ethers";
 import { keccak256, type Hash } from "viem";

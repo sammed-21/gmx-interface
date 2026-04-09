@@ -22,15 +22,15 @@ export function useUtmParams() {
 
   useEffect(() => {
     const utmParams = ["source", "medium", "campaign", "term", "content"].reduce(
-      (acc: Record<string, string>, param) => {
+      (acc, param: keyof UtmParams) => {
         const value = query.get(`utm_${param}`);
         if (value && value.length < 50) {
           acc[param] = value;
         }
         return acc;
       },
-      {} as Record<string, string>
-    ) as unknown as UtmParams;
+      {} as UtmParams
+    );
 
     const utmString = Object.entries(utmParams)
       .map(([key, value]) => `utm_${key}=${value}`)
