@@ -4953,7 +4953,7 @@ msgstr "<0>Order fehlgeschlagen: Wallet-Adressenkonflikt</0><1/><2>Aktualisieren
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Please refer to Net Rate / 1H above the chart."
-msgstr ""
+msgstr "Bitte beziehen Sie sich auf die Net Rate / 1H oberhalb des Charts."
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
@@ -8673,7 +8673,7 @@ msgstr "W√§hlen Sie Positionen aus, bei denen die aufgelaufene Finanzierungsgeb√
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Unable to load rate history."
-msgstr ""
+msgstr "Rate-Verlauf konnte nicht geladen werden."
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"

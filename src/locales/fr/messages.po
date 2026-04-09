@@ -4953,7 +4953,7 @@ msgstr "<0>Échec de l'ordre : adresse du portefeuille incorrecte</0><1/><2>Actu
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Please refer to Net Rate / 1H above the chart."
-msgstr ""
+msgstr "Veuillez vous référer au Net Rate / 1H au-dessus du graphique."
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
@@ -8673,7 +8673,7 @@ msgstr "Sélectionnez les positions dont les frais de financement accumulés dé
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Unable to load rate history."
-msgstr ""
+msgstr "Impossible de charger l'historique des taux."
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"

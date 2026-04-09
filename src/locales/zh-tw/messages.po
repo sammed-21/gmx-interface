@@ -4953,7 +4953,7 @@ msgstr "<0>訂單失敗：錢包地址不符</0><1/><2>重新整理並重試</2>
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Please refer to Net Rate / 1H above the chart."
-msgstr ""
+msgstr "請參考圖表上方的 Net Rate / 1H。"
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
@@ -8673,7 +8673,7 @@ msgstr "選擇累計資金費用超過 {0} Gas 費用的倉位進行結算"
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Unable to load rate history."
-msgstr ""
+msgstr "無法載入費率歷史記錄。"
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"

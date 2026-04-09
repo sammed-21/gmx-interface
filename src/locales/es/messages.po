@@ -4953,7 +4953,7 @@ msgstr "<0>Orden fallida: discrepancia en la dirección del monedero</0><1/><2>A
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Please refer to Net Rate / 1H above the chart."
-msgstr ""
+msgstr "Consulte la Net Rate / 1H sobre el gráfico."
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
@@ -8673,7 +8673,7 @@ msgstr "Seleccione las posiciones en las que la comisión de financiación acumu
 
 #: src/components/NetRateChart/NetRateChart.tsx
 msgid "Unable to load rate history."
-msgstr ""
+msgstr "No se pudo cargar el historial de tasas."
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"
