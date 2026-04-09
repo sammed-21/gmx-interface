@@ -1662,6 +1662,10 @@ msgstr "{typeString} Long Market: 현재 가격으로 롱 포지션을 {0}합니
 msgid "Claims history"
 msgstr "청구 내역"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Shifting into this market is disabled"
+msgstr ""
+
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr "SL 주문 없음"
