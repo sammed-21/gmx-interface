@@ -533,6 +533,14 @@ const MARKETS_UI_CONFIGS: Record<ContractsChainId, Record<string, MarketUiConfig
     "0xbA30e198CFFeBEf0A84D6943cC8B2e356E324112": {
       enabled: true,
     },
+    // GOLD/USD [WETH-USDC]
+    "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f": {
+      enabled: true,
+    },
+    // SILVER/USD [WETH-USDC]
+    "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc": {
+      enabled: true,
+    },
   },
   [AVALANCHE]: {
     // BTC/USD [BTC-USDC]
