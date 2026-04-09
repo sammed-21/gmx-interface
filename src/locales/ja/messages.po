@@ -508,6 +508,11 @@ msgstr "トークンを選択"
 msgid "Image generation failed. Refresh and try again."
 msgstr "画像の生成に失敗しました。更新して再度お試しください。"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding"
+msgstr "ファンディング"
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstaking..."
 msgstr "ステーキング解除中..."
@@ -839,6 +844,10 @@ msgstr "中央集権型取引所でGMXを購入"
 msgid "Available liquidity"
 msgstr "利用可能な流動性"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "No net rate history available for this market."
+msgstr "このマーケットのネットレート履歴はありません。"
+
 #: src/components/ModalViews/RedirectModal.tsx
 msgid "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
 msgstr "このウェブサイトは、分散型ピアツーピア<1>IPFSネットワーク</1>上でホストされた、オープンソースの<0>GMXフロントエンド</0>のコミュニティデプロイ版です"
@@ -957,6 +966,11 @@ msgstr "最大ネットワーク手数料バッファ精度は0.01%"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "DeltaPrime"
 msgstr "DeltaPrime"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing"
+msgstr "借入"
 
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
@@ -1151,6 +1165,10 @@ msgstr "トランザクション："
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstake {tokenSymbol}"
 msgstr "{tokenSymbol}をアンステーク"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Borrowing Rate"
+msgstr "ショート 借入レート"
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Invalid slippage value"
@@ -1956,6 +1974,10 @@ msgstr "スリッページは5%未満に設定してください"
 msgid "Gain"
 msgstr "利益"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Borrowing Rate"
+msgstr "ロング 借入レート"
+
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 msgid "Swapped {0} for {1}"
@@ -2423,6 +2445,10 @@ msgstr "送金が完了しました"
 msgid "GM bridging to..."
 msgstr "GMブリッジ先..."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Funding Rate"
+msgstr "ショート ファンディングレート"
+
 #: src/context/SubaccountContext/SubaccountContextProvider.tsx
 msgid "Deactivate 1CT"
 msgstr "1CTを無効化"
@@ -2554,6 +2580,10 @@ msgstr "変更が反映されるまで数分かかる場合があります"
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 msgid "Excludes incentives"
 msgstr "インセンティブを除く"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Positions"
+msgstr "ショートポジション"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -4068,6 +4098,10 @@ msgstr "いつでもアンステークできますか？"
 msgid "Max profit limit reached"
 msgstr "最大利益上限に達しました"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
+msgstr "新しいマーケットの履歴はまだインデックスされていない可能性があります。チャート上部のNet Rate / 1Hをご参照ください。"
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Virtual inventory for swaps (long / short)"
 msgstr "スワップの仮想インベントリ（ロング / ショート）"
@@ -4246,6 +4280,10 @@ msgstr "マーケットデータを読み込み中..."
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "{longOrShort} positions do not pay a funding fee or a borrow fee"
 msgstr "{longOrShort} ポジションはファンディング手数料および借入手数料がかかりません"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Funding Rate"
+msgstr "ロング ファンディングレート"
 
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "in {0}"
@@ -4669,6 +4707,11 @@ msgstr "GMX Accountでリファラルコードを作成するには、{0}上のU
 msgid "Current tier:"
 msgstr "現在のティア:"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Net Rate"
+msgstr "ショート ネットレート"
+
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 msgid "Lend GLV or GM tokens and borrow against them"
@@ -4922,6 +4965,10 @@ msgstr "GMX の建玉情報を提供する Telegram ボット"
 #: src/components/Errors/errorToasts.tsx
 msgid "<0>Order failed: wallet address mismatch</0><1/><2>Refresh and retry</2>"
 msgstr "<0>注文失敗: ウォレットアドレスの不一致</0><1/><2>更新して再試行してください</2>"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Please refer to Net Rate / 1H above the chart."
+msgstr "チャート上部のNet Rate / 1Hをご参照ください。"
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
@@ -5766,6 +5813,11 @@ msgstr "最大ファンディングファクター"
 msgid "Your discount is now active!"
 msgstr ""
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "24h"
+msgstr "24時間"
+
 #: src/components/GmSwap/GmSwapBox/GmSwapWarningsRow.tsx
 #: src/pages/UiPage/BannerTest.tsx
 msgid "High price impact"
@@ -6188,6 +6240,10 @@ msgstr "スプレッド"
 msgid "GMX newsletter and long-form updates"
 msgstr "GMXのニュースレターおよび詳細なアップデート"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "8h"
+msgstr "8時間"
+
 #: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "TP price"
 msgstr "TP価格"
@@ -6453,6 +6509,10 @@ msgstr "TP/SL注文がポジションを超過"
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "pay"
 msgstr "支払い"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding Rate"
+msgstr "ファンディングレート"
 
 #: src/pages/Earn/EarnAdditionalOpportunitiesPage.tsx
 msgid "No opportunities match your holdings"
@@ -6727,6 +6787,7 @@ msgid "One-Click Trading approval nonce expired. Re-sign to continue."
 msgstr "One-Click Tradingの承認nonceが期限切れです。続行するには再署名してください。"
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "30d"
 msgstr "30日"
 
@@ -7218,6 +7279,10 @@ msgstr "指値増加"
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Transferring..."
 msgstr "送金中..."
+
+#: src/components/TVChart/Chart.tsx
+msgid "Net Rate History"
+msgstr "ネットレート履歴"
 
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
@@ -7887,6 +7952,11 @@ msgstr ""
 msgid "Unknown shift GM order"
 msgstr "不明なシフトGM注文"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Net Rate"
+msgstr "ロング ネットレート"
+
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Shifting {symbol}..."
 msgstr "{symbol} をシフト中..."
@@ -8254,6 +8324,10 @@ msgstr "リファラルコードを編集"
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell request sent"
 msgstr "売却リクエストが送信されました"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing Rate"
+msgstr "借入レート"
 
 #: src/domain/synthetics/markets/createGlvWithdrawalTxn.ts
 #: src/domain/synthetics/markets/createWithdrawalTxn.ts
@@ -8631,6 +8705,10 @@ msgstr "売却可能"
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Select positions where accrued funding fee exceeds the {0} gas cost to settle"
 msgstr "発生したファンディング手数料が決済のGasコスト{0}を超えるポジションを選択してください"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Unable to load rate history."
+msgstr "レート履歴を読み込めませんでした。"
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"
@@ -9308,6 +9386,10 @@ msgstr "GMTradeを開く"
 msgid "Execute TWAP part"
 msgstr "TWAP部分注文を約定"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1Y"
+msgstr "1年"
+
 #: src/components/TradeHistory/keys.ts
 msgid "Create Limit Swap"
 msgstr "リミットスワップを作成"
@@ -9969,6 +10051,10 @@ msgstr "入金中…"
 msgid "Status"
 msgstr "ステータス"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate"
+msgstr "ネットレート"
+
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "30s"
 msgstr "30秒"
@@ -10206,6 +10292,10 @@ msgstr ""
 msgid "Oracle keeper monitoring"
 msgstr "Oracle keeper モニタリング"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate Projection:"
+msgstr "ネットレート予測:"
+
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
 msgstr "新しいサイズまたは価格を入力"
@@ -10270,6 +10360,7 @@ msgid "Failed to decode error. Make sure the hex data is valid and starts with \
 msgstr "デコードに失敗しました。16進データが有効で「0x」で始まることを確認してください。"
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "7d"
 msgstr "7日"
 
@@ -10293,6 +10384,10 @@ msgstr "比例配分された蓄積インパクト"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Rage Trade"
 msgstr "Rage Trade"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1h"
+msgstr "1時間"
 
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "EIP-4844, 20-27 Mar"
@@ -10751,6 +10846,10 @@ msgstr "リンク"
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to deposit"
 msgstr "入金可能"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Positions"
+msgstr "ロングポジション"
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Position may liquidate from fees alone (funding + borrowing), reducing margin over time."

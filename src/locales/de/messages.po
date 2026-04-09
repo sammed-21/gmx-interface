@@ -508,6 +508,11 @@ msgstr "Token auswählen"
 msgid "Image generation failed. Refresh and try again."
 msgstr "Bilderzeugung fehlgeschlagen. Aktualisieren Sie die Seite und versuchen Sie es erneut."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding"
+msgstr "Funding"
+
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstaking..."
 msgstr "Entstaken..."
@@ -839,6 +844,10 @@ msgstr "GMX auf zentralen Börsen kaufen"
 msgid "Available liquidity"
 msgstr "Verfügbare Liquidität"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "No net rate history available for this market."
+msgstr "Kein Net-Rate-Verlauf für diesen Markt verfügbar."
+
 #: src/components/ModalViews/RedirectModal.tsx
 msgid "The website is a community-deployed instance of the open source <0>GMX front end</0>, hosted on the distributed, peer-to-peer <1>IPFS network</1>"
 msgstr "Die Website ist eine von der Community bereitgestellte Instanz des Open-Source-<0>GMX-Frontends</0>, gehostet im verteilten Peer-to-Peer-<1>IPFS-Netzwerk</1>"
@@ -957,6 +966,11 @@ msgstr "Max. Netzwerkgebühr-Puffer-Präzision beträgt 0,01 %"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "DeltaPrime"
 msgstr "DeltaPrime"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing"
+msgstr "Leihen"
 
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
 #: src/pages/LeaderboardPage/components/CompetitionPrizes.tsx
@@ -1151,6 +1165,10 @@ msgstr "Transaktion:"
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/StakeModal.tsx
 msgid "Unstake {tokenSymbol}"
 msgstr "{tokenSymbol} unstaken"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Borrowing Rate"
+msgstr "Short Leihgebühr"
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Invalid slippage value"
@@ -1956,6 +1974,10 @@ msgstr "Slippage muss unter 5 % liegen"
 msgid "Gain"
 msgstr "Gewinn"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Borrowing Rate"
+msgstr "Long Leihgebühr"
+
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 msgid "Swapped {0} for {1}"
@@ -2423,6 +2445,10 @@ msgstr "Übertragung abgeschlossen"
 msgid "GM bridging to..."
 msgstr "GM-Bridging zu..."
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Funding Rate"
+msgstr "Short Funding Rate"
+
 #: src/context/SubaccountContext/SubaccountContextProvider.tsx
 msgid "Deactivate 1CT"
 msgstr "1CT deaktivieren"
@@ -2554,6 +2580,10 @@ msgstr "Änderungen können einige Minuten dauern, bis sie angezeigt werden"
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 msgid "Excludes incentives"
 msgstr "Ohne Anreize"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Positions"
+msgstr "Short-Positionen"
 
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Buying {symbol}..."
@@ -4068,6 +4098,10 @@ msgstr "Kann ich jederzeit unstaken?"
 msgid "Max profit limit reached"
 msgstr "Maximale Gewinngrenze erreicht"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "For newer markets the history might not yet be indexed, please refer to Net Rate / 1H above the chart."
+msgstr "Für neuere Märkte ist der Verlauf möglicherweise noch nicht indiziert. Bitte beachten Sie Net Rate / 1H über dem Chart."
+
 #: src/pages/SyntheticsStats/SyntheticsStats.tsx
 msgid "Virtual inventory for swaps (long / short)"
 msgstr "Virtuelles Inventar für Swaps (Long / Short)"
@@ -4246,6 +4280,10 @@ msgstr "Marktdaten werden geladen..."
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "{longOrShort} positions do not pay a funding fee or a borrow fee"
 msgstr "{longOrShort}-Positionen zahlen weder eine Finanzierungsgebühr noch eine Leihgebühr"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Funding Rate"
+msgstr "Long Funding Rate"
 
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "in {0}"
@@ -4669,6 +4707,11 @@ msgstr "Sie benötigen USDC oder ETH auf {0}, um einen Empfehlungscode über GMX
 msgid "Current tier:"
 msgstr "Aktuelle Stufe:"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Short Net Rate"
+msgstr "Short Net Rate"
+
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 #: src/components/Earn/AdditionalOpportunities/useOpportunities.tsx
 msgid "Lend GLV or GM tokens and borrow against them"
@@ -4922,6 +4965,10 @@ msgstr "Telegram-Bot für Open Interest auf GMX"
 #: src/components/Errors/errorToasts.tsx
 msgid "<0>Order failed: wallet address mismatch</0><1/><2>Refresh and retry</2>"
 msgstr "<0>Order fehlgeschlagen: Wallet-Adressenkonflikt</0><1/><2>Aktualisieren und erneut versuchen</2>"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Please refer to Net Rate / 1H above the chart."
+msgstr "Bitte beziehen Sie sich auf die Net Rate / 1H oberhalb des Charts."
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Click to select, then use the trade box to increase size."
@@ -5766,6 +5813,11 @@ msgstr "Maximaler Finanzierungsfaktor"
 msgid "Your discount is now active!"
 msgstr ""
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "24h"
+msgstr "24h"
+
 #: src/components/GmSwap/GmSwapBox/GmSwapWarningsRow.tsx
 #: src/pages/UiPage/BannerTest.tsx
 msgid "High price impact"
@@ -6188,6 +6240,10 @@ msgstr "Spread"
 msgid "GMX newsletter and long-form updates"
 msgstr "GMX Newsletter und ausführliche Aktualisierungen"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "8h"
+msgstr "8h"
+
 #: src/components/OrdersModal/TPSLInputRow.tsx
 msgid "TP price"
 msgstr "TP-Preis"
@@ -6453,6 +6509,10 @@ msgstr "TP/SL-Orders überschreiten die Position"
 #: src/components/MarketNetFee/MarketNetFee.tsx
 msgid "pay"
 msgstr "zahlen"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Funding Rate"
+msgstr "Funding Rate"
 
 #: src/pages/Earn/EarnAdditionalOpportunitiesPage.tsx
 msgid "No opportunities match your holdings"
@@ -6727,6 +6787,7 @@ msgid "One-Click Trading approval nonce expired. Re-sign to continue."
 msgstr "One-Click Trading Genehmigungsnonce abgelaufen. Erneut signieren, um fortzufahren."
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "30d"
 msgstr "30T"
 
@@ -7218,6 +7279,10 @@ msgstr "Limit-Erhöhung"
 #: src/pages/AccountTransfer/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Transferring..."
 msgstr "Übertragung läuft..."
+
+#: src/components/TVChart/Chart.tsx
+msgid "Net Rate History"
+msgstr "Net-Rate-Verlauf"
 
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
@@ -7887,6 +7952,11 @@ msgstr ""
 msgid "Unknown shift GM order"
 msgstr "Unbekannte Shift-GM-Order"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Net Rate"
+msgstr "Long Net Rate"
+
 #: src/components/GmSwap/GmSwapBox/GmDepositWithdrawalBox/useGmSwapSubmitState.tsx
 msgid "Shifting {symbol}..."
 msgstr "{symbol} verschieben..."
@@ -8254,6 +8324,10 @@ msgstr "Empfehlungscode bearbeiten"
 #: src/components/StatusNotification/GmStatusNotification.tsx
 msgid "Sell request sent"
 msgstr "Verkaufsauftrag gesendet"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Borrowing Rate"
+msgstr "Leihgebühr"
 
 #: src/domain/synthetics/markets/createGlvWithdrawalTxn.ts
 #: src/domain/synthetics/markets/createWithdrawalTxn.ts
@@ -8631,6 +8705,10 @@ msgstr "Verkäuflich"
 #: src/components/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Select positions where accrued funding fee exceeds the {0} gas cost to settle"
 msgstr "Wählen Sie Positionen aus, bei denen die aufgelaufene Finanzierungsgebühr die {0} Gas-Kosten für die Abwicklung übersteigt"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Unable to load rate history."
+msgstr "Rate-Verlauf konnte nicht geladen werden."
 
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 msgid "No from token address"
@@ -9308,6 +9386,10 @@ msgstr "GMTrade öffnen"
 msgid "Execute TWAP part"
 msgstr "TWAP-Teil ausführen"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1Y"
+msgstr "1J"
+
 #: src/components/TradeHistory/keys.ts
 msgid "Create Limit Swap"
 msgstr "Limit-Tausch erstellen"
@@ -9969,6 +10051,10 @@ msgstr "Wird eingezahlt…"
 msgid "Status"
 msgstr "Status"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate"
+msgstr "Net Rate"
+
 #: src/components/GmxAccountModal/DepositView.tsx
 msgid "30s"
 msgstr "30s"
@@ -10206,6 +10292,10 @@ msgstr ""
 msgid "Oracle keeper monitoring"
 msgstr "Oracle Keeper Überwachung"
 
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Net Rate Projection:"
+msgstr "Net-Rate-Projektion:"
+
 #: src/domain/synthetics/orders/getPositionOrderError.tsx
 msgid "Enter a new size or price"
 msgstr "Neue Größe oder Preis eingeben"
@@ -10270,6 +10360,7 @@ msgid "Failed to decode error. Make sure the hex data is valid and starts with \
 msgstr "Fehler beim Decodieren. Stellen Sie sicher, dass die Hex-Daten gültig sind und mit \"0x\" beginnen."
 
 #: src/components/DateRangeSelect/DateRangeSelect.tsx
+#: src/components/NetRateChart/NetRateChart.tsx
 msgid "7d"
 msgstr "7T"
 
@@ -10293,6 +10384,10 @@ msgstr "Proportionaler gespeicherter Einfluss"
 #: src/pages/Ecosystem/ecosystemConstants.tsx
 msgid "Rage Trade"
 msgstr "Rage Trade"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "1h"
+msgstr "1h"
 
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "EIP-4844, 20-27 Mar"
@@ -10751,6 +10846,10 @@ msgstr "Link"
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to deposit"
 msgstr "Zum Einzahlen verfügbar"
+
+#: src/components/NetRateChart/NetRateChart.tsx
+msgid "Long Positions"
+msgstr "Long-Positionen"
 
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Position may liquidate from fees alone (funding + borrowing), reducing margin over time."
