@@ -204,7 +204,6 @@ export function StatsCard() {
               )}
               handleClassName="numbers"
               content={
-                // @ts-expect-error uniqueUsers values are number, ChainsStatsTooltipRow expects bigint
                 <ChainsStatsTooltipRow showDollar={false} entries={uniqueUsersEntries} decimalsForConversion={0} />
               }
             />
