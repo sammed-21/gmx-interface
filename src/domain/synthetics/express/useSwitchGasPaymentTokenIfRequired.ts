@@ -70,7 +70,7 @@ function useSwitchGasPaymentTokenIfRequired({
             return false;
           }
 
-          return balance >= applyMinimalBuffer(requiredTokenAmount);
+          return balance > applyMinimalBuffer(requiredTokenAmount);
         });
 
         if (anotherGasToken && anotherGasToken !== gasPaymentToken.address) {
