@@ -2032,6 +2032,8 @@ export const TOKEN_COLOR_MAP = {
   SATS: "#F7931A",
   XAU: "#D69A00",
   XAG: "#ADABB8",
+  GOLD: "#D69A00",
+  SILVER: "#ADABB8",
   XPT: "#C2B8AB",
   XPD: "#A9ACB6",
   default: "#6062a6",
