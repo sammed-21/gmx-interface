@@ -624,7 +624,10 @@ export function getPositionInfo(p: {
     pnl: undefined,
   });
 
-  const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(marketInfo.minCollateralFactor);
+  const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(
+    marketInfo.minCollateralFactor,
+    marketInfo.minCollateralFactorForLiquidation
+  );
   const hasLowCollateral = (leverage !== undefined && leverage > maxAllowedLeverage) || false;
 
   const liquidationPrice = getLiquidationPrice({

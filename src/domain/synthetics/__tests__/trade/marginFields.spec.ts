@@ -30,6 +30,7 @@ function makeMarketInfo(overrides: Record<string, unknown> = {}) {
   const marketsInfoData = mockMarketsInfoData(tokensData, ["ETH-ETH-USDC"], {
     "ETH-ETH-USDC": {
       minCollateralFactor: MCF_100X,
+      minCollateralFactorForLiquidation: MCF_100X,
       positionFeeFactorForBalanceWasImproved: FEE_FACTOR_005,
       positionFeeFactorForBalanceWasNotImproved: FEE_FACTOR_007,
       ...overrides,
@@ -115,7 +116,7 @@ describe("calcMaxSizeDeltaInUsdByLeverage", () => {
     });
 
     const collateralUsd = expandDecimals(1000, USD_DECIMALS);
-    const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(MCF_100X);
+    const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(MCF_100X, MCF_100X);
 
     const result = calcMaxSizeDeltaInUsdByLeverage({
       marketInfo,
@@ -158,7 +159,7 @@ describe("calcMaxSizeDeltaInUsdByLeverage", () => {
     });
 
     const collateralUsd = expandDecimals(500, USD_DECIMALS);
-    const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(MCF_100X);
+    const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(MCF_100X, MCF_100X);
 
     const existingPosition = {
       sizeInUsd: expandDecimals(50000, USD_DECIMALS),
@@ -428,7 +429,7 @@ describe("calcMaxSizeDeltaInUsdByLeverage", () => {
   });
 
   it("handles zero minCollateralFactor (default 50x max)", () => {
-    const marketInfo = makeMarketInfo({ minCollateralFactor: 0n });
+    const marketInfo = makeMarketInfo({ minCollateralFactor: 0n, minCollateralFactorForLiquidation: 0n });
     const collateralUsd = expandDecimals(1000, USD_DECIMALS);
 
     const result = calcMaxSizeDeltaInUsdByLeverage({

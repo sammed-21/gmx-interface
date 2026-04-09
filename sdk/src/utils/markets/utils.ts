@@ -148,8 +148,13 @@ export function getMaxLeverageByMinCollateralFactor(minCollateralFactor: bigint 
   return rounded * BASIS_POINTS_DIVISOR;
 }
 
-export function getMaxAllowedLeverageByMinCollateralFactor(minCollateralFactor: bigint | undefined) {
-  return getMaxLeverageByMinCollateralFactor(minCollateralFactor) / 2;
+export function getMaxAllowedLeverageByMinCollateralFactor(
+  minCollateralFactor: bigint | undefined,
+  minCollateralFactorForLiquidation: bigint | undefined
+) {
+  const maxLeverage = getMaxLeverageByMinCollateralFactor(minCollateralFactor);
+  const maxLeverageForLiquidation = getMaxLeverageByMinCollateralFactor(minCollateralFactorForLiquidation);
+  return Math.min(maxLeverage, maxLeverageForLiquidation / 2);
 }
 
 export function getOppositeCollateral(marketInfo: MarketInfo, tokenAddress: string) {
