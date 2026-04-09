@@ -414,30 +414,37 @@ export function PositionEditor() {
                 </>
               }
               rightHeadline={
-                <button
-                  type="button"
-                  className="flex items-center gap-4 text-typography-secondary hover:text-typography-primary"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCollateralPercentageChange(100);
-                  }}
-                >
-                  {isDeposit ? <WalletIcon className="size-14" /> : t`Max:`}{" "}
-                  <span className="numbers">
-                    {isDeposit
-                      ? formatBalanceAmount(collateralTokenBalance ?? 0n, collateralToken?.decimals ?? 0, undefined, {
-                          isStable: collateralToken?.isStable,
-                        })
-                      : formatBalanceAmount(
-                          maxWithdrawAmount ?? 0n,
-                          position?.collateralToken?.decimals ?? 0,
-                          undefined,
-                          {
-                            isStable: position?.collateralToken?.isStable,
-                          }
-                        )}
+                isDeposit ? (
+                  <button
+                    type="button"
+                    className="flex items-center gap-4 text-typography-secondary hover:text-typography-primary"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCollateralPercentageChange(100);
+                    }}
+                  >
+                    <WalletIcon className="size-14" />
+                    <span className="numbers">
+                      {formatBalanceAmount(collateralTokenBalance ?? 0n, collateralToken?.decimals ?? 0, undefined, {
+                        isStable: collateralToken?.isStable,
+                      })}
+                    </span>
+                  </button>
+                ) : (
+                  <span className="flex items-center gap-4 text-typography-secondary">
+                    {t`Max:`}{" "}
+                    <span className="numbers">
+                      {formatBalanceAmount(
+                        maxWithdrawAmount ?? 0n,
+                        position?.collateralToken?.decimals ?? 0,
+                        undefined,
+                        {
+                          isStable: position?.collateralToken?.isStable,
+                        }
+                      )}
+                    </span>
                   </span>
-                </button>
+                )
               }
               rightContent={
                 <div data-token-selector>
