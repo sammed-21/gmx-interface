@@ -36,6 +36,20 @@ export const OM_MANTRA_MIGRATION_EVENT_ID = "om-mantra-migration";
 
 export const appEventsData: EventData[] = [
   {
+    id: "megaeth-launch",
+    isActive: true,
+    startDate: "03 Apr 2026, 0:00",
+    endDate: "10 Apr 2026, 16:00",
+    title: "GMX is now live on MegaETH",
+    bodyText: (
+      <>
+        Trade perpetuals, create and share your referral code, and provide liquidity on MegaETH using its native
+        stablecoin: USDm.{" "}
+        <ExternalLink href="https://gmxio.substack.com/p/gmx-is-now-live-on-megaeth-trade">Read more</ExternalLink>.
+      </>
+    ),
+  },
+  {
     id: OM_MANTRA_MIGRATION_EVENT_ID,
     isActive: true,
     startDate: "20 Feb 2026, 0:00",
