@@ -149,6 +149,7 @@
     "@lingui/vite-plugin": "4.11.3",
     "@playwright/experimental-ct-react": "^1.58.2",
     "@types/react-date-range": "1.4.9",
+    "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "8.26.1",
     "@typescript-eslint/parser": "8.26.1",
     "@vitejs/plugin-react": "4.3.1",

@@ -7,7 +7,7 @@ import { zeroAddress } from "viem";
 
 import { getIsFlagEnabled } from "config/ab";
 import { ARBITRUM, ContractsChainId } from "config/chains";
-import { getIcons } from "config/icons";
+import { type ChainIcons, getIcons } from "config/icons";
 import { MAX_METAMASK_MOBILE_DECIMALS } from "config/ui";
 import { SetPendingTransactions } from "context/PendingTxnsContext/PendingTxnsContext";
 import { calculateStakeBonusPercentage } from "domain/stake/calculateStakeBonusPercentage";
@@ -126,7 +126,7 @@ export function StakeModal(props: {
   const [isUnstaking, setIsUnstaking] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const isMetamaskMobile = useIsMetamaskMobile();
-  const icons: Record<string, string | undefined> = getIcons(chainId);
+  const icons = getIcons(chainId);
   const hasOutdatedUi = useHasOutdatedUi();
 
   const stakeAmount = useMemo(() => parseValue(stakeValue, 18), [stakeValue]);
@@ -457,7 +457,7 @@ export function StakeModal(props: {
               <img
                 className="icon h-24"
                 height="24"
-                src={icons?.[activeTokenSymbol.toLowerCase()]}
+                src={icons?.[activeTokenSymbol.toLowerCase() as keyof ChainIcons]}
                 alt={activeTokenSymbol}
               />
               {activeTokenSymbol}

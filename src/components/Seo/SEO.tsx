@@ -1,6 +1,5 @@
 import { t } from "@lingui/macro";
 import type { ReactNode } from "react";
-// @ts-expect-error no declaration file for react-helmet
 import { Helmet } from "react-helmet";
 
 type SEOProps = {

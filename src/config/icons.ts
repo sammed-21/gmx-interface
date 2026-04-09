@@ -41,7 +41,7 @@ import megaeth from "img/tokens/ic_megaeth.svg";
 import optimismSepolia from "img/tokens/ic_op.svg";
 import sepolia from "img/tokens/ic_sepolia.svg";
 
-type ChainIcons = {
+export type ChainIcons = {
   network?: string;
   gmx: string;
   glp: string;
@@ -137,7 +137,7 @@ export function getChainIcon(chainId: number): string {
   return CHAIN_ID_TO_NETWORK_ICON[chainId as AnyChainId];
 }
 
-export function getIcons(chainId: number | "common") {
+export function getIcons(chainId: number | "common"): ChainIcons {
   if (!chainId || !(chainId in ICONS)) {
     throw new Error(`No icons found for chain: ${chainId}`);
   }
