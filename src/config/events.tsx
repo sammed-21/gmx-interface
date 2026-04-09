@@ -35,19 +35,19 @@ export const AL16Z_DELISTING_EVENT_ID = "al16z-delisting";
 export const OM_MANTRA_MIGRATION_EVENT_ID = "om-mantra-migration";
 
 export const appEventsData: EventData[] = [
-  {
-    id: "gold-silver-arbitrum-listing",
-    isActive: true,
-    startDate: "09 Apr 2026, 16:00",
-    endDate: "16 Apr 2026, 16:00",
-    title: "GOLD and SILVER commodity markets added on Arbitrum",
-    bodyText: (
-      <>
-        <Link to="/trade">Trade</Link> GOLD and SILVER perpetuals 24/7 with up to 50x leverage, or{" "}
-        <Link to="/pools">provide liquidity</Link> via GLV <span className="text-slate-100">[WETH-USDC]</span>.
-      </>
-    ),
-  },
+  // {
+  //   id: "gold-silver-arbitrum-listing",
+  //   isActive: true,
+  //   startDate: "09 Apr 2026, 16:00",
+  //   endDate: "16 Apr 2026, 16:00",
+  //   title: "GOLD and SILVER commodity markets added on Arbitrum",
+  //   bodyText: (
+  //     <>
+  //       <Link to="/trade">Trade</Link> GOLD and SILVER perpetuals 24/7 with up to 50x leverage, or{" "}
+  //       <Link to="/pools">provide liquidity</Link> via GLV <span className="text-slate-100">[WETH-USDC]</span>.
+  //     </>
+  //   ),
+  // },
   {
     id: "megaeth-launch",
     isActive: true,
