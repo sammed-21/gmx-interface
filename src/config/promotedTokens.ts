@@ -18,9 +18,9 @@ export const PROMOTED_TOKENS_ORDER: Partial<Record<number, string[]>> = {
     zeroAddress,
     // SOL
     "0x2bcC6D6CdBbDC0a4071e48bb3B969b06B3330c07",
-    // XAU (Gold)
-    "0x0f16dFBA0242F23F4a5faDE95Cd138139DD7592F",
-    // XAG (Silver)
-    "0xAc0CeE37770FdC16732C1f591a6B90A4Ea580643",
+    // GOLD
+    "0xc48d782c5C54157d37d2Fa4E6BA27E8cf57Da956",
+    // SILVER
+    "0xE41902f9aD379A8CC34A34efa00F5c3EE5112bC8",
   ],
 };
