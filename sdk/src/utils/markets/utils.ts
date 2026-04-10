@@ -154,7 +154,7 @@ export function getMaxAllowedLeverageByMinCollateralFactor(
 ) {
   const maxLeverage = getMaxLeverageByMinCollateralFactor(minCollateralFactor);
   const maxLeverageForLiquidation = getMaxLeverageByMinCollateralFactor(minCollateralFactorForLiquidation);
-  return Math.min(maxLeverage, maxLeverageForLiquidation / 2);
+  return Math.min(Math.floor(maxLeverage * 0.9), maxLeverageForLiquidation / 2);
 }
 
 export function getOppositeCollateral(marketInfo: MarketInfo, tokenAddress: string) {
