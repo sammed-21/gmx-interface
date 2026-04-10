@@ -186,25 +186,8 @@ describe("getMaxLeverageByMinCollateralFactor", () => {
 });
 
 describe("getMaxAllowedLeverageByMinCollateralFactor", () => {
-  it("returns half of max leverage when both factors are equal", () => {
-    const mcf = 1000000000000000000n;
-    expect(getMaxAllowedLeverageByMinCollateralFactor(mcf, mcf)).toBe(5000000000000000);
-  });
-
-  it("returns contract max when liquidation factor allows higher leverage", () => {
-    // minCollateralFactor = 1% (1e28) → 100x, minCollateralFactorForLiquidation = 0.5% (5e27) → 200x
-    // Min(100x, 200x/2) = 100x = 1000000
-    const mcf = 10000000000000000000000000000n;
-    const mcfLiq = 5000000000000000000000000000n;
-    expect(getMaxAllowedLeverageByMinCollateralFactor(mcf, mcfLiq)).toBe(1000000);
-  });
-
-  it("returns halved liquidation leverage when it is more restrictive", () => {
-    // minCollateralFactor = 0.5% (5e27) → 200x, minCollateralFactorForLiquidation = 0.5% (5e27) → 200x
-    // Min(200x, 200x/2) = 100x = 1000000
-    const mcf = 5000000000000000000000000000n;
-    const mcfLiq = 5000000000000000000000000000n;
-    expect(getMaxAllowedLeverageByMinCollateralFactor(mcf, mcfLiq)).toBe(1000000);
+  it("returns half of max leverage", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(1000000000000000000n)).toBe(5000000000000000);
   });
 });
 

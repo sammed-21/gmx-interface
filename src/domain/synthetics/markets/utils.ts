@@ -440,7 +440,7 @@ export function getTotalGlvInfo({
 }
 
 export function getTradeboxLeverageSliderMarks(maxLeverage: number) {
-  const allowedLeverage = Math.round(maxLeverage / BASIS_POINTS_DIVISOR);
+  const allowedLeverage = Math.round(maxLeverage / 2 / BASIS_POINTS_DIVISOR);
 
   if (allowedLeverage >= 125) {
     return [0.1, 1, 2, 5, 10, 50, 100, allowedLeverage];

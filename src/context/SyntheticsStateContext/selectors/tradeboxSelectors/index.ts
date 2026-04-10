@@ -17,7 +17,7 @@ import {
 import { getJitLiquidityInfo } from "domain/synthetics/jit/utils";
 import {
   getAvailableUsdLiquidityForPosition,
-  getMaxAllowedLeverageByMinCollateralFactor,
+  getMaxLeverageByMinCollateralFactor,
   getTradeboxLeverageSliderMarks,
 } from "domain/synthetics/markets";
 import { PreferredTradeTypePickStrategy, chooseSuitableMarket } from "domain/synthetics/markets/chooseSuitableMarket";
@@ -1267,8 +1267,7 @@ export const selectTradeboxSelectedCollateralTokenSymbol = createSelector((q) =>
 
 export const selectTradeboxMaxLeverage = createSelector((q) => {
   const minCollateralFactor = q((s) => s.tradebox.marketInfo?.minCollateralFactor);
-  const minCollateralFactorForLiquidation = q((s) => s.tradebox.marketInfo?.minCollateralFactorForLiquidation);
-  return getMaxAllowedLeverageByMinCollateralFactor(minCollateralFactor, minCollateralFactorForLiquidation);
+  return getMaxLeverageByMinCollateralFactor(minCollateralFactor);
 });
 
 export const selectTradeboxLeverageSliderMarks = createSelector((q) => {

@@ -435,10 +435,7 @@ export function getIncreaseError(p: {
     }
   }
 
-  const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(
-    marketInfo?.minCollateralFactor,
-    marketInfo?.minCollateralFactorForLiquidation
-  );
+  const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(marketInfo?.minCollateralFactor);
 
   if (nextLeverageWithoutPnl !== undefined && nextLeverageWithoutPnl > maxAllowedLeverage) {
     return { buttonErrorMessage: t`Max leverage: ${(maxAllowedLeverage / BASIS_POINTS_DIVISOR).toFixed(1)}x` };
@@ -592,10 +589,7 @@ export function getDecreaseError(p: {
     }
   }
 
-  const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(
-    marketInfo?.minCollateralFactor,
-    marketInfo?.minCollateralFactorForLiquidation
-  );
+  const maxAllowedLeverage = getMaxAllowedLeverageByMinCollateralFactor(marketInfo?.minCollateralFactor);
 
   if (nextPositionValues?.nextLeverage !== undefined && nextPositionValues?.nextLeverage > maxAllowedLeverage) {
     return { buttonErrorMessage: t`Max leverage: ${(maxAllowedLeverage / BASIS_POINTS_DIVISOR).toFixed(1)}x` };
@@ -643,7 +637,6 @@ export function getEditCollateralError(p: {
   depositToken: TokenData | undefined;
   depositAmount: bigint | undefined;
   minCollateralFactor: bigint | undefined;
-  minCollateralFactorForLiquidation: bigint | undefined;
 }): ValidationResult {
   const {
     collateralDeltaAmount,
@@ -655,7 +648,6 @@ export function getEditCollateralError(p: {
     depositToken,
     depositAmount,
     minCollateralFactor,
-    minCollateralFactorForLiquidation,
   } = p;
 
   if (
@@ -683,7 +675,7 @@ export function getEditCollateralError(p: {
 
   const maxAllowedLeverage = isDeposit
     ? getMaxLeverageByMinCollateralFactor(minCollateralFactor)
-    : getMaxAllowedLeverageByMinCollateralFactor(minCollateralFactor, minCollateralFactorForLiquidation);
+    : getMaxAllowedLeverageByMinCollateralFactor(minCollateralFactor);
 
   if (nextLeverage !== undefined && nextLeverage > maxAllowedLeverage) {
     return { buttonErrorMessage: t`Max leverage: ${(maxAllowedLeverage / BASIS_POINTS_DIVISOR).toFixed(1)}x` };
