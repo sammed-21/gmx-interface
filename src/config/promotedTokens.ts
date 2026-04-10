@@ -1,3 +1,5 @@
+import { zeroAddress } from "viem";
+
 import { ARBITRUM } from "config/chains";
 
 /**
@@ -6,13 +8,14 @@ import { ARBITRUM } from "config/chains";
  *
  * Order matters — tokens are pinned in the order listed here.
  * To promote a new market, append its index-token address to the relevant chain array.
+ * Use the native/unwrapped form of the address (e.g. zeroAddress for ETH, not WETH).
  */
 export const PROMOTED_TOKENS_ORDER: Partial<Record<number, string[]>> = {
   [ARBITRUM]: [
     // BTC
     "0x47904963fc8b2340414262125aF798B9655E58Cd",
-    // ETH
-    "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+    // ETH (native address, not WETH)
+    zeroAddress,
     // SOL
     "0x2bcC6D6CdBbDC0a4071e48bb3B969b06B3330c07",
     // XAU (Gold)
