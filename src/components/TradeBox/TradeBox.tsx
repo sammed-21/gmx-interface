@@ -38,7 +38,7 @@ import {
   selectTradeboxKeepLeverage,
   selectTradeboxLeverage,
   selectTradeboxMarkPrice,
-  selectTradeboxMaxLeverage,
+  selectTradeboxMaxAllowedLeverage,
   selectTradeboxNextPositionValues,
   selectTradeboxSelectedPosition,
   selectTradeboxSelectedPositionKey,
@@ -247,9 +247,7 @@ export function TradeBox({ isMobile }: { isMobile: boolean }) {
   const executionFee = useSelector(selectTradeboxExecutionFee);
   const { markRatio } = useSelector(selectTradeboxTradeRatios);
 
-  const maxLeverage = useSelector(selectTradeboxMaxLeverage);
-
-  const maxAllowedLeverage = maxLeverage / 2;
+  const maxAllowedLeverage = useSelector(selectTradeboxMaxAllowedLeverage);
 
   const decreaseOrdersThatWillBeExecuted = useDecreaseOrdersThatWillBeExecuted();
 
