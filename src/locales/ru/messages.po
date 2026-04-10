@@ -1677,6 +1677,10 @@ msgstr "{typeString} Long Market: {0} лонг-позицию по текуще�
 msgid "Claims history"
 msgstr "История выплат"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Shifting into this market is disabled"
+msgstr ""
+
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr "Нет SL ордеров"

@@ -36,6 +36,20 @@ export const OM_MANTRA_MIGRATION_EVENT_ID = "om-mantra-migration";
 
 export const appEventsData: EventData[] = [
   {
+    id: "gold-silver-arbitrum-listing",
+    isActive: true,
+    startDate: "10 Apr 2026, 12:00",
+    endDate: "17 Apr 2026, 12:00",
+    title: "GOLD and SILVER commodity markets added on Arbitrum",
+    bodyText: (
+      <>
+        <Link to="/trade">Trade</Link> GOLD and SILVER perpetuals 24/7 with up to 100x leverage, or{" "}
+        <Link to="/pools">provide liquidity</Link> via GLV <span className="text-slate-100">[WETH-USDC]</span>. Find
+        them under the RWA category in the market dropdown.
+      </>
+    ),
+  },
+  {
     id: "megaeth-launch",
     isActive: true,
     startDate: "03 Apr 2026, 0:00",

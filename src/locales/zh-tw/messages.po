@@ -1677,6 +1677,10 @@ msgstr "{typeString} 做多市價單：以當前價格{0}做多倉位"
 msgid "Claims history"
 msgstr "領取歷史"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Shifting into this market is disabled"
+msgstr ""
+
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr "無 SL 訂單"

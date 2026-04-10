@@ -1677,6 +1677,10 @@ msgstr ""
 msgid "Claims history"
 msgstr ""
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Shifting into this market is disabled"
+msgstr ""
+
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr ""
