@@ -2,14 +2,7 @@ import { zeroAddress } from "viem";
 
 import { ARBITRUM } from "config/chains";
 
-/**
- * Per-chain list of index token addresses that should appear at the top
- * of market dropdowns when the default (pool-value) sort is active.
- *
- * Order matters — tokens are pinned in the order listed here.
- * To promote a new market, append its index-token address to the relevant chain array.
- * Use the native/unwrapped form of the address (e.g. zeroAddress for ETH, not WETH).
- */
+/** Tokens pinned at the top of market dropdowns on default sort. Order matters. */
 export const PROMOTED_TOKENS_ORDER: Partial<Record<number, string[]>> = {
   [ARBITRUM]: [
     // BTC
