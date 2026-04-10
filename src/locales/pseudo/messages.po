@@ -3060,6 +3060,10 @@ msgstr ""
 msgid "Exposure to market traders' PnL"
 msgstr ""
 
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+#~ msgstr ""
+
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
 msgstr ""
@@ -4961,8 +4965,8 @@ msgid "{positionTitle} orders"
 msgstr ""
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
-msgid "Buyback accrued"
-msgstr ""
+#~ msgid "Buyback accrued"
+#~ msgstr ""
 
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No resting orders"
@@ -5957,8 +5961,8 @@ msgid "Position may still liquidate from fees alone (funding + borrowing), reduc
 msgstr ""
 
 #: src/pages/Earn/EarnPageLayout.tsx
-msgid "Buyback Tracker"
-msgstr ""
+#~ msgid "Buyback Tracker"
+#~ msgstr ""
 
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to pay"
@@ -7469,7 +7473,6 @@ msgstr ""
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/components/Earn/Portfolio/RewardsBar.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
@@ -9491,6 +9494,10 @@ msgstr ""
 msgid "Limit price"
 msgstr ""
 
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power"
+msgstr ""
+
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Select at least one distribution to claim"
 msgstr ""
@@ -10303,6 +10310,10 @@ msgstr ""
 
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Distribution"
+msgstr ""
+
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
 msgstr ""
 
 #: src/components/SideNav/BottomMenuSection.tsx

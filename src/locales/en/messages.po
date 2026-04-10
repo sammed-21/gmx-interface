@@ -3060,6 +3060,10 @@ msgstr "Disabled markets"
 msgid "Exposure to market traders' PnL"
 msgstr "Exposure to market traders' PnL"
 
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+#~ msgstr "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
 msgstr "Average position size"
@@ -4961,8 +4965,8 @@ msgid "{positionTitle} orders"
 msgstr "{positionTitle} orders"
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
-msgid "Buyback accrued"
-msgstr "Buyback accrued"
+#~ msgid "Buyback accrued"
+#~ msgstr "Buyback accrued"
 
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No resting orders"
@@ -5957,8 +5961,8 @@ msgid "Position may still liquidate from fees alone (funding + borrowing), reduc
 msgstr "Position may still liquidate from fees alone (funding + borrowing), reducing margin over time."
 
 #: src/pages/Earn/EarnPageLayout.tsx
-msgid "Buyback Tracker"
-msgstr "Buyback Tracker"
+#~ msgid "Buyback Tracker"
+#~ msgstr "Buyback Tracker"
 
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to pay"
@@ -7469,7 +7473,6 @@ msgstr "Max {0} long exceeded"
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/components/Earn/Portfolio/RewardsBar.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
@@ -9491,6 +9494,10 @@ msgstr "GMX Account"
 msgid "Limit price"
 msgstr "Limit price"
 
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power"
+msgstr "Staking power"
+
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Select at least one distribution to claim"
 msgstr "Select at least one distribution to claim"
@@ -10304,6 +10311,10 @@ msgstr "EVENT"
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Distribution"
 msgstr "Distribution"
+
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+msgstr "Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
 
 #: src/components/SideNav/BottomMenuSection.tsx
 #: src/components/SideNav/BottomMenuSection.tsx
