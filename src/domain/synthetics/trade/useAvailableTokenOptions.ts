@@ -3,7 +3,6 @@ import { zeroAddress } from "viem";
 
 import { ARBITRUM, ARBITRUM_SEPOLIA, AVALANCHE, AVALANCHE_FUJI, BOTANIX, MEGAETH } from "config/chains";
 import { getSortedMarketsAddressesKey } from "config/localStorage";
-import { PROMOTED_TOKENS_ORDER } from "config/promotedTokens";
 import { SORTED_MARKETS } from "config/static/sortedMarkets";
 import { GlvAndGmMarketsInfoData, Market, MarketInfo, MarketsData, isMarketInfo } from "domain/synthetics/markets";
 import { InfoTokens, Token, getMidPrice } from "domain/tokens";
@@ -187,17 +186,9 @@ export function useAvailableTokenOptions(
       }
     }
 
-    const poolValueSorted = Object.keys(indexTokensWithPoolValue).sort((a, b) => {
+    const sortedIndexTokensWithPoolValue = Object.keys(indexTokensWithPoolValue).sort((a, b) => {
       return indexTokensWithPoolValue[b] > indexTokensWithPoolValue[a] ? 1 : -1;
     });
-
-    const promotedTokens = PROMOTED_TOKENS_ORDER[chainId];
-    const sortedIndexTokensWithPoolValue = promotedTokens
-      ? [
-          ...promotedTokens.filter((addr) => poolValueSorted.includes(addr)),
-          ...poolValueSorted.filter((addr) => !promotedTokens.includes(addr)),
-        ]
-      : poolValueSorted;
 
     const sortedAllMarkets = Array.from(allMarkets).sort((a, b) => {
       return (
