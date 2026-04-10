@@ -197,8 +197,8 @@ describe("getMaxAllowedLeverageByMinCollateralFactor", () => {
   });
 
   it("returns 25x for off-hours MCF (0.035 → 30x contract max)", () => {
-    // MCF 0.035 ≈ 35e27 → maxLeverage 30x → allowed 25x
-    const offHoursFactor = 10n ** 30n / 30n;
+    // MCF 0.035 = 35e27 → maxLeverage 30x → allowed 25x
+    const offHoursFactor = 35n * 10n ** 27n;
     expect(getMaxAllowedLeverageByMinCollateralFactor(offHoursFactor)).toBe(25 * 10000);
   });
 });
