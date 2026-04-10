@@ -3012,8 +3012,8 @@ msgid "Exposure to market traders' PnL"
 msgstr "市場交易者 PnL 的風險敞口"
 
 #: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
-msgstr ""
+#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+#~ msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
@@ -10179,6 +10179,10 @@ msgstr "事件"
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Distribution"
 msgstr "分配"
+
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+msgstr ""
 
 #: src/components/SideNav/BottomMenuSection.tsx
 #: src/components/SideNav/BottomMenuSection.tsx
