@@ -3064,6 +3064,10 @@ msgstr "已停用市場"
 msgid "Exposure to market traders' PnL"
 msgstr "市場交易者 PnL 的風險敞口"
 
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+#~ msgstr ""
+
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
 msgstr "平均倉位大小"
@@ -4965,8 +4969,8 @@ msgid "{positionTitle} orders"
 msgstr ""
 
 #: src/components/Earn/Portfolio/RewardsBar.tsx
-msgid "Buyback accrued"
-msgstr ""
+#~ msgid "Buyback accrued"
+#~ msgstr ""
 
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No resting orders"
@@ -5961,8 +5965,8 @@ msgid "Position may still liquidate from fees alone (funding + borrowing), reduc
 msgstr ""
 
 #: src/pages/Earn/EarnPageLayout.tsx
-msgid "Buyback Tracker"
-msgstr ""
+#~ msgid "Buyback Tracker"
+#~ msgstr ""
 
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to pay"
@@ -7473,7 +7477,6 @@ msgstr "超過 {0} 最大做多量"
 #: src/components/AllowedSwapSlippageInputRowImpl/AllowedSwapSlippageInputRowImpl.tsx
 #: src/components/DebugMarketGraph/DebugMarketGraph.tsx
 #: src/components/Earn/Discovery/EarnYieldOverview.tsx
-#: src/components/Earn/Portfolio/RewardsBar.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrderItem/OrderItem.tsx
 #: src/components/OrdersModal/AddTPSLModal.tsx
@@ -9495,6 +9498,10 @@ msgstr "GMX Account"
 msgid "Limit price"
 msgstr "限價"
 
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power"
+msgstr ""
+
 #: src/components/UserIncentiveDistribution/ClaimableAmounts.tsx
 msgid "Select at least one distribution to claim"
 msgstr "請至少選擇一項分配進行領取"
@@ -10308,6 +10315,10 @@ msgstr "事件"
 #: src/pages/Dashboard/GmxCard.tsx
 msgid "Distribution"
 msgstr "分配"
+
+#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
+msgid "Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
+msgstr ""
 
 #: src/components/SideNav/BottomMenuSection.tsx
 #: src/components/SideNav/BottomMenuSection.tsx
