@@ -268,7 +268,7 @@ export function getSwapStats(p: {
     };
   }
 
-  const maxOppositePnlFactorExceededStats = getMaxOppositePnlFactorExceededSwapStats({
+  const maxPnlFactorExceededStats = getMaxPnlFactorExceededSwapStats({
     marketInfo,
     isLong: isFromLongToShort,
     usdIn,
@@ -280,8 +280,8 @@ export function getSwapStats(p: {
     swapPricingType,
   });
 
-  if (maxOppositePnlFactorExceededStats) {
-    return maxOppositePnlFactorExceededStats;
+  if (maxPnlFactorExceededStats) {
+    return maxPnlFactorExceededStats;
   }
 
   const swapFeeAmount = getSwapFee(marketInfo, amountIn, balanceWasImproved, swapPricingType);
@@ -361,16 +361,19 @@ export function getSwapStats(p: {
 }
 
 /**
- * Return next pnl to pool factor for shrinking side of the market
+ * Mirrors the on-chain `SwapUtils.validateMaxPnl` check: after the swap is
+ * applied, BOTH the long and short PnL-to-pool factors must be within their
+ * limit. The shrinking (token-out) side is capped at MAX_PNL_FACTOR_FOR_WITHDRAWALS,
+ * the growing (token-in) side at MAX_PNL_FACTOR_FOR_DEPOSITS.
  */
-export function getNextOppositePnlToPoolFactor(p: {
+export function getIsMaxPnlFactorExceededAfterSwap(p: {
   marketInfo: MarketInfo;
   /**
    * Money in long side and out from short side
    */
   isLong: boolean;
   usdIn: bigint;
-}): bigint {
+}): boolean {
   const { marketInfo, isLong, usdIn } = p;
 
   const { nextLongPoolUsd, nextShortPoolUsd } = getNextPoolAmountsParams({
@@ -381,37 +384,39 @@ export function getNextOppositePnlToPoolFactor(p: {
     longDeltaUsd: isLong ? usdIn : usdIn * -1n,
     shortDeltaUsd: isLong ? usdIn * -1n : usdIn,
   });
-  const oppositePnl = getMarketPnl(marketInfo, !isLong, false);
-  const oppositePool = isLong ? nextShortPoolUsd : nextLongPoolUsd;
 
-  if (oppositePnl <= 0n) {
-    return 0n;
-  }
+  // Long side is growing when isLong=true (tokenIn is long), so compare against
+  // the deposits cap in that case, and the withdrawals cap when it's shrinking.
+  const longPnl = getMarketPnl(marketInfo, true, false);
+  const maxLongFactor = isLong ? marketInfo.maxPnlFactorForDepositsLong : marketInfo.maxPnlFactorForWithdrawalsLong;
 
-  if (oppositePool <= 0n) {
-    return maxUint256;
-  }
+  const shortPnl = getMarketPnl(marketInfo, false, false);
+  const maxShortFactor = isLong ? marketInfo.maxPnlFactorForWithdrawalsShort : marketInfo.maxPnlFactorForDepositsShort;
 
-  return bigMath.mulDiv(oppositePnl, PRECISION, oppositePool, false);
+  return (
+    isSideExceeded(longPnl, nextLongPoolUsd, maxLongFactor) ||
+    isSideExceeded(shortPnl, nextShortPoolUsd, maxShortFactor)
+  );
 }
 
-export function getIsMaxOppositePnlFactorExceeded(p: {
-  marketInfo: MarketInfo;
-  /**
-   * Money in long side and out from short side
-   */
-  isLong: boolean;
-  usdIn: bigint;
-}): boolean {
-  const { marketInfo, isLong, usdIn } = p;
+function isSideExceeded(pnl: bigint, nextPoolUsd: bigint, maxFactor: bigint | undefined): boolean {
+  // Cap not known yet (fast path before multicall refresh) — skip this side.
+  if (maxFactor === undefined) {
+    return false;
+  }
 
-  const maxOppositePnlFactor = isLong ? marketInfo.maxPnlFactorForTradersShort : marketInfo.maxPnlFactorForTradersLong;
-  const nextOppositePnlToPoolFactor = getNextOppositePnlToPoolFactor({ marketInfo, isLong, usdIn });
+  if (pnl <= 0n) {
+    return false;
+  }
 
-  return nextOppositePnlToPoolFactor > 0n && nextOppositePnlToPoolFactor > maxOppositePnlFactor;
+  if (nextPoolUsd <= 0n) {
+    return true;
+  }
+
+  return bigMath.mulDiv(pnl, PRECISION, nextPoolUsd, false) > maxFactor;
 }
 
-function getMaxOppositePnlFactorExceededSwapStats(p: {
+function getMaxPnlFactorExceededSwapStats(p: {
   marketInfo: MarketInfo;
   /**
    * Money in long side and out from short side
@@ -427,7 +432,7 @@ function getMaxOppositePnlFactorExceededSwapStats(p: {
 }): SwapStats | undefined {
   const { marketInfo, isLong, usdIn, amountIn, tokenInAddress, tokenOutAddress, isWrap, isUnwrap, swapPricingType } = p;
 
-  if (!getIsMaxOppositePnlFactorExceeded({ marketInfo, isLong, usdIn })) {
+  if (!getIsMaxPnlFactorExceededAfterSwap({ marketInfo, isLong, usdIn })) {
     return undefined;
   }
 

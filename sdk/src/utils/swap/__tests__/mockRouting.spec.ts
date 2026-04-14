@@ -827,7 +827,7 @@ describe("same token arbitrage swaps", () => {
       maxShortPoolAmount: usdToToken(1_000_000, tokensData.USDC),
     } satisfies Partial<MarketInfo>;
 
-    const buildMarketsInfoData = (maxPnlFactorForTradersShort: bigint) =>
+    const buildMarketsInfoData = (maxPnlFactorForWithdrawalsShort: bigint) =>
       mockMarketsInfoData(tokensData, marketKeys, {
         "ETH-ETH-USDC": bigPool,
         "SOL-ETH-USDC": {
@@ -836,7 +836,7 @@ describe("same token arbitrage swaps", () => {
           swapFeeFactorForBalanceWasNotImproved: 0n,
           shortInterestUsd: expandDecimals(15_000, USD_DECIMALS),
           shortInterestInTokens: usdToToken(5_000, tokensData.SOL),
-          maxPnlFactorForTradersShort,
+          maxPnlFactorForWithdrawalsShort,
         },
       });
 
