@@ -262,7 +262,7 @@ export function buildSignedBatchOrderCalldata({
     relayParamsPayload,
     signature,
     account,
-    srcChainId: srcChainId as any,
+    srcChainId: srcChainId as SourceChainId | undefined,
     subaccountApproval,
     isGmxAccount,
     deadline,

@@ -1,5 +1,5 @@
 import { TransactionRevertedError, TransactionRejectedError, SimulationFailedRpcError } from "@gelatocloud/gasless";
-import { Address, encodePacked, type Hex } from "viem";
+import { encodePacked } from "viem";
 
 import { ContractsChainId } from "config/chains";
 import { GelatoPollingTiming, metrics } from "lib/metrics";
@@ -22,7 +22,7 @@ export async function sendExpressTransaction(p: {
 }): Promise<ExpressTxnResult> {
   const data = encodePacked(
     ["bytes", "address", "address", "uint256"],
-    [p.txnData.callData as Hex, p.txnData.to as Address, p.txnData.feeToken as Address, p.txnData.feeAmount]
+    [p.txnData.callData, p.txnData.to, p.txnData.feeToken, p.txnData.feeAmount]
   );
 
   const apiKey = GELATO_API_KEYS[p.chainId];
@@ -38,8 +38,8 @@ export async function sendExpressTransaction(p: {
   try {
     taskId = await relayer.sendTransaction({
       chainId: p.chainId,
-      to: p.txnData.to as Address,
-      data: data as Hex,
+      to: p.txnData.to,
+      data,
     });
   } catch (error) {
     if (error instanceof SimulationFailedRpcError) {

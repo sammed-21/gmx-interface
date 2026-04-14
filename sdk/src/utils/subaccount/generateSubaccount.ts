@@ -8,7 +8,7 @@ import { PrivateKeySigner } from "utils/signer";
 export type GeneratedSubaccount = {
   address: string;
   signer: PrivateKeySigner;
-  privateKey: `0x${string}`;
+  privateKey: string;
 };
 
 export async function generateSubaccount(mainSigner: IAbstractSigner): Promise<GeneratedSubaccount> {

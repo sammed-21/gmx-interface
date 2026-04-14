@@ -24,7 +24,7 @@ export class PrivateKeySigner implements IAbstractSigner {
     return this.account.signTypedData({
       domain,
       types,
-      primaryType: Object.keys(types)[0],
+      primaryType: Object.keys(types).filter((t) => t !== "EIP712Domain")[0],
       message: value,
     });
   }

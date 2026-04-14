@@ -1,5 +1,5 @@
 import { TransactionRevertedError, TransactionRejectedError } from "@gelatocloud/gasless";
-import { encodePacked, type Hex, type Address } from "viem";
+import { encodePacked } from "viem";
 
 import type { ContractsChainId } from "configs/chains";
 import { GELATO_API_KEYS } from "configs/express";
@@ -31,7 +31,7 @@ export async function sendToGelatoRelay({
 }): Promise<GelatoRelayResult> {
   const data = encodePacked(
     ["bytes", "address", "address", "uint256"],
-    [txnData.callData as Hex, txnData.to as Address, txnData.feeToken as Address, txnData.feeAmount]
+    [txnData.callData, txnData.to, txnData.feeToken, txnData.feeAmount]
   );
 
   const apiKey = GELATO_API_KEYS[chainId];
@@ -46,8 +46,8 @@ export async function sendToGelatoRelay({
   try {
     taskId = await relayerClient.sendTransaction({
       chainId,
-      to: txnData.to as Address,
-      data: data as Hex,
+      to: txnData.to,
+      data,
     });
   } catch (e: any) {
     throw new GelatoRelayError(`Gelato relay failed: ${e?.message ?? String(e)}`, e);

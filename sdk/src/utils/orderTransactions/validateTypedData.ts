@@ -31,16 +31,7 @@ function getKnownRelayRouterAddresses(chainId: ContractsChainId): Set<string> {
   return addresses;
 }
 
-export function validateOrderTypedData(
-  domain: TypedDataDomain,
-  types: TypedDataTypes,
-  message: Record<string, any>,
-  chainId: ContractsChainId,
-  signerAddress: string,
-  /** For subaccount orders, the main account (owner) is a valid receiver */
-  accountAddress?: string
-): void {
-  // --- Domain validation ---
+function validateDomain(domain: TypedDataDomain, chainId: ContractsChainId): void {
   if (domain.name !== EXPECTED_DOMAIN_NAME) {
     throw new Error(
       `EIP-712 domain name mismatch: got "${domain.name}", expected "${EXPECTED_DOMAIN_NAME}"`
@@ -65,6 +56,18 @@ export function validateOrderTypedData(
       `EIP-712 domain verifyingContract "${domain.verifyingContract}" is not a known relay router for chain ${chainId}`
     );
   }
+}
+
+export function validateOrderTypedData(
+  domain: TypedDataDomain,
+  types: TypedDataTypes,
+  message: Record<string, any>,
+  chainId: ContractsChainId,
+  signerAddress: string,
+  /** For subaccount orders, the main account (owner) is a valid receiver */
+  accountAddress?: string
+): void {
+  validateDomain(domain, chainId);
 
   // --- Types validation ---
   const typeKeys = Object.keys(types);
@@ -103,31 +106,7 @@ export function validateSubaccountApprovalTypedData(
   signerAddress: string,
   expectedSubaccountAddress: string
 ): void {
-  // --- Domain validation ---
-  if (domain.name !== EXPECTED_DOMAIN_NAME) {
-    throw new Error(
-      `EIP-712 domain name mismatch: got "${domain.name}", expected "${EXPECTED_DOMAIN_NAME}"`
-    );
-  }
-
-  if (domain.version !== EXPECTED_DOMAIN_VERSION) {
-    throw new Error(
-      `EIP-712 domain version mismatch: got "${domain.version}", expected "${EXPECTED_DOMAIN_VERSION}"`
-    );
-  }
-
-  if (Number(domain.chainId) !== chainId) {
-    throw new Error(`EIP-712 domain chainId mismatch: got ${domain.chainId}, expected ${chainId}`);
-  }
-
-  const knownAddresses = getKnownRelayRouterAddresses(chainId);
-  const verifyingContract = domain.verifyingContract?.toLowerCase();
-
-  if (!verifyingContract || !knownAddresses.has(verifyingContract)) {
-    throw new Error(
-      `EIP-712 domain verifyingContract "${domain.verifyingContract}" is not a known relay router for chain ${chainId}`
-    );
-  }
+  validateDomain(domain, chainId);
 
   // --- Message field validation ---
   const normalizedSigner = signerAddress.toLowerCase();

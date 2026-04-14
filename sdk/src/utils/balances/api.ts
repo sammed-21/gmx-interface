@@ -32,7 +32,7 @@ export type TokenAllowance = {
   allowance: bigint;
 };
 
-export type SpenderType = "router" | "glv";
+export type SpenderType = "router";
 
 function parseWalletBalances(raw: any[]): WalletBalance[] {
   return raw.map((item) => ({
@@ -76,10 +76,8 @@ function resolveSpenderAddress(chainId: ContractsChainId, spender: SpenderType):
   switch (spender) {
     case "router":
       return getContract(chainId, "SyntheticsRouter");
-    case "glv":
-      return getContract(chainId, "GlvRouter");
     default:
-      throw new Error(`Invalid spender: ${spender}. Must be 'router' or 'glv'`);
+      throw new Error(`Invalid spender: ${spender}`);
   }
 }
 

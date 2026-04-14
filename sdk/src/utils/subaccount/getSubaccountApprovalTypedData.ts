@@ -63,10 +63,10 @@ export function getSubaccountApprovalTypedData(params: {
 
   return {
     domain: {
-      name: domain.name as string,
-      version: domain.version as string,
-      chainId: Number(domain.chainId),
-      verifyingContract: domain.verifyingContract as string,
+      name: domain.name,
+      version: domain.version,
+      chainId: domain.chainId,
+      verifyingContract: domain.verifyingContract,
     },
     types,
     message,

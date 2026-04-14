@@ -56,7 +56,7 @@ describe("GmxApiSdk — data fetching", () => {
     expect(Array.isArray(rates)).toBe(true);
   });
 
-  it.skip("fetchApy", async () => {
+  it("fetchApy", async () => {
     const apy = await sdk.fetchApy();
     expect(apy).toBeDefined();
   });
