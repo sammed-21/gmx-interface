@@ -295,7 +295,6 @@ function MarketsList() {
             <FavoriteTabs favoritesKey="chart-token-selector" />
           </ButtonRowScrollFadeContainer>
         </div>
-        <div className="mt-12 h-[0.5px] w-[2000px] -translate-x-1/2 bg-slate-600" />
       </SelectorBaseMobileHeaderContent>
 
       {!isMobile && (
