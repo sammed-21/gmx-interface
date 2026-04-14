@@ -36,6 +36,18 @@ export const OM_MANTRA_MIGRATION_EVENT_ID = "om-mantra-migration";
 
 export const appEventsData: EventData[] = [
   {
+    id: "gold-silver-fee-reduction",
+    flagId: "showGoldSilverFeeReduction",
+    endDate: "21 Apr 2026, 12:00",
+    title: "GOLD and SILVER trading fees heavily reduced",
+    bodyText: (
+      <>
+        Position fees for GOLD/USD and SILVER/USD have been lowered to 1/2 bps from 4/6 bps during on-hours.{" "}
+        <ExternalLink href="https://docs.gmx.io/docs/trading/overview/#fees">Read more</ExternalLink>.
+      </>
+    ),
+  },
+  {
     id: "gold-silver-arbitrum-listing",
     isActive: true,
     startDate: "10 Apr 2026, 12:00",
