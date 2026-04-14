@@ -3064,10 +3064,6 @@ msgstr "已禁用市场"
 msgid "Exposure to market traders' PnL"
 msgstr "承担市场交易者的 PnL 敞口"
 
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
-#~ msgstr ""
-
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
 msgstr "平均仓位规模"
@@ -4968,10 +4964,6 @@ msgstr "在 Bond Protocol 上以折扣价购买 GMX 债券，归属期较短"
 msgid "{positionTitle} orders"
 msgstr ""
 
-#: src/components/Earn/Portfolio/RewardsBar.tsx
-#~ msgid "Buyback accrued"
-#~ msgstr ""
-
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No resting orders"
 msgstr ""
@@ -5963,10 +5955,6 @@ msgstr "{fromSymbol} 余额不足。Gas 代币已切换为 {toSymbol}"
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Position may still liquidate from fees alone (funding + borrowing), reducing margin over time."
 msgstr ""
-
-#: src/pages/Earn/EarnPageLayout.tsx
-#~ msgid "Buyback Tracker"
-#~ msgstr ""
 
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to pay"
