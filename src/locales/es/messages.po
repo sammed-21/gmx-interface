@@ -1677,6 +1677,10 @@ msgstr "{typeString} Long Market: {0} una posición larga al precio actual"
 msgid "Claims history"
 msgstr "Historial de reclamaciones"
 
+#: src/domain/synthetics/trade/utils/validation.ts
+msgid "Shifting into this market is disabled"
+msgstr ""
+
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No SL orders"
 msgstr "No hay órdenes SL"
@@ -3059,10 +3063,6 @@ msgstr "Mercados deshabilitados"
 #: src/pages/PoolsDetails/PoolsDetails.tsx
 msgid "Exposure to market traders' PnL"
 msgstr "Exposición al PnL de los operadores del mercado"
-
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
-#~ msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
@@ -4964,10 +4964,6 @@ msgstr "Compre bonos GMX en Bond Protocol con descuento y un periodo de consolid
 msgid "{positionTitle} orders"
 msgstr ""
 
-#: src/components/Earn/Portfolio/RewardsBar.tsx
-#~ msgid "Buyback accrued"
-#~ msgstr ""
-
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No resting orders"
 msgstr ""
@@ -5959,10 +5955,6 @@ msgstr "Saldo de {fromSymbol} insuficiente. Token de Gas cambiado a {toSymbol}"
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Position may still liquidate from fees alone (funding + borrowing), reducing margin over time."
 msgstr ""
-
-#: src/pages/Earn/EarnPageLayout.tsx
-#~ msgid "Buyback Tracker"
-#~ msgstr ""
 
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to pay"

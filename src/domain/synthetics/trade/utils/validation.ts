@@ -11,7 +11,7 @@ import {
 } from "config/chains";
 import { BASIS_POINTS_DIVISOR, BASIS_POINTS_DIVISOR_BIGINT, USD_DECIMALS } from "config/factors";
 import { getMappedTokenId } from "config/multichain";
-import { isDepositDisabledMarket } from "config/static/markets";
+import { isDepositDisabledMarket, isShiftIntoDisabledMarket } from "config/static/markets";
 import { ExpressTxnParams } from "domain/synthetics/express/types";
 import {
   GlvInfo,
@@ -971,6 +971,7 @@ export function getGmSwapError(p: {
 }
 
 export function getGmShiftError({
+  chainId,
   fromMarketInfo,
   fromToken,
   fromTokenAmount,
@@ -983,6 +984,7 @@ export function getGmShiftError({
   fees,
   priceImpactUsd,
 }: {
+  chainId: number;
   fromMarketInfo: MarketInfo | undefined;
   fromToken: TokenData | undefined;
   fromTokenAmount: bigint | undefined;
@@ -999,6 +1001,10 @@ export function getGmShiftError({
 
   if (!fromMarketInfo || !fromToken || !toMarketInfo || !toToken) {
     return { buttonErrorMessage: t`Loading...` };
+  }
+
+  if (!isGlv && isShiftIntoDisabledMarket(chainId, toMarketInfo.marketTokenAddress)) {
+    return { buttonErrorMessage: t`Shifting into this market is disabled` };
   }
 
   if (priceImpactUsd !== undefined && priceImpactUsd > 0) {
