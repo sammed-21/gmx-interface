@@ -1,9 +1,16 @@
 import { maxUint256 } from "viem";
 
 import { NATIVE_TOKEN_ADDRESS } from "configs/tokens";
-import { applySwapImpactWithCap, getPriceImpactForSwap, getSwapFee } from "utils/fees";
-import { getAvailableUsdLiquidityForCollateral, getOppositeCollateral, getTokenPoolType } from "utils/markets";
+import { bigMath } from "utils/bigmath";
+import { applySwapImpactWithCap, getNextPoolAmountsParams, getPriceImpactForSwap, getSwapFee } from "utils/fees";
+import {
+  getAvailableUsdLiquidityForCollateral,
+  getMarketPnl,
+  getOppositeCollateral,
+  getTokenPoolType,
+} from "utils/markets";
 import { MarketInfo, MarketsInfoData } from "utils/markets/types";
+import { PRECISION } from "utils/numbers";
 import { getByKey } from "utils/objects";
 import { SwapPricingType } from "utils/orders/types";
 import { convertToTokenAmount, convertToUsd, getMidPrice } from "utils/tokens";
@@ -217,12 +224,11 @@ export function getSwapStats(p: {
 
   const isWrap = tokenInAddress === NATIVE_TOKEN_ADDRESS;
   const isUnwrap = tokenOutAddress === NATIVE_TOKEN_ADDRESS;
+  const isFromLongToShort = getTokenPoolType(marketInfo, tokenInAddress) === "long";
 
-  const tokenIn =
-    getTokenPoolType(marketInfo, tokenInAddress) === "long" ? marketInfo.longToken : marketInfo.shortToken;
+  const tokenIn = isFromLongToShort ? marketInfo.longToken : marketInfo.shortToken;
 
-  const tokenOut =
-    getTokenPoolType(marketInfo, tokenOutAddress) === "long" ? marketInfo.longToken : marketInfo.shortToken;
+  const tokenOut = isFromLongToShort ? marketInfo.shortToken : marketInfo.longToken;
 
   const priceIn = tokenIn.prices.minPrice;
   const priceOut = tokenOut.prices.maxPrice;
@@ -238,7 +244,7 @@ export function getSwapStats(p: {
     balanceWasImproved = priceImpactValues.balanceWasImproved;
   } catch (e) {
     // Approximate if the market would be out of capacity
-    const capacityUsd = getSwapCapacityUsd(marketInfo, getTokenPoolType(marketInfo, tokenInAddress) === "long");
+    const capacityUsd = getSwapCapacityUsd(marketInfo, isFromLongToShort);
     const swapFeeUsd = getSwapFee(marketInfo, usdIn, false, swapPricingType);
     const usdInAfterFees = usdIn - swapFeeUsd;
     const isOutCapacity = capacityUsd < usdInAfterFees;
@@ -260,6 +266,22 @@ export function getSwapStats(p: {
       isOutLiquidity: true,
       isOutCapacity,
     };
+  }
+
+  const maxOppositePnlFactorExceededStats = getMaxOppositePnlFactorExceededSwapStats({
+    marketInfo,
+    isLong: isFromLongToShort,
+    usdIn,
+    amountIn,
+    tokenInAddress,
+    tokenOutAddress,
+    isWrap,
+    isUnwrap,
+    swapPricingType,
+  });
+
+  if (maxOppositePnlFactorExceededStats) {
+    return maxOppositePnlFactorExceededStats;
   }
 
   const swapFeeAmount = getSwapFee(marketInfo, amountIn, balanceWasImproved, swapPricingType);
@@ -311,14 +333,11 @@ export function getSwapStats(p: {
 
   amountOut = convertToTokenAmount(usdOut, tokenOut.decimals, priceOut)!;
 
-  const capacityUsd = getSwapCapacityUsd(marketInfo, getTokenPoolType(marketInfo, tokenInAddress) === "long");
+  const capacityUsd = getSwapCapacityUsd(marketInfo, isFromLongToShort);
 
   const isOutCapacity = capacityUsd < usdInAfterFees;
 
-  const liquidity = getAvailableUsdLiquidityForCollateral(
-    marketInfo,
-    getTokenPoolType(marketInfo, tokenOutAddress) === "long"
-  );
+  const liquidity = getAvailableUsdLiquidityForCollateral(marketInfo, !isFromLongToShort);
 
   const isOutLiquidity = liquidity < usdOut;
 
@@ -338,6 +357,102 @@ export function getSwapStats(p: {
     usdOut,
     isOutLiquidity,
     isOutCapacity,
+  };
+}
+
+/**
+ * Return next pnl to pool factor for shrinking side of the market
+ */
+export function getNextOppositePnlToPoolFactor(p: {
+  marketInfo: MarketInfo;
+  /**
+   * Money in long side and out from short side
+   */
+  isLong: boolean;
+  usdIn: bigint;
+}): bigint {
+  const { marketInfo, isLong, usdIn } = p;
+
+  const { nextLongPoolUsd, nextShortPoolUsd } = getNextPoolAmountsParams({
+    longToken: marketInfo.longToken,
+    shortToken: marketInfo.shortToken,
+    longPoolAmount: marketInfo.longPoolAmount,
+    shortPoolAmount: marketInfo.shortPoolAmount,
+    longDeltaUsd: isLong ? usdIn : usdIn * -1n,
+    shortDeltaUsd: isLong ? usdIn * -1n : usdIn,
+  });
+  const oppositePnl = getMarketPnl(marketInfo, !isLong, false);
+  const oppositePool = isLong ? nextShortPoolUsd : nextLongPoolUsd;
+
+  if (oppositePnl <= 0n) {
+    return 0n;
+  }
+
+  if (oppositePool <= 0n) {
+    return maxUint256;
+  }
+
+  return bigMath.mulDiv(oppositePnl, PRECISION, oppositePool, false);
+}
+
+export function getIsMaxOppositePnlFactorExceeded(p: {
+  marketInfo: MarketInfo;
+  /**
+   * Money in long side and out from short side
+   */
+  isLong: boolean;
+  usdIn: bigint;
+}): boolean {
+  const { marketInfo, isLong, usdIn } = p;
+
+  const maxOppositePnlFactor = isLong ? marketInfo.maxPnlFactorForTradersShort : marketInfo.maxPnlFactorForTradersLong;
+  const nextOppositePnlToPoolFactor = getNextOppositePnlToPoolFactor({ marketInfo, isLong, usdIn });
+
+  return nextOppositePnlToPoolFactor > 0n && nextOppositePnlToPoolFactor > maxOppositePnlFactor;
+}
+
+function getMaxOppositePnlFactorExceededSwapStats(p: {
+  marketInfo: MarketInfo;
+  /**
+   * Money in long side and out from short side
+   */
+  isLong: boolean;
+  usdIn: bigint;
+  amountIn: bigint;
+  tokenInAddress: string;
+  tokenOutAddress: string;
+  isWrap: boolean;
+  isUnwrap: boolean;
+  swapPricingType: SwapPricingType;
+}): SwapStats | undefined {
+  const { marketInfo, isLong, usdIn, amountIn, tokenInAddress, tokenOutAddress, isWrap, isUnwrap, swapPricingType } = p;
+
+  if (!getIsMaxOppositePnlFactorExceeded({ marketInfo, isLong, usdIn })) {
+    return undefined;
+  }
+
+  const capacityUsd = getSwapCapacityUsd(marketInfo, isLong);
+  const swapFeeUsd = getSwapFee(marketInfo, usdIn, false, swapPricingType);
+  const usdInAfterFees = usdIn - swapFeeUsd;
+  const isOutCapacity = capacityUsd < usdInAfterFees;
+
+  return {
+    swapFeeUsd: 0n,
+    swapFeeAmount: 0n,
+    isWrap,
+    isUnwrap,
+    marketAddress: marketInfo.marketTokenAddress,
+    tokenInAddress,
+    tokenOutAddress,
+    priceImpactDeltaUsd: 0n,
+    amountIn,
+    amountInAfterFees: amountIn,
+    usdIn,
+    amountOut: 0n,
+    usdOut: 0n,
+    isOutLiquidity: false,
+    isOutCapacity,
+    isOutMaxFactor: true,
   };
 }
 
