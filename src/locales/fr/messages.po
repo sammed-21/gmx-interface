@@ -3060,10 +3060,6 @@ msgstr "Marchés désactivés"
 msgid "Exposure to market traders' PnL"
 msgstr "Exposition au PnL des traders du marché"
 
-#: src/components/Earn/Portfolio/AssetsList/GmxAssetCard/GmxAssetCard.tsx
-#~ msgid "Your share of the total network staking power. Staking power accrues over time based on your staked GMX balance and determines your share of buyback rewards."
-#~ msgstr ""
-
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size"
 msgstr "Taille moyenne de position"
@@ -4964,10 +4960,6 @@ msgstr "Achetez des obligations GMX sur Bond Protocol avec une décote et une co
 msgid "{positionTitle} orders"
 msgstr ""
 
-#: src/components/Earn/Portfolio/RewardsBar.tsx
-#~ msgid "Buyback accrued"
-#~ msgstr ""
-
 #: src/components/OrdersModal/TPSLOrdersList.tsx
 msgid "No resting orders"
 msgstr ""
@@ -5959,10 +5951,6 @@ msgstr "Solde {fromSymbol} insuffisant. Jeton Gas remplacé par {toSymbol}"
 #: src/components/PositionItem/PositionItem.tsx
 msgid "Position may still liquidate from fees alone (funding + borrowing), reducing margin over time."
 msgstr ""
-
-#: src/pages/Earn/EarnPageLayout.tsx
-#~ msgid "Buyback Tracker"
-#~ msgstr ""
 
 #: src/components/TokenSelector/MultichainTokenSelector.tsx
 msgid "Available to pay"
