@@ -62,12 +62,7 @@ export function getSubaccountApprovalTypedData(params: {
   };
 
   return {
-    domain: {
-      name: domain.name,
-      version: domain.version,
-      chainId: domain.chainId,
-      verifyingContract: domain.verifyingContract,
-    },
+    domain,
     types,
     message,
     primaryType: "SubaccountApproval",

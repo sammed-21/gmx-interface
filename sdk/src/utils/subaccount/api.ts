@@ -25,8 +25,7 @@ export type SubaccountApprovalPrepareRequest = {
   shouldAdd?: boolean;
   expiresAt: string;
   maxAllowedCount: string;
-  // TODO: multichain signing not yet supported
-  // signingNetwork?: string;
+  signingNetwork?: string;
 };
 
 export type SubaccountApprovalPrepareResponse = {

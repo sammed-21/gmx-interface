@@ -5,7 +5,7 @@ import { BASIS_POINTS_DIVISOR_BIGINT } from "configs/factors";
 import { NATIVE_TOKEN_ADDRESS } from "configs/tokens";
 import { bigMath } from "utils/bigmath";
 import { type ErrorLike, extendError, isIgnoredEstimateGasError } from "utils/errors";
-import { approximateL1GasBuffer, estimateRelayerGasLimit } from "utils/fees/executionFee";
+import { applyGasBuffer, approximateL1GasBuffer, estimateRelayerGasLimit } from "utils/fees/executionFee";
 import type { IMetrics } from "utils/metrics";
 import { noopMetrics } from "utils/metrics";
 import { applyFactor } from "utils/numbers";
@@ -275,8 +275,7 @@ export async function estimateExpressParams({
         value: 0n,
         stateOverride,
       });
-      gasLimit = estimated < 22000n ? 22000n : estimated;
-      gasLimit = (gasLimit * 11n) / 10n;
+      gasLimit = applyGasBuffer(estimated);
     } catch (error) {
       if (!isIgnoredEstimateGasError(error as ErrorLike)) {
         metrics.pushError(extendError(error as ErrorLike, { data: { estimationMethod } }), "expressOrders.estimateGas");

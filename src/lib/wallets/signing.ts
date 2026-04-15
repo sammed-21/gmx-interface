@@ -81,7 +81,10 @@ export async function signTypedData({
   const primaryType = Object.keys(typesToSign).filter((t) => t !== "EIP712Domain")[0];
 
   if (!("provider" in signer) || !("getAddress" in signer)) {
-    throw new Error("Signer does not support provider-based signing. Pass shouldUseSignerMethod=true for IAbstractSigner.");
+    if (signer.signTypedData) {
+      return signer.signTypedData(domain, typesToSign, messageToSign);
+    }
+    throw new Error("Signer does not support provider-based signing or signTypedData");
   }
 
   const provider = signer.provider;

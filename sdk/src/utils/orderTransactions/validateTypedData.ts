@@ -1,3 +1,5 @@
+import { getAddress } from "viem";
+
 import { ContractsChainId } from "configs/chains";
 import { ContractName, getContract } from "configs/contracts";
 import type { TypedDataDomain, TypedDataTypes } from "utils/signer";
@@ -22,7 +24,7 @@ function getKnownRelayRouterAddresses(chainId: ContractsChainId): Set<string> {
   for (const name of RELAY_ROUTER_CONTRACT_NAMES) {
     try {
       const addr = getContract(chainId, name);
-      if (addr) addresses.add(addr.toLowerCase());
+      if (addr) addresses.add(getAddress(addr));
     } catch {
       // Contract may not exist on this chain
     }
@@ -49,7 +51,7 @@ function validateDomain(domain: TypedDataDomain, chainId: ContractsChainId): voi
   }
 
   const knownAddresses = getKnownRelayRouterAddresses(chainId);
-  const verifyingContract = domain.verifyingContract?.toLowerCase();
+  const verifyingContract = domain.verifyingContract ? getAddress(domain.verifyingContract) : undefined;
 
   if (!verifyingContract || !knownAddresses.has(verifyingContract)) {
     throw new Error(
@@ -76,20 +78,20 @@ export function validateOrderTypedData(
   }
 
   // --- Message receiver validation ---
-  const normalizedSigner = signerAddress.toLowerCase();
+  const checksummedSigner = getAddress(signerAddress);
   const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-  const allowedReceivers = new Set([normalizedSigner]);
+  const allowedReceivers = new Set([checksummedSigner]);
   if (accountAddress) {
-    allowedReceivers.add(accountAddress.toLowerCase());
+    allowedReceivers.add(getAddress(accountAddress));
   }
 
   if (Array.isArray(message.createOrderParamsList)) {
     for (const order of message.createOrderParamsList) {
       const receiver = order?.addresses?.receiver;
       if (receiver) {
-        const normalizedReceiver = receiver.toLowerCase();
-        if (normalizedReceiver !== ZERO_ADDRESS && !allowedReceivers.has(normalizedReceiver)) {
+        const checksummedReceiver = getAddress(receiver);
+        if (checksummedReceiver !== ZERO_ADDRESS && !allowedReceivers.has(checksummedReceiver)) {
           throw new Error(
             `Order receiver "${receiver}" does not match signer "${signerAddress}". Possible malicious typed data.`
           );
@@ -109,9 +111,9 @@ export function validateSubaccountApprovalTypedData(
   validateDomain(domain, chainId);
 
   // --- Message field validation ---
-  const normalizedSigner = signerAddress.toLowerCase();
+  const checksummedSigner = getAddress(signerAddress);
 
-  if (message.account && message.account.toLowerCase() !== normalizedSigner) {
+  if (message.account && getAddress(message.account) !== checksummedSigner) {
     throw new Error(
       `Subaccount approval account "${message.account}" does not match signer "${signerAddress}"`
     );
@@ -119,7 +121,7 @@ export function validateSubaccountApprovalTypedData(
 
   if (
     message.subaccount &&
-    message.subaccount.toLowerCase() !== expectedSubaccountAddress.toLowerCase()
+    getAddress(message.subaccount) !== getAddress(expectedSubaccountAddress)
   ) {
     throw new Error(
       `Subaccount address "${message.subaccount}" does not match expected "${expectedSubaccountAddress}"`
