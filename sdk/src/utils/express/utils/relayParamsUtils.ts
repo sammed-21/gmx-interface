@@ -150,7 +150,7 @@ export function getRelayerFeeParams({
       });
     }
 
-    const bestFeeSwapStrategy = getBestInternalSwapStrategy(feeSwapAmounts, feeExternalSwapQuote);
+    const bestFeeSwapStrategy = getBestFeeSwapStrategy(feeSwapAmounts, feeExternalSwapQuote);
 
     if (bestFeeSwapStrategy?.swapPath) {
       feeParams = {
@@ -190,7 +190,7 @@ export function getRelayerFeeParams({
   };
 }
 
-export function getBestInternalSwapStrategy(
+export function getBestFeeSwapStrategy(
   internalSwapAmounts: SwapAmounts | undefined,
   externalSwapQuote: ExternalSwapQuote | undefined
 ) {
