@@ -24,10 +24,10 @@ const DEBUG = false;
 // eslint-disable-next-line no-console
 export const debugLog = DEBUG ? (...args: any[]) => console.log("[LongCrossChainTask]", ...args) : noop;
 
-export type Step<CustomStep extends string = never> = CustomStep | "finished";
+export type Step<CustomStep extends string> = CustomStep | "finished";
 
 export abstract class LongCrossChainTask<
-  CustomStep extends string = never,
+  CustomStep extends string,
   Group extends string | undefined = undefined,
   ErrorType = unknown,
 > {

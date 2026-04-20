@@ -189,7 +189,7 @@ export type SyntheticsEventsContextType = MultichainEventsState & {
   setDepositStatusViewed: (key: string) => void;
   setWithdrawalStatusViewed: (key: string) => void;
   setShiftStatusViewed: (key: string) => void;
-  setMultichainTransferProgress: (progress: MultichainTransferProgress) => void;
+  setMultichainTransferProgress: (progress: MultichainTransferProgress<string>) => void;
 };
 
 export type SetPendingOrder = (data: PendingOrderData | PendingOrderData[]) => void;
