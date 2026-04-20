@@ -13,7 +13,7 @@ import {
   mockQueryClient as queryClient,
   mockWagmiConfig as wagmiConfig,
   noop,
-} from "domain/synthetics/testUtils/mockSyntheticsState";
+} from "domain/testUtils/mockSyntheticsState";
 import { expandDecimals } from "lib/numbers";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 

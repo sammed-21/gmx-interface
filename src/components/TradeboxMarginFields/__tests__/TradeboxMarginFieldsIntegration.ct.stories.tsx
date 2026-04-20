@@ -8,21 +8,14 @@ import { WagmiProvider } from "wagmi";
 
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import { StateCtx } from "context/SyntheticsStateContext/utils";
-import { createMockMarketInfo } from "domain/synthetics/testUtils/mockMarketInfo";
+import { createMockMarketInfo } from "domain/testUtils/mockMarketInfo";
 import {
   createMockSyntheticsState as createMockState,
   mockQueryClient as queryClient,
   mockWagmiConfig as wagmiConfig,
   noop,
-} from "domain/synthetics/testUtils/mockSyntheticsState";
-import {
-  BTC_ADDRESS,
-  BTC_TOKEN,
-  ETH_ADDRESS,
-  ETH_TOKEN,
-  USDC_ADDRESS,
-  USDC_TOKEN,
-} from "domain/synthetics/testUtils/mockTokens";
+} from "domain/testUtils/mockSyntheticsState";
+import { BTC_ADDRESS, BTC_TOKEN, ETH_ADDRESS, ETH_TOKEN, USDC_ADDRESS, USDC_TOKEN } from "domain/testUtils/mockTokens";
 import { expandDecimals } from "lib/numbers";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";

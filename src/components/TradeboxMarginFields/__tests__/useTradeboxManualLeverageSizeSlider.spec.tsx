@@ -3,11 +3,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import { StateCtx } from "context/SyntheticsStateContext/utils";
-import { createMockMarketInfo } from "domain/synthetics/testUtils/mockMarketInfo";
-import {
-  createMockSyntheticsState,
-  type MockSyntheticsStateOverrides,
-} from "domain/synthetics/testUtils/mockSyntheticsState";
+import { createMockMarketInfo } from "domain/testUtils/mockMarketInfo";
+import { createMockSyntheticsState, type MockSyntheticsStateOverrides } from "domain/testUtils/mockSyntheticsState";
 
 import { useTradeboxManualLeverageSizeSlider } from "../useTradeboxManualLeverageSizeSlider";
 

@@ -13,8 +13,8 @@ import {
   mockQueryClient as queryClient,
   mockWagmiConfig as wagmiConfig,
   noop,
-} from "domain/synthetics/testUtils/mockSyntheticsState";
-import { ETH_ADDRESS, ETH_TOKEN, USDC_ADDRESS, USDC_TOKEN } from "domain/synthetics/testUtils/mockTokens";
+} from "domain/testUtils/mockSyntheticsState";
+import { ETH_ADDRESS, ETH_TOKEN, USDC_ADDRESS, USDC_TOKEN } from "domain/testUtils/mockTokens";
 import { expandDecimals } from "lib/numbers";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode } from "sdk/utils/trade/types";
