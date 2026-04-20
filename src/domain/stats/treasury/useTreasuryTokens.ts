@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { getContract } from "config/contracts";
 import type { TokenPricesData } from "domain/synthetics/tokens";
 import { useMulticall } from "lib/multicall";
-import type { ContractCallConfig, MulticallRequestConfig } from "lib/multicall";
+import type { MulticallRequestConfig } from "lib/multicall";
 import type { ContractsChainId } from "sdk/configs/chains";
 import { getToken, NATIVE_TOKEN_ADDRESS } from "sdk/configs/tokens";
 import { convertToUsd, getMidPrice } from "sdk/utils/tokens";
@@ -112,7 +112,7 @@ function buildTreasuryTokensRequest({
 }) {
   const multicallAddress = getContract(chainId, "Multicall");
 
-  return tokenAddresses.reduce<MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>>>(
+  return tokenAddresses.reduce<MulticallRequestConfig>(
     (acc, tokenAddress) => {
       const token = getToken(chainId, tokenAddress);
       const isNativeToken = token.address === NATIVE_TOKEN_ADDRESS;

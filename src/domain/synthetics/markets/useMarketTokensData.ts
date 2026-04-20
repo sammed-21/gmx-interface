@@ -19,7 +19,7 @@ import {
 import { getBalanceTypeFromSrcChainId, TokensData, useTokensDataRequest } from "domain/synthetics/tokens";
 import { TokenBalanceType } from "domain/tokens";
 import { ContractCallsConfig, useMulticall } from "lib/multicall";
-import type { ContractCallConfig, MulticallRequestConfig } from "lib/multicall";
+import type { MulticallRequestConfig } from "lib/multicall";
 import { expandDecimals } from "lib/numbers";
 import { getByKey } from "lib/objects";
 import { FREQUENT_MULTICALL_REFRESH_INTERVAL } from "lib/timeConstants";
@@ -77,7 +77,7 @@ export function useMarketTokensDataRequest(
     keepPreviousData: true,
 
     request: () =>
-      marketsAddresses!.reduce<MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>>>(
+      marketsAddresses!.reduce<MulticallRequestConfig>(
         (requests, marketAddress) => {
           const market = getByKey(marketsData, marketAddress)!;
           const marketPrices = getContractMarketPrices(tokensData!, market);

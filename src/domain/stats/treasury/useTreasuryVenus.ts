@@ -55,7 +55,7 @@ export function useTreasuryVenus({
 
     const dataStoreAddress = getContract(chainId, "DataStore");
     const syntheticsReaderAddress = getContract(chainId, "SyntheticsReader");
-    const request: MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>> = {};
+    const request: MulticallRequestConfig = {};
 
     deployment.vTokens.forEach((config) => {
       const market = marketsData?.[config.underlyingAddress];
@@ -217,7 +217,7 @@ export function useTreasuryVenus({
 }
 
 function buildVenusRequest({ addresses, deployment }: { addresses: string[]; deployment: VenusDeployment }) {
-  const request: MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>> = {};
+  const request: MulticallRequestConfig = {};
 
   deployment.vTokens.forEach((vToken) => {
     const calls: Record<string, ContractCallConfig> = {};

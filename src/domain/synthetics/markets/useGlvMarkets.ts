@@ -125,7 +125,7 @@ export function useGlvMarketsInfo(
         }
 
         const request = glvs.reduce<
-          MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>>
+          MulticallRequestConfig
         >((acc, { glv, markets }) => {
           const glvLongToken = tokensData[glv.longToken];
           const glvShortToken = tokensData[glv.shortToken];

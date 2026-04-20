@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 import type { TokenPricesData } from "domain/synthetics/tokens";
 import { ContractCallResult, useMulticall } from "lib/multicall";
-import type { ContractCallConfig, MulticallRequestConfig } from "lib/multicall";
+import type { MulticallRequestConfig } from "lib/multicall";
 import type { ContractsChainId } from "sdk/configs/chains";
 import { NATIVE_TOKEN_ADDRESS } from "sdk/configs/tokens";
 import { getUniswapV3Deployment } from "sdk/configs/uniswapV3";
@@ -334,7 +334,7 @@ export function useTreasuryUniswapV3({
       return undefined;
     }
 
-    const request: MulticallRequestConfig<Record<string, { calls: Record<string, ContractCallConfig> }>> = {};
+    const request: MulticallRequestConfig = {};
 
     for (const [key, address] of poolAddressMap.entries()) {
       request[key] = {
