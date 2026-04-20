@@ -1,3 +1,4 @@
+import { type AnyChainId } from "config/chains";
 import { fallbackTrackerEventKeys } from "lib/FallbackTracker/events";
 import {
   METRIC_EVENT_DISPATCH_NAME,
@@ -12,7 +13,7 @@ import { Multicall } from "./Multicall";
 import type { MulticallRequestConfig } from "./types";
 
 async function executeMulticall(
-  chainId: number,
+  chainId: AnyChainId,
   providerUrls: CurrentRpcEndpoints,
   request: MulticallRequestConfig<any>,
   abFlags: Record<string, boolean>,

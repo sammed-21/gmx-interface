@@ -1,6 +1,6 @@
 import { Chain, createPublicClient, http } from "viem";
 
-import { getViemChain, type ContractsChainId } from "config/chains";
+import { type AnyChainId, getViemChain, type ContractsChainId } from "config/chains";
 import { isWebWorker } from "config/env";
 import { getProviderNameFromUrl } from "config/rpc";
 import { emitReportEndpointFailure } from "lib/FallbackTracker/events";
@@ -27,7 +27,7 @@ export class Multicall {
     [chainId: number]: Multicall | undefined;
   } = {};
 
-  static async getInstance(chainId: number, abFlags: Record<string, boolean>) {
+  static async getInstance(chainId: AnyChainId, abFlags: Record<string, boolean>) {
     let instance = Multicall.instances[chainId];
 
     if (!instance || instance.chainId !== chainId) {
@@ -57,7 +57,7 @@ export class Multicall {
   getClient: (options?: { forceFallback?: boolean }) => ReturnType<typeof Multicall.getViemClient>;
 
   constructor(
-    public chainId: number,
+    public chainId: AnyChainId,
     private abFlags: Record<string, boolean>
   ) {}
 
@@ -265,10 +265,8 @@ export class Multicall {
           client.multicall({
             contracts: encodedPayload as any,
             batchSize:
-              // @ts-expect-error
               typeof BATCH_CONFIGS[this.chainId]?.client?.multicall === "object"
-                ? // @ts-expect-error
-                  (BATCH_CONFIGS[this.chainId].client!.multicall as { batchSize?: number }).batchSize
+                ? (BATCH_CONFIGS[this.chainId].client!.multicall as { batchSize?: number }).batchSize
                 : undefined,
           }),
         ])

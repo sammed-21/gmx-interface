@@ -3,6 +3,7 @@ import { stableHash } from "swr/_internal";
 import { isAddress } from "viem";
 
 import { swrCache, SWRConfigProp } from "App/swrConfig";
+import { type AnyChainId } from "config/chains";
 import { executeMulticall } from "lib/multicall";
 import { abis, AbiId } from "sdk/abis";
 
@@ -167,7 +168,7 @@ async function fetchContractData({
     const contract = new ethers.Contract(address, abis[abiId], provider);
 
     const result = await executeMulticall(
-      chainId,
+      chainId as AnyChainId,
       {
         getContractCall: {
           abiId,
