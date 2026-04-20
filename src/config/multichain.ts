@@ -285,7 +285,7 @@ function addMultichainPlatformTokenConfig(
     symbol: string;
     chainAddresses: Partial<
       Record<
-        AnyChainId,
+        SettlementChainId | SourceChainId,
         {
           address: string;
           stargate: string;
@@ -297,12 +297,11 @@ function addMultichainPlatformTokenConfig(
   tokenGroups[symbol] = {};
 
   for (const chainIdString in chainAddresses) {
-    const chainIdKey = chainIdString as unknown as AnyChainId;
-    // @ts-expect-error
-    tokenGroups[symbol][chainIdString] = {
+    const chainIdKey = chainIdString as unknown as SettlementChainId | SourceChainId;
+    tokenGroups[symbol]![chainIdKey] = {
       address: chainAddresses[chainIdKey]!.address,
       decimals: 18,
-      chainId: parseInt(chainIdString) as SettlementChainId | SourceChainId,
+      chainId: chainIdKey,
       stargate: chainAddresses[chainIdKey]!.stargate,
       symbol: symbol,
       isPlatformToken: true,
@@ -371,13 +370,10 @@ for (const tokenSymbol in TOKEN_GROUPS) {
       );
 
       MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] = MULTI_CHAIN_TOKEN_MAPPING[settlementChainId] || {};
-      // @ts-expect-error
-      MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainIdString] =
-        // @ts-expect-error
-        MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainIdString] || {};
+      MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainId] =
+        MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainId] || {};
 
-      // @ts-expect-error
-      MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainIdString][sourceChainToken.address] = {
+      MULTI_CHAIN_TOKEN_MAPPING[settlementChainId][sourceChainId]![sourceChainToken.address] = {
         settlementChainTokenAddress: tokenId.address,
         sourceChainTokenAddress: sourceChainToken.address,
         sourceChainTokenDecimals: sourceChainToken.decimals,
@@ -404,7 +400,7 @@ export function getStargatePoolAddress(chainId: number, tokenAddress: string): s
 }
 
 export function getLayerZeroEndpointId(chainId: number): LayerZeroEndpointId | undefined {
-  return CHAIN_ID_TO_ENDPOINT_ID[chainId as AnyChainId];
+  return CHAIN_ID_TO_ENDPOINT_ID[chainId as SettlementChainId | SourceChainId];
 }
 
 export function getMappedTokenId(
@@ -455,7 +451,7 @@ export const MULTICHAIN_FUNDING_SLIPPAGE_BPS = 50;
 
 export const StargateErrorsAbi = _StargateErrorsAbi as Abi;
 
-export const CHAIN_ID_TO_ENDPOINT_ID: Partial<Record<AnyChainId, LayerZeroEndpointId>> = {
+export const CHAIN_ID_TO_ENDPOINT_ID: Record<SettlementChainId | SourceChainId, LayerZeroEndpointId> = {
   [ARBITRUM_SEPOLIA]: 40231,
   [SOURCE_SEPOLIA]: 40161,
   [SOURCE_OPTIMISM_SEPOLIA]: 40232,
