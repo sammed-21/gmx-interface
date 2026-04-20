@@ -267,17 +267,17 @@ export function TradeboxMarginFields({
 
   return (
     <div className="flex flex-col gap-8">
-      <MarginField
-        inputValue={fromTokenInputValue}
-        onInputValueChange={handleFromInputChange}
-        onSelectFromTokenAddress={onSelectFromTokenAddress}
-        onDepositTokenAddress={onDepositTokenAddress}
-        onMaxClick={() => handleMarginPercentageChange(100)}
-        onFocus={() => setFocusedInput("from")}
-        qa="margin"
-      />
-
       <div className="flex flex-col gap-4">
+        <MarginField
+          inputValue={fromTokenInputValue}
+          onInputValueChange={handleFromInputChange}
+          onSelectFromTokenAddress={onSelectFromTokenAddress}
+          onDepositTokenAddress={onDepositTokenAddress}
+          onMaxClick={() => handleMarginPercentageChange(100)}
+          onFocus={() => setFocusedInput("from")}
+          qa="margin"
+        />
+
         <SizeField
           sizeInTokens={increaseAmounts?.sizeDeltaInTokens}
           sizeInUsd={increaseAmounts?.sizeDeltaUsd}
