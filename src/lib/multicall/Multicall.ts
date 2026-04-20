@@ -12,7 +12,7 @@ import type {
   MulticallTimeoutEvent,
 } from "lib/metrics";
 import { emitMetricCounter, emitMetricEvent, emitMetricTiming } from "lib/metrics/emitMetricEvent";
-import type { MulticallRequestConfig, MulticallResult } from "lib/multicall/types";
+import type { MulticallError, MulticallRequestConfig, MulticallResult } from "lib/multicall/types";
 import { CurrentRpcEndpoints } from "lib/rpc/RpcTracker";
 import { sleepWithSignal } from "lib/sleep";
 import { AbiId, abis as allAbis } from "sdk/abis";
@@ -165,25 +165,23 @@ export class Multicall {
       });
     };
 
-    const processResponse = (response: any) => {
+    type MulticallResponseItem =
+      | { status: "success"; result: unknown; error?: undefined }
+      | { status: "failure"; error: Error; result?: undefined };
+
+    const processResponse = (response: readonly MulticallResponseItem[]) => {
       const multicallResult: MulticallResult<any> = {
         success: true,
         errors: {},
         data: {},
       };
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      response.forEach(({ result, status, error }: any, i: number) => {
+      response.forEach((item, i) => {
         const { contractKey, callKey } = originalKeys[i];
 
-        if (status === "success") {
-          let values: any;
-
-          if (Array.isArray(result) || typeof result === "object") {
-            values = result;
-          } else {
-            values = [result];
-          }
+        if (item.status === "success") {
+          const { result } = item;
+          const values = Array.isArray(result) || (typeof result === "object" && result !== null) ? result : [result];
 
           multicallResult.data[contractKey] = multicallResult.data[contractKey] || {};
           multicallResult.data[contractKey][callKey] = {
@@ -194,9 +192,10 @@ export class Multicall {
           };
         } else {
           multicallResult.success = false;
+          const { error } = item;
 
           multicallResult.errors[contractKey] = multicallResult.errors[contractKey] || {};
-          multicallResult.errors[contractKey][callKey] = error;
+          multicallResult.errors[contractKey][callKey] = error as unknown as MulticallError;
 
           multicallResult.data[contractKey] = multicallResult.data[contractKey] || {};
           multicallResult.data[contractKey][callKey] = {
@@ -204,7 +203,7 @@ export class Multicall {
             callKey,
             returnValues: [],
             success: false,
-            error: error,
+            error: error.message,
           };
         }
       });
