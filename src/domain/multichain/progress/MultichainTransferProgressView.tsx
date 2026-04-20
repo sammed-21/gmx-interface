@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useCopyToClipboard } from "react-use";
 
-import { AnyChainId, getChainName } from "config/chains";
+import { getChainName } from "config/chains";
 import { getChainIcon } from "config/icons";
 import { getTokenAddressByGlv } from "domain/synthetics/markets/glv";
 import { Operation } from "domain/synthetics/markets/types";
@@ -355,7 +355,7 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                         value={
                           finishedError.creationTx ? (
                             <ExternalLink
-                              href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                              href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId](
                                 finishedError.creationTx
                               )}
                             >
@@ -374,7 +374,7 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                         value={
                           finishedError.executionTx ? (
                             <ExternalLink
-                              href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                              href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId](
                                 finishedError.executionTx
                               )}
                             >
@@ -394,7 +394,7 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                           value={
                             finishedError.creationTx ? (
                               <ExternalLink
-                                href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                                href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId](
                                   finishedError.creationTx
                                 )}
                                 variant="icon"
@@ -412,7 +412,7 @@ function ToastContent({ chainId, task, finishedState, finishedError, closeToast 
                           value={
                             finishedError.executionTx ? (
                               <ExternalLink
-                                href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId as AnyChainId](
+                                href={CHAIN_ID_TO_TX_URL_BUILDER[finishedError.chainId](
                                   finishedError.executionTx
                                 )}
                                 variant="icon"

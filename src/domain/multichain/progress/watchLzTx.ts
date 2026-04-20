@@ -8,6 +8,7 @@ import {
   type Log,
 } from "viem";
 
+import { AnyChainId } from "config/chains";
 import { tryGetContract } from "config/contracts";
 import { ENDPOINT_ID_TO_CHAIN_ID } from "config/multichain";
 import {
@@ -34,7 +35,7 @@ export type LzStatus = {
   sourceTx?: string;
   destination: "pending" | "confirmed" | "failed";
   destinationTx?: string;
-  destinationChainId?: number;
+  destinationChainId?: AnyChainId;
   lz: "pending" | "confirmed" | "failed" | undefined;
   lzTx?: string;
 };

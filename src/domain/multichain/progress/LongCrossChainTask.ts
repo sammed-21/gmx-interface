@@ -1,6 +1,8 @@
 import noop from "lodash/noop";
 import { EncodeEventTopicsReturnType, Hex } from "viem";
 
+import { AnyChainId } from "config/chains";
+
 export function matchLogRequest(request: EncodeEventTopicsReturnType, logTopics: [Hex, ...Hex[]] | []): boolean {
   return request.every((filter, index) => {
     if (!filter) {
@@ -46,8 +48,8 @@ export abstract class LongCrossChainTask<
 
   constructor(
     public readonly initialTxHash: string,
-    public readonly sourceChainId: number,
-    public readonly settlementChainId: number
+    public readonly sourceChainId: AnyChainId,
+    public readonly settlementChainId: AnyChainId
   ) {
     this.resolversRegistry["finished"] = Promise.withResolvers<void>();
     // TODO MLTCH add steps when managers say to show steps
