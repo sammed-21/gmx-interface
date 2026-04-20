@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 
+import { getDataQALocator } from "lib/__tests__/testUtils";
 import { TradeMode } from "sdk/utils/trade/types";
 
 import { TradeboxMarginFieldsStory } from "./TradeboxMarginFields.ct.stories";
-import { getDataQALocator } from "./utils";
 
 test.describe("TradeboxMarginFields", () => {
   test.describe("Rendering", () => {

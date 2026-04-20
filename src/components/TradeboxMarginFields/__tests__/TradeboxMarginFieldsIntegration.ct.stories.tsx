@@ -8,127 +8,26 @@ import { WagmiProvider } from "wagmi";
 
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import { StateCtx } from "context/SyntheticsStateContext/utils";
-import { expandDecimals, PRECISION } from "lib/numbers";
-import type { MarketInfo } from "sdk/utils/markets/types";
+import { createMockMarketInfo } from "domain/synthetics/testUtils/mockMarketInfo";
+import {
+  createMockSyntheticsState as createMockState,
+  mockQueryClient as queryClient,
+  mockWagmiConfig as wagmiConfig,
+  noop,
+} from "domain/synthetics/testUtils/mockSyntheticsState";
+import {
+  BTC_ADDRESS,
+  BTC_TOKEN,
+  ETH_ADDRESS,
+  ETH_TOKEN,
+  USDC_ADDRESS,
+  USDC_TOKEN,
+} from "domain/synthetics/testUtils/mockTokens";
+import { expandDecimals } from "lib/numbers";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
 import { TradeboxMarginFields } from "../TradeboxMarginFields";
-import {
-  noop,
-  USDC_ADDRESS,
-  ETH_ADDRESS,
-  USDC_TOKEN,
-  ETH_TOKEN,
-  createMockState,
-  queryClient,
-  wagmiConfig,
-} from "./testFixtures";
-
-const BTC_ADDRESS = "0x47904963fc8b2340414262125aF798B9655E58Cd";
-
-const BTC_TOKEN = {
-  name: "Bitcoin",
-  symbol: "BTC",
-  decimals: 8,
-  address: BTC_ADDRESS,
-  prices: {
-    minPrice: expandDecimals(60000, 30),
-    maxPrice: expandDecimals(60000, 30),
-  },
-  balance: expandDecimals(1, 8),
-} as TokenData;
-
-const MARKET_ADDRESS = "0x70d95587d40A2caf56bd97485aB3Eec10Bee6336";
-
-function createMockMarketInfo(ethToken: TokenData = ETH_TOKEN): MarketInfo {
-  return {
-    marketTokenAddress: MARKET_ADDRESS,
-    indexTokenAddress: ETH_ADDRESS,
-    longTokenAddress: ETH_ADDRESS,
-    shortTokenAddress: USDC_ADDRESS,
-    isSameCollaterals: false,
-    isSpotOnly: false,
-    name: "ETH/USD [ETH-USDC]",
-    data: "",
-    isDisabled: false,
-    longToken: ethToken,
-    shortToken: USDC_TOKEN,
-    indexToken: ethToken,
-    longPoolAmount: expandDecimals(1000, 18),
-    shortPoolAmount: expandDecimals(2000000, 6),
-    maxLongPoolAmount: expandDecimals(10000, 18),
-    maxShortPoolAmount: expandDecimals(20000000, 6),
-    maxLongPoolUsdForDeposit: expandDecimals(20000000, 30),
-    maxShortPoolUsdForDeposit: expandDecimals(20000000, 30),
-    poolValueMax: expandDecimals(4000000, 30),
-    poolValueMin: expandDecimals(3900000, 30),
-    reserveFactorLong: expandDecimals(5, 29),
-    reserveFactorShort: expandDecimals(5, 29),
-    openInterestReserveFactorLong: expandDecimals(5, 29),
-    openInterestReserveFactorShort: expandDecimals(5, 29),
-    maxOpenInterestLong: expandDecimals(10000000, 30),
-    maxOpenInterestShort: expandDecimals(10000000, 30),
-    borrowingFactorLong: 0n,
-    borrowingFactorShort: 0n,
-    borrowingExponentFactorLong: expandDecimals(1, 30),
-    borrowingExponentFactorShort: expandDecimals(1, 30),
-    fundingFactor: expandDecimals(1, 25),
-    fundingExponentFactor: expandDecimals(1, 30),
-    fundingIncreaseFactorPerSecond: 0n,
-    fundingDecreaseFactorPerSecond: 0n,
-    thresholdForStableFunding: 0n,
-    thresholdForDecreaseFunding: 0n,
-    minFundingFactorPerSecond: 0n,
-    maxFundingFactorPerSecond: 0n,
-    totalBorrowingFees: 0n,
-    positionImpactPoolAmount: expandDecimals(100, 18),
-    minPositionImpactPoolAmount: 0n,
-    positionImpactPoolDistributionRate: 0n,
-    minCollateralFactor: PRECISION / 100n,
-    minCollateralFactorForLiquidation: PRECISION / 200n,
-    minCollateralFactorForOpenInterestLong: 0n,
-    minCollateralFactorForOpenInterestShort: 0n,
-    swapImpactPoolAmountLong: 0n,
-    swapImpactPoolAmountShort: 0n,
-    maxPnlFactorForTradersLong: expandDecimals(5, 29),
-    maxPnlFactorForTradersShort: expandDecimals(5, 29),
-    longInterestUsd: 0n,
-    shortInterestUsd: 0n,
-    longInterestInTokens: 0n,
-    shortInterestInTokens: 0n,
-    positionFeeFactorForBalanceWasImproved: expandDecimals(5, 25),
-    positionFeeFactorForBalanceWasNotImproved: expandDecimals(7, 25),
-    positionImpactFactorPositive: expandDecimals(1, 25),
-    positionImpactFactorNegative: expandDecimals(2, 25),
-    maxPositionImpactFactorPositive: expandDecimals(1, 28),
-    maxPositionImpactFactorNegative: expandDecimals(1, 28),
-    maxPositionImpactFactorForLiquidations: expandDecimals(1, 28),
-    maxLendableImpactFactor: 0n,
-    maxLendableImpactFactorForWithdrawals: 0n,
-    maxLendableImpactUsd: 0n,
-    lentPositionImpactPoolAmount: 0n,
-    positionImpactExponentFactorPositive: expandDecimals(2, 30),
-    positionImpactExponentFactorNegative: expandDecimals(2, 30),
-    useOpenInterestInTokensForBalance: true,
-    swapFeeFactorForBalanceWasImproved: expandDecimals(5, 25),
-    swapFeeFactorForBalanceWasNotImproved: expandDecimals(7, 25),
-    atomicSwapFeeFactor: expandDecimals(5, 25),
-    swapImpactFactorPositive: expandDecimals(1, 25),
-    swapImpactFactorNegative: expandDecimals(2, 25),
-    swapImpactExponentFactor: expandDecimals(2, 30),
-    borrowingFactorPerSecondForLongs: 0n,
-    borrowingFactorPerSecondForShorts: 0n,
-    fundingFactorPerSecond: 0n,
-    longsPayShorts: true,
-    virtualPoolAmountForLongToken: 0n,
-    virtualPoolAmountForShortToken: 0n,
-    virtualInventoryForPositions: 0n,
-    virtualMarketId: "0x0000000000000000000000000000000000000000000000000000000000000000",
-    virtualLongTokenId: "0x0000000000000000000000000000000000000000000000000000000000000000",
-    virtualShortTokenId: "0x0000000000000000000000000000000000000000000000000000000000000000",
-  } as MarketInfo;
-}
 
 function useDynamicTokensData(ethPrice: number) {
   const dynamicEthToken = useMemo(

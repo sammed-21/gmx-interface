@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 
+import { getDataQALocator } from "lib/__tests__/testUtils";
+
 import {
   EdgeCaseStory,
   UndefinedToTokenStory,
@@ -7,7 +9,6 @@ import {
   LargeValuesStory,
   DustAmountsStory,
 } from "./TradeboxMarginFieldsEdgeCases.ct.stories";
-import { getDataQALocator } from "./utils";
 
 test.describe("TradeboxMarginFields Edge Cases", () => {
   test.describe("Zero and empty values", () => {

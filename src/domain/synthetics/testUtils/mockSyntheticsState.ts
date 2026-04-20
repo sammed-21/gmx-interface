@@ -4,43 +4,17 @@ import { arbitrum } from "wagmi/chains";
 
 import { ARBITRUM } from "config/chains";
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
-import { expandDecimals } from "lib/numbers";
 import type { DeepPartial } from "lib/types";
+import type { MarketInfo } from "sdk/utils/markets/types";
 import type { TokenData } from "sdk/utils/tokens/types";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
+
+import { ETH_ADDRESS, ETH_TOKEN, USDC_ADDRESS, USDC_TOKEN } from "./mockTokens";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = () => {};
 
-export const USDC_ADDRESS = "0xaf88d065e77c8cC2239327C5EDb3A432268e5831";
-export const ETH_ADDRESS = "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1";
-
-export const USDC_TOKEN = {
-  name: "USD Coin",
-  symbol: "USDC",
-  decimals: 6,
-  address: USDC_ADDRESS,
-  isStable: true,
-  prices: {
-    minPrice: expandDecimals(1, 30),
-    maxPrice: expandDecimals(1, 30),
-  },
-  balance: expandDecimals(10000, 6),
-} as TokenData;
-
-export const ETH_TOKEN = {
-  name: "Ethereum",
-  symbol: "ETH",
-  decimals: 18,
-  address: ETH_ADDRESS,
-  prices: {
-    minPrice: expandDecimals(2000, 30),
-    maxPrice: expandDecimals(2000, 30),
-  },
-  balance: expandDecimals(10, 18),
-} as TokenData;
-
-export type MockStateOverrides = {
+export type MockSyntheticsStateOverrides = {
   tradeMode?: TradeMode;
   tradeType?: TradeType;
   fromTokenInputValue?: string;
@@ -52,10 +26,14 @@ export type MockStateOverrides = {
   toTokenAddress?: string;
   marketAddress?: string;
   tokensData?: Record<string, TokenData>;
-  marketInfo?: { marketTokenAddress: string; [key: string]: unknown };
+  marketInfo?: MarketInfo;
 };
 
-export function createMockState(overrides: MockStateOverrides = {}): SyntheticsState {
+/**
+ * Builds a minimal SyntheticsState for tests that only need tradebox/globals fields.
+ * Extend the overrides type if your test needs broader coverage.
+ */
+export function createMockSyntheticsState(overrides: MockSyntheticsStateOverrides = {}): SyntheticsState {
   const {
     tradeMode = TradeMode.Market,
     tradeType = TradeType.Long,
@@ -126,11 +104,11 @@ export function createMockState(overrides: MockStateOverrides = {}): SyntheticsS
   return state as SyntheticsState;
 }
 
-export const queryClient = new QueryClient({
+export const mockQueryClient = new QueryClient({
   defaultOptions: { queries: { retry: false, gcTime: 0 } },
 });
 
-export const wagmiConfig = createConfig({
+export const mockWagmiConfig = createConfig({
   chains: [arbitrum],
   transports: { [arbitrum.id]: http() },
 });

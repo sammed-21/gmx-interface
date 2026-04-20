@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/experimental-ct-react";
 
+import { getDataQALocator } from "lib/__tests__/testUtils";
 import { TradeMode } from "sdk/utils/trade/types";
 
 import {
@@ -10,7 +11,6 @@ import {
   EthMarginPriceChangeStory,
   MaxAvailableDivergenceStory,
 } from "./TradeboxMarginFieldsIntegration.ct.stories";
-import { getDataQALocator } from "./utils";
 
 test.describe("TradeboxMarginFields Integration", () => {
   test.describe("Rendering structure", () => {
@@ -36,22 +36,12 @@ test.describe("TradeboxMarginFields Integration", () => {
     test("max button fills margin from maxAvailableAmount", async ({ mount, page }) => {
       await mount(<IntegrationStory initialFromValue="" />);
 
-      // The balance button is inside [data-token-selector]'s sibling area.
-      // It contains a span.numbers with the formatted balance.
-      const balanceButton = page.locator("span.numbers").first();
+      const maxButton = page.locator(getDataQALocator("margin-max"));
+      await maxButton.click();
 
-      // If balance is shown, clicking it should fill margin
-      if (await balanceButton.isVisible()) {
-        await balanceButton.click();
-        const marginInput = page.locator(getDataQALocator("margin-input"));
-        const value = await marginInput.inputValue();
-        expect(value).toBeTruthy();
-        expect(Number(value.replace(/,/g, ""))).toBeGreaterThan(0);
-      } else {
-        // Balance button not rendered (selector doesn't resolve token balance in CT)
-        // Verify at least that the margin field renders without crashing
-        await expect(page.locator(getDataQALocator("margin-input"))).toBeVisible();
-      }
+      const marginInput = page.locator(getDataQALocator("margin-input"));
+      const value = await marginInput.inputValue();
+      expect(Number(value.replace(/,/g, ""))).toBeGreaterThan(0);
     });
 
     test("max button no-ops when maxAvailableAmount is 0n", async ({ mount, page }) => {

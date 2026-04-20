@@ -8,11 +8,16 @@ import { WagmiProvider } from "wagmi";
 
 import type { SyntheticsState } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import { StateCtx } from "context/SyntheticsStateContext/utils";
+import {
+  createMockSyntheticsState as createMockState,
+  mockQueryClient as queryClient,
+  mockWagmiConfig as wagmiConfig,
+  noop,
+} from "domain/synthetics/testUtils/mockSyntheticsState";
 import { expandDecimals } from "lib/numbers";
 import { TradeMode, TradeType } from "sdk/utils/trade/types";
 
 import { TradeboxMarginFields } from "../TradeboxMarginFields";
-import { noop, createMockState, queryClient, wagmiConfig } from "./testFixtures";
 
 function TestProviders({ state, children }: { state: SyntheticsState; children: ReactNode }) {
   return (
