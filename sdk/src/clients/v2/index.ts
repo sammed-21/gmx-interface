@@ -137,7 +137,7 @@ export class GmxApiSdk {
       throw new Error("api is not supported for current chainId");
     }
 
-    const fallbackUrls = getApiFallbackUrls(chainId);
+    const fallbackUrls = apiUrl ? [] : getApiFallbackUrls(chainId);
     const allUrls = [resolvedApiUrl, ...fallbackUrls];
 
     this.ctx = {

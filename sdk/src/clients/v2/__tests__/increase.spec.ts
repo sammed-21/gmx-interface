@@ -485,7 +485,7 @@ describe("increase orders", () => {
       expect(submitted.requestId).toBeDefined();
 
       const status = await waitForOrderStatus(sdk, submitted.requestId);
-      expect(["executed", "reverted"]).toContain(status.status);
+      expect(["executed", "relay_reverted"]).toContain(status.status);
     });
   });
 

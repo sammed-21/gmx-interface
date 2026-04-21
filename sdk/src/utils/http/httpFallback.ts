@@ -1,8 +1,15 @@
-import { HttpClient } from "./http";
+import { HttpClient, HttpError } from "./http";
 import { IHttp } from "./types";
 
 const FAILURE_WINDOW_MS = 60_000;
 const FAILURES_BEFORE_ROTATION = 3;
+
+function isServerOrNetworkError(e: unknown): boolean {
+  if (e instanceof HttpError) {
+    return e.statusCode >= 500;
+  }
+  return true;
+}
 
 export class HttpClientWithFallback implements IHttp {
   private clients: HttpClient[];
@@ -44,11 +51,11 @@ export class HttpClientWithFallback implements IHttp {
       try {
         return await fn(order[i]);
       } catch (e) {
-        this.recordFailure(order[i]);
-
-        if (i === order.length - 1) {
+        if (!isServerOrNetworkError(e) || i === order.length - 1) {
           throw e;
         }
+
+        this.recordFailure(order[i]);
       }
     }
 

@@ -17,7 +17,7 @@ export const TEST_SIZE_USD = 100n * 10n ** 30n; // $100
 export const TEST_COLLATERAL = { amount: 1000000n, token: "USDC" }; // 1 USDC
 
 
-const TERMINAL_STATUSES = new Set(["executed", "failed", "reverted", "expired"]);
+const TERMINAL_STATUSES = new Set(["executed", "cancelled", "relay_failed", "relay_reverted"]);
 
 export function getTestSdk() {
   // eslint-disable-next-line no-restricted-globals

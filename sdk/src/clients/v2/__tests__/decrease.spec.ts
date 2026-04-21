@@ -278,7 +278,7 @@ describe("decrease orders", () => {
 
       const status = await waitForOrderStatus(sdk, submitted.requestId);
       // TWAP may revert depending on market conditions
-      expect(["executed", "reverted"]).toContain(status.status);
+      expect(["executed", "relay_reverted"]).toContain(status.status);
     });
   });
 
