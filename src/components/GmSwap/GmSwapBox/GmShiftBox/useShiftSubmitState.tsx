@@ -105,6 +105,7 @@ export function useShiftSubmitState({
     });
 
     const shiftError = getGmShiftError({
+      chainId,
       fromMarketInfo: selectedMarketInfo,
       fromToken: selectedToken,
       fromTokenAmount: amounts?.fromTokenAmount,

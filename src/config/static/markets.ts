@@ -533,6 +533,14 @@ const MARKETS_UI_CONFIGS: Record<ContractsChainId, Record<string, MarketUiConfig
     "0xbA30e198CFFeBEf0A84D6943cC8B2e356E324112": {
       enabled: true,
     },
+    // GOLD/USD [WETH-USDC]
+    "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f": {
+      enabled: true,
+    },
+    // SILVER/USD [WETH-USDC]
+    "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc": {
+      enabled: true,
+    },
   },
   [AVALANCHE]: {
     // BTC/USD [BTC-USDC]
@@ -800,11 +808,26 @@ export const DEPOSIT_DISABLED_MARKET_ADDRESSES: Record<number, Set<string>> = {
     "0x0164B6c847c65e07C9F6226149ADBFA7C1dE40Cf", // ASTER/USD
     "0x4b67aa8F754b17b1029Ad2DB4fb6a276CCe350c4", // XPL/USD
     "0xe55e1A29985488A2c8846a91E925c2B7C6564db1", // TAO/USD
+    // Commodity markets — accessible only via GLV
+    "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f", // GOLD/USD
+    "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc", // SILVER/USD
   ]),
 };
 
 export function isDepositDisabledMarket(chainId: number, marketTokenAddress: string): boolean {
   return DEPOSIT_DISABLED_MARKET_ADDRESSES[chainId]?.has(marketTokenAddress) ?? false;
+}
+
+export const SHIFT_INTO_DISABLED_MARKET_ADDRESSES: Record<number, Set<string>> = {
+  [ARBITRUM]: new Set([
+    // Commodity markets — accessible only via GLV
+    "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f", // GOLD/USD
+    "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc", // SILVER/USD
+  ]),
+};
+
+export function isShiftIntoDisabledMarket(chainId: number, marketTokenAddress: string): boolean {
+  return SHIFT_INTO_DISABLED_MARKET_ADDRESSES[chainId]?.has(marketTokenAddress) ?? false;
 }
 
 export const MARKETS = (Object.keys(MARKETS_UI_CONFIGS) as unknown as ContractsChainId[]).reduce(
