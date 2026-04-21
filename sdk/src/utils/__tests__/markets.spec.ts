@@ -22,7 +22,7 @@ import {
   getPriceForPnl,
 } from "utils/markets";
 import { MarketInfo } from "utils/markets/types";
-import { expandDecimals } from "utils/numbers";
+import { BASIS_POINTS_DIVISOR, expandDecimals, numberToBigint, PRECISION_DECIMALS } from "utils/numbers";
 import { Token, TokensData } from "utils/tokens/types";
 
 function getToken(symbol: string) {
@@ -208,8 +208,24 @@ describe("getMaxAllowedLeverageByMinCollateralFactor", () => {
   it("does not apply gold/silver overrides to other markets with same MCF", () => {
     const onHoursFactor = 9n * 10n ** 27n;
     const offHoursFactor = 35n * 10n ** 27n;
-    expect(getMaxAllowedLeverageByMinCollateralFactor(onHoursFactor, NON_GOLD_SILVER_MARKET)).toBe((110 * 10000) / 2);
-    expect(getMaxAllowedLeverageByMinCollateralFactor(offHoursFactor, NON_GOLD_SILVER_MARKET)).toBe((30 * 10000) / 2);
+    expect(getMaxAllowedLeverageByMinCollateralFactor(onHoursFactor, NON_GOLD_SILVER_MARKET)).toBe(
+      55.5 * BASIS_POINTS_DIVISOR
+    );
+    expect(getMaxAllowedLeverageByMinCollateralFactor(offHoursFactor, NON_GOLD_SILVER_MARKET)).toBe(
+      14.5 * BASIS_POINTS_DIVISOR
+    );
+  });
+
+  it("rounds allowed leverage to nearest .0 or .5", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(numberToBigint(1 / 24, PRECISION_DECIMALS), undefined)).toBe(
+      12 * BASIS_POINTS_DIVISOR
+    );
+    expect(getMaxAllowedLeverageByMinCollateralFactor(numberToBigint(1 / 25, PRECISION_DECIMALS), undefined)).toBe(
+      12.5 * BASIS_POINTS_DIVISOR
+    );
+    expect(getMaxAllowedLeverageByMinCollateralFactor(numberToBigint(1 / 50, PRECISION_DECIMALS), undefined)).toBe(
+      25 * BASIS_POINTS_DIVISOR
+    );
   });
 });
 
