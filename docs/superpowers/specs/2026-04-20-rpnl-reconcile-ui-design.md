@@ -45,10 +45,13 @@ Task 1's rendering is **temporary**. Per the ticket, once [FEDEV-2831](https://l
 
 ### Files
 
-- `src/components/TradeHistory/TradeHistoryRow/utils/position.ts` — three branches updated (MarketIncrease+OrderExecuted, LimitIncrease+OrderExecuted, StopIncrease+OrderExecuted, plus the TWAP-execute branch)
+- `src/components/TradeHistory/TradeHistoryRow/utils/position.ts` — three branches updated:
+  - `MarketIncrease + OrderExecuted` (separate branch)
+  - `LimitIncrease + OrderExecuted` and `StopIncrease + OrderExecuted` (share one branch in current code)
+  - TWAP `OrderExecuted` (handles both increase and decrease TWAPs)
 - `src/components/TradeHistory/TradeHistoryRow/utils/shared.ts` — add `pnlTooltip?: string` to `RowDetails`
 - `src/components/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx` — wrap the RPNL cell in `TooltipWithPortal` when `msg.pnlTooltip` is set, otherwise render the existing bare span
-- `src/components/TradeHistory/TradeHistoryRow/utils.spec.ts` — new tests covering the four increase scenarios
+- `src/components/TradeHistory/TradeHistoryRow/utils.spec.ts` — new tests covering the increase-execute scenarios
 
 ### Value source
 
@@ -68,11 +71,11 @@ Wrapped in lingui `t\`...\`` for translation.
 
 ### TWAP handling
 
-The TWAP `OrderExecuted` branch in `position.ts` (line 247) handles TWAP executes regardless of order type. Currently it only sets `pnl` when `sizeDeltaUsd > 0n`. For TWAP increase orders, `pnlUsd` now carries the opening fee even when `sizeDeltaUsd === 0n` (pure collateral TWAPs don't have fees anyway, but the squid still populates the field). Implementation should apply the same "show negative fee with tooltip" treatment for TWAP increases. Pure collateral-deposit TWAPs (no fee) will naturally render nothing because `pnlUsd` will be zero or undefined.
+The TWAP `OrderExecuted` branch in `position.ts` (line 247) handles TWAP executes regardless of order type. Currently it only sets `pnl` when `sizeDeltaUsd > 0n` — decrease TWAPs with size render realized PnL; increase TWAPs with size today render nothing. Keep the `sizeDeltaUsd > 0n` guard and extend the branch so that when it's an increase order type, it also sets `pnlTooltip` to the opening-fee message. Decrease TWAPs keep the current behavior (no tooltip — the value is realized PnL, not a fee).
 
 ### Undefined handling
 
-If `tradeAction.pnlUsd` is `undefined` (older indexer data, or a squid still on the pre-PR schema), skip rendering — the row shows `-` as it does today. This keeps the UI safe against stale squid deployments.
+If `tradeAction.pnlUsd` is `undefined` (older indexer data, or a squid still on the pre-PR schema), leave `result.pnl` unset. `TradeHistoryRow.tsx`'s existing `!msg.pnl` check renders `-` as it does today. This keeps the UI safe against stale squid deployments.
 
 ## Task 2 — Realized swap fees in debug tooltip
 
