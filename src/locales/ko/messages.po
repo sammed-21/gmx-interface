@@ -4461,6 +4461,7 @@ msgid "Request Market Swap"
 msgstr "마켓 스왑 요청"
 
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Opening fee paid at this action. Subtracted from your realized PnL."
 msgstr ""
 

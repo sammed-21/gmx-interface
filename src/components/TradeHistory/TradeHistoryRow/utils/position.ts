@@ -202,11 +202,17 @@ export const formatPositionMessage = (
         ? lines(t`Mark price for the order`, "", ...priceImpactLines)
         : lines(t`Mark price for the order`);
 
+    const showFeePnl = sizeDeltaUsd > 0n && tradeAction.pnlUsd !== undefined;
+    const formattedPnl = showFeePnl ? formatUsd(tradeAction.pnlUsd) : undefined;
+
     result = {
       action: customAction,
       size: customSize,
       priceComment: priceComment,
       acceptablePrice: acceptablePriceInequality + formattedAcceptablePrice,
+      pnl: formattedPnl,
+      pnlState: showFeePnl ? numberToState(tradeAction.pnlUsd!) : undefined,
+      pnlTooltip: showFeePnl ? t`Opening fee paid at this action. Subtracted from your realized PnL.` : undefined,
     };
   } else if (ot === OrderType.MarketIncrease && ev === TradeActionType.OrderCancelled) {
     const customAction = sizeDeltaUsd > 0 ? action : i18n._(actionTextMap["Deposit-OrderCancelled"]!);
