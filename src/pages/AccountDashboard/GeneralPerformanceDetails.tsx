@@ -138,6 +138,10 @@ function GeneralPerformanceDetailsRow({ row }: { row: PnlSummaryPoint }) {
                   value={formatUsd(row.startUnrealizedPnlUsd)}
                   valueClassName="numbers"
                 />
+                <br />
+                <div className="text-body-small text-typography-secondary">
+                  <Trans>Outstanding claimable amounts are not included.</Trans>
+                </div>
               </>
             )
           }

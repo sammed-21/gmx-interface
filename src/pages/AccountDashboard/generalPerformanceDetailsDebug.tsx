@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 
 import { PnlSummaryPoint } from "domain/synthetics/accountStats";
 import { formatUsd } from "lib/numbers";
@@ -65,6 +65,10 @@ export function GeneralPerformanceDetailsDebugTooltip({ row }: { row: PnlSummary
         textClassName={getPositiveOrNegativeClass(row.realizedSwapImpactUsd)}
         value={formatUsd(row.realizedSwapImpactUsd)}
       />
+      <br />
+      <div className="text-body-small text-typography-secondary">
+        <Trans>Outstanding claimable amounts are not included.</Trans>
+      </div>
     </>
   );
 }
