@@ -35,6 +35,12 @@ export function GeneralPerformanceDetailsDebugTooltip({ row }: { row: PnlSummary
         value={formatUsd(-row.realizedFeesUsd)}
       />
       <StatsTooltipRow
+        label={t`Realized swap fees`}
+        showDollar={false}
+        textClassName={getPositiveOrNegativeClass(-row.realizedSwapFeesUsd)}
+        value={formatUsd(-row.realizedSwapFeesUsd)}
+      />
+      <StatsTooltipRow
         label={t`Unrealized fees`}
         showDollar={false}
         textClassName={getPositiveOrNegativeClass(-row.unrealizedFeesUsd)}

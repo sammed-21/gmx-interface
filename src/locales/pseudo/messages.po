@@ -10561,6 +10561,10 @@ msgstr ""
 msgid "PNG"
 msgstr ""
 
+#: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
+msgid "Realized swap fees"
+msgstr ""
+
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/pages/PoolsDetails/PoolsDetailsHeader.tsx

@@ -10561,6 +10561,10 @@ msgstr "Enviando solicitud de cambio…"
 msgid "PNG"
 msgstr "PNG"
 
+#: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
+msgid "Realized swap fees"
+msgstr ""
+
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/pages/PoolsDetails/PoolsDetailsHeader.tsx

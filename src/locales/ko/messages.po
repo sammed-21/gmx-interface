@@ -10561,6 +10561,10 @@ msgstr "시프트 요청을 전송하는 중…"
 msgid "PNG"
 msgstr "PNG"
 
+#: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
+msgid "Realized swap fees"
+msgstr ""
+
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/pages/PoolsDetails/PoolsDetailsHeader.tsx
