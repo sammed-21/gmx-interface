@@ -6857,10 +6857,6 @@ msgstr "Übertragung eingereicht"
 msgid "Order submission failed"
 msgstr "Ordereinreichung fehlgeschlagen"
 
-#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
-msgid "Total realized and unrealized PnL for the period. Includes price impact and fees. Excludes swap fees."
-msgstr "Gesamter realisierter und unrealisierter PnL für den Zeitraum. Beinhaltet Preiseinfluss und Gebühren. Ohne Tauschgebühren."
-
 #: src/components/Referrals/traders/dashboard/TradersPromoCard.tsx
 msgid "Generate your own referral code and earn rebates whenever users trade with it. Rewards scale <0/> with your tier and the activity of your referred traders. <1>Learn more</1>"
 msgstr ""
@@ -8232,6 +8228,10 @@ msgstr "Leihexponent Short"
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Price impact"
 msgstr "Preiseinfluss"
+
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+msgid "Total realized and unrealized PnL for the period. Includes price impact and fees."
+msgstr ""
 
 #: src/components/PositionEditor/PositionEditor.tsx
 msgid "Edit margin: {0} {1}{2}/USD"
