@@ -12,6 +12,7 @@ import {
   executeOrderStopMarketLong,
   executeOrderSwap,
   executeSwap,
+  executeTwapIncreaseWithFee,
   failedSwap,
   frozenOrderIncreaseShort,
   increaseLongETH,
@@ -245,6 +246,12 @@ describe("TradeHistoryRow helpers", () => {
         "timestampUTC": "UTC: 2023-09-18 12:43:18",
       }
     `);
+
+    expect(formatPositionMessage(executeTwapIncreaseWithFee, minCollateralUsd).pnl).toBe("-$\u200a126.32");
+    expect(formatPositionMessage(executeTwapIncreaseWithFee, minCollateralUsd).pnlState).toBe("error");
+    expect(formatPositionMessage(executeTwapIncreaseWithFee, minCollateralUsd).pnlTooltip).toBe(
+      "Opening fee paid at this action. Subtracted from your realized PnL."
+    );
 
     expect(formatPositionMessage(createOrderIncreaseLong, minCollateralUsd).pnl).toBeUndefined();
     expect(formatPositionMessage(createOrderIncreaseLong, minCollateralUsd).pnlTooltip).toBeUndefined();

@@ -4462,6 +4462,7 @@ msgstr ""
 
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Opening fee paid at this action. Subtracted from your realized PnL."
 msgstr ""
 

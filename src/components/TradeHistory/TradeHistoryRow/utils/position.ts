@@ -253,6 +253,7 @@ export const formatPositionMessage = (
   } else if (tradeAction.twapParams) {
     if (ev === TradeActionType.OrderExecuted) {
       const formattedPnl = sizeDeltaUsd > 0n ? formatUsd(tradeAction.pnlUsd) : undefined;
+      const isIncreaseTwap = isIncreaseOrderType(tradeAction.orderType);
 
       result = {
         priceComment: lines(
@@ -264,6 +265,10 @@ export const formatPositionMessage = (
         acceptablePrice: t`N/A`,
         pnl: formattedPnl,
         pnlState: numberToState(tradeAction.pnlUsd),
+        pnlTooltip:
+          isIncreaseTwap && tradeAction.pnlUsd !== undefined && sizeDeltaUsd > 0n
+            ? t`Opening fee paid at this action. Subtracted from your realized PnL.`
+            : undefined,
       };
     } else {
       const error = tradeAction.reasonBytes ? tryDecodeCustomError(tradeAction.reasonBytes) ?? undefined : undefined;

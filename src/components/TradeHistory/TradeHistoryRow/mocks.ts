@@ -1,5 +1,5 @@
 import { OrderType } from "domain/synthetics/orders";
-import { PositionTradeAction, SwapTradeAction } from "domain/synthetics/tradeHistory";
+import { PositionTradeAction, SwapTradeAction, TradeActionType } from "domain/synthetics/tradeHistory";
 import { deserializeBigIntsInObject } from "lib/numbers";
 import { MarketInfo } from "sdk/utils/markets/types";
 
@@ -6190,5 +6190,16 @@ export const executeOrderMarketIncreaseLongWithFee: PositionTradeAction = {
   ...executeOrderIncreaseLong,
   id: "0xf57f245966c3313a01526c6b86406e3af5d61eedcf380e4595fabfab1c5d0d7e:99",
   orderType: OrderType.MarketIncrease,
+  pnlUsd: -126_320_000_000_000_000_000_000_000_000_000n,
+};
+
+export const executeTwapIncreaseWithFee: PositionTradeAction = {
+  ...executeOrderIncreaseLong,
+  eventName: TradeActionType.OrderExecuted,
+  orderType: OrderType.LimitIncrease,
+  twapParams: {
+    twapGroupId: "0xtwap-group-increase",
+    numberOfParts: 5,
+  },
   pnlUsd: -126_320_000_000_000_000_000_000_000_000_000n,
 };
