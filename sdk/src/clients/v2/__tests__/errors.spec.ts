@@ -229,9 +229,7 @@ describe("validation errors", () => {
     });
 
     it("nonexistent requestId rejects", async () => {
-      await expect(
-        sdk.fetchOrderStatus({ requestId: "nonexistent-id-12345" })
-      ).rejects.toThrow();
+      await expect(sdk.fetchOrderStatus({ requestId: "nonexistent-id-12345" })).rejects.toThrow();
     });
   });
 
@@ -295,7 +293,7 @@ describe("validation errors", () => {
       });
 
       const initial = await sdk.fetchOrderStatus({ requestId: submitted.requestId });
-      expect(["accepted", "pending", "submitted", "executed"]).toContain(initial.status);
+      expect(["relay_accepted", "relay_pending", "relay_submitted", "created", "executed"]).toContain(initial.status);
       expect(initial.requestId).toBe(submitted.requestId);
 
       const terminal = await waitForOrderStatus(sdk, submitted.requestId);

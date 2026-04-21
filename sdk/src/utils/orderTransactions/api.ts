@@ -66,7 +66,16 @@ export type SubmitOrderRequest = {
 
 export type SubmitOrderResponse = {
   requestId: string;
-  status: "accepted" | "pending" | "submitted" | "executed" | "failed" | "reverted" | "expired";
+  status:
+    | "prepared"
+    | "relay_accepted"
+    | "relay_pending"
+    | "relay_submitted"
+    | "created"
+    | "executed"
+    | "cancelled"
+    | "relay_failed"
+    | "relay_reverted";
   txHash?: string;
   taskId?: string;
   error?: { code: string; message: string };
@@ -80,7 +89,16 @@ export type OrderStatusRequest = {
 
 export type OrderStatusResponse = {
   requestId: string;
-  status: "accepted" | "pending" | "submitted" | "executed" | "failed" | "reverted" | "expired";
+  status:
+    | "prepared"
+    | "relay_accepted"
+    | "relay_pending"
+    | "relay_submitted"
+    | "created"
+    | "executed"
+    | "cancelled"
+    | "relay_failed"
+    | "relay_reverted";
   txHash?: string;
   createdTxnHash?: string;
   executionTxnHash?: string;
@@ -186,10 +204,7 @@ export async function prepareCollateral(
   });
 }
 
-export async function fetchOrderStatus(
-  ctx: { api: IHttp },
-  request: OrderStatusRequest
-): Promise<OrderStatusResponse> {
+export async function fetchOrderStatus(ctx: { api: IHttp }, request: OrderStatusRequest): Promise<OrderStatusResponse> {
   return ctx.api.postJson<OrderStatusResponse>("/orders/txns/status", request);
 }
 

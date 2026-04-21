@@ -1,4 +1,4 @@
-import { getApiUrl } from "configs/api";
+import { getApiUrl, getApiFallbackUrls } from "configs/api";
 import { ContractsChainId } from "configs/chains";
 import { DEFAULT_SUBACCOUNT_EXPIRY_DURATION, DEFAULT_SUBACCOUNT_MAX_ALLOWED_COUNT } from "configs/express";
 import { fetchApiApy } from "utils/apy/api";
@@ -18,6 +18,7 @@ import type {
 import { fetchApiBuybackWeeklyStats } from "utils/buyback/api";
 import { BuybackWeeklyStatsResponse } from "utils/buyback/types";
 import { HttpClient } from "utils/http/http";
+import { HttpClientWithFallback } from "utils/http/httpFallback";
 import { IHttp } from "utils/http/types";
 import { fetchApiMarkets, fetchApiMarketsInfo, fetchApiMarketsTickers, fetchApiTokensData } from "utils/markets/api";
 import { MarketTicker, MarketWithTiers } from "utils/markets/types";
@@ -100,6 +101,8 @@ export type {
 export type { IAbstractSigner } from "utils/signer";
 export { PrivateKeySigner } from "utils/signer";
 export { HttpError } from "utils/http/http";
+export { HttpClientWithFallback } from "utils/http/httpFallback";
+export type { IHttp } from "utils/http/types";
 export { getGasPaymentTokens } from "configs/express";
 export type {
   SubaccountStatusRequest,
@@ -122,16 +125,24 @@ export class GmxApiSdk {
   ctx: { chainId: ContractsChainId; api: IHttp };
   private _subaccount: SubaccountState | undefined;
 
-  constructor({ chainId, apiUrl }: { chainId: ContractsChainId; apiUrl?: string }) {
+  constructor({ chainId, apiUrl, api }: { chainId: ContractsChainId; apiUrl?: string; api?: IHttp }) {
+    if (api) {
+      this.ctx = { chainId, api };
+      return;
+    }
+
     const resolvedApiUrl = apiUrl ?? getApiUrl(chainId);
 
     if (!resolvedApiUrl) {
       throw new Error("api is not supported for current chainId");
     }
 
+    const fallbackUrls = getApiFallbackUrls(chainId);
+    const allUrls = [resolvedApiUrl, ...fallbackUrls];
+
     this.ctx = {
       chainId,
-      api: new HttpClient(resolvedApiUrl),
+      api: allUrls.length > 1 ? new HttpClientWithFallback(allUrls) : new HttpClient(resolvedApiUrl),
     };
   }
 
