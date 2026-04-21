@@ -3405,6 +3405,10 @@ export const executeOrderIncreaseLong = prepare({
     type: "bigint",
     hex: "0xc2b9bf2fd0",
   },
+  pnlUsd: {
+    type: "bigint",
+    hex: "-0x063a58761b08e374686d824c44f0",
+  },
   orderType: 3,
   orderKey: "0x407ad8ff489c228d56ff0764956ce61ae0a3e1f238de6d4cf7cfaa508b7676d7",
   isLong: false,

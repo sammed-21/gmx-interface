@@ -4460,6 +4460,10 @@ msgstr "永續合約聚合器"
 msgid "Request Market Swap"
 msgstr "Request Market Swap"
 
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Opening fee paid at this action. Subtracted from your realized PnL."
+msgstr ""
+
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
 msgstr "純 {indexSymbol} 做空。風險敞口僅來自倉位。"

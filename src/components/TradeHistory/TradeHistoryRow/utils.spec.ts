@@ -184,6 +184,9 @@ describe("TradeHistoryRow helpers", () => {
         "isLong": false,
         "market": "Short ARB/USD",
         "marketPrice": "< $ 0.00001",
+        "pnl": "-$ 126.32",
+        "pnlState": "error",
+        "pnlTooltip": "Opening fee paid at this action. Subtracted from your realized PnL.",
         "poolName": "ARB-USDC",
         "price": "< $ 0.00001",
         "priceComment": [
@@ -417,6 +420,9 @@ describe("TradeHistoryRow helpers", () => {
         "isLong": true,
         "market": "Long BTC/USD",
         "marketPrice": "$ 95,754.20",
+        "pnl": undefined,
+        "pnlState": undefined,
+        "pnlTooltip": undefined,
         "poolName": "BTC-USDC",
         "price": "$ 95,754.20",
         "priceComment": [

@@ -4460,6 +4460,10 @@ msgstr "Агрегатор бессрочных контрактов"
 msgid "Request Market Swap"
 msgstr "Запрос на Рыночный Обмен"
 
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Opening fee paid at this action. Subtracted from your realized PnL."
+msgstr ""
+
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
 msgstr "Чистый шорт {indexSymbol}. Экспозиция формируется только из позиции."

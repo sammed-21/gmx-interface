@@ -304,6 +304,7 @@ export const formatPositionMessage = (
     (ot === OrderType.StopIncrease && ev === TradeActionType.OrderExecuted)
   ) {
     const isAcceptablePriceUseful = !isBoundaryAcceptablePrice(tradeAction.acceptablePrice);
+    const formattedPnl = tradeAction.pnlUsd !== undefined ? formatUsd(tradeAction.pnlUsd) : undefined;
 
     result = {
       priceComment: lines(
@@ -313,6 +314,12 @@ export const formatPositionMessage = (
         ...priceImpactLines
       ),
       acceptablePrice: isAcceptablePriceUseful ? acceptablePriceInequality + formattedAcceptablePrice : undefined,
+      pnl: formattedPnl,
+      pnlState: tradeAction.pnlUsd !== undefined ? numberToState(tradeAction.pnlUsd) : undefined,
+      pnlTooltip:
+        tradeAction.pnlUsd !== undefined
+          ? t`Opening fee paid at this action. Subtracted from your realized PnL.`
+          : undefined,
     };
   } else if (
     (ot === OrderType.LimitIncrease && ev === TradeActionType.OrderFrozen) ||
