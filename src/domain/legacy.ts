@@ -4,16 +4,21 @@ import { useCallback, useMemo, useRef } from "react";
 import useSWR from "swr";
 
 import { getServerUrl } from "config/backend";
-import { ARBITRUM, AVALANCHE } from "config/chains";
+import { ARBITRUM, AVALANCHE, ContractsChainId } from "config/chains";
 import { getContract } from "config/contracts";
 import { contractFetcher } from "lib/contracts";
 import { BN_ZERO, expandDecimals, parseValue, toBigInt } from "lib/numbers";
+import type { WalletSigner } from "lib/wallets";
 import { getTokenBySymbol } from "sdk/configs/tokens";
 import { bigMath } from "sdk/utils/bigmath";
 
 export * from "./prices";
 
-export function useGmxPrice(chainId, libraries, active) {
+export function useGmxPrice(
+  chainId: ContractsChainId,
+  libraries: { arbitrum?: WalletSigner | undefined },
+  active: boolean
+) {
   const arbitrumLibrary = libraries && libraries.arbitrum ? libraries.arbitrum : undefined;
   const { data: gmxPriceFromArbitrum, mutate: mutateFromArbitrum } = useGmxPriceFromArbitrum(arbitrumLibrary, active);
   const { data: gmxPriceFromAvalanche, mutate: mutateFromAvalanche } = useGmxPriceFromAvalanche();
@@ -248,7 +253,7 @@ function useGmxPriceFromAvalanche() {
   return { data: gmxPrice, mutate };
 }
 
-function useGmxPriceFromArbitrum(signer, active) {
+function useGmxPriceFromArbitrum(signer: WalletSigner | undefined, active: boolean) {
   const poolAddress = getContract(ARBITRUM, "UniswapGmxEthPool");
   const { data: uniPoolSlot0, mutate: updateUniPoolSlot0 } = useSWR<any>(
     [`StakeV2:uniPoolSlot0:${active}`, ARBITRUM, poolAddress, "slot0"],

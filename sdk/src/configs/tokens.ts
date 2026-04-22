@@ -1997,7 +1997,7 @@ export const TOKENS: { [chainId: number]: Token[] } = {
   ],
 };
 
-export const TOKEN_COLOR_MAP = {
+export const TOKEN_COLOR_MAP: { default: string } & Partial<Record<string, string>> = {
   ETH: "#6062a6",
   BTC: "#F7931A",
   WBTC: "#F7931A",

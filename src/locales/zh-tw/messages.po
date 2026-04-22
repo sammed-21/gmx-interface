@@ -3656,7 +3656,6 @@ msgstr "資金費用"
 #: src/components/MetricsDebugSettings/MetricsDebugSettings.tsx
 #: src/components/OrderItem/TwapOrdersList/TwapOrdersList.tsx
 #: src/components/OrderItem/TwapOrdersList/TwapOrdersList.tsx
-#: src/components/SettingsModal/RpcDebugSettings.tsx
 msgid "{0}"
 msgstr "{0}"
 
@@ -3908,6 +3907,7 @@ msgid "Current margin"
 msgstr ""
 
 #: src/components/BridgeModal/BridgeOutModal.tsx
+#: src/components/GmxAccountModal/keys.ts
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 #: src/components/GmxAccountModal/WithdrawalView.tsx
 msgid "Withdrawal failed"
@@ -10333,6 +10333,10 @@ msgstr "最近 30 天"
 #: src/pages/Ecosystem/Ecosystem.tsx
 msgid "Dashboards"
 msgstr "儀表板"
+
+#: src/components/SettingsModal/RpcDebugSettings.tsx
+msgid "{label}"
+msgstr ""
 
 #: src/domain/synthetics/positions/utils.ts
 msgid "trigger"
