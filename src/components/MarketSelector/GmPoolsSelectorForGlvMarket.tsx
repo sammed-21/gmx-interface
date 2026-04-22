@@ -140,13 +140,10 @@ export function GmPoolsSelectorForGlvMarket({
     return [...sortedMarketsWithBalance, ...marketsWithoutBalance];
   }, [chainId, getMarketState, isDeposit, marketTokensData, markets]);
 
-  const selectedPool = useMemo(
-    () => marketsOptions.find((option) => getGlvOrMarketAddress(option.glvOrMarketInfo) === selectedMarketAddress),
-    [marketsOptions, selectedMarketAddress]
+  const marketInfo = useMemo(
+    () => markets.find((m) => m.market?.marketTokenAddress === selectedMarketAddress)?.market,
+    [markets, selectedMarketAddress]
   );
-
-  const selectedMarketInfo = selectedPool?.glvOrMarketInfo;
-  const marketInfo = selectedMarketInfo && isMarketInfo(selectedMarketInfo) ? selectedMarketInfo : undefined;
 
   const filteredOptions = useMemo(() => {
     const textMatched = searchKeyword.trim()
