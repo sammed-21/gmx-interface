@@ -2,6 +2,7 @@ import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
 import { useCallback, useMemo, useState } from "react";
 
+import { isDepositDisabledMarket } from "config/static/markets";
 import { useTokensFavorites } from "context/TokensFavoritesContext/TokensFavoritesContextProvider";
 import {
   GlvInfo,
@@ -99,6 +100,10 @@ export function GmPoolsSelectorForGlvMarket({
             return null;
           }
 
+          if (isDeposit && (marketInfo.isDisabled || isDepositDisabledMarket(chainId, marketInfo.marketTokenAddress))) {
+            return null;
+          }
+
           const indexName = getMarketIndexName(marketInfo);
           const marketToken = getByKey(marketTokensData, marketInfo.marketTokenAddress);
           const gmBalance = marketToken?.balance;
@@ -133,7 +138,7 @@ export function GmPoolsSelectorForGlvMarket({
     });
 
     return [...sortedMarketsWithBalance, ...marketsWithoutBalance];
-  }, [getMarketState, marketTokensData, markets]);
+  }, [chainId, getMarketState, isDeposit, marketTokensData, markets]);
 
   const selectedPool = useMemo(
     () => marketsOptions.find((option) => getGlvOrMarketAddress(option.glvOrMarketInfo) === selectedMarketAddress),
