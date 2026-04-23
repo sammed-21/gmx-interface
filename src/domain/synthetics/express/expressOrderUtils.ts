@@ -258,7 +258,8 @@ export async function buildAndSignExpressBatchOrderTxn({
 }): Promise<ExpressTxnData> {
   const messageSigner = subaccount ? subaccount!.signer : signer;
   const srcChainId = isGmxAccount ? await getMultichainInfoFromSigner(signer, chainId) : undefined;
-  const relayRouterAddress = getOrderRelayRouterAddress(chainId, subaccount !== undefined, isGmxAccount);
+  const isMultichain = srcChainId !== undefined;
+  const relayRouterAddress = getOrderRelayRouterAddress(chainId, subaccount !== undefined, isMultichain);
 
   const relayPayload: RelayParamsPayload = {
     ...(relayParamsPayload as RelayParamsPayload),
