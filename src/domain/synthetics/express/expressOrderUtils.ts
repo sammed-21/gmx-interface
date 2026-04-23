@@ -257,9 +257,9 @@ export async function buildAndSignExpressBatchOrderTxn({
   emptySignature?: boolean;
 }): Promise<ExpressTxnData> {
   const messageSigner = subaccount ? subaccount!.signer : signer;
-  const srcChainId = isGmxAccount ? await getMultichainInfoFromSigner(signer, chainId) : undefined;
-  const isMultichain = srcChainId !== undefined;
-  const relayRouterAddress = getOrderRelayRouterAddress(chainId, subaccount !== undefined, isMultichain);
+  const crossChainId = isGmxAccount ? await getMultichainInfoFromSigner(signer, chainId) : undefined;
+  const effectiveSrcChainId = isGmxAccount ? (crossChainId ?? chainId) : undefined;
+  const relayRouterAddress = getOrderRelayRouterAddress(chainId, subaccount !== undefined, isGmxAccount);
 
   const relayPayload: RelayParamsPayload = {
     ...(relayParamsPayload as RelayParamsPayload),
@@ -273,7 +273,7 @@ export async function buildAndSignExpressBatchOrderTxn({
   } else {
     const typedData = getBatchTypedData({
       chainId,
-      signingChainId: srcChainId ?? chainId,
+      signingChainId: crossChainId ?? chainId,
       batchParams,
       relayParams: relayPayload,
       account: signer.address,
@@ -308,7 +308,7 @@ export async function buildAndSignExpressBatchOrderTxn({
     relayParamsPayload: relayPayload,
     signature,
     account: signer.address,
-    srcChainId: srcChainId ?? undefined,
+    srcChainId: effectiveSrcChainId as any,
     subaccountApproval: subaccount?.signedApproval,
     isGmxAccount,
     deadline: relayPayload.deadline,
