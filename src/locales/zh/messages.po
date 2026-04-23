@@ -7271,10 +7271,6 @@ msgstr "限价增加"
 msgid "Transferring..."
 msgstr "转账中..."
 
-#: src/components/TVChart/Chart.tsx
-msgid "Net Rate History"
-msgstr "净费率历史"
-
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
 msgstr ""
@@ -10027,6 +10023,7 @@ msgid "Status"
 msgstr "状态"
 
 #: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/TVChart/Chart.tsx
 msgid "Net Rate"
 msgstr "净费率"
 

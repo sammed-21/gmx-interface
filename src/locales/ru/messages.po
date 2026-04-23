@@ -7271,10 +7271,6 @@ msgstr "Увеличение лимита"
 msgid "Transferring..."
 msgstr "Перевод..."
 
-#: src/components/TVChart/Chart.tsx
-msgid "Net Rate History"
-msgstr "История чистой ставки"
-
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
 msgstr ""
@@ -10027,6 +10023,7 @@ msgid "Status"
 msgstr "Статус"
 
 #: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/TVChart/Chart.tsx
 msgid "Net Rate"
 msgstr "Чистая ставка"
 

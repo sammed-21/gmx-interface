@@ -7271,10 +7271,6 @@ msgstr "지정가 증가"
 msgid "Transferring..."
 msgstr "전송 중..."
 
-#: src/components/TVChart/Chart.tsx
-msgid "Net Rate History"
-msgstr "순이자율 기록"
-
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
 msgstr ""
@@ -10027,6 +10023,7 @@ msgid "Status"
 msgstr "상태"
 
 #: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/TVChart/Chart.tsx
 msgid "Net Rate"
 msgstr "순이자율"
 
