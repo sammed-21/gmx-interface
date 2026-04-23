@@ -11,7 +11,13 @@ import {
   TradeType,
 } from "utils/trade/types";
 
+const MAX_ALLOWED_SLIPPAGE = 5000; // 50%
+
 export function applySlippageToPrice(allowedSlippage: number, price: bigint, isIncrease: boolean, isLong: boolean) {
+  if (allowedSlippage < 0 || allowedSlippage > MAX_ALLOWED_SLIPPAGE) {
+    throw new Error(`allowedSlippage must be between 0 and ${MAX_ALLOWED_SLIPPAGE} bps, got ${allowedSlippage}`);
+  }
+
   const shouldIncreasePrice = getShouldUseMaxPrice(isIncrease, isLong);
 
   const slippageBasisPoints = shouldIncreasePrice
@@ -22,6 +28,10 @@ export function applySlippageToPrice(allowedSlippage: number, price: bigint, isI
 }
 
 export function applySlippageToMinOut(allowedSlippage: number, minOutputAmount: bigint) {
+  if (allowedSlippage < 0 || allowedSlippage > MAX_ALLOWED_SLIPPAGE) {
+    throw new Error(`allowedSlippage must be between 0 and ${MAX_ALLOWED_SLIPPAGE} bps, got ${allowedSlippage}`);
+  }
+
   const slippageBasisPoints = BASIS_POINTS_DIVISOR - allowedSlippage;
 
   return bigMath.mulDiv(minOutputAmount, BigInt(slippageBasisPoints), BASIS_POINTS_DIVISOR_BIGINT);

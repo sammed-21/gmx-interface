@@ -161,7 +161,7 @@ export function getBestSwapPath({
     return undefined;
   }
 
-  let bestRoute = routes[0];
+  let bestRoute: MarketEdge[] | undefined = undefined;
   let bestUsdOut = 0n;
 
   for (const route of routes) {
