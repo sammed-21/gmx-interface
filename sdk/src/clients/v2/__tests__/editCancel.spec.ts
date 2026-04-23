@@ -42,6 +42,7 @@ async function createLimitOrder(sdkInstance: ReturnType<typeof getTestSdk>, trig
       orderType: "limit",
       size: TEST_SIZE_USD,
       triggerPrice,
+      collateralToken: "USDC",
       collateralToPay: TEST_COLLATERAL,
       mode: "express",
       from: account,

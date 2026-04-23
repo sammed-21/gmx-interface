@@ -17,7 +17,7 @@ const sdk = getTestSdk();
 const signer = requireSigner();
 const account = signer.address;
 
-const DECREASE_COLLATERAL = { amount: 5000000n, token: "USDC" }; // 5 USDC — avoid instant liquidation
+const DECREASE_COLLATERAL = { amount: 2000000n, token: "USDC" }; // 2 USDC
 
 async function openLongPosition(): Promise<void> {
   const result = await sdk.executeExpressOrder(
@@ -27,6 +27,7 @@ async function openLongPosition(): Promise<void> {
       direction: "long",
       orderType: "market",
       size: TEST_SIZE_USD,
+      collateralToken: "USDC",
       collateralToPay: DECREASE_COLLATERAL,
       mode: "express",
       from: account,
@@ -88,6 +89,7 @@ describe("decrease orders", () => {
         direction: "long",
         orderType: "market",
         size: decreaseSize,
+        receiveToken: "USDC",
         mode: "express",
         from: account,
       });
@@ -135,6 +137,7 @@ describe("decrease orders", () => {
         orderType: "market",
         size: decreaseSize,
         keepLeverage: true,
+        receiveToken: "USDC",
         mode: "express",
         from: account,
       });
@@ -177,6 +180,7 @@ describe("decrease orders", () => {
         orderType: "market",
         size: decreaseSize,
         keepLeverage: false,
+        receiveToken: "USDC",
         mode: "express",
         from: account,
       });
@@ -268,6 +272,7 @@ describe("decrease orders", () => {
         symbol: TEST_SYMBOL,
         direction: "long",
         size: decreaseSize,
+        receiveToken: "USDC",
         twapConfig: { duration: 600, parts: 2 },
         mode: "express",
         from: account,
@@ -293,6 +298,7 @@ describe("decrease orders", () => {
         direction: "long",
         orderType: "market",
         size: decreaseSize,
+        receiveToken: "USDC",
         mode: "express",
         from: account,
       });
@@ -316,6 +322,7 @@ describe("decrease orders", () => {
         direction: "long" as const,
         orderType: "market" as const,
         size: TEST_SIZE_USD,
+        receiveToken: "USDC" as const,
         mode: "express" as const,
         from: account,
       };
@@ -366,6 +373,7 @@ describe("decrease orders", () => {
         orderType: "stop-loss",
         size: TEST_SIZE_USD,
         triggerPrice,
+        receiveToken: "USDC",
         mode: "express",
         from: account,
       });
@@ -396,6 +404,7 @@ describe("decrease orders", () => {
         orderType: "take-profit",
         size: TEST_SIZE_USD,
         triggerPrice,
+        receiveToken: "USDC",
         mode: "express",
         from: account,
       });
@@ -424,6 +433,7 @@ describe("decrease orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        receiveToken: "USDC",
         mode: "classic",
         from: account,
       });
@@ -446,6 +456,7 @@ describe("decrease orders", () => {
         direction: "long",
         orderType: "market",
         size: decreaseSize,
+        receiveToken: "USDC",
         mode: "classic",
         from: account,
       });
@@ -485,6 +496,7 @@ describe("decrease orders", () => {
           direction: "long",
           orderType: "market",
           size: decreaseSize,
+          receiveToken: "USDC",
           mode: "express",
           from: account,
         },
@@ -516,6 +528,7 @@ describe("decrease orders", () => {
           direction: "long",
           orderType: "market",
           size: fullSize,
+          receiveToken: "USDC",
           mode: "express",
           from: account,
         });

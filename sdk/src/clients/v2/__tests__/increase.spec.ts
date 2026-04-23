@@ -53,6 +53,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -94,6 +95,7 @@ describe("increase orders", () => {
         direction: "short",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -112,7 +114,7 @@ describe("increase orders", () => {
     });
 
     it("larger collateral: position fee scales with size not collateral", async () => {
-      const collateral = { amount: 5000000n, token: "USDC" }; // 5 USDC vs 1 USDC in TEST_COLLATERAL
+      const collateral = { amount: 2000000n, token: "USDC" }; // 2 USDC vs 1 USDC in TEST_COLLATERAL
 
       const [small, large] = await Promise.all([
         sdk.prepareOrder({
@@ -152,7 +154,7 @@ describe("increase orders", () => {
         orderType: "market",
         size: TEST_SIZE_USD,
         collateralToken: "USDC",
-        collateralToPay: { amount: 5_000_000n, token: "USDC" },
+        collateralToPay: { amount: 1_000_000n, token: "USDC" },
         mode: "express",
         from: account,
       });
@@ -174,7 +176,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
-        collateralToPay: { amount: 5_000_000n, token: "USDC" },
+        collateralToPay: { amount: 1_000_000n, token: "USDC" },
         mode: "express",
         from: account,
       });
@@ -194,7 +196,7 @@ describe("increase orders", () => {
           orderType: "market",
           size: TEST_SIZE_USD,
           collateralToken: "USDC",
-          collateralToPay: { amount: 5_000_000n, token: "USDC" },
+          collateralToPay: { amount: 1_000_000n, token: "USDC" },
           mode: "express",
           from: account,
         }),
@@ -204,7 +206,7 @@ describe("increase orders", () => {
           direction: "long",
           orderType: "market",
           size: TEST_SIZE_USD,
-          collateralToPay: { amount: 5_000_000n, token: "USDC" },
+          collateralToPay: { amount: 1_000_000n, token: "USDC" },
           mode: "express",
           from: account,
         }),
@@ -230,7 +232,7 @@ describe("increase orders", () => {
           direction: "long",
           orderType: "market",
           size: TEST_SIZE_USD,
-          collateralToPay: { amount: 5_000_000n, token: "USDC" },
+          collateralToPay: { amount: 1_000_000n, token: "USDC" },
           mode: "express",
           from: account,
         }),
@@ -240,7 +242,7 @@ describe("increase orders", () => {
           direction: "long",
           orderType: "market",
           size: TEST_SIZE_USD,
-          collateralToPay: { amount: 5_000_000n, token: "USDC" },
+          collateralToPay: { amount: 1_000_000n, token: "USDC" },
           manualSwapPath: [ETH_USD_MARKET_ADDRESS],
           mode: "express",
           from: account,
@@ -271,6 +273,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -300,6 +303,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -324,6 +328,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -349,6 +354,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -467,14 +473,15 @@ describe("increase orders", () => {
     afterAll(cancelAllOrders);
 
     it("TWAP market increase — creates sub-orders", async () => {
-      const twapSize = 200n * 10n ** 30n; // $200
+      const twapSize = 20n * 10n ** 30n; // $20
       const { prepared, submitted } = await expressFlow(sdk, signer, {
         kind: "increase",
         orderType: "twap",
         symbol: TEST_SYMBOL,
         direction: "long",
         size: twapSize,
-        collateralToPay: { amount: 20_000_000n, token: "USDC" }, // 20 USDC — enough for fees per part
+        collateralToken: "USDC",
+        collateralToPay: { amount: 3_000_000n, token: "USDC" }, // 3 USDC
         twapConfig: { duration: 600, parts: 2 },
         mode: "express",
         from: account,
@@ -567,6 +574,7 @@ describe("increase orders", () => {
         orderType: "limit",
         size: TEST_SIZE_USD,
         triggerPrice,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
@@ -677,6 +685,7 @@ describe("increase orders", () => {
           direction: "long",
           orderType: "market",
           size: TEST_SIZE_USD,
+          collateralToken: "USDC",
           collateralToPay: TEST_COLLATERAL,
           mode: "express",
           from: account,
@@ -697,6 +706,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "classic",
         from: account,
@@ -720,6 +730,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "classic",
         from: account,
@@ -757,6 +768,7 @@ describe("increase orders", () => {
           direction: "long",
           orderType: "market",
           size: TEST_SIZE_USD,
+          collateralToken: "USDC",
           collateralToPay: TEST_COLLATERAL,
           mode: "express",
           from: account,
@@ -782,6 +794,7 @@ describe("increase orders", () => {
         direction: "long",
         orderType: "market",
         size: TEST_SIZE_USD,
+        collateralToken: "USDC",
         collateralToPay: TEST_COLLATERAL,
         mode: "express",
         from: account,
