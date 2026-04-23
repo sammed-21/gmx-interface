@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { ARBITRUM } from "configs/chains";
+import { BASIS_POINTS_DIVISOR } from "configs/factors";
 import { TOKENS } from "configs/tokens";
 import {
   getMarketFullName,
@@ -186,20 +187,26 @@ describe("getMaxLeverageByMinCollateralFactor", () => {
 });
 
 describe("getMaxAllowedLeverageByMinCollateralFactor", () => {
-  it("returns half of max leverage", () => {
-    expect(getMaxAllowedLeverageByMinCollateralFactor(1000000000000000000n)).toBe(5000000000000000);
+  const GOLD_MARKET = "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f";
+  const SILVER_MARKET = "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc";
+
+  it("returns half of max leverage when no market address is provided", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(1000000000000000000n, undefined)).toBe(5000000000000000);
   });
 
-  it("returns 100x for on-hours MCF (0.009 → 110x contract max)", () => {
-    // MCF 0.009 = 9e27 → maxLeverage 110x → allowed 100x
+  it("returns 100x for GOLD on on-hours MCF (0.009 → 110x contract max)", () => {
     const onHoursFactor = 9n * 10n ** 27n;
-    expect(getMaxAllowedLeverageByMinCollateralFactor(onHoursFactor)).toBe(100 * 10000);
+    expect(getMaxAllowedLeverageByMinCollateralFactor(onHoursFactor, GOLD_MARKET)).toBe(100 * BASIS_POINTS_DIVISOR);
   });
 
-  it("returns 25x for off-hours MCF (0.035 → 30x contract max)", () => {
-    // MCF 0.035 = 35e27 → maxLeverage 30x → allowed 25x
+  it("returns 25x for GOLD on off-hours MCF (0.035 → 30x contract max)", () => {
     const offHoursFactor = 35n * 10n ** 27n;
-    expect(getMaxAllowedLeverageByMinCollateralFactor(offHoursFactor)).toBe(25 * 10000);
+    expect(getMaxAllowedLeverageByMinCollateralFactor(offHoursFactor, GOLD_MARKET)).toBe(25 * BASIS_POINTS_DIVISOR);
+  });
+
+  it("returns 100x / 25x for SILVER with the same GOLD MCFs", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(9n * 10n ** 27n, SILVER_MARKET)).toBe(100 * BASIS_POINTS_DIVISOR);
+    expect(getMaxAllowedLeverageByMinCollateralFactor(35n * 10n ** 27n, SILVER_MARKET)).toBe(25 * BASIS_POINTS_DIVISOR);
   });
 });
 

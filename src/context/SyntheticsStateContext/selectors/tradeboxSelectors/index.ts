@@ -1284,8 +1284,8 @@ export const selectTradeboxMaxLeverage = createSelector((q) => {
 });
 
 export const selectTradeboxMaxAllowedLeverage = createSelector((q) => {
-  const minCollateralFactor = q((s) => s.tradebox.marketInfo?.minCollateralFactor);
-  return getMaxAllowedLeverageByMinCollateralFactor(minCollateralFactor);
+  const marketInfo = q((s) => s.tradebox.marketInfo);
+  return getMaxAllowedLeverageByMinCollateralFactor(marketInfo?.minCollateralFactor, marketInfo?.marketTokenAddress);
 });
 
 export const selectTradeboxLeverageSliderMarks = createSelector((q) => {
