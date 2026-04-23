@@ -455,10 +455,16 @@ export function getTradeboxLeverageSliderMarks(maxAllowedLeverage: number) {
   } else if (allowedLeverage >= 80) {
     return [0.1, 1, 2, 5, 10, 50, 80];
   } else if (allowedLeverage >= 75) {
-    return [0.1, 1, 2, 5, 10, 25, 50, allowedLeverage];
+    return [0.1, 1, 2, 5, 10, 30, 50, 75];
+  } else if (allowedLeverage >= 70) {
+    return [0.1, 1, 2, 5, 10, 30, 50, 70];
+  } else if (allowedLeverage >= 60) {
+    return [0.1, 1, 2, 5, 10, 25, 50, 60];
   } else if (allowedLeverage >= 50) {
     return [0.1, 1, 2, 5, 10, 25, allowedLeverage];
   } else if (allowedLeverage >= 30) {
+    return [0.1, 1, 2, 5, 10, allowedLeverage];
+  } else if (allowedLeverage >= 25) {
     return [0.1, 1, 2, 5, 10, allowedLeverage];
   } else if (allowedLeverage >= 10) {
     return [0.1, 1, 2, 5, allowedLeverage];
