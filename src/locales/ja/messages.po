@@ -1024,10 +1024,6 @@ msgstr "Yield Yakスワップ"
 msgid "Vaultka"
 msgstr "Vaultka"
 
-#: src/pages/Dashboard/OverviewCard.tsx
-msgid "Annualized buy pressure (BB&D):"
-msgstr "年間購入圧力（BB&D）："
-
 #: src/components/AccruedPositionPriceImpactRebateModal/AccruedPositionPriceImpactRebateModal.tsx
 #: src/components/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/components/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
@@ -4349,6 +4345,10 @@ msgstr ""
 #: src/components/GmxAccountModal/InsufficientWntBanner.tsx
 msgid "<0>Buy</0> {wrappedNativeTokenSymbol}."
 msgstr "<0>{wrappedNativeTokenSymbol}を購入</0>。"
+
+#: src/pages/Dashboard/OverviewCard.tsx
+msgid "Annualized buy pressure:"
+msgstr "年間購入圧力："
 
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
 #: src/components/OrderList/filters/OrderTypeFilter.tsx
