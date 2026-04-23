@@ -541,6 +541,18 @@ const MARKETS_UI_CONFIGS: Record<ContractsChainId, Record<string, MarketUiConfig
     "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc": {
       enabled: true,
     },
+    // WTIOIL/USD [WETH-USDC]
+    "0xda81cdd397210C08cFc567f93982E148A3aac8a6": {
+      enabled: true,
+    },
+    // BRENTOIL/USD [WETH-USDC]
+    "0x6F287D071800BfA847B4a7a7104BE33F87Ce9E74": {
+      enabled: true,
+    },
+    // NATGAS/USD [WETH-USDC]
+    "0x2Ce2bc8B0f9d000f359d756a5816C125474Bb39b": {
+      enabled: true,
+    },
   },
   [AVALANCHE]: {
     // BTC/USD [BTC-USDC]
@@ -811,6 +823,9 @@ export const DEPOSIT_DISABLED_MARKET_ADDRESSES: Record<number, Set<string>> = {
     // Commodity markets — accessible only via GLV
     "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f", // GOLD/USD
     "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc", // SILVER/USD
+    "0xda81cdd397210C08cFc567f93982E148A3aac8a6", // WTIOIL/USD
+    "0x6F287D071800BfA847B4a7a7104BE33F87Ce9E74", // BRENTOIL/USD
+    "0x2Ce2bc8B0f9d000f359d756a5816C125474Bb39b", // NATGAS/USD
   ]),
 };
 
@@ -823,6 +838,9 @@ export const SHIFT_INTO_DISABLED_MARKET_ADDRESSES: Record<number, Set<string>> =
     // Commodity markets — accessible only via GLV
     "0x0Df2BE76F517BCF0000AbfFcB6344B3b2aC4Cc4f", // GOLD/USD
     "0x448Fa722717df299ee197E2F6d8EB7911EFF6cEc", // SILVER/USD
+    "0xda81cdd397210C08cFc567f93982E148A3aac8a6", // WTIOIL/USD
+    "0x6F287D071800BfA847B4a7a7104BE33F87Ce9E74", // BRENTOIL/USD
+    "0x2Ce2bc8B0f9d000f359d756a5816C125474Bb39b", // NATGAS/USD
   ]),
 };
 
