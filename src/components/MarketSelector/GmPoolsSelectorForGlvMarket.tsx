@@ -152,6 +152,7 @@ export function GmPoolsSelectorForGlvMarket({
           [
             (item) => stripBlacklistedWords((item.glvOrMarketInfo as MarketInfo).indexToken.name),
             (item) => (item.glvOrMarketInfo as MarketInfo).indexToken.symbol,
+            (item) => ((item.glvOrMarketInfo as MarketInfo).indexToken.searchAliases ?? []).join(" "),
           ],
           searchKeyword
         )

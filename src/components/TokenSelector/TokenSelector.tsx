@@ -119,6 +119,7 @@ export default function TokenSelector(props: Props) {
           return stripBlacklistedWords(name);
         },
         "symbol",
+        (item) => (item.searchAliases ?? []).join(" "),
       ],
       searchKeyword
     );
