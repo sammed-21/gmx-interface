@@ -1214,7 +1214,7 @@ export const TOKENS: { [chainId: number]: Token[] } = {
       decimals: 18,
       categories: ["rwa"],
       searchAliases: ["CL"],
-      imageUrl: "",
+      imageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/39487.png",
       explorerUrl: "https://arbiscan.io/token/0xa8Ffb545d5cBF1F44E3eBA123D60372cD267D73c",
     },
     {
@@ -1225,7 +1225,7 @@ export const TOKENS: { [chainId: number]: Token[] } = {
       decimals: 18,
       categories: ["rwa"],
       searchAliases: ["BZ"],
-      imageUrl: "",
+      imageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/39804.png",
       explorerUrl: "https://arbiscan.io/token/0x9C5C4b9BA1fEBA72186f50d8Ae7C58b1D7f0B12F",
     },
     {
@@ -1235,7 +1235,7 @@ export const TOKENS: { [chainId: number]: Token[] } = {
       isSynthetic: true,
       decimals: 18,
       categories: ["rwa"],
-      imageUrl: "",
+      imageUrl: "https://s2.coinmarketcap.com/static/img/coins/64x64/39464.png",
       explorerUrl: "https://arbiscan.io/token/0x620aC65BE29066Bb9D1E92C65b35B9fD321Fb963",
     },
   ],
