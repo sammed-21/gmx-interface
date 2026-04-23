@@ -208,6 +208,29 @@ describe("getMaxAllowedLeverageByMinCollateralFactor", () => {
     expect(getMaxAllowedLeverageByMinCollateralFactor(9n * 10n ** 27n, SILVER_MARKET)).toBe(100 * BASIS_POINTS_DIVISOR);
     expect(getMaxAllowedLeverageByMinCollateralFactor(35n * 10n ** 27n, SILVER_MARKET)).toBe(25 * BASIS_POINTS_DIVISOR);
   });
+
+  const WTIOIL_MARKET = "0xda81cdd397210C08cFc567f93982E148A3aac8a6";
+  const BRENTOIL_MARKET = "0x6F287D071800BfA847B4a7a7104BE33F87Ce9E74";
+  const NATGAS_MARKET = "0x2Ce2bc8B0f9d000f359d756a5816C125474Bb39b";
+
+  it("returns 100x for WTIOIL on-hours MCF and 25x for off-hours MCF", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(9n * 10n ** 27n, WTIOIL_MARKET)).toBe(100 * BASIS_POINTS_DIVISOR);
+    expect(getMaxAllowedLeverageByMinCollateralFactor(35n * 10n ** 27n, WTIOIL_MARKET)).toBe(25 * BASIS_POINTS_DIVISOR);
+  });
+
+  it("returns 100x for BRENTOIL on-hours MCF and 25x for off-hours MCF", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(9n * 10n ** 27n, BRENTOIL_MARKET)).toBe(
+      100 * BASIS_POINTS_DIVISOR
+    );
+    expect(getMaxAllowedLeverageByMinCollateralFactor(35n * 10n ** 27n, BRENTOIL_MARKET)).toBe(
+      25 * BASIS_POINTS_DIVISOR
+    );
+  });
+
+  it("returns 40x for NATGAS on-hours MCF and 20x for off-hours MCF", () => {
+    expect(getMaxAllowedLeverageByMinCollateralFactor(22n * 10n ** 27n, NATGAS_MARKET)).toBe(40 * BASIS_POINTS_DIVISOR);
+    expect(getMaxAllowedLeverageByMinCollateralFactor(40n * 10n ** 27n, NATGAS_MARKET)).toBe(20 * BASIS_POINTS_DIVISOR);
+  });
 });
 
 describe("getOppositeCollateral", () => {
