@@ -2,6 +2,7 @@ import { zeroAddress } from "viem";
 
 import type { ContractsChainId } from "configs/chains";
 import { BASIS_POINTS_DIVISOR, BASIS_POINTS_DIVISOR_BIGINT } from "configs/factors";
+import { MARKET_HOURS_MARKETS } from "configs/marketHours";
 import type { MarketConfig as ConfigMarketConfig } from "configs/markets";
 import { convertTokenAddress, getTokenVisualMultiplier, NATIVE_TOKEN_ADDRESS } from "configs/tokens";
 import type { DayPriceCandle } from "utils/24h/types";
@@ -148,14 +149,17 @@ export function getMaxLeverageByMinCollateralFactor(minCollateralFactor: bigint 
   return rounded * BASIS_POINTS_DIVISOR;
 }
 
-// GOLD/SILVER on-hours: MCF 0.009 (9e27) → 100x UI
-const MCF_ON_HOURS = 9n * 10n ** 27n;
-// GOLD/SILVER off-hours: MCF 0.035 (35e27) → 25x UI
-const MCF_OFF_HOURS = 35n * 10n ** 27n;
-
-export function getMaxAllowedLeverageByMinCollateralFactor(minCollateralFactor: bigint | undefined) {
-  if (minCollateralFactor === MCF_ON_HOURS) return 100 * BASIS_POINTS_DIVISOR;
-  if (minCollateralFactor === MCF_OFF_HOURS) return 25 * BASIS_POINTS_DIVISOR;
+export function getMaxAllowedLeverageByMinCollateralFactor(
+  minCollateralFactor: bigint | undefined,
+  marketAddress: string | undefined
+) {
+  if (marketAddress) {
+    const cfg = MARKET_HOURS_MARKETS[marketAddress];
+    if (cfg) {
+      if (minCollateralFactor === cfg.onHoursMcf) return cfg.onHoursMaxLeverage * BASIS_POINTS_DIVISOR;
+      if (minCollateralFactor === cfg.offHoursMcf) return cfg.offHoursMaxLeverage * BASIS_POINTS_DIVISOR;
+    }
+  }
 
   return getMaxLeverageByMinCollateralFactor(minCollateralFactor) / 2;
 }
