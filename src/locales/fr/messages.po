@@ -7271,10 +7271,6 @@ msgstr "Augmentation limite"
 msgid "Transferring..."
 msgstr "Transfert en cours..."
 
-#: src/components/TVChart/Chart.tsx
-msgid "Net Rate History"
-msgstr "Historique du taux net"
-
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
 msgstr ""
@@ -10027,6 +10023,7 @@ msgid "Status"
 msgstr "Statut"
 
 #: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/TVChart/Chart.tsx
 msgid "Net Rate"
 msgstr "Taux net"
 

@@ -7271,10 +7271,6 @@ msgstr ""
 msgid "Transferring..."
 msgstr ""
 
-#: src/components/TVChart/Chart.tsx
-msgid "Net Rate History"
-msgstr ""
-
 #: src/components/Referrals/affiliates/dashboard/AffiliatesOverviewChartCards.tsx
 msgid "Volume traded by your referred traders."
 msgstr ""
@@ -10027,6 +10023,7 @@ msgid "Status"
 msgstr ""
 
 #: src/components/NetRateChart/NetRateChart.tsx
+#: src/components/TVChart/Chart.tsx
 msgid "Net Rate"
 msgstr ""
 
