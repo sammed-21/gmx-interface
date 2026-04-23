@@ -848,16 +848,18 @@ export function isShiftIntoDisabledMarket(chainId: number, marketTokenAddress: s
   return SHIFT_INTO_DISABLED_MARKET_ADDRESSES[chainId]?.has(marketTokenAddress) ?? false;
 }
 
-export const MARKETS = Object.keys(MARKETS_UI_CONFIGS).reduce(
+export const MARKETS = (Object.keys(MARKETS_UI_CONFIGS) as unknown as ContractsChainId[]).reduce(
   (acc, network) => {
+    const uiConfigs = MARKETS_UI_CONFIGS[network];
+    const sdkMarkets = SDK_MARKETS[network];
     return {
       ...acc,
-      [network]: Object.keys(MARKETS_UI_CONFIGS[network]).reduce((acc, address) => {
+      [network]: Object.keys(uiConfigs).reduce((acc, address) => {
         return {
           ...acc,
           [address]: {
-            ...SDK_MARKETS[network][address],
-            ...MARKETS_UI_CONFIGS[network][address],
+            ...sdkMarkets[address],
+            ...uiConfigs[address],
           },
         };
       }, {}),
