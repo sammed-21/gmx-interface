@@ -36,6 +36,7 @@ export async function signTypedData({
   // filter inputs
   for (const [key, value] of Object.entries(domain)) {
     if (value === undefined) {
+      // @ts-expect-error
       delete domain[key];
     }
   }

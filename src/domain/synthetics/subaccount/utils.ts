@@ -613,6 +613,7 @@ async function getSubaccountOnchainData({
       return acc;
     }
 
+    // @ts-expect-error
     acc[key] = decodeFunctionResult({
       abi: call.abi,
       functionName: call.functionName,
