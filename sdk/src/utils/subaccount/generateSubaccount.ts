@@ -1,4 +1,4 @@
-import { AES, enc } from "crypto-js";
+import cryptoJs from "crypto-js";
 import { keccak256, type Hash } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 
@@ -20,7 +20,7 @@ export async function generateSubaccount(mainSigner: IAbstractSigner): Promise<G
   const account = privateKeyToAccount(pk);
   const signer = new PrivateKeySigner(pk);
 
-  const encryptedPrivateKey = AES.encrypt(pk, mainSigner.address).toString();
+  const encryptedPrivateKey = cryptoJs.AES.encrypt(pk, mainSigner.address).toString();
 
   return {
     address: account.address,
@@ -30,14 +30,17 @@ export async function generateSubaccount(mainSigner: IAbstractSigner): Promise<G
 }
 
 export function decryptSubaccountPrivateKey(encryptedPrivateKey: string, mainAccountAddress: string): `0x${string}` {
-  const decrypted = AES.decrypt(encryptedPrivateKey, mainAccountAddress).toString(enc.Utf8);
+  const decrypted = cryptoJs.AES.decrypt(encryptedPrivateKey, mainAccountAddress).toString(cryptoJs.enc.Utf8);
   if (!decrypted) {
     throw new Error("Failed to decrypt subaccount private key");
   }
   return decrypted as `0x${string}`;
 }
 
-export function createSubaccountSignerFromConfig(encryptedPrivateKey: string, mainAccountAddress: string): PrivateKeySigner {
+export function createSubaccountSignerFromConfig(
+  encryptedPrivateKey: string,
+  mainAccountAddress: string
+): PrivateKeySigner {
   const pk = decryptSubaccountPrivateKey(encryptedPrivateKey, mainAccountAddress);
   return new PrivateKeySigner(pk);
 }
