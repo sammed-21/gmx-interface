@@ -340,7 +340,7 @@ describe("getBestSwapPath", () => {
     const routes = createTestRoutes();
     const result = getBestSwapPath({ routes, usdIn: 100n * dollar, estimator: () => ({ usdOut: 0n }) });
 
-    expect(result).toEqual(routes[0]);
+    expect(result).toBeUndefined();
   });
 
   it("should skip routes that throw errors", () => {
