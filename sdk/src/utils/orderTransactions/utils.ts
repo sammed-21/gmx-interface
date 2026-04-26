@@ -370,8 +370,8 @@ export function buildDecreaseOrderPayload(
 export function buildTwapOrdersPayloads<
   T extends SwapOrderParams | IncreasePositionOrderParams | DecreasePositionOrderParams,
 >(p: T, twapParams: TwapOrderParams): CreateOrderTxnParams<T>[] {
-  if (!twapParams.numberOfParts || twapParams.numberOfParts < 2) {
-    throw new Error(`TWAP numberOfParts must be >= 2, got ${twapParams.numberOfParts}`);
+  if (!twapParams.numberOfParts || twapParams.numberOfParts <= 0) {
+    throw new Error(`TWAP numberOfParts must be > 0, got ${twapParams.numberOfParts}`);
   }
 
   const uiFeeReceiver = createTwapUiFeeReceiver({ numberOfParts: twapParams.numberOfParts, source: twapParams.source });

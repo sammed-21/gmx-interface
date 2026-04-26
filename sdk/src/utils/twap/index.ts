@@ -21,15 +21,11 @@ export function getTwapDurationInSeconds(duration: TwapDuration) {
 }
 
 export function getTwapValidFromTime(duration: TwapDuration, numberOfParts: number, partIndex: number) {
-  if (numberOfParts < 2) {
-    throw new Error(`TWAP numberOfParts must be >= 2, got ${numberOfParts}`);
-  }
-
   const durationMinutes = duration.hours * 60 + duration.minutes;
-  const durationSeconds = durationMinutes * 60;
+  const durationMs = durationMinutes * 60;
   const startTime = Math.ceil(Date.now() / 1000);
 
-  return BigInt(Math.floor(startTime + (durationSeconds / (numberOfParts - 1)) * partIndex));
+  return BigInt(Math.floor(startTime + (durationMs / (numberOfParts - 1)) * partIndex));
 }
 
 export function changeTwapNumberOfPartsValue(value: number) {
@@ -76,15 +72,11 @@ export function getTwapOrderKey({
 }
 
 export function makeTwapValidFromTimeGetter(duration: TwapDuration, numberOfParts: number) {
-  if (numberOfParts < 2) {
-    throw new Error(`TWAP numberOfParts must be >= 2, got ${numberOfParts}`);
-  }
-
   const durationMinutes = duration.hours * 60 + duration.minutes;
-  const durationSeconds = durationMinutes * 60;
+  const durationMs = durationMinutes * 60;
   const startTime = Math.ceil(Date.now() / 1000);
 
   return (part: number) => {
-    return BigInt(Math.floor(startTime + (durationSeconds / (numberOfParts - 1)) * part));
+    return BigInt(Math.floor(startTime + (durationMs / (numberOfParts - 1)) * part));
   };
 }
