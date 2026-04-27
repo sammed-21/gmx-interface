@@ -97,6 +97,16 @@ export function validateOrderTypedData(
           );
         }
       }
+
+      const cancellationReceiver = order?.addresses?.cancellationReceiver;
+      if (cancellationReceiver) {
+        const checksummedCancellationReceiver = getAddress(cancellationReceiver);
+        if (checksummedCancellationReceiver !== ZERO_ADDRESS && !allowedReceivers.has(checksummedCancellationReceiver)) {
+          throw new Error(
+            `Order cancellationReceiver "${cancellationReceiver}" does not match signer "${signerAddress}". Possible malicious typed data.`
+          );
+        }
+      }
     }
   }
 }
