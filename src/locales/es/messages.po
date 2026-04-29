@@ -4122,6 +4122,11 @@ msgstr "Exponente de préstamo largo"
 msgid "<0>{0}</0> <1><2>{indexName}</2><3>[{poolName}]</3></1>"
 msgstr "<0>{0}</0> <1><2>{indexName}</2><3>[{poolName}]</3></1>"
 
+#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
+#: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
+msgid "Outstanding claimable amounts are not included."
+msgstr ""
+
 #: src/components/TradeFeesRow/TradeFeesRow.tsx
 msgid "Swap {0} to {1}"
 msgstr "Intercambiar {0} a {1}"
@@ -4459,6 +4464,12 @@ msgstr "Agregador de perpetuos"
 #: src/components/TradeHistory/keys.ts
 msgid "Request Market Swap"
 msgstr "Solicitar Intercambio de Mercado"
+
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+#: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
+msgid "Opening fee paid at this action. Subtracted from your realized PnL."
+msgstr ""
 
 #: src/components/TradeBox/hooks/useCollateralInTooltipContent.tsx
 msgid "Pure {indexSymbol} short. Exposure is only from the position."
@@ -6855,10 +6866,6 @@ msgstr "Transferencia enviada"
 msgid "Order submission failed"
 msgstr "Error en el envío de la orden"
 
-#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
-msgid "Total realized and unrealized PnL for the period. Includes price impact and fees. Excludes swap fees."
-msgstr "PnL total realizado y no realizado del período. Incluye el impacto en el precio y las comisiones. Excluye las comisiones de intercambio."
-
 #: src/components/Referrals/traders/dashboard/TradersPromoCard.tsx
 msgid "Generate your own referral code and earn rebates whenever users trade with it. Rewards scale <0/> with your tier and the activity of your referred traders. <1>Learn more</1>"
 msgstr ""
@@ -8230,6 +8237,10 @@ msgstr "Exponente de préstamo corto"
 #: src/components/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Price impact"
 msgstr "Impacto en el precio"
+
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+msgid "Total realized and unrealized PnL for the period. Includes price impact and fees."
+msgstr ""
 
 #: src/components/PositionEditor/PositionEditor.tsx
 msgid "Edit margin: {0} {1}{2}/USD"
@@ -10558,6 +10569,10 @@ msgstr "Enviando solicitud de cambio…"
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 msgid "PNG"
 msgstr "PNG"
+
+#: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
+msgid "Realized swap fees"
+msgstr ""
 
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
 #: src/components/GmList/GmTokensTotalBalanceInfo.tsx
