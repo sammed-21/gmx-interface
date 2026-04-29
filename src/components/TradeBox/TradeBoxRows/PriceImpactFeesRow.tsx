@@ -12,10 +12,7 @@ import {
 } from "context/SyntheticsStateContext/selectors/tradeboxSelectors";
 import { useSelector } from "context/SyntheticsStateContext/utils";
 import { useTradingIncentives } from "domain/synthetics/common/useIncentiveStats";
-import {
-  MEGAETH_POINTS_READ_MORE_URL,
-  useMegaethPointsActive,
-} from "domain/synthetics/common/useMegaethPointsActive";
+import { useMegaethPointsActive } from "domain/synthetics/common/useMegaethPointsActive";
 import { formatPercentage, PRECISION } from "lib/numbers";
 import { BASIS_POINTS_DIVISOR_BIGINT } from "sdk/configs/factors";
 import { bigMath } from "sdk/utils/bigmath";
@@ -43,22 +40,14 @@ export function PriceImpactFeesRow() {
   const megaethPointsSparkle = isMegaethPointsActive ? (
     <TooltipWithPortal
       variant="none"
-      maxAllowedWidth={260}
+      maxAllowedWidth={350}
       handle={
         <span className="inline-flex items-center gap-3 rounded-4 bg-blue-300/20 px-6 py-2 text-12 font-medium text-blue-300">
           <img className="h-10" src={sparkleIcon} alt="" />
           <Trans>Earns MegaETH points</Trans>
         </span>
       }
-      content={
-        <Trans>
-          Trading volume via fees (50%): points allocated proportionally to cumulative trading fees (open and close
-          fees) incurred on GMX MegaETH.
-          <br />
-          <br />
-          <ExternalLink href={MEGAETH_POINTS_READ_MORE_URL}>Read more</ExternalLink>.
-        </Trans>
-      }
+      content={<Trans>Points are allocated based on your cumulative trading volume on GMX MegaETH.</Trans>}
     />
   ) : null;
 

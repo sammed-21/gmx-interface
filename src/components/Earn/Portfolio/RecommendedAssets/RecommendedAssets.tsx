@@ -5,10 +5,7 @@ import { Link } from "react-router-dom";
 
 import { isDepositDisabledMarket } from "config/static/markets";
 import { useStakingProcessedData } from "domain/stake/useStakingProcessedData";
-import {
-  MEGAETH_POINTS_READ_MORE_URL,
-  useMegaethPointsActive,
-} from "domain/synthetics/common/useMegaethPointsActive";
+import { useMegaethPointsActive } from "domain/synthetics/common/useMegaethPointsActive";
 import {
   getGlvOrMarketAddress,
   getMarketIndexName,
@@ -32,7 +29,6 @@ import { getByKey } from "sdk/utils/objects";
 
 import APRLabel from "components/APRLabel/APRLabel";
 import Button from "components/Button/Button";
-import ExternalLink from "components/ExternalLink/ExternalLink";
 import TokenIcon from "components/TokenIcon/TokenIcon";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 
@@ -220,7 +216,7 @@ export function RecommendedAssets({
                 {isMegaethPointsActive && (
                   <TooltipWithPortal
                     variant="none"
-                    maxAllowedWidth={260}
+                    maxAllowedWidth={350}
                     handle={
                       <span className="inline-flex items-center gap-3 rounded-4 bg-blue-300/20 px-6 py-2 text-12 font-medium text-blue-300">
                         <img className="h-10" src={sparkleIcon} alt="" />
@@ -229,11 +225,8 @@ export function RecommendedAssets({
                     }
                     content={
                       <Trans>
-                        GLV [USDM-USDM] liquidity (10%): points based on the time-weighted average value of your share
-                        of the vault over the epoch.
-                        <br />
-                        <br />
-                        <ExternalLink href={MEGAETH_POINTS_READ_MORE_URL}>Read more</ExternalLink>.
+                        Points are based on the time-weighted average value of your share of the GLV [USDM-USDM]
+                        vault over the epoch.
                       </Trans>
                     }
                   />

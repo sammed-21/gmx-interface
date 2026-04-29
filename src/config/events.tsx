@@ -8,6 +8,8 @@ import { MEGAETH } from "config/chains";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import TokenIcon from "components/TokenIcon/TokenIcon";
 
+import sparkleIcon from "img/sparkle.svg";
+
 export type EventData = {
   id: string;
   title: ReactNode;
@@ -46,34 +48,24 @@ export const appEventsData: EventData[] = [
     title: "Earn points on GMX MegaETH",
     bodyText: (
       <span className="block">
-        <span className="mb-12 block text-slate-100">Earn points each epoch across four weighted activities:</span>
-        <span className="grid grid-cols-[auto_1fr] items-center gap-x-12 gap-y-12">
-          <span className="numbers rounded-4 bg-blue-300/20 px-8 py-2 text-center font-semibold text-blue-300">
-            50%
-          </span>
+        <span className="mb-12 block text-slate-100">Earn points each epoch across four activities:</span>
+        <span className="grid grid-cols-[auto_1fr] items-start gap-x-8 gap-y-12">
+          <img className="mt-3 h-12" src={sparkleIcon} alt="" />
           <span>
-            <span className="block font-medium">Trading fees</span>
-            <span className="block text-12 text-slate-100">
-              Based on cumulative trading fees you pay (open and close only)
-            </span>
+            <span className="block font-medium">Trading activity</span>
+            <span className="block text-12 text-slate-100">Based on cumulative trading volume</span>
           </span>
-          <span className="numbers rounded-4 bg-blue-300/20 px-8 py-2 text-center font-semibold text-blue-300">
-            30%
-          </span>
+          <img className="mt-3 h-12" src={sparkleIcon} alt="" />
           <span>
             <span className="block font-medium">Referral volume</span>
             <span className="block text-12 text-slate-100">Trading volume from wallets using your referral code</span>
           </span>
-          <span className="numbers rounded-4 bg-blue-300/20 px-8 py-2 text-center font-semibold text-blue-300">
-            10%
-          </span>
+          <img className="mt-3 h-12" src={sparkleIcon} alt="" />
           <span>
             <span className="block font-medium">Trader PnL</span>
             <span className="block text-12 text-slate-100">Net positive realized PnL only, to reward skill</span>
           </span>
-          <span className="numbers rounded-4 bg-blue-300/20 px-8 py-2 text-center font-semibold text-blue-300">
-            10%
-          </span>
+          <img className="mt-3 h-12" src={sparkleIcon} alt="" />
           <span>
             <span className="block font-medium">
               GLV <span className="text-slate-100">[USDM-USDM]</span> liquidity
@@ -83,11 +75,6 @@ export const appEventsData: EventData[] = [
         </span>
       </span>
     ),
-    link: {
-      text: "Read more",
-      href: "https://gmxio.substack.com/",
-      newTab: true,
-    },
   },
   {
     id: WELL_DELISTING_EVENT_ID,

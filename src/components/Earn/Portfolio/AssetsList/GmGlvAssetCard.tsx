@@ -3,10 +3,7 @@ import Skeleton from "react-loading-skeleton";
 
 import { PLATFORM_TOKEN_DECIMALS } from "context/PoolsDetailsContext/selectors";
 import { MultichainMarketTokenBalances } from "domain/multichain/types";
-import {
-  MEGAETH_POINTS_READ_MORE_URL,
-  useMegaethPointsActive,
-} from "domain/synthetics/common/useMegaethPointsActive";
+import { useMegaethPointsActive } from "domain/synthetics/common/useMegaethPointsActive";
 import {
   GlvOrMarketInfo,
   getGlvDisplayName,
@@ -24,7 +21,6 @@ import { getNormalizedTokenSymbol } from "sdk/configs/tokens";
 
 import { AmountWithUsdBalance } from "components/AmountWithUsd/AmountWithUsd";
 import Button from "components/Button/Button";
-import ExternalLink from "components/ExternalLink/ExternalLink";
 import {
   MultichainBalanceTooltip,
   useHasMultichainBreakdown,
@@ -134,7 +130,7 @@ export function GmGlvAssetCard({
         {showMegaethPointsBadge && (
           <TooltipWithPortal
             variant="none"
-            maxAllowedWidth={260}
+            maxAllowedWidth={350}
             handle={
               <span className="inline-flex w-fit items-center gap-3 rounded-4 bg-blue-300/20 px-6 py-2 text-12 font-medium text-blue-300">
                 <img className="h-10" src={sparkleIcon} alt="" />
@@ -143,11 +139,8 @@ export function GmGlvAssetCard({
             }
             content={
               <Trans>
-                GLV [USDM-USDM] liquidity (10%): points based on the time-weighted average value of your share of the
-                vault over the epoch.
-                <br />
-                <br />
-                <ExternalLink href={MEGAETH_POINTS_READ_MORE_URL}>Read more</ExternalLink>.
+                Points are based on the time-weighted average value of your share of the GLV [USDM-USDM] vault over
+                the epoch.
               </Trans>
             }
           />

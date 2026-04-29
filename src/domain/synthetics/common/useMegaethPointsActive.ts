@@ -4,7 +4,6 @@ import { useChainId } from "lib/chains";
 import { useUiFlagsRequest } from "../uiFlags/useUiFlagsRequest";
 
 export const MEGAETH_POINTS_FLAG_ID = "showMegaethPoints";
-export const MEGAETH_POINTS_READ_MORE_URL = "https://gmxio.substack.com/";
 
 export function useMegaethPointsActive(): boolean {
   const { chainId } = useChainId();
