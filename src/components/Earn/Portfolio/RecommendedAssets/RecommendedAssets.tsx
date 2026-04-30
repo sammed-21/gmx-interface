@@ -225,8 +225,8 @@ export function RecommendedAssets({
                     }
                     content={
                       <Trans>
-                        Points are based on the time-weighted average value of your share of the GLV [USDM-USDM]
-                        vault over the epoch.
+                        Points are based on the time-weighted average value of your share of the GLV [USDM-USDM] vault
+                        over the epoch.
                       </Trans>
                     }
                   />
